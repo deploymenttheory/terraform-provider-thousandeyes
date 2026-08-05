@@ -64,14 +64,6 @@ type Dashboards_API_ApiTimeseriesWidget struct {
 func NewDashboards_API_ApiTimeseriesWidget() *Dashboards_API_ApiTimeseriesWidget {
 	m := &Dashboards_API_ApiTimeseriesWidget{}
 	m.SetAdditionalData(make(map[string]any))
-	isTimeseriesOneChartPerLineValue := false
-	m.SetIsTimeseriesOneChartPerLine(&isTimeseriesOneChartPerLineValue)
-	showTimeseriesOverallBaselineValue := false
-	m.SetShowTimeseriesOverallBaseline(&showTimeseriesOverallBaselineValue)
-	showZoomSliderValue := false
-	m.SetShowZoomSlider(&showZoomSliderValue)
-	visualModeValue := FULL_DASHBOARDS_API_VISUALMODE
-	m.SetVisualMode(&visualModeValue)
 	return m
 }
 

@@ -78,8 +78,6 @@ type Dashboards_API_ApiDashboard struct {
 func NewDashboards_API_ApiDashboard() *Dashboards_API_ApiDashboard {
 	m := &Dashboards_API_ApiDashboard{}
 	m.SetAdditionalData(make(map[string]any))
-	refreshRateValue := OFF_DASHBOARDS_API_REFRESHRATE
-	m.SetRefreshRate(&refreshRateValue)
 	return m
 }
 
