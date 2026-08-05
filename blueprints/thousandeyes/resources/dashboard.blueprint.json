@@ -1,0 +1,853 @@
+{
+  "formatVersion": "4",
+  "resources": [
+    {
+      "key": "dashboard",
+      "name": "dashboard",
+      "goPackage": "dashboard",
+      "goPackageAlias": "v7Dashboard",
+      "goTypeName": "DashboardResource",
+      "modelTypeName": "DashboardResourceModel",
+      "serviceGroup": "dashboards",
+      "apiVersionDir": "v7",
+      "schema": {
+        "attributes": [
+          {
+            "name": "account_id",
+            "goField": "AccountID",
+            "type": {
+              "kind": "int64"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Identifier for the account group associated with a dashboard.",
+            "deprecationMessage": "The API documents this field as deprecated.",
+            "wire": {
+              "jsonPath": "accountId",
+              "sdkField": "AccountId",
+              "sdkGoType": "*int64",
+              "flatten": {
+                "func": "convert.PtrInt64ToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "aid",
+            "goField": "AID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Identifier for the account group associated with a dashboard.",
+            "wire": {
+              "jsonPath": "aid",
+              "sdkField": "Aid",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "created_by",
+            "goField": "CreatedBy",
+            "type": {
+              "kind": "int64"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Identifier for the user that created a dashboard.",
+            "deprecationMessage": "The API documents this field as deprecated.",
+            "wire": {
+              "jsonPath": "createdBy",
+              "sdkField": "CreatedBy",
+              "sdkGoType": "*int64",
+              "flatten": {
+                "func": "convert.PtrInt64ToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "dashboard_created_by",
+            "goField": "DashboardCreatedBy",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Identifier for the user that created a dashboard.",
+            "wire": {
+              "jsonPath": "dashboardCreatedBy",
+              "sdkField": "DashboardCreatedBy",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "dashboard_id",
+            "goField": "DashboardID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Identifier of a dashboard.",
+            "wire": {
+              "jsonPath": "dashboardId",
+              "sdkField": "DashboardId",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "dashboard_modified_by",
+            "goField": "DashboardModifiedBy",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Identifier for the user that last modified a dashboard.",
+            "wire": {
+              "jsonPath": "dashboardModifiedBy",
+              "sdkField": "DashboardModifiedBy",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "dashboard_modified_date",
+            "goField": "DashboardModifiedDate",
+            "type": {
+              "kind": "string",
+              "constraints": {
+                "format": "date-time"
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "UTC date/time when a dashboard was last modified (ISO date-time format).",
+            "wire": {
+              "jsonPath": "dashboardModifiedDate",
+              "sdkField": "DashboardModifiedDate",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "description",
+            "goField": "Description",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "A text description of the dashboard's purpose and functionality. This information assists users in understanding the dashboard but isn't displayed when viewing a dashboard.",
+            "wire": {
+              "jsonPath": "description",
+              "sdkField": "Description",
+              "sdkGoType": "*string",
+              "expand": {
+                "func": "convert.FrameworkToPtrString"
+              },
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              }
+            }
+          },
+          {
+            "name": "global_filter_id",
+            "goField": "GlobalFilterID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Default global dashboard filter ID (obtained from `/dashboards/filters` endpoint).",
+            "wire": {
+              "jsonPath": "globalFilterId",
+              "sdkField": "GlobalFilterId",
+              "sdkGoType": "*string",
+              "expand": {
+                "func": "convert.FrameworkToPtrString"
+              },
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              }
+            }
+          },
+          {
+            "name": "global_override",
+            "goField": "GlobalOverride",
+            "type": {
+              "kind": "bool"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "When set to `true`, the defaultTimespan is used and overrides the widget's timespan. If set to `false`, the the widget's timespan is used.",
+            "deprecationMessage": "The API documents this field as deprecated.",
+            "wire": {
+              "jsonPath": "globalOverride",
+              "sdkField": "GlobalOverride",
+              "sdkGoType": "*bool",
+              "flatten": {
+                "func": "convert.PtrBoolToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "is_built_in",
+            "goField": "IsBuiltIn",
+            "type": {
+              "kind": "bool"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Indicates if a dashboard is built-in. True for built-in dashboards, false for user-created dashboards.",
+            "wire": {
+              "jsonPath": "isBuiltIn",
+              "sdkField": "IsBuiltIn",
+              "sdkGoType": "*bool",
+              "flatten": {
+                "func": "convert.PtrBoolToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "is_default_for_account",
+            "goField": "IsDefaultForAccount",
+            "type": {
+              "kind": "bool"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Indicates whether this dashboard is the account group's default. True for default, false if not.",
+            "wire": {
+              "jsonPath": "isDefaultForAccount",
+              "sdkField": "IsDefaultForAccount",
+              "sdkGoType": "*bool",
+              "flatten": {
+                "func": "convert.PtrBoolToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "is_default_for_user",
+            "goField": "IsDefaultForUser",
+            "type": {
+              "kind": "bool"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Indicates whether this dashboard is the user's default. True for default, false if not.",
+            "wire": {
+              "jsonPath": "isDefaultForUser",
+              "sdkField": "IsDefaultForUser",
+              "sdkGoType": "*bool",
+              "flatten": {
+                "func": "convert.PtrBoolToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "is_global_override",
+            "goField": "IsGlobalOverride",
+            "type": {
+              "kind": "bool"
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "When set to `true`, the defaultTimespan is used and overrides the widget's timespan. If set to `false`, the the widget's timespan is used.",
+            "wire": {
+              "jsonPath": "isGlobalOverride",
+              "sdkField": "IsGlobalOverride",
+              "sdkGoType": "*bool",
+              "expand": {
+                "func": "convert.FrameworkToPtrBool"
+              },
+              "flatten": {
+                "func": "convert.PtrBoolToFramework"
+              }
+            }
+          },
+          {
+            "name": "is_migrated_report",
+            "goField": "IsMigratedReport",
+            "type": {
+              "kind": "bool"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "True if this dashboard was previously a report.",
+            "wire": {
+              "jsonPath": "isMigratedReport",
+              "sdkField": "IsMigratedReport",
+              "sdkGoType": "*bool",
+              "flatten": {
+                "func": "convert.PtrBoolToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "is_private",
+            "goField": "IsPrivate",
+            "type": {
+              "kind": "bool"
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "A dashboard can be viewed by other users in the account. If true, only the creator of the dashboard may view it. If false, all users in the same account may view it.",
+            "wire": {
+              "jsonPath": "isPrivate",
+              "sdkField": "IsPrivate",
+              "sdkGoType": "*bool",
+              "expand": {
+                "func": "convert.FrameworkToPtrBool"
+              },
+              "flatten": {
+                "func": "convert.PtrBoolToFramework"
+              }
+            }
+          },
+          {
+            "name": "layout",
+            "goField": "Layout",
+            "type": {
+              "kind": "single_nested",
+              "nestedObject": {
+                "goTypeName": "DashboardLayoutModel",
+                "sdkType": "models.DashboardsAPIDashboardLayoutable",
+                "constructorExpr": "models.NewDashboardsAPIDashboardLayout()",
+                "attrTypesVar": "dashboardLayoutAttrTypes",
+                "objectTypeVar": "dashboardLayoutObjectType",
+                "expandFunc": "expandDashboardLayout",
+                "flattenFunc": "flattenDashboardLayout",
+                "attributes": [
+                  {
+                    "name": "details",
+                    "goField": "Details",
+                    "type": {
+                      "kind": "single_nested",
+                      "nestedObject": {
+                        "goTypeName": "DashboardLayoutDetailsModel",
+                        "sdkType": "models.DashboardsAPIDashboardLayoutDetailsable",
+                        "constructorExpr": "models.NewDashboardsAPIDashboardLayoutDetails()",
+                        "attrTypesVar": "dashboardLayoutDetailsAttrTypes",
+                        "objectTypeVar": "dashboardLayoutDetailsObjectType",
+                        "expandFunc": "expandDashboardLayoutDetails",
+                        "flattenFunc": "flattenDashboardLayoutDetails",
+                        "attributes": [
+                          {
+                            "name": "widget_positioning",
+                            "goField": "WidgetPositioning",
+                            "type": {
+                              "kind": "set_nested",
+                              "nestedObject": {
+                                "goTypeName": "DashboardWidgetPositionModel",
+                                "sdkType": "models.DashboardsAPIWidgetPositionable",
+                                "constructorExpr": "models.NewDashboardsAPIWidgetPosition()",
+                                "attrTypesVar": "dashboardWidgetPositionAttrTypes",
+                                "objectTypeVar": "dashboardWidgetPositionObjectType",
+                                "expandFunc": "expandDashboardWidgetPositions",
+                                "flattenFunc": "flattenDashboardWidgetPositions",
+                                "attributes": [
+                                  {
+                                    "name": "h",
+                                    "goField": "H",
+                                    "type": {
+                                      "kind": "int64"
+                                    },
+                                    "computedOptionalRequired": "required",
+                                    "markdownDescription": "Height in grid units.",
+                                    "wire": {
+                                      "jsonPath": "h",
+                                      "sdkField": "H",
+                                      "sdkGoType": "*int32",
+                                      "expand": {
+                                        "func": "convert.FrameworkToPtrInt32"
+                                      },
+                                      "flatten": {
+                                        "func": "convert.PtrInt32ToFramework"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "name": "id",
+                                    "goField": "ID",
+                                    "type": {
+                                      "kind": "string"
+                                    },
+                                    "computedOptionalRequired": "optional",
+                                    "markdownDescription": "Identifier of the widget this position applies to.",
+                                    "wire": {
+                                      "jsonPath": "id",
+                                      "sdkField": "Id",
+                                      "sdkGoType": "*string",
+                                      "expand": {
+                                        "func": "convert.FrameworkToPtrString"
+                                      },
+                                      "flatten": {
+                                        "func": "convert.PtrStringToFramework"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "name": "w",
+                                    "goField": "W",
+                                    "type": {
+                                      "kind": "int64"
+                                    },
+                                    "computedOptionalRequired": "required",
+                                    "markdownDescription": "Width in grid units.",
+                                    "wire": {
+                                      "jsonPath": "w",
+                                      "sdkField": "W",
+                                      "sdkGoType": "*int32",
+                                      "expand": {
+                                        "func": "convert.FrameworkToPtrInt32"
+                                      },
+                                      "flatten": {
+                                        "func": "convert.PtrInt32ToFramework"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "name": "x",
+                                    "goField": "X",
+                                    "type": {
+                                      "kind": "int64"
+                                    },
+                                    "computedOptionalRequired": "required",
+                                    "markdownDescription": "Horizontal position.",
+                                    "wire": {
+                                      "jsonPath": "x",
+                                      "sdkField": "X",
+                                      "sdkGoType": "*int32",
+                                      "expand": {
+                                        "func": "convert.FrameworkToPtrInt32"
+                                      },
+                                      "flatten": {
+                                        "func": "convert.PtrInt32ToFramework"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "name": "y",
+                                    "goField": "Y",
+                                    "type": {
+                                      "kind": "int64"
+                                    },
+                                    "computedOptionalRequired": "required",
+                                    "markdownDescription": "Vertical position.",
+                                    "wire": {
+                                      "jsonPath": "y",
+                                      "sdkField": "Y",
+                                      "sdkGoType": "*int32",
+                                      "expand": {
+                                        "func": "convert.FrameworkToPtrInt32"
+                                      },
+                                      "flatten": {
+                                        "func": "convert.PtrInt32ToFramework"
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            "computedOptionalRequired": "optional",
+                            "markdownDescription": "List of widget positions within the layout.",
+                            "wire": {
+                              "jsonPath": "widgetPositioning",
+                              "sdkField": "WidgetPositioning",
+                              "sdkGoType": "[]models.DashboardsAPIWidgetPositionable",
+                              "expand": {
+                                "func": "expandDashboardWidgetPositions",
+                                "needsCtx": true,
+                                "returnsError": true
+                              },
+                              "flatten": {
+                                "func": "flattenDashboardWidgetPositions",
+                                "needsCtx": true,
+                                "returnsError": true
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "computedOptionalRequired": "optional",
+                    "markdownDescription": "Layout details including widget positioning.",
+                    "wire": {
+                      "jsonPath": "details",
+                      "sdkField": "Details",
+                      "sdkGoType": "models.DashboardsAPIDashboardLayoutDetailsable",
+                      "expand": {
+                        "func": "expandDashboardLayoutDetails",
+                        "needsCtx": true,
+                        "returnsError": true
+                      },
+                      "flatten": {
+                        "func": "flattenDashboardLayoutDetails",
+                        "needsCtx": true,
+                        "returnsError": true
+                      }
+                    }
+                  },
+                  {
+                    "name": "layout_id",
+                    "goField": "LayoutID",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "optional",
+                    "markdownDescription": "Unique identifier for the layout.",
+                    "wire": {
+                      "jsonPath": "layoutId",
+                      "sdkField": "LayoutId",
+                      "sdkGoType": "*string",
+                      "expand": {
+                        "func": "convert.FrameworkToPtrString"
+                      },
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      }
+                    }
+                  },
+                  {
+                    "name": "type",
+                    "goField": "Type",
+                    "type": {
+                      "kind": "string",
+                      "allowedValues": [
+                        "grid",
+                        "vertical"
+                      ]
+                    },
+                    "computedOptionalRequired": "required",
+                    "markdownDescription": "Type of the layout.",
+                    "wire": {
+                      "jsonPath": "type",
+                      "sdkField": "TypeEscaped",
+                      "sdkGoType": "*models.DashboardsAPIDashboardLayoutType",
+                      "expand": {
+                        "func": "convert.FrameworkToKiotaEnum",
+                        "typeArgs": [
+                          "models.DashboardsAPIDashboardLayoutType"
+                        ],
+                        "returnsError": true,
+                        "extraArgs": [
+                          "models.ParseDashboardsAPIDashboardLayoutType"
+                        ]
+                      },
+                      "flatten": {
+                        "func": "convert.KiotaEnumToFramework"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Dashboard layout configuration for arranging widgets.",
+            "wire": {
+              "jsonPath": "layout",
+              "sdkField": "Layout",
+              "sdkGoType": "models.DashboardsAPIDashboardLayoutable",
+              "expand": {
+                "func": "expandDashboardLayout",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "flatten": {
+                "func": "flattenDashboardLayout",
+                "needsCtx": true,
+                "returnsError": true
+              }
+            }
+          },
+          {
+            "name": "migrated_report",
+            "goField": "MigratedReport",
+            "type": {
+              "kind": "bool"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "True if this dashboard was previously a report.",
+            "deprecationMessage": "The API documents this field as deprecated.",
+            "wire": {
+              "jsonPath": "migratedReport",
+              "sdkField": "MigratedReport",
+              "sdkGoType": "*bool",
+              "flatten": {
+                "func": "convert.PtrBoolToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "modified_by",
+            "goField": "ModifiedBy",
+            "type": {
+              "kind": "int64"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Identifier for the user that last modified a dashboard.",
+            "deprecationMessage": "The API documents this field as deprecated.",
+            "wire": {
+              "jsonPath": "modifiedBy",
+              "sdkField": "ModifiedBy",
+              "sdkGoType": "*int64",
+              "flatten": {
+                "func": "convert.PtrInt64ToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "modified_date",
+            "goField": "ModifiedDate",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "UTC date/time when a dashboard was last modified.",
+            "deprecationMessage": "The API documents this field as deprecated.",
+            "wire": {
+              "jsonPath": "modifiedDate",
+              "sdkField": "ModifiedDate",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "refresh_rate",
+            "goField": "RefreshRate",
+            "type": {
+              "kind": "string",
+              "allowedValues": [
+                "off",
+                "2m",
+                "5m",
+                "10m",
+                "15m",
+                "30m",
+                "60m"
+              ]
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Auto-refresh interval for a dashboard. Use `off` to disable auto-refresh.",
+            "wire": {
+              "jsonPath": "refreshRate",
+              "sdkField": "RefreshRate",
+              "sdkGoType": "*models.DashboardsAPIRefreshRate",
+              "expand": {
+                "func": "convert.FrameworkToKiotaEnum",
+                "typeArgs": [
+                  "models.DashboardsAPIRefreshRate"
+                ],
+                "returnsError": true,
+                "extraArgs": [
+                  "models.ParseDashboardsAPIRefreshRate"
+                ]
+              },
+              "flatten": {
+                "func": "convert.KiotaEnumToFramework"
+              }
+            }
+          },
+          {
+            "name": "title",
+            "goField": "Title",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Title of a dashboard.",
+            "wire": {
+              "jsonPath": "title",
+              "sdkField": "Title",
+              "sdkGoType": "*string",
+              "expand": {
+                "func": "convert.FrameworkToPtrString"
+              },
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              }
+            }
+          }
+        ],
+        "markdownDescription": "Retrieve dashboard."
+      },
+      "binding": {
+        "service": {
+          "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
+          "alias": "models",
+          "typeName": "",
+          "accessor": "r.client"
+        },
+        "create": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Dashboards"
+            },
+            {
+              "method": "Post",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "body"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.APIDashboardable",
+          "httpMethod": "POST",
+          "pathTemplate": "/dashboards"
+        },
+        "read": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Dashboards"
+            },
+            {
+              "method": "ByDashboardId",
+              "args": [
+                {
+                  "kind": "stateField",
+                  "field": "ID"
+                }
+              ]
+            },
+            {
+              "method": "Get",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.APIDashboardable",
+          "httpMethod": "GET",
+          "pathTemplate": "/dashboards/{dashboardId}"
+        },
+        "update": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Dashboards"
+            },
+            {
+              "method": "ByDashboardId",
+              "args": [
+                {
+                  "kind": "stateField",
+                  "field": "ID"
+                }
+              ]
+            },
+            {
+              "method": "Put",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "body"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.APIDashboardable",
+          "httpMethod": "PUT",
+          "pathTemplate": "/dashboards/{dashboardId}"
+        },
+        "delete": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Dashboards"
+            },
+            {
+              "method": "ByDashboardId",
+              "args": [
+                {
+                  "kind": "stateField",
+                  "field": "ID"
+                }
+              ]
+            },
+            {
+              "method": "Delete",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "error",
+          "httpMethod": "DELETE",
+          "pathTemplate": "/dashboards/{dashboardId}"
+        },
+        "id": {
+          "attribute": "id",
+          "goField": "ID",
+          "fromCreate": "created.GetId()",
+          "fromCreateIsPointer": true
+        },
+        "body": {
+          "requestType": "models.Dashboard",
+          "responseType": "models.APIDashboardable",
+          "constructorExpr": "models.NewDashboard()",
+          "accessStyle": "method"
+        }
+      },
+      "policy": {
+        "updateStyle": "putFull",
+        "delete": {
+          "notFoundIsSuccess": true
+        }
+      },
+      "import": {
+        "style": "passthroughId",
+        "attribute": "id"
+      }
+    }
+  ]
+}

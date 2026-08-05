@@ -1,0 +1,1472 @@
+{
+  "formatVersion": "4",
+  "resources": [
+    {
+      "key": "alerts_rule",
+      "name": "alerts_rule",
+      "goPackage": "alerts_rule",
+      "goPackageAlias": "v7AlertsRule",
+      "goTypeName": "AlertsRuleResource",
+      "modelTypeName": "AlertsRuleResourceModel",
+      "serviceGroup": "alert_rules",
+      "apiVersionDir": "v7",
+      "schema": {
+        "attributes": [
+          {
+            "name": "alert_group_type",
+            "goField": "AlertGroupType",
+            "type": {
+              "kind": "string",
+              "allowedValues": [
+                "bgp",
+                "browser-session",
+                "cloud-enterprise",
+                "endpoint"
+              ]
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Category of alert type based on the application or network layer and source of the test.",
+            "wire": {
+              "jsonPath": "alertGroupType",
+              "sdkField": "AlertGroupType",
+              "sdkGoType": "*models.AlertsAPIAlertGroupType",
+              "expand": {
+                "func": "convert.FrameworkToKiotaEnum",
+                "typeArgs": [
+                  "models.AlertsAPIAlertGroupType"
+                ],
+                "returnsError": true,
+                "extraArgs": [
+                  "models.ParseAlertsAPIAlertGroupType"
+                ]
+              },
+              "flatten": {
+                "func": "convert.KiotaEnumToFramework"
+              }
+            }
+          },
+          {
+            "name": "alert_type",
+            "goField": "AlertType",
+            "type": {
+              "kind": "string",
+              "allowedValues": [
+                "page-load",
+                "http-server",
+                "end-to-end-server",
+                "end-to-end-agent",
+                "voice",
+                "dns-server",
+                "dns-trace",
+                "dnssec",
+                "bgp",
+                "path-trace",
+                "ftp",
+                "sip-server",
+                "transactions",
+                "web-transactions",
+                "agent",
+                "network-outage",
+                "application-outage",
+                "device-device",
+                "device-interface",
+                "endpoint-network-server",
+                "endpoint-http-server",
+                "endpoint-path-trace",
+                "endpoint-browser-sessions-agent",
+                "endpoint-browser-sessions-application",
+                "api",
+                "web-transaction",
+                "unknown"
+              ]
+            },
+            "computedOptionalRequired": "required",
+            "markdownDescription": "Type of alert being triggered. In multi-layered tests, this value represents the layer the alert relates to. See [Alert Details](https://developer.cisco.com/docs/thousandeyes/retrieve-alert-details/) documentation for a list of possible values",
+            "wire": {
+              "jsonPath": "alertType",
+              "sdkField": "AlertType",
+              "sdkGoType": "*models.AlertsAPIAlertType",
+              "expand": {
+                "func": "convert.FrameworkToKiotaEnum",
+                "typeArgs": [
+                  "models.AlertsAPIAlertType"
+                ],
+                "returnsError": true,
+                "extraArgs": [
+                  "models.ParseAlertsAPIAlertType"
+                ]
+              },
+              "flatten": {
+                "func": "convert.KiotaEnumToFramework"
+              }
+            }
+          },
+          {
+            "name": "description",
+            "goField": "Description",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "A description of the alert rule.",
+            "wire": {
+              "jsonPath": "description",
+              "sdkField": "Description",
+              "sdkGoType": "*string",
+              "expand": {
+                "func": "convert.FrameworkToPtrString"
+              },
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              }
+            }
+          },
+          {
+            "name": "direction",
+            "goField": "Direction",
+            "type": {
+              "kind": "string",
+              "allowedValues": [
+                "to-target",
+                "from-target",
+                "bidirectional"
+              ]
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Direction for applicable alert types (eg. path trace, End-to-End (Agent) etc.)",
+            "wire": {
+              "jsonPath": "direction",
+              "sdkField": "Direction",
+              "sdkGoType": "*models.AlertsAPIAlertDirection",
+              "expand": {
+                "func": "convert.FrameworkToKiotaEnum",
+                "typeArgs": [
+                  "models.AlertsAPIAlertDirection"
+                ],
+                "returnsError": true,
+                "extraArgs": [
+                  "models.ParseAlertsAPIAlertDirection"
+                ]
+              },
+              "flatten": {
+                "func": "convert.KiotaEnumToFramework"
+              }
+            }
+          },
+          {
+            "name": "endpoint_agent_ids",
+            "goField": "EndpointAgentIDs",
+            "type": {
+              "kind": "set",
+              "elementType": {
+                "kind": "string"
+              }
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "An array of endpoint agent IDs associated with the rule (get `id` from `/endpoint/agents` API). This is applicable when `alertGroupType` is `browser-session`.",
+            "wire": {
+              "jsonPath": "endpointAgentIds",
+              "sdkField": "EndpointAgentIds",
+              "sdkGoType": "[]string",
+              "expand": {
+                "func": "convert.FrameworkSetToStringSlice",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "flatten": {
+                "func": "convert.StringSliceToFrameworkSet",
+                "needsCtx": true,
+                "returnsError": true
+              }
+            }
+          },
+          {
+            "name": "endpoint_label_ids",
+            "goField": "EndpointLabelIDs",
+            "type": {
+              "kind": "set",
+              "elementType": {
+                "kind": "string"
+              }
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "An array of label IDs used to assign specific Endpoint Agents to the test (get `id` from `/endpoint/labels`). This is applicable when `alertGroupType` is `browser-session`.",
+            "wire": {
+              "jsonPath": "endpointLabelIds",
+              "sdkField": "EndpointLabelIds",
+              "sdkGoType": "[]string",
+              "expand": {
+                "func": "convert.FrameworkSetToStringSlice",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "flatten": {
+                "func": "convert.StringSliceToFrameworkSet",
+                "needsCtx": true,
+                "returnsError": true
+              }
+            }
+          },
+          {
+            "name": "expression",
+            "goField": "Expression",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "required",
+            "markdownDescription": "The expression of the alert rule.",
+            "wire": {
+              "jsonPath": "expression",
+              "sdkField": "Expression",
+              "sdkGoType": "*string",
+              "expand": {
+                "func": "convert.FrameworkToPtrString"
+              },
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              }
+            }
+          },
+          {
+            "name": "include_covered_prefixes",
+            "goField": "IncludeCoveredPrefixes",
+            "type": {
+              "kind": "bool"
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Set true to include covered prefixes in the BGP alert rule. Only applicable to BGP alert rules.",
+            "wire": {
+              "jsonPath": "includeCoveredPrefixes",
+              "sdkField": "IncludeCoveredPrefixes",
+              "sdkGoType": "*bool",
+              "expand": {
+                "func": "convert.FrameworkToPtrBool"
+              },
+              "flatten": {
+                "func": "convert.PtrBoolToFramework"
+              }
+            }
+          },
+          {
+            "name": "is_default",
+            "goField": "IsDefault",
+            "type": {
+              "kind": "bool"
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "If set to `true`, this alert rule becomes the default for its test type and is automatically applied to newly created tests with relevant metrics. Only one default alert rule is allowed per test type.",
+            "wire": {
+              "jsonPath": "isDefault",
+              "sdkField": "IsDefault",
+              "sdkGoType": "*bool",
+              "expand": {
+                "func": "convert.FrameworkToPtrBool"
+              },
+              "flatten": {
+                "func": "convert.PtrBoolToFramework"
+              }
+            }
+          },
+          {
+            "name": "minimum_sources",
+            "goField": "MinimumSources",
+            "type": {
+              "kind": "int64"
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "The minimum number of agents or monitors that must meet the specified criteria to trigger the alert.",
+            "wire": {
+              "jsonPath": "minimumSources",
+              "sdkField": "MinimumSources",
+              "sdkGoType": "*int32",
+              "expand": {
+                "func": "convert.FrameworkToPtrInt32"
+              },
+              "flatten": {
+                "func": "convert.PtrInt32ToFramework"
+              }
+            }
+          },
+          {
+            "name": "minimum_sources_pct",
+            "goField": "MinimumSourcesPct",
+            "type": {
+              "kind": "int64"
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "The minimum percentage of all assigned agents or monitors that must meet the specified criteria to trigger the alert.",
+            "wire": {
+              "jsonPath": "minimumSourcesPct",
+              "sdkField": "MinimumSourcesPct",
+              "sdkGoType": "*int32",
+              "expand": {
+                "func": "convert.FrameworkToPtrInt32"
+              },
+              "flatten": {
+                "func": "convert.PtrInt32ToFramework"
+              }
+            }
+          },
+          {
+            "name": "notifications",
+            "goField": "Notifications",
+            "type": {
+              "kind": "single_nested",
+              "nestedObject": {
+                "goTypeName": "AlertsRuleAlertNotificationModel",
+                "sdkType": "models.AlertsAPIAlertNotificationable",
+                "constructorExpr": "models.NewAlertsAPIAlertNotification()",
+                "attrTypesVar": "alertsRuleAlertNotificationAttrTypes",
+                "objectTypeVar": "alertsRuleAlertNotificationObjectType",
+                "expandFunc": "expandAlertsRuleAlertNotification",
+                "flattenFunc": "flattenAlertsRuleAlertNotification",
+                "attributes": [
+                  {
+                    "name": "custom_webhook",
+                    "goField": "CustomWebhook",
+                    "type": {
+                      "kind": "set_nested",
+                      "nestedObject": {
+                        "goTypeName": "AlertsRuleNotificationCustomWebhookModel",
+                        "sdkType": "models.AlertsAPINotificationCustomWebhookable",
+                        "constructorExpr": "models.NewAlertsAPINotificationCustomWebhook()",
+                        "attrTypesVar": "alertsRuleNotificationCustomWebhookAttrTypes",
+                        "objectTypeVar": "alertsRuleNotificationCustomWebhookObjectType",
+                        "expandFunc": "expandAlertsRuleNotificationCustomWebhooks",
+                        "flattenFunc": "flattenAlertsRuleNotificationCustomWebhooks",
+                        "attributes": [
+                          {
+                            "name": "integration_id",
+                            "goField": "IntegrationID",
+                            "type": {
+                              "kind": "string",
+                              "constraints": {
+                                "format": "uuid"
+                              }
+                            },
+                            "computedOptionalRequired": "optional",
+                            "markdownDescription": "Integration ID.",
+                            "wire": {
+                              "jsonPath": "integrationId",
+                              "sdkField": "IntegrationId",
+                              "sdkGoType": "*string",
+                              "expand": {
+                                "func": "convert.FrameworkToPtrString"
+                              },
+                              "flatten": {
+                                "func": "convert.PtrStringToFramework"
+                              }
+                            }
+                          },
+                          {
+                            "name": "integration_name",
+                            "goField": "IntegrationName",
+                            "type": {
+                              "kind": "string"
+                            },
+                            "computedOptionalRequired": "optional",
+                            "markdownDescription": "User-configured name of the integration.",
+                            "wire": {
+                              "jsonPath": "integrationName",
+                              "sdkField": "IntegrationName",
+                              "sdkGoType": "*string",
+                              "expand": {
+                                "func": "convert.FrameworkToPtrString"
+                              },
+                              "flatten": {
+                                "func": "convert.PtrStringToFramework"
+                              }
+                            }
+                          },
+                          {
+                            "name": "integration_type",
+                            "goField": "IntegrationType",
+                            "type": {
+                              "kind": "string",
+                              "allowedValues": [
+                                "custom-webhook"
+                              ]
+                            },
+                            "computedOptionalRequired": "optional",
+                            "markdownDescription": "Integration type.",
+                            "wire": {
+                              "jsonPath": "integrationType",
+                              "sdkField": "IntegrationType",
+                              "sdkGoType": "*models.AlertsAPICustomWebhookIntegrationType",
+                              "expand": {
+                                "func": "convert.FrameworkToKiotaEnum",
+                                "typeArgs": [
+                                  "models.AlertsAPICustomWebhookIntegrationType"
+                                ],
+                                "returnsError": true,
+                                "extraArgs": [
+                                  "models.ParseAlertsAPICustomWebhookIntegrationType"
+                                ]
+                              },
+                              "flatten": {
+                                "func": "convert.KiotaEnumToFramework"
+                              }
+                            }
+                          },
+                          {
+                            "name": "target",
+                            "goField": "Target",
+                            "type": {
+                              "kind": "string"
+                            },
+                            "computedOptionalRequired": "optional",
+                            "markdownDescription": "Webhook target URL.",
+                            "wire": {
+                              "jsonPath": "target",
+                              "sdkField": "Target",
+                              "sdkGoType": "*string",
+                              "expand": {
+                                "func": "convert.FrameworkToPtrString"
+                              },
+                              "flatten": {
+                                "func": "convert.PtrStringToFramework"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "computedOptionalRequired": "optional",
+                    "markdownDescription": "Custom webhook notifications.",
+                    "wire": {
+                      "jsonPath": "customWebhook",
+                      "sdkField": "CustomWebhook",
+                      "sdkGoType": "[]models.AlertsAPINotificationCustomWebhookable",
+                      "expand": {
+                        "func": "expandAlertsRuleNotificationCustomWebhooks",
+                        "needsCtx": true,
+                        "returnsError": true
+                      },
+                      "flatten": {
+                        "func": "flattenAlertsRuleNotificationCustomWebhooks",
+                        "needsCtx": true,
+                        "returnsError": true
+                      }
+                    }
+                  },
+                  {
+                    "name": "email",
+                    "goField": "Email",
+                    "type": {
+                      "kind": "single_nested",
+                      "nestedObject": {
+                        "goTypeName": "AlertsRuleNotificationEmailModel",
+                        "sdkType": "models.AlertsAPINotificationEmailable",
+                        "constructorExpr": "models.NewAlertsAPINotificationEmail()",
+                        "attrTypesVar": "alertsRuleNotificationEmailAttrTypes",
+                        "objectTypeVar": "alertsRuleNotificationEmailObjectType",
+                        "expandFunc": "expandAlertsRuleNotificationEmail",
+                        "flattenFunc": "flattenAlertsRuleNotificationEmail",
+                        "attributes": [
+                          {
+                            "name": "message",
+                            "goField": "Message",
+                            "type": {
+                              "kind": "string"
+                            },
+                            "computedOptionalRequired": "optional",
+                            "markdownDescription": "Custom text included in alert email notifications sent to recipients.",
+                            "wire": {
+                              "jsonPath": "message",
+                              "sdkField": "Message",
+                              "sdkGoType": "*string",
+                              "expand": {
+                                "func": "convert.FrameworkToPtrString"
+                              },
+                              "flatten": {
+                                "func": "convert.PtrStringToFramework"
+                              }
+                            }
+                          },
+                          {
+                            "name": "recipients",
+                            "goField": "Recipients",
+                            "type": {
+                              "kind": "set",
+                              "elementType": {
+                                "kind": "string"
+                              }
+                            },
+                            "computedOptionalRequired": "optional",
+                            "markdownDescription": "An array containing the email addresses to receive notifications.",
+                            "wire": {
+                              "jsonPath": "recipients",
+                              "sdkField": "Recipients",
+                              "sdkGoType": "[]string",
+                              "expand": {
+                                "func": "convert.FrameworkSetToStringSlice",
+                                "needsCtx": true,
+                                "returnsError": true
+                              },
+                              "flatten": {
+                                "func": "convert.StringSliceToFrameworkSet",
+                                "needsCtx": true,
+                                "returnsError": true
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "computedOptionalRequired": "optional",
+                    "markdownDescription": "Email notifications.",
+                    "wire": {
+                      "jsonPath": "email",
+                      "sdkField": "Email",
+                      "sdkGoType": "models.AlertsAPINotificationEmailable",
+                      "expand": {
+                        "func": "expandAlertsRuleNotificationEmail",
+                        "needsCtx": true,
+                        "returnsError": true
+                      },
+                      "flatten": {
+                        "func": "flattenAlertsRuleNotificationEmail",
+                        "needsCtx": true,
+                        "returnsError": true
+                      }
+                    }
+                  },
+                  {
+                    "name": "third_party",
+                    "goField": "ThirdParty",
+                    "type": {
+                      "kind": "set_nested",
+                      "nestedObject": {
+                        "goTypeName": "AlertsRuleNotificationThirdPartyModel",
+                        "sdkType": "models.AlertsAPINotificationThirdPartyable",
+                        "constructorExpr": "models.NewAlertsAPINotificationThirdParty()",
+                        "attrTypesVar": "alertsRuleNotificationThirdPartyAttrTypes",
+                        "objectTypeVar": "alertsRuleNotificationThirdPartyObjectType",
+                        "expandFunc": "expandAlertsRuleNotificationThirdParties",
+                        "flattenFunc": "flattenAlertsRuleNotificationThirdParties",
+                        "attributes": [
+                          {
+                            "name": "integration_id",
+                            "goField": "IntegrationID",
+                            "type": {
+                              "kind": "string"
+                            },
+                            "computedOptionalRequired": "optional",
+                            "markdownDescription": "Integration ID.",
+                            "wire": {
+                              "jsonPath": "integrationId",
+                              "sdkField": "IntegrationId",
+                              "sdkGoType": "*string",
+                              "expand": {
+                                "func": "convert.FrameworkToPtrString"
+                              },
+                              "flatten": {
+                                "func": "convert.PtrStringToFramework"
+                              }
+                            }
+                          },
+                          {
+                            "name": "integration_type",
+                            "goField": "IntegrationType",
+                            "type": {
+                              "kind": "string",
+                              "allowedValues": [
+                                "pager-duty",
+                                "slack",
+                                "app-dynamics",
+                                "service-now"
+                              ]
+                            },
+                            "computedOptionalRequired": "optional",
+                            "markdownDescription": "Integration type.",
+                            "wire": {
+                              "jsonPath": "integrationType",
+                              "sdkField": "IntegrationType",
+                              "sdkGoType": "*models.AlertsAPIThirdPartyIntegrationType",
+                              "expand": {
+                                "func": "convert.FrameworkToKiotaEnum",
+                                "typeArgs": [
+                                  "models.AlertsAPIThirdPartyIntegrationType"
+                                ],
+                                "returnsError": true,
+                                "extraArgs": [
+                                  "models.ParseAlertsAPIThirdPartyIntegrationType"
+                                ]
+                              },
+                              "flatten": {
+                                "func": "convert.KiotaEnumToFramework"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "computedOptionalRequired": "optional",
+                    "markdownDescription": "Third party notifications.",
+                    "wire": {
+                      "jsonPath": "thirdParty",
+                      "sdkField": "ThirdParty",
+                      "sdkGoType": "[]models.AlertsAPINotificationThirdPartyable",
+                      "expand": {
+                        "func": "expandAlertsRuleNotificationThirdParties",
+                        "needsCtx": true,
+                        "returnsError": true
+                      },
+                      "flatten": {
+                        "func": "flattenAlertsRuleNotificationThirdParties",
+                        "needsCtx": true,
+                        "returnsError": true
+                      }
+                    }
+                  },
+                  {
+                    "name": "webhook",
+                    "goField": "Webhook",
+                    "type": {
+                      "kind": "set_nested",
+                      "nestedObject": {
+                        "goTypeName": "AlertsRuleNotificationWebhookModel",
+                        "sdkType": "models.AlertsAPINotificationWebhookable",
+                        "constructorExpr": "models.NewAlertsAPINotificationWebhook()",
+                        "attrTypesVar": "alertsRuleNotificationWebhookAttrTypes",
+                        "objectTypeVar": "alertsRuleNotificationWebhookObjectType",
+                        "expandFunc": "expandAlertsRuleNotificationWebhooks",
+                        "flattenFunc": "flattenAlertsRuleNotificationWebhooks",
+                        "attributes": [
+                          {
+                            "name": "integration_id",
+                            "goField": "IntegrationID",
+                            "type": {
+                              "kind": "string"
+                            },
+                            "computedOptionalRequired": "optional",
+                            "markdownDescription": "Integration ID.",
+                            "wire": {
+                              "jsonPath": "integrationId",
+                              "sdkField": "IntegrationId",
+                              "sdkGoType": "*string",
+                              "expand": {
+                                "func": "convert.FrameworkToPtrString"
+                              },
+                              "flatten": {
+                                "func": "convert.PtrStringToFramework"
+                              }
+                            }
+                          },
+                          {
+                            "name": "integration_name",
+                            "goField": "IntegrationName",
+                            "type": {
+                              "kind": "string"
+                            },
+                            "computedOptionalRequired": "optional",
+                            "markdownDescription": "Name of the integration, configured by the user.",
+                            "wire": {
+                              "jsonPath": "integrationName",
+                              "sdkField": "IntegrationName",
+                              "sdkGoType": "*string",
+                              "expand": {
+                                "func": "convert.FrameworkToPtrString"
+                              },
+                              "flatten": {
+                                "func": "convert.PtrStringToFramework"
+                              }
+                            }
+                          },
+                          {
+                            "name": "integration_type",
+                            "goField": "IntegrationType",
+                            "type": {
+                              "kind": "string",
+                              "allowedValues": [
+                                "webhook"
+                              ]
+                            },
+                            "computedOptionalRequired": "optional",
+                            "markdownDescription": "Integration type.",
+                            "wire": {
+                              "jsonPath": "integrationType",
+                              "sdkField": "IntegrationType",
+                              "sdkGoType": "*models.AlertsAPIWebhookIntegrationType",
+                              "expand": {
+                                "func": "convert.FrameworkToKiotaEnum",
+                                "typeArgs": [
+                                  "models.AlertsAPIWebhookIntegrationType"
+                                ],
+                                "returnsError": true,
+                                "extraArgs": [
+                                  "models.ParseAlertsAPIWebhookIntegrationType"
+                                ]
+                              },
+                              "flatten": {
+                                "func": "convert.KiotaEnumToFramework"
+                              }
+                            }
+                          },
+                          {
+                            "name": "target",
+                            "goField": "Target",
+                            "type": {
+                              "kind": "string"
+                            },
+                            "computedOptionalRequired": "optional",
+                            "markdownDescription": "Webhook target URL.",
+                            "wire": {
+                              "jsonPath": "target",
+                              "sdkField": "Target",
+                              "sdkGoType": "*string",
+                              "expand": {
+                                "func": "convert.FrameworkToPtrString"
+                              },
+                              "flatten": {
+                                "func": "convert.PtrStringToFramework"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "computedOptionalRequired": "optional",
+                    "markdownDescription": "Webhook notifications.",
+                    "wire": {
+                      "jsonPath": "webhook",
+                      "sdkField": "Webhook",
+                      "sdkGoType": "[]models.AlertsAPINotificationWebhookable",
+                      "expand": {
+                        "func": "expandAlertsRuleNotificationWebhooks",
+                        "needsCtx": true,
+                        "returnsError": true
+                      },
+                      "flatten": {
+                        "func": "flattenAlertsRuleNotificationWebhooks",
+                        "needsCtx": true,
+                        "returnsError": true
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Alert notification object. See Alert notification integrations.",
+            "wire": {
+              "jsonPath": "notifications",
+              "sdkField": "Notifications",
+              "sdkGoType": "models.AlertsAPIAlertNotificationable",
+              "expand": {
+                "func": "expandAlertsRuleAlertNotification",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "flatten": {
+                "func": "flattenAlertsRuleAlertNotification",
+                "needsCtx": true,
+                "returnsError": true
+              }
+            }
+          },
+          {
+            "name": "notify_on_clear",
+            "goField": "NotifyOnClear",
+            "type": {
+              "kind": "bool"
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Send notification when alert clears.",
+            "wire": {
+              "jsonPath": "notifyOnClear",
+              "sdkField": "NotifyOnClear",
+              "sdkGoType": "*bool",
+              "expand": {
+                "func": "convert.FrameworkToPtrBool"
+              },
+              "flatten": {
+                "func": "convert.PtrBoolToFramework"
+              }
+            }
+          },
+          {
+            "name": "rounds_violating_mode",
+            "goField": "RoundsViolatingMode",
+            "type": {
+              "kind": "string",
+              "allowedValues": [
+                "exact",
+                "any",
+                "auto"
+              ]
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "`exact` requires the same agents to meet the threshold in consecutive rounds. `auto` is only enabled for CEA and Endpoint Scheduled test rules. The default is `any`.",
+            "wire": {
+              "jsonPath": "roundsViolatingMode",
+              "sdkField": "RoundsViolatingMode",
+              "sdkGoType": "*models.AlertsAPIAlertRoundsViolationMode",
+              "flatten": {
+                "func": "convert.KiotaEnumToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "rounds_violating_out_of",
+            "goField": "RoundsViolatingOutOf",
+            "type": {
+              "kind": "int64"
+            },
+            "computedOptionalRequired": "required",
+            "markdownDescription": "Specifies the divisor (y value) in the “X of Y times” condition.",
+            "wire": {
+              "jsonPath": "roundsViolatingOutOf",
+              "sdkField": "RoundsViolatingOutOf",
+              "sdkGoType": "*int32",
+              "expand": {
+                "func": "convert.FrameworkToPtrInt32"
+              },
+              "flatten": {
+                "func": "convert.PtrInt32ToFramework"
+              }
+            }
+          },
+          {
+            "name": "rounds_violating_required",
+            "goField": "RoundsViolatingRequired",
+            "type": {
+              "kind": "int64"
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Specifies the numerator (x value) in the “X of Y times” condition.",
+            "wire": {
+              "jsonPath": "roundsViolatingRequired",
+              "sdkField": "RoundsViolatingRequired",
+              "sdkGoType": "*int32",
+              "expand": {
+                "func": "convert.FrameworkToPtrInt32"
+              },
+              "flatten": {
+                "func": "convert.PtrInt32ToFramework"
+              }
+            }
+          },
+          {
+            "name": "rule_id",
+            "goField": "RuleID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Unique ID of the rule.",
+            "wire": {
+              "jsonPath": "ruleId",
+              "sdkField": "RuleId",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "rule_name",
+            "goField": "RuleName",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "required",
+            "markdownDescription": "Name of the alert rule.",
+            "wire": {
+              "jsonPath": "ruleName",
+              "sdkField": "RuleName",
+              "sdkGoType": "*string",
+              "expand": {
+                "func": "convert.FrameworkToPtrString"
+              },
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              }
+            }
+          },
+          {
+            "name": "sensitivity_level",
+            "goField": "SensitivityLevel",
+            "type": {
+              "kind": "string",
+              "allowedValues": [
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Used when `roundsViolatingMode` is set to `auto`. The default is `medium`. Higher sensitivity increases the likelihood of triggering alerts.",
+            "wire": {
+              "jsonPath": "sensitivityLevel",
+              "sdkField": "SensitivityLevel",
+              "sdkGoType": "*models.AlertsAPISensitivityLevel",
+              "flatten": {
+                "func": "convert.KiotaEnumToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "severity",
+            "goField": "Severity",
+            "type": {
+              "kind": "string",
+              "allowedValues": [
+                "info",
+                "major",
+                "minor",
+                "critical",
+                "unknown"
+              ]
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "The severity of the alert.",
+            "wire": {
+              "jsonPath": "severity",
+              "sdkField": "Severity",
+              "sdkGoType": "*models.AlertsAPISeverity",
+              "expand": {
+                "func": "convert.FrameworkToKiotaEnum",
+                "typeArgs": [
+                  "models.AlertsAPISeverity"
+                ],
+                "returnsError": true,
+                "extraArgs": [
+                  "models.ParseAlertsAPISeverity"
+                ]
+              },
+              "flatten": {
+                "func": "convert.KiotaEnumToFramework"
+              }
+            }
+          },
+          {
+            "name": "test_ids",
+            "goField": "TestIDs",
+            "type": {
+              "kind": "set",
+              "elementType": {
+                "kind": "string"
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Array of test IDs to link to alert rule (get `testId` from `/tests` endpoint).",
+            "wire": {
+              "jsonPath": "testIds",
+              "sdkField": "TestIds",
+              "sdkGoType": "[]string",
+              "flatten": {
+                "func": "convert.StringSliceToFrameworkSet",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "tests",
+            "goField": "Tests",
+            "type": {
+              "kind": "set_nested",
+              "nestedObject": {
+                "goTypeName": "AlertsRuleAlertSimpleTestModel",
+                "sdkType": "models.AlertsAPIAlertSimpleTestable",
+                "constructorExpr": "models.NewAlertsAPIAlertSimpleTest()",
+                "attrTypesVar": "alertsRuleAlertSimpleTestAttrTypes",
+                "objectTypeVar": "alertsRuleAlertSimpleTestObjectType",
+                "expandFunc": "expandAlertsRuleAlertSimpleTests",
+                "flattenFunc": "flattenAlertsRuleAlertSimpleTests",
+                "attributes": [
+                  {
+                    "name": "alerts_enabled",
+                    "goField": "AlertsEnabled",
+                    "type": {
+                      "kind": "bool"
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "Indicates if alerts are enabled.",
+                    "wire": {
+                      "jsonPath": "alertsEnabled",
+                      "sdkField": "AlertsEnabled",
+                      "sdkGoType": "*bool",
+                      "flatten": {
+                        "func": "convert.PtrBoolToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "created_by",
+                    "goField": "CreatedBy",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "User that created the test.",
+                    "wire": {
+                      "jsonPath": "createdBy",
+                      "sdkField": "CreatedBy",
+                      "sdkGoType": "*string",
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "created_date",
+                    "goField": "CreatedDate",
+                    "type": {
+                      "kind": "string",
+                      "constraints": {
+                        "format": "date-time"
+                      }
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "UTC created date (ISO date-time format).",
+                    "wire": {
+                      "jsonPath": "createdDate",
+                      "sdkField": "CreatedDate",
+                      "sdkGoType": "*string",
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "description",
+                    "goField": "Description",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "A description of the test.",
+                    "wire": {
+                      "jsonPath": "description",
+                      "sdkField": "Description",
+                      "sdkGoType": "*string",
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "enabled",
+                    "goField": "Enabled",
+                    "type": {
+                      "kind": "bool"
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "Test is enabled.",
+                    "wire": {
+                      "jsonPath": "enabled",
+                      "sdkField": "Enabled",
+                      "sdkGoType": "*bool",
+                      "flatten": {
+                        "func": "convert.PtrBoolToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "interval",
+                    "goField": "Interval",
+                    "type": {
+                      "kind": "string",
+                      "allowedValues": [
+                        "60",
+                        "120",
+                        "300",
+                        "600",
+                        "900",
+                        "1800",
+                        "3600"
+                      ]
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "Interval between test runs in seconds.",
+                    "wire": {
+                      "jsonPath": "interval",
+                      "sdkField": "Interval",
+                      "sdkGoType": "*models.AlertsAPITestInterval",
+                      "flatten": {
+                        "func": "convert.KiotaEnumToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "live_share",
+                    "goField": "LiveShare",
+                    "type": {
+                      "kind": "bool"
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "Indicates if the test is shared with the account group.",
+                    "wire": {
+                      "jsonPath": "liveShare",
+                      "sdkField": "LiveShare",
+                      "sdkGoType": "*bool",
+                      "flatten": {
+                        "func": "convert.PtrBoolToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "modified_by",
+                    "goField": "ModifiedBy",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "User that modified the test.",
+                    "wire": {
+                      "jsonPath": "modifiedBy",
+                      "sdkField": "ModifiedBy",
+                      "sdkGoType": "*string",
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "modified_date",
+                    "goField": "ModifiedDate",
+                    "type": {
+                      "kind": "string",
+                      "constraints": {
+                        "format": "date-time"
+                      }
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "UTC last modification date (ISO date-time format).",
+                    "wire": {
+                      "jsonPath": "modifiedDate",
+                      "sdkField": "ModifiedDate",
+                      "sdkGoType": "*string",
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "saved_event",
+                    "goField": "SavedEvent",
+                    "type": {
+                      "kind": "bool"
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "Indicates if the test is a saved event.\n**Note**: **Saved Events** are now called **Private Snapshots** in the user interface. This change does not affect API.",
+                    "wire": {
+                      "jsonPath": "savedEvent",
+                      "sdkField": "SavedEvent",
+                      "sdkGoType": "*bool",
+                      "flatten": {
+                        "func": "convert.PtrBoolToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "test_id",
+                    "goField": "TestID",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "Each test is assigned an unique ID; this is used to access test information and results from other endpoints.",
+                    "wire": {
+                      "jsonPath": "testId",
+                      "sdkField": "TestId",
+                      "sdkGoType": "*string",
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "test_name",
+                    "goField": "TestName",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "The name of the test. Test name must be unique.",
+                    "wire": {
+                      "jsonPath": "testName",
+                      "sdkField": "TestName",
+                      "sdkGoType": "*string",
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "type",
+                    "goField": "Type",
+                    "type": {
+                      "kind": "string",
+                      "allowedValues": [
+                        "api",
+                        "agent-to-agent",
+                        "agent-to-server",
+                        "bgp",
+                        "http-server",
+                        "page-load",
+                        "web-transactions",
+                        "ftp-server",
+                        "dns-trace",
+                        "dns-server",
+                        "dnssec",
+                        "sip-server",
+                        "voice",
+                        "endpoint-http-server",
+                        "endpoint-network-server",
+                        "endpoint-path-trace"
+                      ]
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "Valid Alert Types for which to return test links.",
+                    "wire": {
+                      "jsonPath": "type",
+                      "sdkField": "TypeEscaped",
+                      "sdkGoType": "*models.AlertsAPIAlertTestType",
+                      "flatten": {
+                        "func": "convert.KiotaEnumToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  }
+                ]
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "wire": {
+              "jsonPath": "tests",
+              "sdkField": "Tests",
+              "sdkGoType": "[]models.AlertsAPIAlertSimpleTestable",
+              "flatten": {
+                "func": "flattenAlertsRuleAlertSimpleTests",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "visited_sites_filter",
+            "goField": "VisitedSitesFilter",
+            "type": {
+              "kind": "set",
+              "elementType": {
+                "kind": "string"
+              }
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "A list of website domains visited during the session. This is applicable when `alertGroupType` is `browser-session`.",
+            "wire": {
+              "jsonPath": "visitedSitesFilter",
+              "sdkField": "VisitedSitesFilter",
+              "sdkGoType": "[]string",
+              "expand": {
+                "func": "convert.FrameworkSetToStringSlice",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "flatten": {
+                "func": "convert.StringSliceToFrameworkSet",
+                "needsCtx": true,
+                "returnsError": true
+              }
+            }
+          }
+        ],
+        "markdownDescription": "Retrieve alert rule."
+      },
+      "binding": {
+        "service": {
+          "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
+          "alias": "models",
+          "typeName": "",
+          "accessor": "r.client"
+        },
+        "create": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Alerts"
+            },
+            {
+              "method": "Rules"
+            },
+            {
+              "method": "Post",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "body"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.RuleDetailable",
+          "httpMethod": "POST",
+          "pathTemplate": "/alerts/rules"
+        },
+        "read": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Alerts"
+            },
+            {
+              "method": "Rules"
+            },
+            {
+              "method": "ByRuleId",
+              "args": [
+                {
+                  "kind": "stateField",
+                  "field": "ID"
+                }
+              ]
+            },
+            {
+              "method": "Get",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.RuleDetailable",
+          "httpMethod": "GET",
+          "pathTemplate": "/alerts/rules/{ruleId}"
+        },
+        "update": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Alerts"
+            },
+            {
+              "method": "Rules"
+            },
+            {
+              "method": "ByRuleId",
+              "args": [
+                {
+                  "kind": "stateField",
+                  "field": "ID"
+                }
+              ]
+            },
+            {
+              "method": "Put",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "body"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.RuleDetailable",
+          "httpMethod": "PUT",
+          "pathTemplate": "/alerts/rules/{ruleId}"
+        },
+        "delete": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Alerts"
+            },
+            {
+              "method": "Rules"
+            },
+            {
+              "method": "ByRuleId",
+              "args": [
+                {
+                  "kind": "stateField",
+                  "field": "ID"
+                }
+              ]
+            },
+            {
+              "method": "Delete",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "error",
+          "httpMethod": "DELETE",
+          "pathTemplate": "/alerts/rules/{ruleId}"
+        },
+        "id": {
+          "attribute": "id",
+          "goField": "ID",
+          "fromCreate": "created.GetId()",
+          "fromCreateIsPointer": true
+        },
+        "body": {
+          "requestType": "models.RuleDetailUpdate",
+          "responseType": "models.RuleDetailable",
+          "constructorExpr": "models.NewRuleDetailUpdate()",
+          "accessStyle": "method"
+        }
+      },
+      "policy": {
+        "updateStyle": "putFull",
+        "delete": {
+          "notFoundIsSuccess": true
+        }
+      },
+      "import": {
+        "style": "passthroughId",
+        "attribute": "id"
+      }
+    }
+  ]
+}

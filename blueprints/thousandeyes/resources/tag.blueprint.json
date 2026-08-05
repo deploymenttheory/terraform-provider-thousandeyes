@@ -1,0 +1,741 @@
+{
+  "formatVersion": "4",
+  "resources": [
+    {
+      "key": "tag",
+      "name": "tag",
+      "goPackage": "tag",
+      "goPackageAlias": "v7Tag",
+      "goTypeName": "TagResource",
+      "modelTypeName": "TagResourceModel",
+      "serviceGroup": "tags",
+      "apiVersionDir": "v7",
+      "schema": {
+        "attributes": [
+          {
+            "name": "access_type",
+            "goField": "AccessType",
+            "type": {
+              "kind": "string",
+              "allowedValues": [
+                "all",
+                "partner",
+                "system"
+              ]
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "The access level of the tag. The access level determines the label's visibility in the UI and the permissions required to modify it. Accepted values are:\n\n\n* `all`: The tag is visible and editable by any user in the account group with the standard **View tags** or **Edit tags** permission. Default for all user-created tags.\n\n* `partner`: The tag is owned by a specific integration partner. Only that partner can read or modify it. It's hidden from all regular account users and excluded from their GET responses.\n\n* `system`: Reserved for ThousandEyes internal use only. This value may appear in GET responses on internally managed tags but cannot be set by users or integration partners.",
+            "wire": {
+              "jsonPath": "accessType",
+              "sdkField": "AccessType",
+              "sdkGoType": "*models.TagsAPIAccessType",
+              "expand": {
+                "func": "convert.FrameworkToKiotaEnum",
+                "typeArgs": [
+                  "models.TagsAPIAccessType"
+                ],
+                "returnsError": true,
+                "extraArgs": [
+                  "models.ParseTagsAPIAccessType"
+                ]
+              },
+              "flatten": {
+                "func": "convert.KiotaEnumToFramework"
+              }
+            }
+          },
+          {
+            "name": "aid",
+            "goField": "AID",
+            "type": {
+              "kind": "int64"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "The account group ID",
+            "wire": {
+              "jsonPath": "aid",
+              "sdkField": "Aid",
+              "sdkGoType": "*int64",
+              "flatten": {
+                "func": "convert.PtrInt64ToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "assignments",
+            "goField": "Assignments",
+            "type": {
+              "kind": "set_nested",
+              "nestedObject": {
+                "goTypeName": "TagAssignmentModel",
+                "sdkType": "models.TagsAPIAssignmentable",
+                "constructorExpr": "models.NewTagsAPIAssignment()",
+                "attrTypesVar": "tagAssignmentAttrTypes",
+                "objectTypeVar": "tagAssignmentObjectType",
+                "expandFunc": "expandTagAssignments",
+                "flattenFunc": "flattenTagAssignments",
+                "attributes": [
+                  {
+                    "name": "id",
+                    "goField": "ID",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "Object Id",
+                    "wire": {
+                      "jsonPath": "id",
+                      "sdkField": "Id",
+                      "sdkGoType": "*string",
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "type",
+                    "goField": "Type",
+                    "type": {
+                      "kind": "string",
+                      "allowedValues": [
+                        "test",
+                        "v-agent",
+                        "endpoint-test",
+                        "dashboard",
+                        "connected-devices-test"
+                      ]
+                    },
+                    "computedOptionalRequired": "computed",
+                    "wire": {
+                      "jsonPath": "type",
+                      "sdkField": "TypeEscaped",
+                      "sdkGoType": "*models.TagsAPIAssignmentType",
+                      "flatten": {
+                        "func": "convert.KiotaEnumToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  }
+                ]
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "wire": {
+              "jsonPath": "assignments",
+              "sdkField": "Assignments",
+              "sdkGoType": "[]models.TagsAPIAssignmentable",
+              "flatten": {
+                "func": "flattenTagAssignments",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "built_in",
+            "goField": "BuiltIn",
+            "type": {
+              "kind": "bool"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Indicates whether it is a built-in tag or a user-created (custom) tag.",
+            "wire": {
+              "jsonPath": "builtIn",
+              "sdkField": "BuiltIn",
+              "sdkGoType": "*bool",
+              "flatten": {
+                "func": "convert.PtrBoolToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "color",
+            "goField": "Color",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Tag color",
+            "wire": {
+              "jsonPath": "color",
+              "sdkField": "Color",
+              "sdkGoType": "*string",
+              "expand": {
+                "func": "convert.FrameworkToPtrString"
+              },
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              }
+            }
+          },
+          {
+            "name": "create_date",
+            "goField": "CreateDate",
+            "type": {
+              "kind": "string",
+              "constraints": {
+                "format": "yyyy-MM-ddTHH:mm[:ss]Z"
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Tag creation date",
+            "wire": {
+              "jsonPath": "createDate",
+              "sdkField": "CreateDate",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "description",
+            "goField": "Description",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "The tag's description.",
+            "wire": {
+              "jsonPath": "description",
+              "sdkField": "Description",
+              "sdkGoType": "*string",
+              "expand": {
+                "func": "convert.FrameworkToPtrString"
+              },
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              }
+            }
+          },
+          {
+            "name": "filters",
+            "goField": "Filters",
+            "type": {
+              "kind": "set_nested",
+              "nestedObject": {
+                "goTypeName": "TagFilterModel",
+                "sdkType": "models.TagsAPITagFilterable",
+                "constructorExpr": "models.NewTagsAPITagFilter()",
+                "attrTypesVar": "tagFilterAttrTypes",
+                "objectTypeVar": "tagFilterObjectType",
+                "expandFunc": "expandTagFilters",
+                "flattenFunc": "flattenTagFilters",
+                "attributes": [
+                  {
+                    "name": "key",
+                    "goField": "Key",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "optional",
+                    "markdownDescription": "Filter key used for filtering.\n\nWhen `scope` is `default`, accepted values are `agent-id`, `location`, `serial-number`, `public-network`, `local-network`, `connection`, `gateway`, `platform`, `nic-model`, `nic-driver-version`, `agent-type`, `proxy-target`, `vpn-vendor`, `vpn-gateway-address`, `vpn-target`, `vpn-client-network`, `vpn-client-address`, `ip-address-family`, `ssid`, `bssid`, `hostname`, `username`, and `asn`.\n\nWhen `scope` is `custom`, use a user-defined check-in metadata key.",
+                    "wire": {
+                      "jsonPath": "key",
+                      "sdkField": "Key",
+                      "sdkGoType": "*string",
+                      "expand": {
+                        "func": "convert.FrameworkToPtrString"
+                      },
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      }
+                    }
+                  },
+                  {
+                    "name": "mode",
+                    "goField": "Mode",
+                    "type": {
+                      "kind": "string",
+                      "allowedValues": [
+                        "in",
+                        "not-in"
+                      ]
+                    },
+                    "computedOptionalRequired": "optional",
+                    "markdownDescription": "Type of matching logic applied to the values:\n\n* `in`: The value on the agent must match one of the list of values provided.\n* `not-in`: The value on the agent must not match any of the list of values provided.",
+                    "wire": {
+                      "jsonPath": "mode",
+                      "sdkField": "Mode",
+                      "sdkGoType": "*models.TagsAPITagFilterMode",
+                      "expand": {
+                        "func": "convert.FrameworkToKiotaEnum",
+                        "typeArgs": [
+                          "models.TagsAPITagFilterMode"
+                        ],
+                        "returnsError": true,
+                        "extraArgs": [
+                          "models.ParseTagsAPITagFilterMode"
+                        ]
+                      },
+                      "flatten": {
+                        "func": "convert.KiotaEnumToFramework"
+                      }
+                    }
+                  },
+                  {
+                    "name": "scope",
+                    "goField": "Scope",
+                    "type": {
+                      "kind": "string",
+                      "allowedValues": [
+                        "default",
+                        "custom"
+                      ]
+                    },
+                    "computedOptionalRequired": "optional",
+                    "markdownDescription": "Scope of the filter.\n\n* `default`: The filter is from the default set provided by ThousandEyes.\n* `custom`: The filter is user-defined. Set in check-in metadata.",
+                    "wire": {
+                      "jsonPath": "scope",
+                      "sdkField": "Scope",
+                      "sdkGoType": "*models.TagsAPITagFilterScope",
+                      "expand": {
+                        "func": "convert.FrameworkToKiotaEnum",
+                        "typeArgs": [
+                          "models.TagsAPITagFilterScope"
+                        ],
+                        "returnsError": true,
+                        "extraArgs": [
+                          "models.ParseTagsAPITagFilterScope"
+                        ]
+                      },
+                      "flatten": {
+                        "func": "convert.KiotaEnumToFramework"
+                      }
+                    }
+                  },
+                  {
+                    "name": "values",
+                    "goField": "Values",
+                    "type": {
+                      "kind": "set",
+                      "elementType": {
+                        "kind": "string"
+                      }
+                    },
+                    "computedOptionalRequired": "optional",
+                    "wire": {
+                      "jsonPath": "values",
+                      "sdkField": "Values",
+                      "sdkGoType": "[]string",
+                      "expand": {
+                        "func": "convert.FrameworkSetToStringSlice",
+                        "needsCtx": true,
+                        "returnsError": true
+                      },
+                      "flatten": {
+                        "func": "convert.StringSliceToFrameworkSet",
+                        "needsCtx": true,
+                        "returnsError": true
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "The combination of filters (filter keys) dynamically assigned to an `endpoint-agent` as determined by the matching logic (`and` or `or`). For example, if you filter on `bssid` and `ssid` with a matching logic of `and`, both filters are assigned as tags to the `endpoint-agent`; `or` means either filter can be assigned. **Note:** filters currently only apply to `endpoint-agent` object types.",
+            "wire": {
+              "jsonPath": "filters",
+              "sdkField": "Filters",
+              "sdkGoType": "[]models.TagsAPITagFilterable",
+              "expand": {
+                "func": "expandTagFilters",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "flatten": {
+                "func": "flattenTagFilters",
+                "needsCtx": true,
+                "returnsError": true
+              }
+            }
+          },
+          {
+            "name": "icon",
+            "goField": "Icon",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "optional",
+            "wire": {
+              "jsonPath": "icon",
+              "sdkField": "Icon",
+              "sdkGoType": "*string",
+              "expand": {
+                "func": "convert.FrameworkToPtrString"
+              },
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              }
+            }
+          },
+          {
+            "name": "id",
+            "goField": "ID",
+            "type": {
+              "kind": "string",
+              "constraints": {
+                "format": "uuid"
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "The tag ID",
+            "wire": {
+              "jsonPath": "id",
+              "sdkField": "Id",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "key",
+            "goField": "Key",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "The tags's key",
+            "wire": {
+              "jsonPath": "key",
+              "sdkField": "Key",
+              "sdkGoType": "*string",
+              "expand": {
+                "func": "convert.FrameworkToPtrString"
+              },
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              }
+            }
+          },
+          {
+            "name": "legacy_id",
+            "goField": "LegacyID",
+            "type": {
+              "kind": "float64"
+            },
+            "computedOptionalRequired": "computed",
+            "wire": {
+              "jsonPath": "legacyId",
+              "sdkField": "LegacyId",
+              "sdkGoType": "*float64",
+              "flatten": {
+                "func": "convert.PtrFloat64ToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "match_type",
+            "goField": "MatchType",
+            "type": {
+              "kind": "string",
+              "allowedValues": [
+                "and",
+                "or"
+              ]
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Specifies how filters (tag keys) are applied (matched) to objects for tag assignment.\n* `and`: All filters must be matched.\n* `or`: Any of the filters should match.\n\nNote: filtering and matching currently only apply to `endpoint-agent` object types, as these functions are used for dynamic tag assignment.",
+            "wire": {
+              "jsonPath": "matchType",
+              "sdkField": "MatchType",
+              "sdkGoType": "*models.TagsAPITagMatchType",
+              "expand": {
+                "func": "convert.FrameworkToKiotaEnum",
+                "typeArgs": [
+                  "models.TagsAPITagMatchType"
+                ],
+                "returnsError": true,
+                "extraArgs": [
+                  "models.ParseTagsAPITagMatchType"
+                ]
+              },
+              "flatten": {
+                "func": "convert.KiotaEnumToFramework"
+              }
+            }
+          },
+          {
+            "name": "modified_date",
+            "goField": "ModifiedDate",
+            "type": {
+              "kind": "string",
+              "constraints": {
+                "format": "date-time"
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "The date and time the tag was last modified.",
+            "wire": {
+              "jsonPath": "modifiedDate",
+              "sdkField": "ModifiedDate",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "object_type",
+            "goField": "ObjectType",
+            "type": {
+              "kind": "string",
+              "allowedValues": [
+                "test",
+                "dashboard",
+                "endpoint-test",
+                "v-agent",
+                "connected-devices-test",
+                "endpoint-agent"
+              ]
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "The object type associated with the tag",
+            "wire": {
+              "jsonPath": "objectType",
+              "sdkField": "ObjectType",
+              "sdkGoType": "*models.TagsAPIObjectType",
+              "expand": {
+                "func": "convert.FrameworkToKiotaEnum",
+                "typeArgs": [
+                  "models.TagsAPIObjectType"
+                ],
+                "returnsError": true,
+                "extraArgs": [
+                  "models.ParseTagsAPIObjectType"
+                ]
+              },
+              "flatten": {
+                "func": "convert.KiotaEnumToFramework"
+              }
+            }
+          },
+          {
+            "name": "type",
+            "goField": "Type",
+            "type": {
+              "kind": "string",
+              "allowedValues": [
+                "static",
+                "dynamic"
+              ]
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "The nature of the tag - whether the tag is dynamically assigned to objects based on a filter rule or statically assigned to specified objects. Currently only `endpoint-agent` object types support dynamic assignment; all other object types (for example, `test`, `agent`) support only static assignment.",
+            "wire": {
+              "jsonPath": "type",
+              "sdkField": "TypeEscaped",
+              "sdkGoType": "*models.TagsAPIType",
+              "expand": {
+                "func": "convert.FrameworkToKiotaEnum",
+                "typeArgs": [
+                  "models.TagsAPIType"
+                ],
+                "returnsError": true,
+                "extraArgs": [
+                  "models.ParseTagsAPIType"
+                ]
+              },
+              "flatten": {
+                "func": "convert.KiotaEnumToFramework"
+              }
+            }
+          },
+          {
+            "name": "value",
+            "goField": "Value",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "The tag's value",
+            "wire": {
+              "jsonPath": "value",
+              "sdkField": "Value",
+              "sdkGoType": "*string",
+              "expand": {
+                "func": "convert.FrameworkToPtrString"
+              },
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              }
+            }
+          }
+        ],
+        "markdownDescription": "Retrieve tag."
+      },
+      "binding": {
+        "service": {
+          "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
+          "alias": "models",
+          "typeName": "",
+          "accessor": "r.client"
+        },
+        "create": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Tags"
+            },
+            {
+              "method": "Post",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "body"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.Tagable",
+          "httpMethod": "POST",
+          "pathTemplate": "/tags"
+        },
+        "read": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Tags"
+            },
+            {
+              "method": "ById",
+              "args": [
+                {
+                  "kind": "stateField",
+                  "field": "ID"
+                }
+              ]
+            },
+            {
+              "method": "Get",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.Tagable",
+          "httpMethod": "GET",
+          "pathTemplate": "/tags/{id}"
+        },
+        "update": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Tags"
+            },
+            {
+              "method": "ById",
+              "args": [
+                {
+                  "kind": "stateField",
+                  "field": "ID"
+                }
+              ]
+            },
+            {
+              "method": "Put",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "body"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.Tagable",
+          "httpMethod": "PUT",
+          "pathTemplate": "/tags/{id}"
+        },
+        "delete": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Tags"
+            },
+            {
+              "method": "ById",
+              "args": [
+                {
+                  "kind": "stateField",
+                  "field": "ID"
+                }
+              ]
+            },
+            {
+              "method": "Delete",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "error",
+          "httpMethod": "DELETE",
+          "pathTemplate": "/tags/{id}"
+        },
+        "id": {
+          "attribute": "id",
+          "goField": "ID",
+          "fromCreate": "created.GetId()",
+          "fromCreateIsPointer": true
+        },
+        "body": {
+          "requestType": "models.TagInfo",
+          "responseType": "models.Tagable",
+          "constructorExpr": "models.NewTagInfo()",
+          "accessStyle": "method"
+        }
+      },
+      "policy": {
+        "updateStyle": "putFull",
+        "delete": {
+          "notFoundIsSuccess": true
+        }
+      },
+      "import": {
+        "style": "passthroughId",
+        "attribute": "id"
+      }
+    }
+  ]
+}
