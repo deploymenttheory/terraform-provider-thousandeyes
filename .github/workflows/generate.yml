@@ -204,6 +204,36 @@ jobs:
           fi
           tfpfgen blueprint draft "${ARGS[@]}"
 
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # 4.0.1
+        with:
+          terraform_version: '1.12.1'
+          terraform_wrapper: false
+
+      - name: Generate the provider (curated blueprints only)
+        run: |
+          # The readiness signal is the one file drafting never writes: the
+          # hand-authored provider block. Without it the drafts are proposals,
+          # and the run stops at proposing them.
+          if [ ! -f "${BLUEPRINT_DIR}/provider.blueprint.json" ]; then
+            echo "no provider block yet -- the drafted blueprints in ${BLUEPRINT_DIR} await curation"
+            echo "author ${BLUEPRINT_DIR}/provider.blueprint.json (name, goModule, sdk) to unlock provider generation"
+            go mod tidy || true
+            exit 0
+          fi
+          tfpfgen bindings check -blueprint "${BLUEPRINT_DIR}" -module .
+          # The postcheck builds the tree; generation can introduce imports
+          # go.mod does not yet require, so tidy against the written files and
+          # regenerate -- the second run proves the tree builds clean.
+          if ! tfpfgen provider generate -blueprint "${BLUEPRINT_DIR}" -out .; then
+            echo "postcheck refused; tidying the module against the generated tree and retrying"
+            go mod tidy
+            tfpfgen provider generate -blueprint "${BLUEPRINT_DIR}" -out .
+          fi
+          go mod tidy
+          go build ./...
+          go test ./...
+
       - name: Open a pull request with the results
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -223,7 +253,7 @@ jobs:
           git commit -m "Generate ${PROVIDER_NAME} from OpenAPI ${OPENAPI_VERSION}" \
             -m "tfpfgen pipeline run ${GITHUB_RUN_ID} against snapshot ${SNAPSHOT_NAME}. Generated content follows from the pinned snapshot and committed blueprints; drafted blueprints are proposals awaiting curation."
           git push --force origin "HEAD:$BRANCH"
-          BODY=$(printf 'Automated run of the tfpfgen pipeline (run %s).\n\n- OpenAPI document: version `%s`, snapshot `%s`\n- Blueprints: `%s` (drafted; awaiting curation and a hand-authored provider block)\n- SDK dialect: `%s`\n\nStage one of the chain: document, SDK and drafted blueprints. When this run succeeds, the provider pipeline fires and appends the generated provider to this same branch if the curated provider block exists. This branch is generator-owned and force-pushed on rerun.' \
+          BODY=$(printf 'Automated run of the tfpfgen pipeline (run %s).\n\n- OpenAPI document: version `%s`, snapshot `%s`\n- Blueprints: `%s` (drafted; awaiting curation and a hand-authored provider block)\n- SDK dialect: `%s`\n\nOne run, one pull request: document, SDK, blueprints (drafted when uncurated) and -- once the curated provider block exists -- the generated provider, built and tested on the runner. This branch is generator-owned and force-pushed on rerun.' \
             "${GITHUB_RUN_ID}" "${OPENAPI_VERSION}" "${SNAPSHOT_NAME}" "${BLUEPRINT_DIR}" "${SDK_DIALECT}")
           gh pr create --base "${GITHUB_REF_NAME}" --head "$BRANCH" \
             --title "tfpfgen: generate ${PROVIDER_NAME} from OpenAPI ${OPENAPI_VERSION}" \
