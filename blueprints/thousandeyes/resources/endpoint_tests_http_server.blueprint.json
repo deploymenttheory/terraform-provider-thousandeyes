@@ -29,16 +29,16 @@
             "wire": {
               "jsonPath": "agentSelectorType",
               "sdkField": "AgentSelectorType",
-              "sdkGoType": "*models.EndpointTestsAPIEndpointTestAgentSelectorType",
+              "sdkGoType": "*models.Endpoint_Tests_API_EndpointTestAgentSelectorType",
               "expand": {
                 "func": "convert.FrameworkToKiotaEnum",
                 "typeArgs": [
-                  "models.EndpointTestsAPIEndpointTestAgentSelectorType"
+                  "models.Endpoint_Tests_API_EndpointTestAgentSelectorType"
                 ],
-                "returnsError": true,
                 "extraArgs": [
-                  "models.ParseEndpointTestsAPIEndpointTestAgentSelectorType"
-                ]
+                  "models.ParseEndpoint_Tests_API_EndpointTestAgentSelectorType"
+                ],
+                "returnsError": true
               },
               "skipFlatten": true
             },
@@ -64,9 +64,9 @@
             "wire": {
               "jsonPath": "agents",
               "sdkField": "Agents",
-              "sdkGoType": "[]string",
+              "sdkGoType": "[]uuid.UUID",
               "expand": {
-                "func": "convert.FrameworkSetToStringSlice",
+                "func": "convert.FrameworkSetToUUIDSlice",
                 "needsCtx": true,
                 "returnsError": true
               },
@@ -355,7 +355,7 @@
             "name": "interval",
             "goField": "Interval",
             "type": {
-              "kind": "string",
+              "kind": "int64",
               "allowedValues": [
                 "60",
                 "120",
@@ -373,17 +373,10 @@
               "sdkField": "Interval",
               "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToKiotaEnum",
-                "typeArgs": [
-                  "models.EndpointTestsAPITestInterval"
-                ],
-                "returnsError": true,
-                "extraArgs": [
-                  "models.ParseEndpointTestsAPITestInterval"
-                ]
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.PtrInt32ToFrameworkString"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -398,9 +391,16 @@
             "wire": {
               "jsonPath": "ipVersion",
               "sdkField": "IpVersion",
-              "sdkGoType": "*string",
+              "sdkGoType": "*models.Endpoint_Tests_API_EndpointIpVersionIn",
               "expand": {
-                "func": "convert.FrameworkToPtrString"
+                "func": "convert.FrameworkToKiotaEnum",
+                "typeArgs": [
+                  "models.Endpoint_Tests_API_EndpointIpVersionIn"
+                ],
+                "extraArgs": [
+                  "models.ParseEndpoint_Tests_API_EndpointIpVersionIn"
+                ],
+                "returnsError": true
               },
               "flatten": {
                 "func": "convert.PtrStringToFramework"
