@@ -37,7 +37,12 @@
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Name of the role.",
+            "markdownDescription": "Name of the role.\n\nRequired-by-API by curation: the sweeper's field, unprobeable by omission.",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnRead": true,
+              "returnedOnCreate": true
+            },
             "wire": {
               "jsonPath": "name",
               "sdkField": "Name",
@@ -54,125 +59,39 @@
             "name": "permissions",
             "goField": "Permissions",
             "type": {
-              "kind": "set_nested",
-              "nestedObject": {
-                "goTypeName": "RolePermissionsCollectionModel",
-                "sdkType": "models.AdministrativeAPIPermissionsCollectionable",
-                "constructorExpr": "models.NewAdministrativeAPIPermissionsCollection()",
-                "attrTypesVar": "rolePermissionsCollectionAttrTypes",
-                "objectTypeVar": "rolePermissionsCollectionObjectType",
-                "expandFunc": "expandRolePermissionsCollections",
-                "flattenFunc": "flattenRolePermissionsCollections",
-                "attributes": [
-                  {
-                    "name": "is_management_permission",
-                    "goField": "IsManagementPermission",
-                    "type": {
-                      "kind": "bool"
-                    },
-                    "computedOptionalRequired": "optional",
-                    "markdownDescription": "Flag indicating whether the permission is classified as a management permission.",
-                    "wire": {
-                      "jsonPath": "isManagementPermission",
-                      "sdkField": "IsManagementPermission",
-                      "sdkGoType": "*bool",
-                      "expand": {
-                        "func": "convert.FrameworkToPtrBool"
-                      },
-                      "flatten": {
-                        "func": "convert.PtrBoolToFramework"
-                      }
-                    }
-                  },
-                  {
-                    "name": "label",
-                    "goField": "Label",
-                    "type": {
-                      "kind": "string"
-                    },
-                    "computedOptionalRequired": "optional",
-                    "markdownDescription": "Label corresponding to the permission.",
-                    "wire": {
-                      "jsonPath": "label",
-                      "sdkField": "Label",
-                      "sdkGoType": "*string",
-                      "expand": {
-                        "func": "convert.FrameworkToPtrString"
-                      },
-                      "flatten": {
-                        "func": "convert.PtrStringToFramework"
-                      }
-                    }
-                  },
-                  {
-                    "name": "permission",
-                    "goField": "Permission",
-                    "type": {
-                      "kind": "string"
-                    },
-                    "computedOptionalRequired": "optional",
-                    "markdownDescription": "Permission name",
-                    "wire": {
-                      "jsonPath": "permission",
-                      "sdkField": "Permission",
-                      "sdkGoType": "*string",
-                      "expand": {
-                        "func": "convert.FrameworkToPtrString"
-                      },
-                      "flatten": {
-                        "func": "convert.PtrStringToFramework"
-                      }
-                    }
-                  },
-                  {
-                    "name": "permission_id",
-                    "goField": "PermissionID",
-                    "type": {
-                      "kind": "string"
-                    },
-                    "computedOptionalRequired": "optional",
-                    "markdownDescription": "Unique ID representing the permission.",
-                    "wire": {
-                      "jsonPath": "permissionId",
-                      "sdkField": "PermissionId",
-                      "sdkGoType": "*string",
-                      "expand": {
-                        "func": "convert.FrameworkToPtrString"
-                      },
-                      "flatten": {
-                        "func": "convert.PtrStringToFramework"
-                      }
-                    }
-                  }
-                ]
+              "kind": "set",
+              "elementType": {
+                "kind": "string"
               }
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Contains list of test permission IDs (get `permissionId` from `/permissions` operation)",
+            "markdownDescription": "List of permission ids to grant (permissionId values from the permissions API). The response echoes permissions as expanded objects, never this id list, so state carries the configured value.\n\nEffectively required: a permission-less role create answers 500 (live probe, 2026-08-03).\n\n<!-- probed:7.0.98-t1785772662063 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnRead": true,
+              "returnedOnCreate": true,
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "permissions",
               "sdkField": "Permissions",
-              "sdkGoType": "[]models.AdministrativeAPIPermissionsCollectionable",
+              "sdkGoType": "[]string",
               "expand": {
-                "func": "expandRolePermissionsCollections",
+                "func": "convert.FrameworkSetToStringSlice",
                 "needsCtx": true,
                 "returnsError": true
               },
-              "flatten": {
-                "func": "flattenRolePermissionsCollections",
-                "needsCtx": true,
-                "returnsError": true
-              }
+              "skipFlatten": true
             }
           },
           {
-            "name": "role_id",
-            "goField": "RoleID",
+            "name": "id",
+            "goField": "ID",
             "type": {
               "kind": "string"
             },
             "computedOptionalRequired": "computed",
-            "markdownDescription": "Unique ID representing the role.",
+            "markdownDescription": "Unique ID representing the role.\n\nNamed `id` per the import convention; the wire field stays roleId.",
             "wire": {
               "jsonPath": "roleId",
               "sdkField": "RoleId",
@@ -190,12 +109,10 @@
         "service": {
           "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
           "alias": "models",
-          "typeName": "",
           "accessor": "r.client"
         },
         "create": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Roles"
@@ -217,13 +134,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.RoleDetailable",
+          "resultType": "models.Administrative_API_RoleDetailable",
           "httpMethod": "POST",
           "pathTemplate": "/roles"
         },
         "read": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Roles"
@@ -251,13 +167,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.RoleDetailable",
+          "resultType": "models.Administrative_API_RoleDetailable",
           "httpMethod": "GET",
           "pathTemplate": "/roles/{id}"
         },
         "update": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Roles"
@@ -288,13 +203,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.RoleDetailable",
+          "resultType": "models.Administrative_API_RoleDetailable",
           "httpMethod": "PUT",
           "pathTemplate": "/roles/{id}"
         },
         "delete": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Roles"
@@ -328,13 +242,13 @@
         "id": {
           "attribute": "id",
           "goField": "ID",
-          "fromCreate": "created.GetId()",
+          "fromCreate": "created.GetRoleId()",
           "fromCreateIsPointer": true
         },
         "body": {
-          "requestType": "models.RoleRequestBody",
-          "responseType": "models.RoleDetailable",
-          "constructorExpr": "models.NewRoleRequestBody()",
+          "requestType": "models.Administrative_API_RoleRequestBody",
+          "responseType": "models.Administrative_API_RoleDetailable",
+          "constructorExpr": "models.NewAdministrative_API_RoleRequestBody()",
           "accessStyle": "method"
         }
       },
@@ -347,6 +261,21 @@
       "import": {
         "style": "passthroughId",
         "attribute": "id"
+      },
+      "accFixture": {
+        "values": [
+          {
+            "attr": "permissions",
+            "hcl": "[\"1\", \"2\"]",
+            "wire": [
+              "1",
+              "2"
+            ]
+          }
+        ]
+      },
+      "accTest": {
+        "skipUnlessEnv": "TFPFGEN_ACC_ADMIN"
       }
     }
   ]

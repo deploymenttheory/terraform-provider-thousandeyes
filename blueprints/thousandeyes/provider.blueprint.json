@@ -1,0 +1,55 @@
+{
+  "formatVersion": "4",
+  "provider": {
+    "name": "thousandeyes",
+    "goModule": "github.com/deploymenttheory/terraform-provider-thousandeyes",
+    "typePrefix": "thousandeyes",
+    "sdk": {
+      "dialect": "kiotaFluent",
+      "mode": "embed",
+      "generator": "kiota",
+      "modulePath": "github.com/deploymenttheory/terraform-provider-thousandeyes",
+      "clientType": "*sdk.ThousandEyesClient",
+      "clientImport": {
+        "path": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk",
+        "alias": "sdk"
+      }
+    },
+    "conventions": {
+      "resourceRoot": "internal/services/resources",
+      "dataSourceRoot": "internal/services/datasources",
+      "providerPkgDir": "internal/provider",
+      "defaultTimeouts": {
+        "createSeconds": 180,
+        "readSeconds": 180,
+        "updateSeconds": 180,
+        "deleteSeconds": 180
+      }
+    },
+    "support": {
+      "convert": {
+        "path": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/services/common/convert"
+      },
+      "crud": {
+        "path": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/services/common/crud"
+      },
+      "commonSchema": {
+        "path": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/services/common/schema",
+        "alias": "commonschema"
+      },
+      "errors": {
+        "path": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/services/common/errors"
+      },
+      "client": {
+        "path": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/client"
+      }
+    }
+  },
+  "source": {
+    "specFile": "api.yaml",
+    "specVersion": "7.0.98",
+    "specSha256": "969c3dfceafed4ab3db33675e688d9957f460aa8263689fdab3108e7f0e6b7cb",
+    "snapshotDir": "7.0.98-t1785502133469",
+    "sdkVersion": "v0.2.0"
+  }
+}

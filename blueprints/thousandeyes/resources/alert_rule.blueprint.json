@@ -2,12 +2,12 @@
   "formatVersion": "4",
   "resources": [
     {
-      "key": "alerts_rule",
-      "name": "alerts_rule",
-      "goPackage": "alerts_rule",
-      "goPackageAlias": "v7AlertsRule",
-      "goTypeName": "AlertsRuleResource",
-      "modelTypeName": "AlertsRuleResourceModel",
+      "key": "alert_rule",
+      "name": "alert_rule",
+      "goPackage": "alert_rule",
+      "goPackageAlias": "v7AlertRule",
+      "goTypeName": "AlertRuleResource",
+      "modelTypeName": "AlertRuleResourceModel",
       "serviceGroup": "alert_rules",
       "apiVersionDir": "v7",
       "schema": {
@@ -24,24 +24,37 @@
                 "endpoint"
               ]
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Category of alert type based on the application or network layer and source of the test.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Category of alert type based on the application or network layer and source of the test.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->\n\n<!-- probed:7.0.98-t1785764456095 -->\nValues accepted here: `bgp`, `browser-session`, `cloud-enterprise`, `endpoint`.\nObserved: the API assigns \"cloud-enterprise\" when this is omitted.\n<!-- /probed -->\n\nThe applied group follows the alert type -- an http-server rule stores cloud-enterprise whatever is sent -- so the fixtures leave it to the server.",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "\"cloud-enterprise\""
+              },
+              "zeroValueUnsendable": true,
+              "acceptedValues": [
+                "bgp",
+                "browser-session",
+                "cloud-enterprise",
+                "endpoint"
+              ]
+            },
             "wire": {
               "jsonPath": "alertGroupType",
               "sdkField": "AlertGroupType",
-              "sdkGoType": "*models.AlertsAPIAlertGroupType",
+              "sdkGoType": "*models.Alerts_API_AlertGroupType",
               "expand": {
                 "func": "convert.FrameworkToKiotaEnum",
                 "typeArgs": [
-                  "models.AlertsAPIAlertGroupType"
+                  "models.Alerts_API_AlertGroupType"
                 ],
-                "returnsError": true,
                 "extraArgs": [
-                  "models.ParseAlertsAPIAlertGroupType"
-                ]
+                  "models.ParseAlerts_API_AlertGroupType"
+                ],
+                "returnsError": true
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               }
             }
           },
@@ -81,23 +94,27 @@
               ]
             },
             "computedOptionalRequired": "required",
-            "markdownDescription": "Type of alert being triggered. In multi-layered tests, this value represents the layer the alert relates to. See [Alert Details](https://developer.cisco.com/docs/thousandeyes/retrieve-alert-details/) documentation for a list of possible values",
+            "markdownDescription": "Type of alert being triggered. In multi-layered tests, this value represents the layer the alert relates to. See [Alert Details](https://developer.cisco.com/docs/thousandeyes/retrieve-alert-details/) documentation for a list of possible values\n\n<!-- probed:7.0.98-t1785764456095 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "alertType",
               "sdkField": "AlertType",
-              "sdkGoType": "*models.AlertsAPIAlertType",
+              "sdkGoType": "*models.Alerts_API_AlertType",
               "expand": {
                 "func": "convert.FrameworkToKiotaEnum",
                 "typeArgs": [
-                  "models.AlertsAPIAlertType"
+                  "models.Alerts_API_AlertType"
                 ],
-                "returnsError": true,
                 "extraArgs": [
-                  "models.ParseAlertsAPIAlertType"
-                ]
+                  "models.ParseAlerts_API_AlertType"
+                ],
+                "returnsError": true
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               }
             }
           },
@@ -109,6 +126,11 @@
             },
             "computedOptionalRequired": "optional",
             "markdownDescription": "A description of the alert rule.",
+            "behaviour": {
+              "requiredByApi": false,
+              "returnedOnRead": false,
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "description",
               "sdkField": "Description",
@@ -133,23 +155,26 @@
               ]
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Direction for applicable alert types (eg. path trace, End-to-End (Agent) etc.)",
+            "markdownDescription": "Direction for applicable alert types (eg. path trace, End-to-End (Agent) etc.)\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->\n\nOnly valid for directional alert types (end-to-end agent/server); refused for http-server rules (live acceptance, 2026-08-03).",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "direction",
               "sdkField": "Direction",
-              "sdkGoType": "*models.AlertsAPIAlertDirection",
+              "sdkGoType": "*models.Alerts_API_AlertDirection",
               "expand": {
                 "func": "convert.FrameworkToKiotaEnum",
                 "typeArgs": [
-                  "models.AlertsAPIAlertDirection"
+                  "models.Alerts_API_AlertDirection"
                 ],
-                "returnsError": true,
                 "extraArgs": [
-                  "models.ParseAlertsAPIAlertDirection"
-                ]
+                  "models.ParseAlerts_API_AlertDirection"
+                ],
+                "returnsError": true
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               }
             }
           },
@@ -163,7 +188,11 @@
               }
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "An array of endpoint agent IDs associated with the rule (get `id` from `/endpoint/agents` API). This is applicable when `alertGroupType` is `browser-session`.",
+            "markdownDescription": "An array of endpoint agent IDs associated with the rule (get `id` from `/endpoint/agents` API). This is applicable when `alertGroupType` is `browser-session`.\n\n<!-- probed:7.0.98-t1785764967601 -->\nNeither the update response nor a read returns this field: it is write-only in practice, and state carries the configured value.\n<!-- /probed -->",
+            "behaviour": {
+              "returnedOnRead": false,
+              "returnedOnUpdate": false
+            },
             "wire": {
               "jsonPath": "endpointAgentIds",
               "sdkField": "EndpointAgentIds",
@@ -190,7 +219,11 @@
               }
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "An array of label IDs used to assign specific Endpoint Agents to the test (get `id` from `/endpoint/labels`). This is applicable when `alertGroupType` is `browser-session`.",
+            "markdownDescription": "An array of label IDs used to assign specific Endpoint Agents to the test (get `id` from `/endpoint/labels`). This is applicable when `alertGroupType` is `browser-session`.\n\n<!-- probed:7.0.98-t1785764967601 -->\nNeither the update response nor a read returns this field: it is write-only in practice, and state carries the configured value.\n<!-- /probed -->",
+            "behaviour": {
+              "returnedOnRead": false,
+              "returnedOnUpdate": false
+            },
             "wire": {
               "jsonPath": "endpointLabelIds",
               "sdkField": "EndpointLabelIds",
@@ -214,7 +247,11 @@
               "kind": "string"
             },
             "computedOptionalRequired": "required",
-            "markdownDescription": "The expression of the alert rule.",
+            "markdownDescription": "The expression of the alert rule.\n\n<!-- probed:7.0.98-t1785764456095 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "expression",
               "sdkField": "Expression",
@@ -235,6 +272,10 @@
             },
             "computedOptionalRequired": "optional",
             "markdownDescription": "Set true to include covered prefixes in the BGP alert rule. Only applicable to BGP alert rules.",
+            "behaviour": {
+              "returnedOnRead": false,
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "includeCoveredPrefixes",
               "sdkField": "IncludeCoveredPrefixes",
@@ -253,8 +294,19 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "If set to `true`, this alert rule becomes the default for its test type and is automatically applied to newly created tests with relevant metrics. Only one default alert rule is allowed per test type.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "If set to `true`, this alert rule becomes the default for its test type and is automatically applied to newly created tests with relevant metrics. Only one default alert rule is allowed per test type.\n\n<!-- probed:7.0.98-t1785764967601 -->\nObserved: the API assigns false when this is omitted from an update.\nOmitting this field from an update resets it rather than preserving the stored value.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "false"
+              },
+              "returnedOnUpdate": true,
+              "updateDefault": {
+                "kind": "bool",
+                "raw": "false"
+              }
+            },
             "wire": {
               "jsonPath": "isDefault",
               "sdkField": "IsDefault",
@@ -274,16 +326,20 @@
               "kind": "int64"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "The minimum number of agents or monitors that must meet the specified criteria to trigger the alert.",
+            "markdownDescription": "The minimum number of agents or monitors that must meet the specified criteria to trigger the alert.\n\nExactly one of minimum_sources and minimum_sources_pct must be set (live probe, 2026-08-03).\n\n<!-- probed:7.0.98-t1785764456095 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "minimumSources",
               "sdkField": "MinimumSources",
               "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToPtrInt32"
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.PtrInt32ToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -294,16 +350,16 @@
               "kind": "int64"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "The minimum percentage of all assigned agents or monitors that must meet the specified criteria to trigger the alert.",
+            "markdownDescription": "The minimum percentage of all assigned agents or monitors that must meet the specified criteria to trigger the alert.\n\nExactly one of minimum_sources and minimum_sources_pct may be set; the generated fixtures carry minimum_sources.",
             "wire": {
               "jsonPath": "minimumSourcesPct",
               "sdkField": "MinimumSourcesPct",
               "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToPtrInt32"
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.PtrInt32ToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -313,13 +369,12 @@
             "type": {
               "kind": "single_nested",
               "nestedObject": {
-                "goTypeName": "AlertsRuleAlertNotificationModel",
-                "sdkType": "models.AlertsAPIAlertNotificationable",
-                "constructorExpr": "models.NewAlertsAPIAlertNotification()",
+                "goTypeName": "AlertRuleAlertNotificationModel",
+                "sdkType": "alert_rules.AlertNotification",
                 "attrTypesVar": "alertsRuleAlertNotificationAttrTypes",
                 "objectTypeVar": "alertsRuleAlertNotificationObjectType",
-                "expandFunc": "expandAlertsRuleAlertNotification",
-                "flattenFunc": "flattenAlertsRuleAlertNotification",
+                "expandFunc": "expandAlertRuleAlertNotification",
+                "flattenFunc": "flattenAlertRuleAlertNotification",
                 "attributes": [
                   {
                     "name": "custom_webhook",
@@ -327,28 +382,24 @@
                     "type": {
                       "kind": "set_nested",
                       "nestedObject": {
-                        "goTypeName": "AlertsRuleNotificationCustomWebhookModel",
-                        "sdkType": "models.AlertsAPINotificationCustomWebhookable",
-                        "constructorExpr": "models.NewAlertsAPINotificationCustomWebhook()",
+                        "goTypeName": "AlertRuleNotificationCustomWebhookModel",
+                        "sdkType": "alert_rules.NotificationCustomWebhook",
                         "attrTypesVar": "alertsRuleNotificationCustomWebhookAttrTypes",
                         "objectTypeVar": "alertsRuleNotificationCustomWebhookObjectType",
-                        "expandFunc": "expandAlertsRuleNotificationCustomWebhooks",
-                        "flattenFunc": "flattenAlertsRuleNotificationCustomWebhooks",
+                        "expandFunc": "expandAlertRuleNotificationCustomWebhooks",
+                        "flattenFunc": "flattenAlertRuleNotificationCustomWebhooks",
                         "attributes": [
                           {
                             "name": "integration_id",
                             "goField": "IntegrationID",
                             "type": {
-                              "kind": "string",
-                              "constraints": {
-                                "format": "uuid"
-                              }
+                              "kind": "string"
                             },
                             "computedOptionalRequired": "optional",
                             "markdownDescription": "Integration ID.",
                             "wire": {
                               "jsonPath": "integrationId",
-                              "sdkField": "IntegrationId",
+                              "sdkField": "IntegrationID",
                               "sdkGoType": "*string",
                               "expand": {
                                 "func": "convert.FrameworkToPtrString"
@@ -392,19 +443,15 @@
                             "wire": {
                               "jsonPath": "integrationType",
                               "sdkField": "IntegrationType",
-                              "sdkGoType": "*models.AlertsAPICustomWebhookIntegrationType",
+                              "sdkGoType": "alert_rules.CustomWebhookIntegrationType",
                               "expand": {
-                                "func": "convert.FrameworkToKiotaEnum",
+                                "func": "convert.FrameworkToEnum",
                                 "typeArgs": [
-                                  "models.AlertsAPICustomWebhookIntegrationType"
-                                ],
-                                "returnsError": true,
-                                "extraArgs": [
-                                  "models.ParseAlertsAPICustomWebhookIntegrationType"
+                                  "alert_rules.CustomWebhookIntegrationType"
                                 ]
                               },
                               "flatten": {
-                                "func": "convert.KiotaEnumToFramework"
+                                "func": "convert.EnumToFramework"
                               }
                             }
                           },
@@ -436,14 +483,14 @@
                     "wire": {
                       "jsonPath": "customWebhook",
                       "sdkField": "CustomWebhook",
-                      "sdkGoType": "[]models.AlertsAPINotificationCustomWebhookable",
+                      "sdkGoType": "[]alert_rules.NotificationCustomWebhook",
                       "expand": {
-                        "func": "expandAlertsRuleNotificationCustomWebhooks",
+                        "func": "expandAlertRuleNotificationCustomWebhooks",
                         "needsCtx": true,
                         "returnsError": true
                       },
                       "flatten": {
-                        "func": "flattenAlertsRuleNotificationCustomWebhooks",
+                        "func": "flattenAlertRuleNotificationCustomWebhooks",
                         "needsCtx": true,
                         "returnsError": true
                       }
@@ -455,13 +502,12 @@
                     "type": {
                       "kind": "single_nested",
                       "nestedObject": {
-                        "goTypeName": "AlertsRuleNotificationEmailModel",
-                        "sdkType": "models.AlertsAPINotificationEmailable",
-                        "constructorExpr": "models.NewAlertsAPINotificationEmail()",
+                        "goTypeName": "AlertRuleNotificationEmailModel",
+                        "sdkType": "alert_rules.NotificationEmail",
                         "attrTypesVar": "alertsRuleNotificationEmailAttrTypes",
                         "objectTypeVar": "alertsRuleNotificationEmailObjectType",
-                        "expandFunc": "expandAlertsRuleNotificationEmail",
-                        "flattenFunc": "flattenAlertsRuleNotificationEmail",
+                        "expandFunc": "expandAlertRuleNotificationEmail",
+                        "flattenFunc": "flattenAlertRuleNotificationEmail",
                         "attributes": [
                           {
                             "name": "message",
@@ -518,14 +564,14 @@
                     "wire": {
                       "jsonPath": "email",
                       "sdkField": "Email",
-                      "sdkGoType": "models.AlertsAPINotificationEmailable",
+                      "sdkGoType": "*alert_rules.NotificationEmail",
                       "expand": {
-                        "func": "expandAlertsRuleNotificationEmail",
+                        "func": "expandAlertRuleNotificationEmail",
                         "needsCtx": true,
                         "returnsError": true
                       },
                       "flatten": {
-                        "func": "flattenAlertsRuleNotificationEmail",
+                        "func": "flattenAlertRuleNotificationEmail",
                         "needsCtx": true,
                         "returnsError": true
                       }
@@ -537,13 +583,12 @@
                     "type": {
                       "kind": "set_nested",
                       "nestedObject": {
-                        "goTypeName": "AlertsRuleNotificationThirdPartyModel",
-                        "sdkType": "models.AlertsAPINotificationThirdPartyable",
-                        "constructorExpr": "models.NewAlertsAPINotificationThirdParty()",
+                        "goTypeName": "AlertRuleNotificationThirdPartyModel",
+                        "sdkType": "alert_rules.NotificationThirdParty",
                         "attrTypesVar": "alertsRuleNotificationThirdPartyAttrTypes",
                         "objectTypeVar": "alertsRuleNotificationThirdPartyObjectType",
-                        "expandFunc": "expandAlertsRuleNotificationThirdParties",
-                        "flattenFunc": "flattenAlertsRuleNotificationThirdParties",
+                        "expandFunc": "expandAlertRuleNotificationThirdParties",
+                        "flattenFunc": "flattenAlertRuleNotificationThirdParties",
                         "attributes": [
                           {
                             "name": "integration_id",
@@ -555,7 +600,7 @@
                             "markdownDescription": "Integration ID.",
                             "wire": {
                               "jsonPath": "integrationId",
-                              "sdkField": "IntegrationId",
+                              "sdkField": "IntegrationID",
                               "sdkGoType": "*string",
                               "expand": {
                                 "func": "convert.FrameworkToPtrString"
@@ -582,19 +627,15 @@
                             "wire": {
                               "jsonPath": "integrationType",
                               "sdkField": "IntegrationType",
-                              "sdkGoType": "*models.AlertsAPIThirdPartyIntegrationType",
+                              "sdkGoType": "alert_rules.ThirdPartyIntegrationType",
                               "expand": {
-                                "func": "convert.FrameworkToKiotaEnum",
+                                "func": "convert.FrameworkToEnum",
                                 "typeArgs": [
-                                  "models.AlertsAPIThirdPartyIntegrationType"
-                                ],
-                                "returnsError": true,
-                                "extraArgs": [
-                                  "models.ParseAlertsAPIThirdPartyIntegrationType"
+                                  "alert_rules.ThirdPartyIntegrationType"
                                 ]
                               },
                               "flatten": {
-                                "func": "convert.KiotaEnumToFramework"
+                                "func": "convert.EnumToFramework"
                               }
                             }
                           }
@@ -606,14 +647,14 @@
                     "wire": {
                       "jsonPath": "thirdParty",
                       "sdkField": "ThirdParty",
-                      "sdkGoType": "[]models.AlertsAPINotificationThirdPartyable",
+                      "sdkGoType": "[]alert_rules.NotificationThirdParty",
                       "expand": {
-                        "func": "expandAlertsRuleNotificationThirdParties",
+                        "func": "expandAlertRuleNotificationThirdParties",
                         "needsCtx": true,
                         "returnsError": true
                       },
                       "flatten": {
-                        "func": "flattenAlertsRuleNotificationThirdParties",
+                        "func": "flattenAlertRuleNotificationThirdParties",
                         "needsCtx": true,
                         "returnsError": true
                       }
@@ -625,13 +666,12 @@
                     "type": {
                       "kind": "set_nested",
                       "nestedObject": {
-                        "goTypeName": "AlertsRuleNotificationWebhookModel",
-                        "sdkType": "models.AlertsAPINotificationWebhookable",
-                        "constructorExpr": "models.NewAlertsAPINotificationWebhook()",
+                        "goTypeName": "AlertRuleNotificationWebhookModel",
+                        "sdkType": "alert_rules.NotificationWebhook",
                         "attrTypesVar": "alertsRuleNotificationWebhookAttrTypes",
                         "objectTypeVar": "alertsRuleNotificationWebhookObjectType",
-                        "expandFunc": "expandAlertsRuleNotificationWebhooks",
-                        "flattenFunc": "flattenAlertsRuleNotificationWebhooks",
+                        "expandFunc": "expandAlertRuleNotificationWebhooks",
+                        "flattenFunc": "flattenAlertRuleNotificationWebhooks",
                         "attributes": [
                           {
                             "name": "integration_id",
@@ -643,7 +683,7 @@
                             "markdownDescription": "Integration ID.",
                             "wire": {
                               "jsonPath": "integrationId",
-                              "sdkField": "IntegrationId",
+                              "sdkField": "IntegrationID",
                               "sdkGoType": "*string",
                               "expand": {
                                 "func": "convert.FrameworkToPtrString"
@@ -687,19 +727,15 @@
                             "wire": {
                               "jsonPath": "integrationType",
                               "sdkField": "IntegrationType",
-                              "sdkGoType": "*models.AlertsAPIWebhookIntegrationType",
+                              "sdkGoType": "alert_rules.WebhookIntegrationType",
                               "expand": {
-                                "func": "convert.FrameworkToKiotaEnum",
+                                "func": "convert.FrameworkToEnum",
                                 "typeArgs": [
-                                  "models.AlertsAPIWebhookIntegrationType"
-                                ],
-                                "returnsError": true,
-                                "extraArgs": [
-                                  "models.ParseAlertsAPIWebhookIntegrationType"
+                                  "alert_rules.WebhookIntegrationType"
                                 ]
                               },
                               "flatten": {
-                                "func": "convert.KiotaEnumToFramework"
+                                "func": "convert.EnumToFramework"
                               }
                             }
                           },
@@ -731,14 +767,14 @@
                     "wire": {
                       "jsonPath": "webhook",
                       "sdkField": "Webhook",
-                      "sdkGoType": "[]models.AlertsAPINotificationWebhookable",
+                      "sdkGoType": "[]alert_rules.NotificationWebhook",
                       "expand": {
-                        "func": "expandAlertsRuleNotificationWebhooks",
+                        "func": "expandAlertRuleNotificationWebhooks",
                         "needsCtx": true,
                         "returnsError": true
                       },
                       "flatten": {
-                        "func": "flattenAlertsRuleNotificationWebhooks",
+                        "func": "flattenAlertRuleNotificationWebhooks",
                         "needsCtx": true,
                         "returnsError": true
                       }
@@ -748,22 +784,23 @@
               }
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Alert notification object. See Alert notification integrations.",
+            "markdownDescription": "Alert notification object. See Alert notification integrations.\n\nDropped in v1: Three levels of nesting whose members are live integration references (webhooks, third-party connectors) nothing in a fixture can name; unmanaged in v1, same stance as dashboard widgets.",
             "wire": {
               "jsonPath": "notifications",
               "sdkField": "Notifications",
-              "sdkGoType": "models.AlertsAPIAlertNotificationable",
+              "sdkGoType": "*alert_rules.AlertNotification",
               "expand": {
-                "func": "expandAlertsRuleAlertNotification",
+                "func": "expandAlertRuleAlertNotification",
                 "needsCtx": true,
                 "returnsError": true
               },
               "flatten": {
-                "func": "flattenAlertsRuleAlertNotification",
+                "func": "flattenAlertRuleAlertNotification",
                 "needsCtx": true,
                 "returnsError": true
               }
-            }
+            },
+            "drop": true
           },
           {
             "name": "notify_on_clear",
@@ -771,8 +808,20 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Send notification when alert clears.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Send notification when alert clears.\n\n<!-- probed:7.0.98-t1785764967601 -->\nObserved: the API assigns true when this is omitted from an update.\nOmitting this field from an update resets it rather than preserving the stored value.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": false,
+              "serverDefault": {
+                "kind": "bool",
+                "raw": "true"
+              },
+              "returnedOnUpdate": true,
+              "updateDefault": {
+                "kind": "bool",
+                "raw": "true"
+              }
+            },
             "wire": {
               "jsonPath": "notifyOnClear",
               "sdkField": "NotifyOnClear",
@@ -801,9 +850,9 @@
             "wire": {
               "jsonPath": "roundsViolatingMode",
               "sdkField": "RoundsViolatingMode",
-              "sdkGoType": "*models.AlertsAPIAlertRoundsViolationMode",
+              "sdkGoType": "*models.Alerts_API_AlertRoundsViolationMode",
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               },
               "skipExpand": true
             }
@@ -815,16 +864,20 @@
               "kind": "int64"
             },
             "computedOptionalRequired": "required",
-            "markdownDescription": "Specifies the divisor (y value) in the “X of Y times” condition.",
+            "markdownDescription": "Specifies the divisor (y value) in the \u201cX of Y times\u201d condition.\n\n<!-- probed:7.0.98-t1785764456095 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "roundsViolatingOutOf",
               "sdkField": "RoundsViolatingOutOf",
               "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToPtrInt32"
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.PtrInt32ToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -835,33 +888,37 @@
               "kind": "int64"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Specifies the numerator (x value) in the “X of Y times” condition.",
+            "markdownDescription": "Specifies the numerator (x value) in the \u201cX of Y times\u201d condition.\n\n<!-- probed:7.0.98-t1785764456095 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "roundsViolatingRequired",
               "sdkField": "RoundsViolatingRequired",
               "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToPtrInt32"
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.PtrInt32ToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
           {
-            "name": "rule_id",
-            "goField": "RuleID",
+            "name": "id",
+            "goField": "ID",
             "type": {
               "kind": "string"
             },
             "computedOptionalRequired": "computed",
-            "markdownDescription": "Unique ID of the rule.",
+            "markdownDescription": "Unique ID of the rule.\n\nNamed `id` because terraform-plugin-testing populates import state only from an attribute literally called id; the wire field stays ruleId.",
             "wire": {
               "jsonPath": "ruleId",
               "sdkField": "RuleId",
               "sdkGoType": "*string",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               },
               "skipExpand": true
             }
@@ -902,9 +959,9 @@
             "wire": {
               "jsonPath": "sensitivityLevel",
               "sdkField": "SensitivityLevel",
-              "sdkGoType": "*models.AlertsAPISensitivityLevel",
+              "sdkGoType": "*models.Alerts_API_SensitivityLevel",
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               },
               "skipExpand": true
             }
@@ -922,24 +979,43 @@
                 "unknown"
               ]
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "The severity of the alert.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "The severity of the alert.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->\n\n<!-- probed:7.0.98-t1785764456095 -->\nValues accepted here: `info`, `major`, `minor`, `critical`.\nThe specification documents `unknown`, which the API rejected.\n<!-- /probed -->",
+            "behaviour": {
+              "immutable": false,
+              "requiredByApi": false,
+              "serverDefault": {
+                "kind": "string",
+                "raw": "\"info\""
+              },
+              "returnedOnUpdate": true,
+              "zeroValueUnsendable": true,
+              "acceptedValues": [
+                "info",
+                "major",
+                "minor",
+                "critical"
+              ],
+              "rejectedValues": [
+                "unknown"
+              ]
+            },
             "wire": {
               "jsonPath": "severity",
               "sdkField": "Severity",
-              "sdkGoType": "*models.AlertsAPISeverity",
+              "sdkGoType": "*models.Alerts_API_Severity",
               "expand": {
                 "func": "convert.FrameworkToKiotaEnum",
                 "typeArgs": [
-                  "models.AlertsAPISeverity"
+                  "models.Alerts_API_Severity"
                 ],
-                "returnsError": true,
                 "extraArgs": [
-                  "models.ParseAlertsAPISeverity"
-                ]
+                  "models.ParseAlerts_API_Severity"
+                ],
+                "returnsError": true
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               }
             }
           },
@@ -972,13 +1048,12 @@
             "type": {
               "kind": "set_nested",
               "nestedObject": {
-                "goTypeName": "AlertsRuleAlertSimpleTestModel",
-                "sdkType": "models.AlertsAPIAlertSimpleTestable",
-                "constructorExpr": "models.NewAlertsAPIAlertSimpleTest()",
+                "goTypeName": "AlertRuleAlertSimpleTestModel",
+                "sdkType": "alert_rules.AlertSimpleTest",
                 "attrTypesVar": "alertsRuleAlertSimpleTestAttrTypes",
                 "objectTypeVar": "alertsRuleAlertSimpleTestObjectType",
-                "expandFunc": "expandAlertsRuleAlertSimpleTests",
-                "flattenFunc": "flattenAlertsRuleAlertSimpleTests",
+                "expandFunc": "expandAlertRuleAlertSimpleTests",
+                "flattenFunc": "flattenAlertRuleAlertSimpleTests",
                 "attributes": [
                   {
                     "name": "alerts_enabled",
@@ -1020,10 +1095,7 @@
                     "name": "created_date",
                     "goField": "CreatedDate",
                     "type": {
-                      "kind": "string",
-                      "constraints": {
-                        "format": "date-time"
-                      }
+                      "kind": "string"
                     },
                     "computedOptionalRequired": "computed",
                     "markdownDescription": "UTC created date (ISO date-time format).",
@@ -1093,9 +1165,9 @@
                     "wire": {
                       "jsonPath": "interval",
                       "sdkField": "Interval",
-                      "sdkGoType": "*models.AlertsAPITestInterval",
+                      "sdkGoType": "alert_rules.TestInterval",
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       },
                       "skipExpand": true
                     }
@@ -1140,10 +1212,7 @@
                     "name": "modified_date",
                     "goField": "ModifiedDate",
                     "type": {
-                      "kind": "string",
-                      "constraints": {
-                        "format": "date-time"
-                      }
+                      "kind": "string"
                     },
                     "computedOptionalRequired": "computed",
                     "markdownDescription": "UTC last modification date (ISO date-time format).",
@@ -1185,7 +1254,7 @@
                     "markdownDescription": "Each test is assigned an unique ID; this is used to access test information and results from other endpoints.",
                     "wire": {
                       "jsonPath": "testId",
-                      "sdkField": "TestId",
+                      "sdkField": "TestID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -1239,10 +1308,10 @@
                     "markdownDescription": "Valid Alert Types for which to return test links.",
                     "wire": {
                       "jsonPath": "type",
-                      "sdkField": "TypeEscaped",
-                      "sdkGoType": "*models.AlertsAPIAlertTestType",
+                      "sdkField": "Type",
+                      "sdkGoType": "alert_rules.AlertTestType",
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       },
                       "skipExpand": true
                     }
@@ -1251,17 +1320,19 @@
               }
             },
             "computedOptionalRequired": "computed",
+            "markdownDescription": "Dropped in v1: Read-only echo of the rule's linked tests; the link is managed from the test side and mirroring it here would drift against testIds.",
             "wire": {
               "jsonPath": "tests",
               "sdkField": "Tests",
-              "sdkGoType": "[]models.AlertsAPIAlertSimpleTestable",
+              "sdkGoType": "[]alert_rules.AlertSimpleTest",
               "flatten": {
-                "func": "flattenAlertsRuleAlertSimpleTests",
+                "func": "flattenAlertRuleAlertSimpleTests",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            }
+            },
+            "drop": true
           },
           {
             "name": "visited_sites_filter",
@@ -1274,6 +1345,10 @@
             },
             "computedOptionalRequired": "optional",
             "markdownDescription": "A list of website domains visited during the session. This is applicable when `alertGroupType` is `browser-session`.",
+            "behaviour": {
+              "returnedOnRead": false,
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "visitedSitesFilter",
               "sdkField": "VisitedSitesFilter",
@@ -1297,12 +1372,10 @@
         "service": {
           "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
           "alias": "models",
-          "typeName": "",
           "accessor": "r.client"
         },
         "create": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Alerts"
@@ -1327,13 +1400,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.RuleDetailable",
+          "resultType": "models.Alerts_API_Ruleable",
           "httpMethod": "POST",
           "pathTemplate": "/alerts/rules"
         },
         "read": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Alerts"
@@ -1364,13 +1436,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.RuleDetailable",
+          "resultType": "models.Alerts_API_RuleDetailable",
           "httpMethod": "GET",
           "pathTemplate": "/alerts/rules/{ruleId}"
         },
         "update": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Alerts"
@@ -1404,13 +1475,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.RuleDetailable",
+          "resultType": "models.Alerts_API_Ruleable",
           "httpMethod": "PUT",
           "pathTemplate": "/alerts/rules/{ruleId}"
         },
         "delete": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Alerts"
@@ -1447,13 +1517,13 @@
         "id": {
           "attribute": "id",
           "goField": "ID",
-          "fromCreate": "created.GetId()",
+          "fromCreate": "created.GetRuleId()",
           "fromCreateIsPointer": true
         },
         "body": {
-          "requestType": "models.RuleDetailUpdate",
-          "responseType": "models.RuleDetailable",
-          "constructorExpr": "models.NewRuleDetailUpdate()",
+          "requestType": "models.Alerts_API_RuleDetailUpdate",
+          "responseType": "models.Alerts_API_RuleDetailable",
+          "constructorExpr": "models.NewAlerts_API_RuleDetailUpdate()",
           "accessStyle": "method"
         }
       },
@@ -1466,6 +1536,53 @@
       "import": {
         "style": "passthroughId",
         "attribute": "id"
+      },
+      "sweep": {
+        "nameField": "ruleName"
+      },
+      "accFixture": {
+        "values": [
+          {
+            "attr": "alert_group_type",
+            "hcl": "",
+            "omit": true
+          },
+          {
+            "attr": "alert_type",
+            "hcl": "\"http-server\"",
+            "wire": "http-server"
+          },
+          {
+            "attr": "direction",
+            "hcl": "",
+            "omit": true
+          },
+          {
+            "attr": "expression",
+            "hcl": "\"((responseTime >= 1000 ms))\"",
+            "wire": "((responseTime >= 1000 ms))"
+          },
+          {
+            "attr": "minimum_sources",
+            "hcl": "1",
+            "wire": 1
+          },
+          {
+            "attr": "minimum_sources_pct",
+            "hcl": "",
+            "omit": true
+          },
+          {
+            "attr": "rounds_violating_out_of",
+            "hcl": "2",
+            "wire": 2
+          },
+          {
+            "attr": "rounds_violating_required",
+            "hcl": "1",
+            "wire": 1
+          }
+        ]
       }
     }
   ]

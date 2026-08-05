@@ -19,7 +19,12 @@
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Account group name",
+            "markdownDescription": "Account group name\n\nRequired-by-API by curation: the sweeper's field, unprobeable by omission.",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnRead": true,
+              "returnedOnCreate": true
+            },
             "wire": {
               "jsonPath": "accountGroupName",
               "sdkField": "AccountGroupName",
@@ -33,19 +38,19 @@
             }
           },
           {
-            "name": "aid",
-            "goField": "AID",
+            "name": "id",
+            "goField": "ID",
             "type": {
               "kind": "string"
             },
             "computedOptionalRequired": "computed",
-            "markdownDescription": "A unique identifier associated with your account group. You can retrieve your `AccountGroupId` from the `/account-groups` endpoint.",
+            "markdownDescription": "A unique identifier associated with your account group. You can retrieve your `AccountGroupId` from the `/account-groups` endpoint.\n\nNamed `id` per the import convention; the wire field stays aid.",
             "wire": {
               "jsonPath": "aid",
               "sdkField": "Aid",
               "sdkGoType": "*string",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               },
               "skipExpand": true
             }
@@ -129,8 +134,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "AccountGroupUserAccountGroupModel",
-                "sdkType": "models.AdministrativeAPIUserAccountGroupable",
-                "constructorExpr": "models.NewAdministrativeAPIUserAccountGroup()",
+                "sdkType": "models.Administrative_API_UserAccountGroupable",
                 "attrTypesVar": "accountGroupUserAccountGroupAttrTypes",
                 "objectTypeVar": "accountGroupUserAccountGroupObjectType",
                 "expandFunc": "expandAccountGroupUserAccountGroups",
@@ -150,9 +154,9 @@
                     "wire": {
                       "jsonPath": "dateRegistered",
                       "sdkField": "DateRegistered",
-                      "sdkGoType": "*string",
+                      "sdkGoType": "*time.Time",
                       "flatten": {
-                        "func": "convert.PtrStringToFramework"
+                        "func": "convert.PtrTimeToFramework"
                       },
                       "skipExpand": true
                     }
@@ -192,9 +196,9 @@
                     "wire": {
                       "jsonPath": "lastLogin",
                       "sdkField": "LastLogin",
-                      "sdkGoType": "*string",
+                      "sdkGoType": "*time.Time",
                       "flatten": {
-                        "func": "convert.PtrStringToFramework"
+                        "func": "convert.PtrTimeToFramework"
                       },
                       "skipExpand": true
                     }
@@ -224,8 +228,7 @@
                       "kind": "set_nested",
                       "nestedObject": {
                         "goTypeName": "AccountGroupRoleModel",
-                        "sdkType": "models.AdministrativeAPIRoleable",
-                        "constructorExpr": "models.NewAdministrativeAPIRole()",
+                        "sdkType": "models.Administrative_API_Roleable",
                         "attrTypesVar": "accountGroupRoleAttrTypes",
                         "objectTypeVar": "accountGroupRoleObjectType",
                         "expandFunc": "expandAccountGroupRoles",
@@ -303,14 +306,15 @@
                               "skipExpand": true
                             }
                           }
-                        ]
+                        ],
+                        "constructorExpr": "models.NewAdministrative_API_Role()"
                       }
                     },
                     "computedOptionalRequired": "computed",
                     "wire": {
                       "jsonPath": "roles",
                       "sdkField": "Roles",
-                      "sdkGoType": "[]models.AdministrativeAPIRoleable",
+                      "sdkGoType": "[]models.Administrative_API_Roleable",
                       "flatten": {
                         "func": "flattenAccountGroupRoles",
                         "needsCtx": true,
@@ -337,14 +341,15 @@
                       "skipExpand": true
                     }
                   }
-                ]
+                ],
+                "constructorExpr": "models.NewAdministrative_API_UserAccountGroup()"
               }
             },
             "computedOptionalRequired": "computed",
             "wire": {
               "jsonPath": "users",
               "sdkField": "Users",
-              "sdkGoType": "[]models.AdministrativeAPIUserAccountGroupable",
+              "sdkGoType": "[]models.Administrative_API_UserAccountGroupable",
               "flatten": {
                 "func": "flattenAccountGroupUserAccountGroups",
                 "needsCtx": true,
@@ -360,12 +365,10 @@
         "service": {
           "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
           "alias": "models",
-          "typeName": "",
           "accessor": "r.client"
         },
         "create": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "AccountGroups"
@@ -387,13 +390,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.AccountGroupDetailable",
+          "resultType": "models.Administrative_API_CreatedAccountGroupable",
           "httpMethod": "POST",
           "pathTemplate": "/account-groups"
         },
         "read": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "AccountGroups"
@@ -421,13 +423,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.AccountGroupDetailable",
+          "resultType": "models.Administrative_API_AccountGroupDetailable",
           "httpMethod": "GET",
           "pathTemplate": "/account-groups/{id}"
         },
         "update": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "AccountGroups"
@@ -458,13 +459,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.AccountGroupDetailable",
+          "resultType": "models.Administrative_API_AccountGroupDetailable",
           "httpMethod": "PUT",
           "pathTemplate": "/account-groups/{id}"
         },
         "delete": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "AccountGroups"
@@ -498,13 +498,13 @@
         "id": {
           "attribute": "id",
           "goField": "ID",
-          "fromCreate": "created.GetId()",
+          "fromCreate": "created.GetAid()",
           "fromCreateIsPointer": true
         },
         "body": {
-          "requestType": "models.AccountGroupRequest",
-          "responseType": "models.AccountGroupDetailable",
-          "constructorExpr": "models.NewAccountGroupRequest()",
+          "requestType": "models.Administrative_API_AccountGroupRequest",
+          "responseType": "models.Administrative_API_AccountGroupDetailable",
+          "constructorExpr": "models.NewAdministrative_API_AccountGroupRequest()",
           "accessStyle": "method"
         }
       },
@@ -517,6 +517,12 @@
       "import": {
         "style": "passthroughId",
         "attribute": "id"
+      },
+      "sweep": {
+        "nameField": "accountGroupName"
+      },
+      "accTest": {
+        "skipUnlessEnv": "TFPFGEN_ACC_ADMIN"
       }
     }
   ]

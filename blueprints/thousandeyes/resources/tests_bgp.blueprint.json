@@ -19,8 +19,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsBGPAlertRuleModel",
-                "sdkType": "models.TestsAPIAlertRuleable",
-                "constructorExpr": "models.NewTestsAPIAlertRule()",
+                "sdkType": "bgp_tests.AlertRule",
                 "attrTypesVar": "testsBGPAlertRuleAttrTypes",
                 "objectTypeVar": "testsBGPAlertRuleObjectType",
                 "expandFunc": "expandTestsBGPAlertRules",
@@ -66,19 +65,15 @@
                     "wire": {
                       "jsonPath": "alertType",
                       "sdkField": "AlertType",
-                      "sdkGoType": "*models.TestsAPIAlertType",
+                      "sdkGoType": "bgp_tests.AlertType",
                       "expand": {
-                        "func": "convert.FrameworkToKiotaEnum",
+                        "func": "convert.FrameworkToEnum",
                         "typeArgs": [
-                          "models.TestsAPIAlertType"
-                        ],
-                        "returnsError": true,
-                        "extraArgs": [
-                          "models.ParseTestsAPIAlertType"
+                          "bgp_tests.AlertType"
                         ]
                       },
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       }
                     }
                   },
@@ -98,19 +93,15 @@
                     "wire": {
                       "jsonPath": "direction",
                       "sdkField": "Direction",
-                      "sdkGoType": "*models.TestsAPIAlertDirection",
+                      "sdkGoType": "bgp_tests.AlertDirection",
                       "expand": {
-                        "func": "convert.FrameworkToKiotaEnum",
+                        "func": "convert.FrameworkToEnum",
                         "typeArgs": [
-                          "models.TestsAPIAlertDirection"
-                        ],
-                        "returnsError": true,
-                        "extraArgs": [
-                          "models.ParseTestsAPIAlertDirection"
+                          "bgp_tests.AlertDirection"
                         ]
                       },
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       }
                     }
                   },
@@ -161,9 +152,9 @@
                     "wire": {
                       "jsonPath": "minimumSources",
                       "sdkField": "MinimumSources",
-                      "sdkGoType": "*int32",
+                      "sdkGoType": "*int64",
                       "flatten": {
-                        "func": "convert.PtrInt32ToFramework"
+                        "func": "convert.PtrInt64ToFramework"
                       },
                       "skipExpand": true
                     }
@@ -179,9 +170,9 @@
                     "wire": {
                       "jsonPath": "minimumSourcesPct",
                       "sdkField": "MinimumSourcesPct",
-                      "sdkGoType": "*int32",
+                      "sdkGoType": "*int64",
                       "flatten": {
-                        "func": "convert.PtrInt32ToFramework"
+                        "func": "convert.PtrInt64ToFramework"
                       },
                       "skipExpand": true
                     }
@@ -202,9 +193,9 @@
                     "wire": {
                       "jsonPath": "roundsViolatingMode",
                       "sdkField": "RoundsViolatingMode",
-                      "sdkGoType": "*models.TestsAPIAlertRoundsViolationMode",
+                      "sdkGoType": "bgp_tests.AlertRoundsViolationMode",
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       },
                       "skipExpand": true
                     }
@@ -216,13 +207,13 @@
                       "kind": "int64"
                     },
                     "computedOptionalRequired": "computed",
-                    "markdownDescription": "Specifies the divisor (y value) for the “X of Y times” condition.",
+                    "markdownDescription": "Specifies the divisor (y value) for the \u201cX of Y times\u201d condition.",
                     "wire": {
                       "jsonPath": "roundsViolatingOutOf",
                       "sdkField": "RoundsViolatingOutOf",
-                      "sdkGoType": "*int32",
+                      "sdkGoType": "*int64",
                       "flatten": {
-                        "func": "convert.PtrInt32ToFramework"
+                        "func": "convert.PtrInt64ToFramework"
                       },
                       "skipExpand": true
                     }
@@ -234,13 +225,13 @@
                       "kind": "int64"
                     },
                     "computedOptionalRequired": "computed",
-                    "markdownDescription": "Specifies the numerator (x value) for the “X of Y times” condition",
+                    "markdownDescription": "Specifies the numerator (x value) for the \u201cX of Y times\u201d condition",
                     "wire": {
                       "jsonPath": "roundsViolatingRequired",
                       "sdkField": "RoundsViolatingRequired",
-                      "sdkGoType": "*int32",
+                      "sdkGoType": "*int64",
                       "flatten": {
-                        "func": "convert.PtrInt32ToFramework"
+                        "func": "convert.PtrInt64ToFramework"
                       },
                       "skipExpand": true
                     }
@@ -255,7 +246,7 @@
                     "markdownDescription": "Unique ID of the rule.",
                     "wire": {
                       "jsonPath": "ruleId",
-                      "sdkField": "RuleId",
+                      "sdkField": "RuleID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -297,9 +288,9 @@
                     "wire": {
                       "jsonPath": "sensitivityLevel",
                       "sdkField": "SensitivityLevel",
-                      "sdkGoType": "*models.TestsAPISensitivityLevel",
+                      "sdkGoType": "bgp_tests.SensitivityLevel",
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       },
                       "skipExpand": true
                     }
@@ -322,19 +313,15 @@
                     "wire": {
                       "jsonPath": "severity",
                       "sdkField": "Severity",
-                      "sdkGoType": "*models.TestsAPISeverity",
+                      "sdkGoType": "bgp_tests.Severity",
                       "expand": {
-                        "func": "convert.FrameworkToKiotaEnum",
+                        "func": "convert.FrameworkToEnum",
                         "typeArgs": [
-                          "models.TestsAPISeverity"
-                        ],
-                        "returnsError": true,
-                        "extraArgs": [
-                          "models.ParseTestsAPISeverity"
+                          "bgp_tests.Severity"
                         ]
                       },
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       }
                     }
                   }
@@ -346,7 +333,7 @@
             "wire": {
               "jsonPath": "alertRules",
               "sdkField": "AlertRules",
-              "sdkGoType": "[]models.TestsAPIAlertRuleable",
+              "sdkGoType": "[]bgp_tests.AlertRule",
               "expand": {
                 "func": "expandTestsBGPAlertRules",
                 "needsCtx": true,
@@ -357,7 +344,8 @@
                 "needsCtx": true,
                 "returnsError": true
               }
-            }
+            },
+            "drop": true
           },
           {
             "name": "alerts_enabled",
@@ -365,8 +353,14 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Indicates if alerts are enabled.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Indicates if alerts are enabled.\n\n<!-- probed:7.0.98-t1785744878231 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "true"
+              }
+            },
             "wire": {
               "jsonPath": "alertsEnabled",
               "sdkField": "AlertsEnabled",
@@ -392,7 +386,7 @@
               "sdkField": "CreatedBy",
               "sdkGoType": "*string",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               },
               "skipExpand": true
             }
@@ -411,9 +405,9 @@
             "wire": {
               "jsonPath": "createdDate",
               "sdkField": "CreatedDate",
-              "sdkGoType": "*string",
+              "sdkGoType": "*time.Time",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrTimeToFramework"
               },
               "skipExpand": true
             }
@@ -444,8 +438,15 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Test is enabled.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Test is enabled.\n\n<!-- probed:7.0.98-t1785744878231 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "true"
+              },
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "enabled",
               "sdkField": "Enabled",
@@ -464,8 +465,14 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Indicate if queries for subprefixes detected under this prefix should included.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Indicate if queries for subprefixes detected under this prefix should included.\n\n<!-- probed:7.0.98-t1785744878231 -->\nObserved: the API assigns false when this is omitted.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "false"
+              }
+            },
             "wire": {
               "jsonPath": "includeCoveredPrefixes",
               "sdkField": "IncludeCoveredPrefixes",
@@ -485,8 +492,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsBGPTestLabelsModel",
-                "sdkType": "models.TestsAPITestLabelsable",
-                "constructorExpr": "models.NewTestsAPITestLabels()",
+                "sdkType": "bgp_tests.TestLabels",
                 "attrTypesVar": "testsBGPTestLabelsAttrTypes",
                 "objectTypeVar": "testsBGPTestLabelsObjectType",
                 "expandFunc": "expandTestsBGPTestLabelses",
@@ -520,7 +526,7 @@
                     "markdownDescription": "Label ID.",
                     "wire": {
                       "jsonPath": "labelId",
-                      "sdkField": "LabelId",
+                      "sdkField": "LabelID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -554,14 +560,15 @@
             "wire": {
               "jsonPath": "labels",
               "sdkField": "Labels",
-              "sdkGoType": "[]models.TestsAPITestLabelsable",
+              "sdkGoType": "[]bgp_tests.TestLabels",
               "flatten": {
                 "func": "flattenTestsBGPTestLabelses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            }
+            },
+            "drop": true
           },
           {
             "name": "live_share",
@@ -613,9 +620,9 @@
             "wire": {
               "jsonPath": "modifiedDate",
               "sdkField": "ModifiedDate",
-              "sdkGoType": "*string",
+              "sdkGoType": "*time.Time",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrTimeToFramework"
               },
               "skipExpand": true
             }
@@ -627,8 +634,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsBGPTestBGPMonitorsModel",
-                "sdkType": "models.TestsAPITestBgpMonitorsable",
-                "constructorExpr": "models.NewTestsAPITestBgpMonitors()",
+                "sdkType": "bgp_tests.TestBgpMonitors",
                 "attrTypesVar": "testsBGPTestBGPMonitorsAttrTypes",
                 "objectTypeVar": "testsBGPTestBGPMonitorsObjectType",
                 "expandFunc": "expandTestsBGPTestBGPMonitorses",
@@ -644,7 +650,7 @@
                     "markdownDescription": "Country ID",
                     "wire": {
                       "jsonPath": "countryId",
-                      "sdkField": "CountryId",
+                      "sdkField": "CountryID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -662,7 +668,7 @@
                     "markdownDescription": "IP address of the BGP monitor",
                     "wire": {
                       "jsonPath": "ipAddress",
-                      "sdkField": "IpAddress",
+                      "sdkField": "IPAddress",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -680,7 +686,7 @@
                     "markdownDescription": "BGP monitor ID",
                     "wire": {
                       "jsonPath": "monitorId",
-                      "sdkField": "MonitorId",
+                      "sdkField": "MonitorID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -721,9 +727,9 @@
                     "wire": {
                       "jsonPath": "monitorType",
                       "sdkField": "MonitorType",
-                      "sdkGoType": "*models.TestsAPIMonitorType",
+                      "sdkGoType": "bgp_tests.MonitorType",
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       },
                       "skipExpand": true
                     }
@@ -754,14 +760,15 @@
             "wire": {
               "jsonPath": "monitors",
               "sdkField": "Monitors",
-              "sdkGoType": "[]models.TestsAPITestBgpMonitorsable",
+              "sdkGoType": "[]bgp_tests.TestBgpMonitors",
               "flatten": {
                 "func": "flattenTestsBGPTestBGPMonitorses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            }
+            },
+            "drop": true
           },
           {
             "name": "prefix",
@@ -770,7 +777,10 @@
               "kind": "string"
             },
             "computedOptionalRequired": "required",
-            "markdownDescription": "a.b.c.d is a network address, with the prefix length defined as e. Prefixes can be any length from 8 to 24.",
+            "markdownDescription": "a.b.c.d is a network address, with the prefix length defined as e. Prefixes can be any length from 8 to 24.\n\n<!-- probed:7.0.98-t1785744878231 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true
+            },
             "wire": {
               "jsonPath": "prefix",
               "sdkField": "Prefix",
@@ -779,7 +789,7 @@
                 "func": "convert.FrameworkToPtrString"
               },
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               }
             }
           },
@@ -808,8 +818,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsBGPTestSharedAccountsModel",
-                "sdkType": "models.TestsAPITestSharedAccountsable",
-                "constructorExpr": "models.NewTestsAPITestSharedAccounts()",
+                "sdkType": "bgp_tests.TestSharedAccounts",
                 "attrTypesVar": "testsBGPTestSharedAccountsAttrTypes",
                 "objectTypeVar": "testsBGPTestSharedAccountsObjectType",
                 "expandFunc": "expandTestsBGPTestSharedAccountses",
@@ -825,7 +834,7 @@
                     "markdownDescription": "Account group ID.",
                     "wire": {
                       "jsonPath": "aid",
-                      "sdkField": "Aid",
+                      "sdkField": "AID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -859,14 +868,15 @@
             "wire": {
               "jsonPath": "sharedWithAccounts",
               "sdkField": "SharedWithAccounts",
-              "sdkGoType": "[]models.TestsAPITestSharedAccountsable",
+              "sdkGoType": "[]bgp_tests.TestSharedAccounts",
               "flatten": {
                 "func": "flattenTestsBGPTestSharedAccountses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            }
+            },
+            "drop": true
           },
           {
             "name": "tags",
@@ -875,8 +885,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsBGPTestTagsModel",
-                "sdkType": "models.TestsAPITestTagsable",
-                "constructorExpr": "models.NewTestsAPITestTags()",
+                "sdkType": "bgp_tests.TestTags",
                 "attrTypesVar": "testsBGPTestTagsAttrTypes",
                 "objectTypeVar": "testsBGPTestTagsObjectType",
                 "expandFunc": "expandTestsBGPTestTagses",
@@ -886,16 +895,13 @@
                     "name": "id",
                     "goField": "ID",
                     "type": {
-                      "kind": "string",
-                      "constraints": {
-                        "format": "uuid"
-                      }
+                      "kind": "string"
                     },
                     "computedOptionalRequired": "computed",
                     "markdownDescription": "Unique tag ID.",
                     "wire": {
                       "jsonPath": "id",
-                      "sdkField": "Id",
+                      "sdkField": "ID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -947,18 +953,19 @@
             "wire": {
               "jsonPath": "tags",
               "sdkField": "Tags",
-              "sdkGoType": "[]models.TestsAPITestTagsable",
+              "sdkGoType": "[]bgp_tests.TestTags",
               "flatten": {
                 "func": "flattenTestsBGPTestTagses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            }
+            },
+            "drop": true
           },
           {
-            "name": "test_id",
-            "goField": "TestID",
+            "name": "id",
+            "goField": "ID",
             "type": {
               "kind": "string"
             },
@@ -980,8 +987,8 @@
             "type": {
               "kind": "string"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "The name of the test. Test name must be unique.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "The name of the test. Test name must be unique.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.",
             "wire": {
               "jsonPath": "testName",
               "sdkField": "TestName",
@@ -1004,9 +1011,9 @@
             "wire": {
               "jsonPath": "type",
               "sdkField": "TypeEscaped",
-              "sdkGoType": "*string",
+              "sdkGoType": "*models.Tests_API_TestType",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrStringerToFramework"
               },
               "skipExpand": true
             }
@@ -1017,8 +1024,15 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Indicate if all available public BGP monitors should be used, when ommited defaults to `bgpMeasurements` value.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Indicate if all available public BGP monitors should be used, when omitted defaults to `bgpMeasurements` value.\n\n<!-- probed:7.0.98-t1785744878231 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "true"
+              },
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "usePublicBgp",
               "sdkField": "UsePublicBgp",
@@ -1038,12 +1052,10 @@
         "service": {
           "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
           "alias": "models",
-          "typeName": "",
           "accessor": "r.client"
         },
         "create": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -1068,13 +1080,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.BGPTestResponseable",
+          "resultType": "models.Tests_API_BgpTestResponseable",
           "httpMethod": "POST",
           "pathTemplate": "/tests/bgp"
         },
         "read": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -1105,53 +1116,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.BGPTestResponseable",
+          "resultType": "models.Tests_API_BgpTestResponseable",
           "httpMethod": "GET",
-          "pathTemplate": "/tests/bgp/{testId}"
-        },
-        "update": {
-          "style": "fluent",
-          "method": "",
-          "chain": [
-            {
-              "method": "Tests"
-            },
-            {
-              "method": "Bgp"
-            },
-            {
-              "method": "ByTestId",
-              "args": [
-                {
-                  "kind": "stateField",
-                  "field": "ID"
-                }
-              ]
-            },
-            {
-              "method": "Put",
-              "args": [
-                {
-                  "kind": "ctx"
-                },
-                {
-                  "kind": "body"
-                },
-                {
-                  "kind": "literal",
-                  "expr": "nil"
-                }
-              ]
-            }
-          ],
-          "return": "resultError",
-          "resultType": "models.BGPTestResponseable",
-          "httpMethod": "PUT",
           "pathTemplate": "/tests/bgp/{testId}"
         },
         "delete": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -1188,20 +1158,18 @@
         "id": {
           "attribute": "id",
           "goField": "ID",
-          "fromCreate": "created.GetId()",
+          "fromCreate": "created.GetTestId()",
           "fromCreateIsPointer": true
         },
         "body": {
-          "requestType": "models.BGPTestRequest",
-          "responseType": "models.BGPTestResponseable",
-          "constructorExpr": "models.NewBGPTestRequest()",
-          "updateRequestType": "models.UpdateBGPTestRequest",
-          "updateConstructorExpr": "models.NewUpdateBGPTestRequest()",
+          "requestType": "models.Tests_API_BgpTestRequest",
+          "responseType": "models.Tests_API_BgpTestResponseable",
+          "constructorExpr": "models.NewTests_API_BgpTestRequest()",
           "accessStyle": "method"
         }
       },
       "policy": {
-        "updateStyle": "putFull",
+        "updateStyle": "replaceOnly",
         "delete": {
           "notFoundIsSuccess": true
         }
@@ -1209,6 +1177,17 @@
       "import": {
         "style": "passthroughId",
         "attribute": "id"
+      },
+      "sweep": {
+        "nameField": "testName"
+      },
+      "accFixture": {
+        "values": [
+          {
+            "attr": "prefix",
+            "hcl": "\"8.8.8.0/24\""
+          }
+        ]
       }
     }
   ]

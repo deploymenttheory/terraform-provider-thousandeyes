@@ -19,8 +19,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsDNSTraceAlertRuleModel",
-                "sdkType": "models.TestsAPIAlertRuleable",
-                "constructorExpr": "models.NewTestsAPIAlertRule()",
+                "sdkType": "dns_trace_tests.AlertRule",
                 "attrTypesVar": "testsDNSTraceAlertRuleAttrTypes",
                 "objectTypeVar": "testsDNSTraceAlertRuleObjectType",
                 "expandFunc": "expandTestsDNSTraceAlertRules",
@@ -66,19 +65,15 @@
                     "wire": {
                       "jsonPath": "alertType",
                       "sdkField": "AlertType",
-                      "sdkGoType": "*models.TestsAPIAlertType",
+                      "sdkGoType": "dns_trace_tests.AlertType",
                       "expand": {
-                        "func": "convert.FrameworkToKiotaEnum",
+                        "func": "convert.FrameworkToEnum",
                         "typeArgs": [
-                          "models.TestsAPIAlertType"
-                        ],
-                        "returnsError": true,
-                        "extraArgs": [
-                          "models.ParseTestsAPIAlertType"
+                          "dns_trace_tests.AlertType"
                         ]
                       },
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       }
                     }
                   },
@@ -98,19 +93,15 @@
                     "wire": {
                       "jsonPath": "direction",
                       "sdkField": "Direction",
-                      "sdkGoType": "*models.TestsAPIAlertDirection",
+                      "sdkGoType": "dns_trace_tests.AlertDirection",
                       "expand": {
-                        "func": "convert.FrameworkToKiotaEnum",
+                        "func": "convert.FrameworkToEnum",
                         "typeArgs": [
-                          "models.TestsAPIAlertDirection"
-                        ],
-                        "returnsError": true,
-                        "extraArgs": [
-                          "models.ParseTestsAPIAlertDirection"
+                          "dns_trace_tests.AlertDirection"
                         ]
                       },
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       }
                     }
                   },
@@ -161,9 +152,9 @@
                     "wire": {
                       "jsonPath": "minimumSources",
                       "sdkField": "MinimumSources",
-                      "sdkGoType": "*int32",
+                      "sdkGoType": "*int64",
                       "flatten": {
-                        "func": "convert.PtrInt32ToFramework"
+                        "func": "convert.PtrInt64ToFramework"
                       },
                       "skipExpand": true
                     }
@@ -179,9 +170,9 @@
                     "wire": {
                       "jsonPath": "minimumSourcesPct",
                       "sdkField": "MinimumSourcesPct",
-                      "sdkGoType": "*int32",
+                      "sdkGoType": "*int64",
                       "flatten": {
-                        "func": "convert.PtrInt32ToFramework"
+                        "func": "convert.PtrInt64ToFramework"
                       },
                       "skipExpand": true
                     }
@@ -202,9 +193,9 @@
                     "wire": {
                       "jsonPath": "roundsViolatingMode",
                       "sdkField": "RoundsViolatingMode",
-                      "sdkGoType": "*models.TestsAPIAlertRoundsViolationMode",
+                      "sdkGoType": "dns_trace_tests.AlertRoundsViolationMode",
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       },
                       "skipExpand": true
                     }
@@ -216,13 +207,13 @@
                       "kind": "int64"
                     },
                     "computedOptionalRequired": "computed",
-                    "markdownDescription": "Specifies the divisor (y value) for the “X of Y times” condition.",
+                    "markdownDescription": "Specifies the divisor (y value) for the \u201cX of Y times\u201d condition.",
                     "wire": {
                       "jsonPath": "roundsViolatingOutOf",
                       "sdkField": "RoundsViolatingOutOf",
-                      "sdkGoType": "*int32",
+                      "sdkGoType": "*int64",
                       "flatten": {
-                        "func": "convert.PtrInt32ToFramework"
+                        "func": "convert.PtrInt64ToFramework"
                       },
                       "skipExpand": true
                     }
@@ -234,13 +225,13 @@
                       "kind": "int64"
                     },
                     "computedOptionalRequired": "computed",
-                    "markdownDescription": "Specifies the numerator (x value) for the “X of Y times” condition",
+                    "markdownDescription": "Specifies the numerator (x value) for the \u201cX of Y times\u201d condition",
                     "wire": {
                       "jsonPath": "roundsViolatingRequired",
                       "sdkField": "RoundsViolatingRequired",
-                      "sdkGoType": "*int32",
+                      "sdkGoType": "*int64",
                       "flatten": {
-                        "func": "convert.PtrInt32ToFramework"
+                        "func": "convert.PtrInt64ToFramework"
                       },
                       "skipExpand": true
                     }
@@ -255,7 +246,7 @@
                     "markdownDescription": "Unique ID of the rule.",
                     "wire": {
                       "jsonPath": "ruleId",
-                      "sdkField": "RuleId",
+                      "sdkField": "RuleID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -297,9 +288,9 @@
                     "wire": {
                       "jsonPath": "sensitivityLevel",
                       "sdkField": "SensitivityLevel",
-                      "sdkGoType": "*models.TestsAPISensitivityLevel",
+                      "sdkGoType": "dns_trace_tests.SensitivityLevel",
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       },
                       "skipExpand": true
                     }
@@ -322,19 +313,15 @@
                     "wire": {
                       "jsonPath": "severity",
                       "sdkField": "Severity",
-                      "sdkGoType": "*models.TestsAPISeverity",
+                      "sdkGoType": "dns_trace_tests.Severity",
                       "expand": {
-                        "func": "convert.FrameworkToKiotaEnum",
+                        "func": "convert.FrameworkToEnum",
                         "typeArgs": [
-                          "models.TestsAPISeverity"
-                        ],
-                        "returnsError": true,
-                        "extraArgs": [
-                          "models.ParseTestsAPISeverity"
+                          "dns_trace_tests.Severity"
                         ]
                       },
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       }
                     }
                   }
@@ -346,7 +333,7 @@
             "wire": {
               "jsonPath": "alertRules",
               "sdkField": "AlertRules",
-              "sdkGoType": "[]models.TestsAPIAlertRuleable",
+              "sdkGoType": "[]dns_trace_tests.AlertRule",
               "expand": {
                 "func": "expandTestsDNSTraceAlertRules",
                 "needsCtx": true,
@@ -357,7 +344,8 @@
                 "needsCtx": true,
                 "returnsError": true
               }
-            }
+            },
+            "drop": true
           },
           {
             "name": "alerts_enabled",
@@ -365,8 +353,15 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Indicates if alerts are enabled.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Indicates if alerts are enabled.\n\n<!-- probed:7.0.98-t1785745019896 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "true"
+              },
+              "returnedOnRead": true
+            },
             "wire": {
               "jsonPath": "alertsEnabled",
               "sdkField": "AlertsEnabled",
@@ -392,7 +387,7 @@
               "sdkField": "CreatedBy",
               "sdkGoType": "*string",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               },
               "skipExpand": true
             }
@@ -411,9 +406,9 @@
             "wire": {
               "jsonPath": "createdDate",
               "sdkField": "CreatedDate",
-              "sdkGoType": "*string",
+              "sdkGoType": "*time.Time",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrTimeToFramework"
               },
               "skipExpand": true
             }
@@ -426,6 +421,9 @@
             },
             "computedOptionalRequired": "optional",
             "markdownDescription": "A description of the test.",
+            "behaviour": {
+              "returnedOnRead": true
+            },
             "wire": {
               "jsonPath": "description",
               "sdkField": "Description",
@@ -448,24 +446,27 @@
                 "ch"
               ]
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Domain class used by this test. 'in' stands for Internet, while 'ch' stands for Chaos.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Domain class used by this test. 'in' stands for Internet, while 'ch' stands for Chaos.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "dnsQueryClass",
               "sdkField": "DnsQueryClass",
-              "sdkGoType": "*models.TestsAPIDnsQueryClass",
+              "sdkGoType": "*models.Tests_API_DnsQueryClass",
               "expand": {
                 "func": "convert.FrameworkToKiotaEnum",
                 "typeArgs": [
-                  "models.TestsAPIDnsQueryClass"
+                  "models.Tests_API_DnsQueryClass"
                 ],
-                "returnsError": true,
                 "extraArgs": [
-                  "models.ParseTestsAPIDnsQueryClass"
-                ]
+                  "models.ParseTests_API_DnsQueryClass"
+                ],
+                "returnsError": true
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               }
             }
           },
@@ -479,24 +480,27 @@
                 "tcp"
               ]
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Transport protocol used for DNS requests.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Transport protocol used for DNS requests.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "dnsTransportProtocol",
               "sdkField": "DnsTransportProtocol",
-              "sdkGoType": "*models.TestsAPITestDnsTransportProtocol",
+              "sdkGoType": "*models.Tests_API_TestDnsTransportProtocol",
               "expand": {
                 "func": "convert.FrameworkToKiotaEnum",
                 "typeArgs": [
-                  "models.TestsAPITestDnsTransportProtocol"
+                  "models.Tests_API_TestDnsTransportProtocol"
                 ],
-                "returnsError": true,
                 "extraArgs": [
-                  "models.ParseTestsAPITestDnsTransportProtocol"
-                ]
+                  "models.ParseTests_API_TestDnsTransportProtocol"
+                ],
+                "returnsError": true
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               }
             }
           },
@@ -507,7 +511,12 @@
               "kind": "string"
             },
             "computedOptionalRequired": "required",
-            "markdownDescription": "The target record for the test, with the record type suffixed. If no record type is specified, the test defaults to an ANY record.",
+            "markdownDescription": "The target record for the test, with the record type suffixed. If no record type is specified, the test defaults to an ANY record.\n\nThe test's target: the API refuses a create without it, whatever the specification marks.\n\n<!-- probed:7.0.98-t1785745019896 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->\n\nThe API normalises this value (appends the record type, example.com becomes \"example.com ANY\"; the 2026-08-03 acceptance run (#13)); state carries the configured form.",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnRead": true,
+              "normalises": "appends the record type, example.com becomes \"example.com ANY\""
+            },
             "wire": {
               "jsonPath": "domain",
               "sdkField": "Domain",
@@ -515,9 +524,7 @@
               "expand": {
                 "func": "convert.FrameworkToPtrString"
               },
-              "flatten": {
-                "func": "convert.PtrStringToFramework"
-              }
+              "skipFlatten": true
             }
           },
           {
@@ -526,8 +533,16 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Test is enabled.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Test is enabled.\n\n<!-- probed:7.0.98-t1785745019896 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "true"
+              },
+              "returnedOnRead": true,
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "enabled",
               "sdkField": "Enabled",
@@ -544,7 +559,7 @@
             "name": "interval",
             "goField": "Interval",
             "type": {
-              "kind": "string",
+              "kind": "int64",
               "allowedValues": [
                 "60",
                 "120",
@@ -556,23 +571,19 @@
               ]
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Interval between test runs in seconds.",
+            "markdownDescription": "Interval between test runs in seconds.\n\nDocumented intervals, in seconds: `60`, `120`, `300`, `600`, `900`, `1800`, `3600`.\n\nThe request carries this field unconditionally, so omitting it sends zero, which the API refuses (the 2026-08-03 scheduled acceptance run).\n\n<!-- probed:7.0.98-t1785745019896 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true
+            },
             "wire": {
               "jsonPath": "interval",
               "sdkField": "Interval",
-              "sdkGoType": "*models.TestsAPITestInterval",
+              "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToKiotaEnum",
-                "typeArgs": [
-                  "models.TestsAPITestInterval"
-                ],
-                "returnsError": true,
-                "extraArgs": [
-                  "models.ParseTestsAPITestInterval"
-                ]
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -583,8 +594,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsDNSTraceTestLabelsModel",
-                "sdkType": "models.TestsAPITestLabelsable",
-                "constructorExpr": "models.NewTestsAPITestLabels()",
+                "sdkType": "dns_trace_tests.TestLabels",
                 "attrTypesVar": "testsDNSTraceTestLabelsAttrTypes",
                 "objectTypeVar": "testsDNSTraceTestLabelsObjectType",
                 "expandFunc": "expandTestsDNSTraceTestLabelses",
@@ -618,7 +628,7 @@
                     "markdownDescription": "Label ID.",
                     "wire": {
                       "jsonPath": "labelId",
-                      "sdkField": "LabelId",
+                      "sdkField": "LabelID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -652,14 +662,15 @@
             "wire": {
               "jsonPath": "labels",
               "sdkField": "Labels",
-              "sdkGoType": "[]models.TestsAPITestLabelsable",
+              "sdkGoType": "[]dns_trace_tests.TestLabels",
               "flatten": {
                 "func": "flattenTestsDNSTraceTestLabelses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            }
+            },
+            "drop": true
           },
           {
             "name": "live_share",
@@ -711,9 +722,9 @@
             "wire": {
               "jsonPath": "modifiedDate",
               "sdkField": "ModifiedDate",
-              "sdkGoType": "*string",
+              "sdkGoType": "*time.Time",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrTimeToFramework"
               },
               "skipExpand": true
             }
@@ -724,8 +735,16 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Indicates whether agents should randomize the start time in each test round.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Indicates whether agents should randomize the start time in each test round.\n\n<!-- probed:7.0.98-t1785745019896 -->\nObserved: the API assigns false when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "false"
+              },
+              "returnedOnRead": true,
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "randomizedStartTime",
               "sdkField": "RandomizedStartTime",
@@ -763,8 +782,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsDNSTraceTestSharedAccountsModel",
-                "sdkType": "models.TestsAPITestSharedAccountsable",
-                "constructorExpr": "models.NewTestsAPITestSharedAccounts()",
+                "sdkType": "dns_trace_tests.TestSharedAccounts",
                 "attrTypesVar": "testsDNSTraceTestSharedAccountsAttrTypes",
                 "objectTypeVar": "testsDNSTraceTestSharedAccountsObjectType",
                 "expandFunc": "expandTestsDNSTraceTestSharedAccountses",
@@ -780,7 +798,7 @@
                     "markdownDescription": "Account group ID.",
                     "wire": {
                       "jsonPath": "aid",
-                      "sdkField": "Aid",
+                      "sdkField": "AID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -814,14 +832,15 @@
             "wire": {
               "jsonPath": "sharedWithAccounts",
               "sdkField": "SharedWithAccounts",
-              "sdkGoType": "[]models.TestsAPITestSharedAccountsable",
+              "sdkGoType": "[]dns_trace_tests.TestSharedAccounts",
               "flatten": {
                 "func": "flattenTestsDNSTraceTestSharedAccountses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            }
+            },
+            "drop": true
           },
           {
             "name": "tags",
@@ -830,8 +849,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsDNSTraceTestTagsModel",
-                "sdkType": "models.TestsAPITestTagsable",
-                "constructorExpr": "models.NewTestsAPITestTags()",
+                "sdkType": "dns_trace_tests.TestTags",
                 "attrTypesVar": "testsDNSTraceTestTagsAttrTypes",
                 "objectTypeVar": "testsDNSTraceTestTagsObjectType",
                 "expandFunc": "expandTestsDNSTraceTestTagses",
@@ -841,16 +859,13 @@
                     "name": "id",
                     "goField": "ID",
                     "type": {
-                      "kind": "string",
-                      "constraints": {
-                        "format": "uuid"
-                      }
+                      "kind": "string"
                     },
                     "computedOptionalRequired": "computed",
                     "markdownDescription": "Unique tag ID.",
                     "wire": {
                       "jsonPath": "id",
-                      "sdkField": "Id",
+                      "sdkField": "ID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -902,18 +917,19 @@
             "wire": {
               "jsonPath": "tags",
               "sdkField": "Tags",
-              "sdkGoType": "[]models.TestsAPITestTagsable",
+              "sdkGoType": "[]dns_trace_tests.TestTags",
               "flatten": {
                 "func": "flattenTestsDNSTraceTestTagses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            }
+            },
+            "drop": true
           },
           {
-            "name": "test_id",
-            "goField": "TestID",
+            "name": "id",
+            "goField": "ID",
             "type": {
               "kind": "string"
             },
@@ -935,8 +951,11 @@
             "type": {
               "kind": "string"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "The name of the test. Test name must be unique.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "The name of the test. Test name must be unique.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.",
+            "behaviour": {
+              "returnedOnRead": true
+            },
             "wire": {
               "jsonPath": "testName",
               "sdkField": "TestName",
@@ -959,11 +978,67 @@
             "wire": {
               "jsonPath": "type",
               "sdkField": "TypeEscaped",
-              "sdkGoType": "*string",
+              "sdkGoType": "*models.Tests_API_TestType",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrStringerToFramework"
               },
               "skipExpand": true
+            }
+          },
+          {
+            "name": "agents",
+            "goField": "Agents",
+            "type": {
+              "kind": "set_nested",
+              "nestedObject": {
+                "goTypeName": "DnsTraceAgentModel",
+                "sdkType": "models.Tests_API_TestAgentRequestable",
+                "attrTypesVar": "dnsTraceAgentAttrTypes",
+                "objectTypeVar": "dnsTraceAgentObjectType",
+                "expandFunc": "expandDnsTraceAgents",
+                "flattenFunc": "",
+                "attributes": [
+                  {
+                    "name": "agent_id",
+                    "goField": "AgentID",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "required",
+                    "markdownDescription": "The agent to run the test from. Get identifiers from `/agents`; cloud agent identifiers are stable public values.",
+                    "behaviour": {
+                      "returnedOnRead": false
+                    },
+                    "wire": {
+                      "jsonPath": "agentId",
+                      "sdkField": "AgentId",
+                      "sdkGoType": "*string",
+                      "expand": {
+                        "func": "convert.FrameworkToPtrString"
+                      },
+                      "skipFlatten": true
+                    }
+                  }
+                ],
+                "constructorExpr": "models.NewTests_API_TestAgentRequest()"
+              }
+            },
+            "computedOptionalRequired": "required",
+            "markdownDescription": "The agents the test runs from. Sent on create and update; the read reports assignment through its own fields, so this does not round-trip into state.\n\n<!-- probed:7.0.98-t1785745019896 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnRead": false
+            },
+            "wire": {
+              "jsonPath": "agents",
+              "sdkField": "Agents",
+              "sdkGoType": "[]models.Tests_API_TestAgentRequestable",
+              "expand": {
+                "func": "expandDnsTraceAgents",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "skipFlatten": true
             }
           }
         ],
@@ -973,12 +1048,10 @@
         "service": {
           "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
           "alias": "models",
-          "typeName": "",
           "accessor": "r.client"
         },
         "create": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -1003,13 +1076,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.DNSTraceTestResponseable",
+          "resultType": "models.Tests_API_DnsTraceTestResponseable",
           "httpMethod": "POST",
           "pathTemplate": "/tests/dns-trace"
         },
         "read": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -1040,13 +1112,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.DNSTraceTestResponseable",
+          "resultType": "models.Tests_API_DnsTraceTestResponseable",
           "httpMethod": "GET",
           "pathTemplate": "/tests/dns-trace/{testId}"
         },
         "update": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -1080,13 +1151,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.DNSTraceTestResponseable",
+          "resultType": "models.Tests_API_DnsTraceTestResponseable",
           "httpMethod": "PUT",
           "pathTemplate": "/tests/dns-trace/{testId}"
         },
         "delete": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -1123,13 +1193,13 @@
         "id": {
           "attribute": "id",
           "goField": "ID",
-          "fromCreate": "created.GetId()",
+          "fromCreate": "created.GetTestId()",
           "fromCreateIsPointer": true
         },
         "body": {
-          "requestType": "models.DNSTraceTestRequest",
-          "responseType": "models.DNSTraceTestResponseable",
-          "constructorExpr": "models.NewDNSTraceTestRequest()",
+          "requestType": "models.Tests_API_DnsTraceTestRequest",
+          "responseType": "models.Tests_API_DnsTraceTestResponseable",
+          "constructorExpr": "models.NewTests_API_DnsTraceTestRequest()",
           "accessStyle": "method"
         }
       },
@@ -1142,6 +1212,25 @@
       "import": {
         "style": "passthroughId",
         "attribute": "id"
+      },
+      "sweep": {
+        "nameField": "testName"
+      },
+      "accFixture": {
+        "values": [
+          {
+            "attr": "agents",
+            "hcl": "[{ agent_id = \"3\" }]"
+          },
+          {
+            "attr": "domain",
+            "hcl": "\"example.com\""
+          },
+          {
+            "attr": "interval",
+            "hcl": "3600"
+          }
+        ]
       }
     }
   ]

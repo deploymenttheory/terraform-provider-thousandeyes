@@ -19,8 +19,7 @@
               "kind": "single_nested",
               "nestedObject": {
                 "goTypeName": "TestsWebTransactionAgentInterfacesModel",
-                "sdkType": "models.TestsAPIAgentInterfacesable",
-                "constructorExpr": "models.NewTestsAPIAgentInterfaces()",
+                "sdkType": "web_transaction_tests.AgentInterfaces",
                 "attrTypesVar": "testsWebTransactionAgentInterfacesAttrTypes",
                 "objectTypeVar": "testsWebTransactionAgentInterfacesObjectType",
                 "expandFunc": "expandTestsWebTransactionAgentInterfaces",
@@ -36,7 +35,7 @@
                     "markdownDescription": "The agent ID of the enterprise agent for the test.",
                     "wire": {
                       "jsonPath": "agentId",
-                      "sdkField": "AgentId",
+                      "sdkField": "AgentID",
                       "sdkGoType": "*string",
                       "expand": {
                         "func": "convert.FrameworkToPtrString"
@@ -73,7 +72,7 @@
             "wire": {
               "jsonPath": "agentInterfaces",
               "sdkField": "AgentInterfaces",
-              "sdkGoType": "models.TestsAPIAgentInterfacesable",
+              "sdkGoType": "*web_transaction_tests.AgentInterfaces",
               "expand": {
                 "func": "expandTestsWebTransactionAgentInterfaces",
                 "needsCtx": true,
@@ -84,7 +83,8 @@
                 "needsCtx": true,
                 "returnsError": true
               }
-            }
+            },
+            "drop": true
           },
           {
             "name": "alert_rules",
@@ -93,8 +93,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsWebTransactionAlertRuleModel",
-                "sdkType": "models.TestsAPIAlertRuleable",
-                "constructorExpr": "models.NewTestsAPIAlertRule()",
+                "sdkType": "web_transaction_tests.AlertRule",
                 "attrTypesVar": "testsWebTransactionAlertRuleAttrTypes",
                 "objectTypeVar": "testsWebTransactionAlertRuleObjectType",
                 "expandFunc": "expandTestsWebTransactionAlertRules",
@@ -140,19 +139,15 @@
                     "wire": {
                       "jsonPath": "alertType",
                       "sdkField": "AlertType",
-                      "sdkGoType": "*models.TestsAPIAlertType",
+                      "sdkGoType": "web_transaction_tests.AlertType",
                       "expand": {
-                        "func": "convert.FrameworkToKiotaEnum",
+                        "func": "convert.FrameworkToEnum",
                         "typeArgs": [
-                          "models.TestsAPIAlertType"
-                        ],
-                        "returnsError": true,
-                        "extraArgs": [
-                          "models.ParseTestsAPIAlertType"
+                          "web_transaction_tests.AlertType"
                         ]
                       },
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       }
                     }
                   },
@@ -172,19 +167,15 @@
                     "wire": {
                       "jsonPath": "direction",
                       "sdkField": "Direction",
-                      "sdkGoType": "*models.TestsAPIAlertDirection",
+                      "sdkGoType": "web_transaction_tests.AlertDirection",
                       "expand": {
-                        "func": "convert.FrameworkToKiotaEnum",
+                        "func": "convert.FrameworkToEnum",
                         "typeArgs": [
-                          "models.TestsAPIAlertDirection"
-                        ],
-                        "returnsError": true,
-                        "extraArgs": [
-                          "models.ParseTestsAPIAlertDirection"
+                          "web_transaction_tests.AlertDirection"
                         ]
                       },
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       }
                     }
                   },
@@ -235,9 +226,9 @@
                     "wire": {
                       "jsonPath": "minimumSources",
                       "sdkField": "MinimumSources",
-                      "sdkGoType": "*int32",
+                      "sdkGoType": "*int64",
                       "flatten": {
-                        "func": "convert.PtrInt32ToFramework"
+                        "func": "convert.PtrInt64ToFramework"
                       },
                       "skipExpand": true
                     }
@@ -253,9 +244,9 @@
                     "wire": {
                       "jsonPath": "minimumSourcesPct",
                       "sdkField": "MinimumSourcesPct",
-                      "sdkGoType": "*int32",
+                      "sdkGoType": "*int64",
                       "flatten": {
-                        "func": "convert.PtrInt32ToFramework"
+                        "func": "convert.PtrInt64ToFramework"
                       },
                       "skipExpand": true
                     }
@@ -276,9 +267,9 @@
                     "wire": {
                       "jsonPath": "roundsViolatingMode",
                       "sdkField": "RoundsViolatingMode",
-                      "sdkGoType": "*models.TestsAPIAlertRoundsViolationMode",
+                      "sdkGoType": "web_transaction_tests.AlertRoundsViolationMode",
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       },
                       "skipExpand": true
                     }
@@ -290,13 +281,13 @@
                       "kind": "int64"
                     },
                     "computedOptionalRequired": "computed",
-                    "markdownDescription": "Specifies the divisor (y value) for the “X of Y times” condition.",
+                    "markdownDescription": "Specifies the divisor (y value) for the \u201cX of Y times\u201d condition.",
                     "wire": {
                       "jsonPath": "roundsViolatingOutOf",
                       "sdkField": "RoundsViolatingOutOf",
-                      "sdkGoType": "*int32",
+                      "sdkGoType": "*int64",
                       "flatten": {
-                        "func": "convert.PtrInt32ToFramework"
+                        "func": "convert.PtrInt64ToFramework"
                       },
                       "skipExpand": true
                     }
@@ -308,13 +299,13 @@
                       "kind": "int64"
                     },
                     "computedOptionalRequired": "computed",
-                    "markdownDescription": "Specifies the numerator (x value) for the “X of Y times” condition",
+                    "markdownDescription": "Specifies the numerator (x value) for the \u201cX of Y times\u201d condition",
                     "wire": {
                       "jsonPath": "roundsViolatingRequired",
                       "sdkField": "RoundsViolatingRequired",
-                      "sdkGoType": "*int32",
+                      "sdkGoType": "*int64",
                       "flatten": {
-                        "func": "convert.PtrInt32ToFramework"
+                        "func": "convert.PtrInt64ToFramework"
                       },
                       "skipExpand": true
                     }
@@ -329,7 +320,7 @@
                     "markdownDescription": "Unique ID of the rule.",
                     "wire": {
                       "jsonPath": "ruleId",
-                      "sdkField": "RuleId",
+                      "sdkField": "RuleID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -371,9 +362,9 @@
                     "wire": {
                       "jsonPath": "sensitivityLevel",
                       "sdkField": "SensitivityLevel",
-                      "sdkGoType": "*models.TestsAPISensitivityLevel",
+                      "sdkGoType": "web_transaction_tests.SensitivityLevel",
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       },
                       "skipExpand": true
                     }
@@ -396,19 +387,15 @@
                     "wire": {
                       "jsonPath": "severity",
                       "sdkField": "Severity",
-                      "sdkGoType": "*models.TestsAPISeverity",
+                      "sdkGoType": "web_transaction_tests.Severity",
                       "expand": {
-                        "func": "convert.FrameworkToKiotaEnum",
+                        "func": "convert.FrameworkToEnum",
                         "typeArgs": [
-                          "models.TestsAPISeverity"
-                        ],
-                        "returnsError": true,
-                        "extraArgs": [
-                          "models.ParseTestsAPISeverity"
+                          "web_transaction_tests.Severity"
                         ]
                       },
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       }
                     }
                   }
@@ -420,7 +407,7 @@
             "wire": {
               "jsonPath": "alertRules",
               "sdkField": "AlertRules",
-              "sdkGoType": "[]models.TestsAPIAlertRuleable",
+              "sdkGoType": "[]web_transaction_tests.AlertRule",
               "expand": {
                 "func": "expandTestsWebTransactionAlertRules",
                 "needsCtx": true,
@@ -431,7 +418,8 @@
                 "needsCtx": true,
                 "returnsError": true
               }
-            }
+            },
+            "drop": true
           },
           {
             "name": "alerts_enabled",
@@ -439,8 +427,8 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Indicates if alerts are enabled.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Indicates if alerts are enabled.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.",
             "wire": {
               "jsonPath": "alertsEnabled",
               "sdkField": "AlertsEnabled",
@@ -459,8 +447,11 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Set true to use the agent’s geolocation by the web page.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Set true to use the agent\u2019s geolocation by the web page.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "allowGeolocation",
               "sdkField": "AllowGeolocation",
@@ -479,8 +470,11 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Set true allow the use of a fake mic and camera in the browser.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Set true allow the use of a fake mic and camera in the browser.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "allowMicAndCamera",
               "sdkField": "AllowMicAndCamera",
@@ -499,8 +493,11 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Allows TLS renegotiation with servers not supporting RFC 5746. Default Set to true to allow unsafe legacy renegotiation.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Allows TLS renegotiation with servers not supporting RFC 5746. Default Set to true to allow unsafe legacy renegotiation.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "allowUnsafeLegacyRenegotiation",
               "sdkField": "AllowUnsafeLegacyRenegotiation",
@@ -526,24 +523,27 @@
                 "oauth"
               ]
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "HTTP authentication type.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "HTTP authentication type.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "authType",
               "sdkField": "AuthType",
-              "sdkGoType": "*models.TestsAPITestAuthType",
+              "sdkGoType": "*models.Tests_API_TestAuthType",
               "expand": {
                 "func": "convert.FrameworkToKiotaEnum",
                 "typeArgs": [
-                  "models.TestsAPITestAuthType"
+                  "models.Tests_API_TestAuthType"
                 ],
-                "returnsError": true,
                 "extraArgs": [
-                  "models.ParseTestsAPITestAuthType"
-                ]
+                  "models.ParseTests_API_TestAuthType"
+                ],
+                "returnsError": true
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               }
             }
           },
@@ -553,8 +553,11 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Set to `true` to enable bandwidth measurements, only applies to Enterprise agents assigned to the test.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Set to `true` to enable bandwidth measurements, only applies to Enterprise agents assigned to the test.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "bandwidthMeasurements",
               "sdkField": "BandwidthMeasurements",
@@ -573,8 +576,11 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Set to `true` to enable bgp measurements.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Set to `true` to enable bgp measurements.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "bgpMeasurements",
               "sdkField": "BgpMeasurements",
@@ -594,7 +600,10 @@
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Domains or full object URLs to be excluded from metrics and waterfall data for transaction tests.",
+            "markdownDescription": "Domains or full object URLs to be excluded from metrics and waterfall data for transaction tests.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "blockDomains",
               "sdkField": "BlockDomains",
@@ -603,7 +612,7 @@
                 "func": "convert.FrameworkToPtrString"
               },
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               }
             }
           },
@@ -613,8 +622,11 @@
             "type": {
               "kind": "string"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Set one of the available browser language that you want to use to configure the browser.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Set one of the available browser language that you want to use to configure the browser.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "browserLanguage",
               "sdkField": "BrowserLanguage",
@@ -623,7 +635,7 @@
                 "func": "convert.FrameworkToPtrString"
               },
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               }
             }
           },
@@ -634,7 +646,10 @@
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Command-line options passed to Chrome when running the test.",
+            "markdownDescription": "Command-line options passed to Chrome when running the test.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "chromeOptions",
               "sdkField": "ChromeOptions",
@@ -643,7 +658,7 @@
                 "func": "convert.FrameworkToPtrString"
               },
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               }
             }
           },
@@ -660,43 +675,16 @@
               "sdkField": "ChromePolicies",
               "sdkGoType": "*string",
               "expand": {
-                "func": "convert.FrameworkToPtrString"
-              },
-              "flatten": {
-                "func": "convert.PtrStringToFramework"
-              }
-            }
-          },
-          {
-            "name": "chromium_track",
-            "goField": "ChromiumTrack",
-            "type": {
-              "kind": "string",
-              "allowedValues": [
-                "stable",
-                "latest"
-              ]
-            },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "* `stable`: Uses the default Chromium version.\n* `latest`: Uses the newest Chromium version available from ThousandEyes as soon as it is available. Performance may differ from tests using the default Chromium version.",
-            "wire": {
-              "jsonPath": "chromiumTrack",
-              "sdkField": "ChromiumTrack",
-              "sdkGoType": "*models.TestsAPITestChromiumTrack",
-              "expand": {
-                "func": "convert.FrameworkToKiotaEnum",
+                "func": "convert.FrameworkToEnum",
                 "typeArgs": [
-                  "models.TestsAPITestChromiumTrack"
-                ],
-                "returnsError": true,
-                "extraArgs": [
-                  "models.ParseTestsAPITestChromiumTrack"
+                  "web_transaction_tests.TestChromePolicies"
                 ]
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.EnumToFramework"
               }
-            }
+            },
+            "drop": true
           },
           {
             "name": "client_certificate",
@@ -705,7 +693,10 @@
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "String representation (containing newline characters) of client certificate, the private key must be placed first, then the certificate.",
+            "markdownDescription": "String representation (containing newline characters) of client certificate, the private key must be placed first, then the certificate.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "clientCertificate",
               "sdkField": "ClientCertificate",
@@ -714,7 +705,7 @@
                 "func": "convert.FrameworkToPtrString"
               },
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               }
             }
           },
@@ -724,8 +715,12 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Indicates whether network data to the proxy should be collected.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Indicates whether network data to the proxy should be collected.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true,
+              "returnedOnRead": false
+            },
             "wire": {
               "jsonPath": "collectProxyNetworkData",
               "sdkField": "CollectProxyNetworkData",
@@ -744,8 +739,8 @@
             "type": {
               "kind": "string"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Content regex, this field does not require escaping.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Content regex, this field does not require escaping.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.",
             "wire": {
               "jsonPath": "contentRegex",
               "sdkField": "ContentRegex",
@@ -771,7 +766,7 @@
               "sdkField": "CreatedBy",
               "sdkGoType": "*string",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               },
               "skipExpand": true
             }
@@ -790,9 +785,9 @@
             "wire": {
               "jsonPath": "createdDate",
               "sdkField": "CreatedDate",
-              "sdkGoType": "*string",
+              "sdkGoType": "*time.Time",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrTimeToFramework"
               },
               "skipExpand": true
             }
@@ -831,8 +826,7 @@
               "kind": "single_nested",
               "nestedObject": {
                 "goTypeName": "TestsWebTransactionTestCustomHeadersModel",
-                "sdkType": "models.TestsAPITestCustomHeadersable",
-                "constructorExpr": "models.NewTestsAPITestCustomHeaders()",
+                "sdkType": "web_transaction_tests.TestCustomHeaders",
                 "attrTypesVar": "testsWebTransactionTestCustomHeadersAttrTypes",
                 "objectTypeVar": "testsWebTransactionTestCustomHeadersObjectType",
                 "expandFunc": "expandTestsWebTransactionTestCustomHeaders",
@@ -896,7 +890,7 @@
             "wire": {
               "jsonPath": "customHeaders",
               "sdkField": "CustomHeaders",
-              "sdkGoType": "models.TestsAPITestCustomHeadersable",
+              "sdkGoType": "*web_transaction_tests.TestCustomHeaders",
               "expand": {
                 "func": "expandTestsWebTransactionTestCustomHeaders",
                 "needsCtx": true,
@@ -907,7 +901,8 @@
                 "needsCtx": true,
                 "returnsError": true
               }
-            }
+            },
+            "drop": true
           },
           {
             "name": "description",
@@ -936,7 +931,10 @@
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Specify the HTTP status code value that indicates a successful response. The default value accepts any 2xx or 3xx status code.",
+            "markdownDescription": "Specify the HTTP status code value that indicates a successful response. The default value accepts any 2xx or 3xx status code.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "desiredStatusCode",
               "sdkField": "DesiredStatusCode",
@@ -945,7 +943,7 @@
                 "func": "convert.FrameworkToPtrString"
               },
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               }
             }
           },
@@ -955,8 +953,11 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Enables or disables screenshots on error. Set true to not capture",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Enables or disables screenshots on error. Set true to not capture\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "disableScreenshot",
               "sdkField": "DisableScreenshot",
@@ -975,8 +976,11 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Adds distributed tracing headers to API requests using B3 and W3C standards.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Adds distributed tracing headers to API requests using B3 and W3C standards.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "distributedTracing",
               "sdkField": "DistributedTracing",
@@ -999,7 +1003,10 @@
               }
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "IP address to use for DNS override.",
+            "markdownDescription": "IP address to use for DNS override.\n\nThis endpoint never reports the value back (local acceptance run, 2026-08-03); state carries the configured value.",
+            "behaviour": {
+              "returnedOnRead": false
+            },
             "wire": {
               "jsonPath": "dnsOverride",
               "sdkField": "DnsOverride",
@@ -1007,9 +1014,7 @@
               "expand": {
                 "func": "convert.FrameworkToPtrString"
               },
-              "flatten": {
-                "func": "convert.PtrStringToFramework"
-              }
+              "skipFlatten": true
             }
           },
           {
@@ -1019,17 +1024,18 @@
               "kind": "int64"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Specifies maximum number of bytes to download from the target object.",
+            "markdownDescription": "Specifies maximum number of bytes to download from the target object.\n\nThis endpoint never reports the value back (local acceptance run, 2026-08-03); state carries the configured value.",
+            "behaviour": {
+              "returnedOnRead": false
+            },
             "wire": {
               "jsonPath": "downloadLimit",
               "sdkField": "DownloadLimit",
               "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToPtrInt32"
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
-              "flatten": {
-                "func": "convert.PtrInt32ToFramework"
-              }
+              "skipFlatten": true
             }
           },
           {
@@ -1038,8 +1044,8 @@
             "type": {
               "kind": "string"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "ID of the emulated device, if specified when the test was created.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "ID of the emulated device, if specified when the test was created.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.",
             "wire": {
               "jsonPath": "emulatedDeviceId",
               "sdkField": "EmulatedDeviceId",
@@ -1058,8 +1064,11 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Test is enabled.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Test is enabled.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "enabled",
               "sdkField": "Enabled",
@@ -1083,37 +1092,19 @@
               }
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Sets packets rate sent to measure the network in packets per second.",
+            "markdownDescription": "Sets packets rate sent to measure the network in packets per second.\n\nThis endpoint never reports the value back (local acceptance run, 2026-08-03); state carries the configured value.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "returnedOnRead": false,
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "fixedPacketRate",
               "sdkField": "FixedPacketRate",
               "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToPtrInt32"
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
-              "flatten": {
-                "func": "convert.PtrInt32ToFramework"
-              }
-            }
-          },
-          {
-            "name": "flag_collect_console_logs",
-            "goField": "FlagCollectConsoleLogs",
-            "type": {
-              "kind": "bool"
-            },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Whether to collect console logs during script execution.",
-            "wire": {
-              "jsonPath": "flagCollectConsoleLogs",
-              "sdkField": "FlagCollectConsoleLogs",
-              "sdkGoType": "*bool",
-              "expand": {
-                "func": "convert.FrameworkToPtrBool"
-              },
-              "flatten": {
-                "func": "convert.PtrBoolToFramework"
-              }
+              "skipFlatten": true
             }
           },
           {
@@ -1122,8 +1113,11 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "To disable following HTTP/301 or HTTP/302 redirect directives, set this parameter to `false`.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "To disable following HTTP/301 or HTTP/302 redirect directives, set this parameter to `false`.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "followRedirects",
               "sdkField": "FollowRedirects",
@@ -1146,17 +1140,20 @@
                 "maximum": 5000
               }
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Target time for HTTP server completion, specified in milliseconds.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Target time for HTTP server completion, specified in milliseconds.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "httpTargetTime",
               "sdkField": "HttpTargetTime",
               "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToPtrInt32"
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.PtrInt32ToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -1170,17 +1167,20 @@
                 "maximum": 60
               }
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "HTTP time limit in seconds.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "HTTP time limit in seconds.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "httpTimeLimit",
               "sdkField": "HttpTimeLimit",
               "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToPtrInt32"
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.PtrInt32ToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -1194,17 +1194,20 @@
                 "maximum": 2
               }
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "HTTP protocol version. Set to '2' to prefer HTTP/2, or '1' to use only HTTP/1.1.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "HTTP protocol version. Set to '2' to prefer HTTP/2, or '1' to use only HTTP/1.1.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "httpVersion",
               "sdkField": "HttpVersion",
               "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToPtrInt32"
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.PtrInt32ToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -1214,8 +1217,11 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Determines how agent traffic is identified:\n\n* `false`: Adds the `x-thousandeyes-agent: yes` header.\n* `true`: Appends `(ThousandEyes Agent)` to the `user-agent` header.\n\nFor more information, see [Notes on Agent ID Strategy](https://docs.thousandeyes.com/product-documentation/browser-synthetics/test-settings-page-load-transaction#notes-on-agent-id-strategy).",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Determines how agent traffic is identified:\n\n* `false`: Adds the `x-thousandeyes-agent: yes` header.\n* `true`: Appends `(ThousandEyes Agent)` to the `user-agent` header.\n\nFor more information, see [Notes on Agent ID Strategy](https://docs.thousandeyes.com/product-documentation/browser-synthetics/test-settings-page-load-transaction#notes-on-agent-id-strategy).\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "identifyAgentTrafficWithUserAgent",
               "sdkField": "IdentifyAgentTrafficWithUserAgent",
@@ -1234,8 +1240,11 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Set to `true` to capture response headers for objects loaded by the test.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Set to `true` to capture response headers for objects loaded by the test.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "includeHeaders",
               "sdkField": "IncludeHeaders",
@@ -1252,7 +1261,7 @@
             "name": "interval",
             "goField": "Interval",
             "type": {
-              "kind": "string",
+              "kind": "int64",
               "allowedValues": [
                 "60",
                 "120",
@@ -1264,23 +1273,19 @@
               ]
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Interval between test runs in seconds.",
+            "markdownDescription": "Interval between test runs in seconds.\n\nDocumented intervals, in seconds: `60`, `120`, `300`, `600`, `900`, `1800`, `3600`.\n\nThe request carries this field unconditionally, so omitting it sends zero, which the API refuses (the 2026-08-03 scheduled acceptance run).",
+            "behaviour": {
+              "requiredByApi": true
+            },
             "wire": {
               "jsonPath": "interval",
               "sdkField": "Interval",
-              "sdkGoType": "*models.TestsAPITestInterval",
+              "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToKiotaEnum",
-                "typeArgs": [
-                  "models.TestsAPITestInterval"
-                ],
-                "returnsError": true,
-                "extraArgs": [
-                  "models.ParseTestsAPITestInterval"
-                ]
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -1291,8 +1296,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsWebTransactionTestLabelsModel",
-                "sdkType": "models.TestsAPITestLabelsable",
-                "constructorExpr": "models.NewTestsAPITestLabels()",
+                "sdkType": "web_transaction_tests.TestLabels",
                 "attrTypesVar": "testsWebTransactionTestLabelsAttrTypes",
                 "objectTypeVar": "testsWebTransactionTestLabelsObjectType",
                 "expandFunc": "expandTestsWebTransactionTestLabelses",
@@ -1326,7 +1330,7 @@
                     "markdownDescription": "Label ID.",
                     "wire": {
                       "jsonPath": "labelId",
-                      "sdkField": "LabelId",
+                      "sdkField": "LabelID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -1360,14 +1364,15 @@
             "wire": {
               "jsonPath": "labels",
               "sdkField": "Labels",
-              "sdkGoType": "[]models.TestsAPITestLabelsable",
+              "sdkGoType": "[]web_transaction_tests.TestLabels",
               "flatten": {
                 "func": "flattenTestsWebTransactionTestLabelses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            }
+            },
+            "drop": true
           },
           {
             "name": "live_share",
@@ -1419,9 +1424,9 @@
             "wire": {
               "jsonPath": "modifiedDate",
               "sdkField": "ModifiedDate",
-              "sdkGoType": "*string",
+              "sdkGoType": "*time.Time",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrTimeToFramework"
               },
               "skipExpand": true
             }
@@ -1433,8 +1438,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsWebTransactionTestBGPMonitorsModel",
-                "sdkType": "models.TestsAPITestBgpMonitorsable",
-                "constructorExpr": "models.NewTestsAPITestBgpMonitors()",
+                "sdkType": "web_transaction_tests.TestBgpMonitors",
                 "attrTypesVar": "testsWebTransactionTestBGPMonitorsAttrTypes",
                 "objectTypeVar": "testsWebTransactionTestBGPMonitorsObjectType",
                 "expandFunc": "expandTestsWebTransactionTestBGPMonitorses",
@@ -1450,7 +1454,7 @@
                     "markdownDescription": "Country ID",
                     "wire": {
                       "jsonPath": "countryId",
-                      "sdkField": "CountryId",
+                      "sdkField": "CountryID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -1486,7 +1490,7 @@
                     "markdownDescription": "BGP monitor ID",
                     "wire": {
                       "jsonPath": "monitorId",
-                      "sdkField": "MonitorId",
+                      "sdkField": "MonitorID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -1527,9 +1531,9 @@
                     "wire": {
                       "jsonPath": "monitorType",
                       "sdkField": "MonitorType",
-                      "sdkGoType": "*models.TestsAPIMonitorType",
+                      "sdkGoType": "web_transaction_tests.MonitorType",
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       },
                       "skipExpand": true
                     }
@@ -1560,14 +1564,15 @@
             "wire": {
               "jsonPath": "monitors",
               "sdkField": "Monitors",
-              "sdkGoType": "[]models.TestsAPITestBgpMonitorsable",
+              "sdkGoType": "[]web_transaction_tests.TestBgpMonitors",
               "flatten": {
                 "func": "flattenTestsWebTransactionTestBGPMonitorses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            }
+            },
+            "drop": true
           },
           {
             "name": "mtu_measurements",
@@ -1575,8 +1580,11 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Set `true` to measure MTU sizes on network from agents to the target.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Set `true` to measure MTU sizes on network from agents to the target.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "mtuMeasurements",
               "sdkField": "MtuMeasurements",
@@ -1595,18 +1603,16 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Enable or disable network measurements. Set to true to enable or false to disable network measurements.",
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Enable or disable network measurements. Set to true to enable or false to disable network measurements.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\nComputed only on this endpoint: browser tests always network-measure, and the SDK's value-typed omitempty bool cannot express false anyway (local acceptance run, 2026-08-03).",
             "wire": {
               "jsonPath": "networkMeasurements",
               "sdkField": "NetworkMeasurements",
               "sdkGoType": "*bool",
-              "expand": {
-                "func": "convert.FrameworkToPtrBool"
-              },
               "flatten": {
                 "func": "convert.PtrBoolToFramework"
-              }
+              },
+              "skipExpand": true
             }
           },
           {
@@ -1619,17 +1625,20 @@
                 "maximum": 10
               }
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Number of path traces executed by the agent.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Number of path traces executed by the agent.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "numPathTraces",
               "sdkField": "NumPathTraces",
               "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToPtrInt32"
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.PtrInt32ToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -1640,8 +1649,7 @@
               "kind": "single_nested",
               "nestedObject": {
                 "goTypeName": "TestsWebTransactionOAuthModel",
-                "sdkType": "models.TestsAPIOAuthable",
-                "constructorExpr": "models.NewTestsAPIOAuth()",
+                "sdkType": "web_transaction_tests.OAuth",
                 "attrTypesVar": "testsWebTransactionOAuthAttrTypes",
                 "objectTypeVar": "testsWebTransactionOAuthObjectType",
                 "expandFunc": "expandTestsWebTransactionOAuth",
@@ -1663,19 +1671,15 @@
                     "wire": {
                       "jsonPath": "authType",
                       "sdkField": "AuthType",
-                      "sdkGoType": "*models.TestsAPIOAuthAuthType",
+                      "sdkGoType": "web_transaction_tests.OAuthAuthType",
                       "expand": {
-                        "func": "convert.FrameworkToKiotaEnum",
+                        "func": "convert.FrameworkToEnum",
                         "typeArgs": [
-                          "models.TestsAPIOAuthAuthType"
-                        ],
-                        "returnsError": true,
-                        "extraArgs": [
-                          "models.ParseTestsAPIOAuthAuthType"
+                          "web_transaction_tests.OAuthAuthType"
                         ]
                       },
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       }
                     }
                   },
@@ -1715,7 +1719,7 @@
                         "func": "convert.FrameworkToPtrString"
                       },
                       "flatten": {
-                        "func": "convert.PtrStringToFramework"
+                        "func": "convert.PtrEnumToFramework"
                       }
                     }
                   },
@@ -1754,19 +1758,15 @@
                     "wire": {
                       "jsonPath": "requestMethod",
                       "sdkField": "RequestMethod",
-                      "sdkGoType": "*models.TestsAPIRequestMethod",
+                      "sdkGoType": "web_transaction_tests.RequestMethod",
                       "expand": {
-                        "func": "convert.FrameworkToKiotaEnum",
+                        "func": "convert.FrameworkToEnum",
                         "typeArgs": [
-                          "models.TestsAPIRequestMethod"
-                        ],
-                        "returnsError": true,
-                        "extraArgs": [
-                          "models.ParseTestsAPIRequestMethod"
+                          "web_transaction_tests.RequestMethod"
                         ]
                       },
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       }
                     }
                   },
@@ -1780,13 +1780,16 @@
                     "markdownDescription": "Target for the test.",
                     "wire": {
                       "jsonPath": "testUrl",
-                      "sdkField": "TestUrl",
+                      "sdkField": "TestURL",
                       "sdkGoType": "*string",
                       "expand": {
-                        "func": "convert.FrameworkToPtrString"
+                        "func": "convert.FrameworkToEnum",
+                        "typeArgs": [
+                          "web_transaction_tests.TestUrl"
+                        ]
                       },
                       "flatten": {
-                        "func": "convert.PtrStringToFramework"
+                        "func": "convert.EnumToFramework"
                       }
                     }
                   },
@@ -1806,7 +1809,7 @@
                         "func": "convert.FrameworkToPtrString"
                       },
                       "flatten": {
-                        "func": "convert.PtrStringToFramework"
+                        "func": "convert.PtrEnumToFramework"
                       }
                     }
                   }
@@ -1818,7 +1821,7 @@
             "wire": {
               "jsonPath": "oAuth",
               "sdkField": "OAuth",
-              "sdkGoType": "models.TestsAPIOAuthable",
+              "sdkGoType": "*web_transaction_tests.OAuth",
               "expand": {
                 "func": "expandTestsWebTransactionOAuth",
                 "needsCtx": true,
@@ -1829,7 +1832,8 @@
                 "needsCtx": true,
                 "returnsError": true
               }
-            }
+            },
+            "drop": true
           },
           {
             "name": "override_agent_proxy",
@@ -1837,8 +1841,11 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Flag indicating if a proxy other than the default should be used. To override the default proxy for agents, set to `true` and specify a value for `overrideProxyId`.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Flag indicating if a proxy other than the default should be used. To override the default proxy for agents, set to `true` and specify a value for `overrideProxyId`.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "overrideAgentProxy",
               "sdkField": "OverrideAgentProxy",
@@ -1858,7 +1865,10 @@
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "ID of the proxy to be used if the default proxy is overridden.",
+            "markdownDescription": "ID of the proxy to be used if the default proxy is overridden.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "overrideProxyId",
               "sdkField": "OverrideProxyId",
@@ -1867,7 +1877,7 @@
                 "func": "convert.FrameworkToPtrString"
               },
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               }
             }
           },
@@ -1882,24 +1892,27 @@
                 "none"
               ]
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "* `normal`: The test waits until the entire page is fully loaded, including the downloading and parsing of HTML content as well as all associated resources, before advancing to the next action in the transaction test script. \n* `eager`: The test waits for the DOMContentLoaded event, indicating that HTML content is downloaded and parsed, and the document reaches the \"interactive\" readiness state, before proceeding to the next action in the test script.\n* `none`: The test only waits for the download of HTML content. Once the HTML is downloaded, the test continues to the next action in the transaction test script without waiting for additional resources.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "* `normal`: The test waits until the entire page is fully loaded, including the downloading and parsing of HTML content as well as all associated resources, before advancing to the next action in the transaction test script. \n* `eager`: The test waits for the DOMContentLoaded event, indicating that HTML content is downloaded and parsed, and the document reaches the \"interactive\" readiness state, before proceeding to the next action in the test script.\n* `none`: The test only waits for the download of HTML content. Once the HTML is downloaded, the test continues to the next action in the transaction test script without waiting for additional resources.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "pageLoadingStrategy",
               "sdkField": "PageLoadingStrategy",
-              "sdkGoType": "*models.TestsAPITestPageLoadingStrategy",
+              "sdkGoType": "*models.Tests_API_TestPageLoadingStrategy",
               "expand": {
                 "func": "convert.FrameworkToKiotaEnum",
                 "typeArgs": [
-                  "models.TestsAPITestPageLoadingStrategy"
+                  "models.Tests_API_TestPageLoadingStrategy"
                 ],
-                "returnsError": true,
                 "extraArgs": [
-                  "models.ParseTestsAPITestPageLoadingStrategy"
-                ]
+                  "models.ParseTests_API_TestPageLoadingStrategy"
+                ],
+                "returnsError": true
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               }
             }
           },
@@ -1910,7 +1923,10 @@
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Password for Basic/NTLM authentication.",
+            "markdownDescription": "Password for Basic/NTLM authentication.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "password",
               "sdkField": "Password",
@@ -1919,7 +1935,7 @@
                 "func": "convert.FrameworkToPtrString"
               },
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               }
             }
           },
@@ -1933,24 +1949,27 @@
                 "in-session"
               ]
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Select `inSession` to perform the path trace within a TCP session.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Select `inSession` to perform the path trace within a TCP session.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "pathTraceMode",
               "sdkField": "PathTraceMode",
-              "sdkGoType": "*models.TestsAPITestPathTraceMode",
+              "sdkGoType": "*models.Tests_API_TestPathTraceMode",
               "expand": {
                 "func": "convert.FrameworkToKiotaEnum",
                 "typeArgs": [
-                  "models.TestsAPITestPathTraceMode"
+                  "models.Tests_API_TestPathTraceMode"
                 ],
-                "returnsError": true,
                 "extraArgs": [
-                  "models.ParseTestsAPITestPathTraceMode"
-                ]
+                  "models.ParseTests_API_TestPathTraceMode"
+                ],
+                "returnsError": true
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               }
             }
           },
@@ -1965,24 +1984,27 @@
                 "syn"
               ]
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Probe mode used by network test, only valid when the protocol is set to TCP.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Probe mode used by network test, only valid when the protocol is set to TCP.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "probeMode",
               "sdkField": "ProbeMode",
-              "sdkGoType": "*models.TestsAPITestProbeMode",
+              "sdkGoType": "*models.Tests_API_TestProbeMode",
               "expand": {
                 "func": "convert.FrameworkToKiotaEnum",
                 "typeArgs": [
-                  "models.TestsAPITestProbeMode"
+                  "models.Tests_API_TestProbeMode"
                 ],
-                "returnsError": true,
                 "extraArgs": [
-                  "models.ParseTestsAPITestProbeMode"
-                ]
+                  "models.ParseTests_API_TestProbeMode"
+                ],
+                "returnsError": true
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               }
             }
           },
@@ -1997,24 +2019,31 @@
                 "udp"
               ]
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Protocol used by dependent network tests (end-to-end, path trace, PMTUD).",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Protocol used by dependent network tests (end-to-end, path trace, PMTUD).\n\n<!-- probed:7.0.98-t1785745177323 -->\nThe specification documents `udp`, which the API rejected.\n<!-- /probed -->\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true,
+              "rejectedValues": [
+                "udp"
+              ],
+              "valuesClosed": true
+            },
             "wire": {
               "jsonPath": "protocol",
               "sdkField": "Protocol",
-              "sdkGoType": "*models.TestsAPITestProtocol",
+              "sdkGoType": "*models.Tests_API_TestProtocol",
               "expand": {
                 "func": "convert.FrameworkToKiotaEnum",
                 "typeArgs": [
-                  "models.TestsAPITestProtocol"
+                  "models.Tests_API_TestProtocol"
                 ],
-                "returnsError": true,
                 "extraArgs": [
-                  "models.ParseTestsAPITestProtocol"
-                ]
+                  "models.ParseTests_API_TestProtocol"
+                ],
+                "returnsError": true
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               }
             }
           },
@@ -2024,8 +2053,11 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Indicates whether agents should randomize the start time in each test round.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Indicates whether agents should randomize the start time in each test round.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "randomizedStartTime",
               "sdkField": "RandomizedStartTime",
@@ -2063,8 +2095,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsWebTransactionTestSharedAccountsModel",
-                "sdkType": "models.TestsAPITestSharedAccountsable",
-                "constructorExpr": "models.NewTestsAPITestSharedAccounts()",
+                "sdkType": "web_transaction_tests.TestSharedAccounts",
                 "attrTypesVar": "testsWebTransactionTestSharedAccountsAttrTypes",
                 "objectTypeVar": "testsWebTransactionTestSharedAccountsObjectType",
                 "expandFunc": "expandTestsWebTransactionTestSharedAccountses",
@@ -2080,7 +2111,7 @@
                     "markdownDescription": "Account group ID.",
                     "wire": {
                       "jsonPath": "aid",
-                      "sdkField": "Aid",
+                      "sdkField": "AID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -2114,14 +2145,15 @@
             "wire": {
               "jsonPath": "sharedWithAccounts",
               "sdkField": "SharedWithAccounts",
-              "sdkGoType": "[]models.TestsAPITestSharedAccountsable",
+              "sdkGoType": "[]web_transaction_tests.TestSharedAccounts",
               "flatten": {
                 "func": "flattenTestsWebTransactionTestSharedAccountses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            }
+            },
+            "drop": true
           },
           {
             "name": "ssl_version",
@@ -2136,7 +2168,7 @@
               "sdkField": "SslVersion",
               "sdkGoType": "*string",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               },
               "skipExpand": true
             }
@@ -2155,24 +2187,27 @@
                 "7"
               ]
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "SSL version options:\n\n* Use '0' for automatic selection.\n* Use '3' for SSLv3.\n* Use '4' for TLS v1.0.\n* Use '5' for TLS v1.1.\n* Use '6' for TLS v1.2.\n* Use '7' for TLS v1.3.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "SSL version options:\n\n* Use '0' for automatic selection.\n* Use '3' for SSLv3.\n* Use '4' for TLS v1.0.\n* Use '5' for TLS v1.1.\n* Use '6' for TLS v1.2.\n* Use '7' for TLS v1.3.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "sslVersionId",
               "sdkField": "SslVersionId",
-              "sdkGoType": "*models.TestsAPITestSslVersionId",
+              "sdkGoType": "*models.Tests_API_TestSslVersionId",
               "expand": {
                 "func": "convert.FrameworkToKiotaEnum",
                 "typeArgs": [
-                  "models.TestsAPITestSslVersionId"
+                  "models.Tests_API_TestSslVersionId"
                 ],
-                "returnsError": true,
                 "extraArgs": [
-                  "models.ParseTestsAPITestSslVersionId"
-                ]
+                  "models.ParseTests_API_TestSslVersionId"
+                ],
+                "returnsError": true
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               }
             }
           },
@@ -2180,7 +2215,7 @@
             "name": "subinterval",
             "goField": "Subinterval",
             "type": {
-              "kind": "string",
+              "kind": "int64",
               "allowedValues": [
                 "60",
                 "120",
@@ -2193,23 +2228,19 @@
               ]
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Subinterval for round-robin testing (in seconds). Must be less than or equal to interval and must evenly divide interval.",
+            "markdownDescription": "Subinterval for round-robin testing (in seconds). Must be less than or equal to interval and must evenly divide interval.\n\nDocumented values: `60`, `120`, `300`, `600`, `900`, `1200`, `1800`, `3600`.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "subinterval",
               "sdkField": "Subinterval",
-              "sdkGoType": "*models.TestsAPITestSubInterval",
+              "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToKiotaEnum",
-                "typeArgs": [
-                  "models.TestsAPITestSubInterval"
-                ],
-                "returnsError": true,
-                "extraArgs": [
-                  "models.ParseTestsAPITestSubInterval"
-                ]
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -2220,8 +2251,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsWebTransactionTestTagsModel",
-                "sdkType": "models.TestsAPITestTagsable",
-                "constructorExpr": "models.NewTestsAPITestTags()",
+                "sdkType": "web_transaction_tests.TestTags",
                 "attrTypesVar": "testsWebTransactionTestTagsAttrTypes",
                 "objectTypeVar": "testsWebTransactionTestTagsObjectType",
                 "expandFunc": "expandTestsWebTransactionTestTagses",
@@ -2231,16 +2261,13 @@
                     "name": "id",
                     "goField": "ID",
                     "type": {
-                      "kind": "string",
-                      "constraints": {
-                        "format": "uuid"
-                      }
+                      "kind": "string"
                     },
                     "computedOptionalRequired": "computed",
                     "markdownDescription": "Unique tag ID.",
                     "wire": {
                       "jsonPath": "id",
-                      "sdkField": "Id",
+                      "sdkField": "ID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -2292,14 +2319,15 @@
             "wire": {
               "jsonPath": "tags",
               "sdkField": "Tags",
-              "sdkGoType": "[]models.TestsAPITestTagsable",
+              "sdkGoType": "[]web_transaction_tests.TestTags",
               "flatten": {
                 "func": "flattenTestsWebTransactionTestTagses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            }
+            },
+            "drop": true
           },
           {
             "name": "target_time",
@@ -2311,23 +2339,23 @@
                 "maximum": 180
               }
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Target completion time, in seconds. Defaults to 10. Cannot exceed the `timeLimit` value.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Target completion time, in seconds. Defaults to 10. Cannot exceed the `timeLimit` value.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.",
             "wire": {
               "jsonPath": "targetTime",
               "sdkField": "TargetTime",
               "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToPtrInt32"
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.PtrInt32ToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
           {
-            "name": "test_id",
-            "goField": "TestID",
+            "name": "id",
+            "goField": "ID",
             "type": {
               "kind": "string"
             },
@@ -2349,8 +2377,8 @@
             "type": {
               "kind": "string"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "The name of the test. Test name must be unique.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "The name of the test. Test name must be unique.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.",
             "wire": {
               "jsonPath": "testName",
               "sdkField": "TestName",
@@ -2373,17 +2401,20 @@
                 "maximum": 180
               }
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Time limit for transaction in seconds.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Time limit for transaction in seconds.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "timeLimit",
               "sdkField": "TimeLimit",
               "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToPtrInt32"
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.PtrInt32ToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -2403,7 +2434,7 @@
                 "func": "convert.FrameworkToPtrString"
               },
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               }
             }
           },
@@ -2433,9 +2464,9 @@
             "wire": {
               "jsonPath": "type",
               "sdkField": "TypeEscaped",
-              "sdkGoType": "*models.TestsAPITestType",
+              "sdkGoType": "*models.Tests_API_TestType",
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               },
               "skipExpand": true
             }
@@ -2447,7 +2478,10 @@
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Target for the test.",
+            "markdownDescription": "Target for the test.\n\nThe test's target: the API refuses a create without it, whatever the specification marks.",
+            "behaviour": {
+              "requiredByApi": true
+            },
             "wire": {
               "jsonPath": "url",
               "sdkField": "Url",
@@ -2456,7 +2490,7 @@
                 "func": "convert.FrameworkToPtrString"
               },
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               }
             }
           },
@@ -2466,8 +2500,11 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Set to true to use NTLM, false to use Basic Authentication. Requires username and password to be set.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Set to true to use NTLM, false to use Basic Authentication. Requires username and password to be set.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "useNtlm",
               "sdkField": "UseNtlm",
@@ -2486,8 +2523,11 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Indicate if all available public BGP monitors should be used, when ommited defaults to `bgpMeasurements` value.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Indicate if all available public BGP monitors should be used, when omitted defaults to `bgpMeasurements` value.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "usePublicBgp",
               "sdkField": "UsePublicBgp",
@@ -2507,7 +2547,10 @@
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "User-agent string to be provided during the test.",
+            "markdownDescription": "User-agent string to be provided during the test.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "userAgent",
               "sdkField": "UserAgent",
@@ -2516,7 +2559,7 @@
                 "func": "convert.FrameworkToPtrString"
               },
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               }
             }
           },
@@ -2527,7 +2570,10 @@
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Username for Basic/NTLM authentication.",
+            "markdownDescription": "Username for Basic/NTLM authentication.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "username",
               "sdkField": "Username",
@@ -2536,7 +2582,7 @@
                 "func": "convert.FrameworkToPtrString"
               },
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               }
             }
           },
@@ -2547,8 +2593,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsWebTransactionTestVaultCredentialModel",
-                "sdkType": "models.TestsAPITestVaultCredentialable",
-                "constructorExpr": "models.NewTestsAPITestVaultCredential()",
+                "sdkType": "models.Tests_API_TestVaultCredentialable",
                 "attrTypesVar": "testsWebTransactionTestVaultCredentialAttrTypes",
                 "objectTypeVar": "testsWebTransactionTestVaultCredentialObjectType",
                 "expandFunc": "expandTestsWebTransactionTestVaultCredentials",
@@ -2590,31 +2635,32 @@
                     "wire": {
                       "jsonPath": "target",
                       "sdkField": "Target",
-                      "sdkGoType": "*models.TestsAPITestVaultCredentialTarget",
+                      "sdkGoType": "*models.Tests_API_TestVaultCredentialTarget",
                       "expand": {
                         "func": "convert.FrameworkToKiotaEnum",
                         "typeArgs": [
-                          "models.TestsAPITestVaultCredentialTarget"
+                          "models.Tests_API_TestVaultCredentialTarget"
                         ],
-                        "returnsError": true,
                         "extraArgs": [
-                          "models.ParseTestsAPITestVaultCredentialTarget"
-                        ]
+                          "models.ParseTests_API_TestVaultCredentialTarget"
+                        ],
+                        "returnsError": true
                       },
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.PtrStringerToFramework"
                       }
                     }
                   }
-                ]
+                ],
+                "constructorExpr": "models.NewTests_API_TestVaultCredential()"
               }
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "List of credential IDs that are stored in an external vault.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "List of credential IDs that are stored in an external vault.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.",
             "wire": {
               "jsonPath": "vaultCredentials",
               "sdkField": "VaultCredentials",
-              "sdkGoType": "[]models.TestsAPITestVaultCredentialable",
+              "sdkGoType": "[]models.Tests_API_TestVaultCredentialable",
               "expand": {
                 "func": "expandTestsWebTransactionTestVaultCredentials",
                 "needsCtx": true,
@@ -2633,8 +2679,11 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Ignore or acknowledge certificate errors. Set to false to ignore certificate errors.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Ignore or acknowledge certificate errors. Set to false to ignore certificate errors.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "verifyCertificate",
               "sdkField": "VerifyCertificate",
@@ -2646,6 +2695,55 @@
                 "func": "convert.PtrBoolToFramework"
               }
             }
+          },
+          {
+            "name": "agents",
+            "goField": "Agents",
+            "type": {
+              "kind": "set_nested",
+              "nestedObject": {
+                "goTypeName": "WebTransactionAgentModel",
+                "sdkType": "models.Tests_API_TestAgentRequestable",
+                "attrTypesVar": "webTransactionAgentAttrTypes",
+                "objectTypeVar": "webTransactionAgentObjectType",
+                "expandFunc": "expandWebTransactionAgents",
+                "flattenFunc": "",
+                "attributes": [
+                  {
+                    "name": "agent_id",
+                    "goField": "AgentID",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "required",
+                    "markdownDescription": "The agent to run the test from. Get identifiers from `/agents`; cloud agent identifiers are stable public values.",
+                    "wire": {
+                      "jsonPath": "agentId",
+                      "sdkField": "AgentId",
+                      "sdkGoType": "*string",
+                      "expand": {
+                        "func": "convert.FrameworkToPtrString"
+                      },
+                      "skipFlatten": true
+                    }
+                  }
+                ],
+                "constructorExpr": "models.NewTests_API_TestAgentRequest()"
+              }
+            },
+            "computedOptionalRequired": "required",
+            "markdownDescription": "The agents the test runs from. Sent on create and update; the read reports assignment through its own fields, so this does not round-trip into state.",
+            "wire": {
+              "jsonPath": "agents",
+              "sdkField": "Agents",
+              "sdkGoType": "[]models.Tests_API_TestAgentRequestable",
+              "expand": {
+                "func": "expandWebTransactionAgents",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "skipFlatten": true
+            }
           }
         ],
         "markdownDescription": "Get Web Transactions test."
@@ -2654,12 +2752,10 @@
         "service": {
           "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
           "alias": "models",
-          "typeName": "",
           "accessor": "r.client"
         },
         "create": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -2684,13 +2780,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.WebTransactionTestResponseable",
+          "resultType": "models.Tests_API_WebTransactionTestResponseable",
           "httpMethod": "POST",
           "pathTemplate": "/tests/web-transactions"
         },
         "read": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -2721,13 +2816,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.WebTransactionTestResponseable",
+          "resultType": "models.Tests_API_WebTransactionTestResponseable",
           "httpMethod": "GET",
           "pathTemplate": "/tests/web-transactions/{testId}"
         },
         "update": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -2761,13 +2855,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.WebTransactionTestResponseable",
+          "resultType": "models.Tests_API_WebTransactionTestResponseable",
           "httpMethod": "PUT",
           "pathTemplate": "/tests/web-transactions/{testId}"
         },
         "delete": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -2804,13 +2897,13 @@
         "id": {
           "attribute": "id",
           "goField": "ID",
-          "fromCreate": "created.GetId()",
+          "fromCreate": "created.GetTestId()",
           "fromCreateIsPointer": true
         },
         "body": {
-          "requestType": "models.WebTransactionTestRequest",
-          "responseType": "models.WebTransactionTestResponseable",
-          "constructorExpr": "models.NewWebTransactionTestRequest()",
+          "requestType": "models.Tests_API_WebTransactionTestRequest",
+          "responseType": "models.Tests_API_WebTransactionTestResponseable",
+          "constructorExpr": "models.NewTests_API_WebTransactionTestRequest()",
           "accessStyle": "method"
         }
       },
@@ -2823,6 +2916,69 @@
       "import": {
         "style": "passthroughId",
         "attribute": "id"
+      },
+      "sweep": {
+        "nameField": "testName"
+      },
+      "accFixture": {
+        "values": [
+          {
+            "attr": "agents",
+            "hcl": "[{ agent_id = \"3\" }]"
+          },
+          {
+            "attr": "url",
+            "hcl": "\"https://www.example.com\""
+          },
+          {
+            "attr": "interval",
+            "hcl": "3600"
+          },
+          {
+            "attr": "fixed_packet_rate",
+            "hcl": "50"
+          },
+          {
+            "attr": "bandwidth_measurements",
+            "hcl": "false"
+          },
+          {
+            "attr": "desired_status_code",
+            "hcl": "\"200\""
+          },
+          {
+            "attr": "dns_override",
+            "hcl": "\"8.8.8.8\""
+          },
+          {
+            "attr": "num_path_traces",
+            "hcl": "3"
+          },
+          {
+            "attr": "browser_language",
+            "hcl": "\"en-US\""
+          },
+          {
+            "attr": "user_agent",
+            "hcl": "\"tfacc (ThousandEyes Agent)\""
+          },
+          {
+            "attr": "randomized_start_time",
+            "hcl": "false"
+          },
+          {
+            "attr": "chrome_options",
+            "hcl": "\"--disable-gpu\""
+          },
+          {
+            "attr": "collect_proxy_network_data",
+            "hcl": "false"
+          },
+          {
+            "attr": "use_ntlm",
+            "hcl": "false"
+          }
+        ]
       }
     }
   ]
