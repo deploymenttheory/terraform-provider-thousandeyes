@@ -47,6 +47,7 @@ resource "thousandeyes_alert_rule" "example" {
 - `notify_on_clear` (Boolean) Send notification when alert clears. <!-- probed:7.0.98-t1785764967601 --> Observed: the API assigns true when this is omitted from an update. Omitting this field from an update resets it rather than preserving the stored value. <!-- /probed -->
 - `rounds_violating_required` (Number) Specifies the numerator (x value) in the “X of Y times” condition. <!-- probed:7.0.98-t1785764456095 --> The API enforces this field's presence, which the specification does not declare. <!-- /probed -->
 - `severity` (String) The severity of the alert. <!-- probed:static --> The SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or "" silently becomes an omission. <!-- /probed --> <!-- probed:7.0.98-t1785764456095 --> Values accepted here: `info`, `major`, `minor`, `critical`. The specification documents `unknown`, which the API rejected. <!-- /probed -->
+- `test_ids` (Set of String) Array of test IDs to link to alert rule (get `testId` from `/tests` endpoint). Writable: the create and update body carries testIds, and linking tests to the rule happens here -- the tests_* resources deliberately do not carry alertRules (their request and response shapes disagree).
 - `timeouts` (Block, Optional) (see [below for nested schema](#nestedblock--timeouts))
 - `visited_sites_filter` (Set of String) A list of website domains visited during the session. This is applicable when `alertGroupType` is `browser-session`.
 
@@ -55,7 +56,6 @@ resource "thousandeyes_alert_rule" "example" {
 - `id` (String) Unique ID of the rule. Named `id` because terraform-plugin-testing populates import state only from an attribute literally called id; the wire field stays ruleId.
 - `rounds_violating_mode` (String) `exact` requires the same agents to meet the threshold in consecutive rounds. `auto` is only enabled for CEA and Endpoint Scheduled test rules. The default is `any`.
 - `sensitivity_level` (String) Used when `roundsViolatingMode` is set to `auto`. The default is `medium`. Higher sensitivity increases the likelihood of triggering alerts.
-- `test_ids` (Set of String) Array of test IDs to link to alert rule (get `testId` from `/tests` endpoint).
 
 <a id="nestedblock--timeouts"></a>
 ### Nested Schema for `timeouts`
