@@ -167,7 +167,13 @@ jobs:
           DIALECT: ${{ inputs.sdk_dialect }}
         run: |
           mkdir -p "${BLUEPRINT_DIR}"
-          tfpfgen blueprint draft -openapi-dir "${OPENAPI_DIR}" -sdk-dialect "${DIALECT}" -out "${BLUEPRINT_DIR}"
+          ARGS=(-openapi-dir "${OPENAPI_DIR}" -sdk-dialect "${DIALECT}" -out "${BLUEPRINT_DIR}")
+          if [ "${DIALECT}" = "kiotaFluent" ]; then
+            # The drafted bindings must name where the generated models live,
+            # which for an embedded SDK is the module path plus its directory.
+            ARGS+=(-sdk-models-package "$(go list -m)/internal/sdk/models")
+          fi
+          tfpfgen blueprint draft "${ARGS[@]}"
 
       - name: Generate the provider (curated blueprints only)
         run: |
