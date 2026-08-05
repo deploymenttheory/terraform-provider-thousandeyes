@@ -19,8 +19,6 @@ type ThousandEyes_for_OpenTelemetry_API_ConnectedDevices struct {
 func NewThousandEyes_for_OpenTelemetry_API_ConnectedDevices() *ThousandEyes_for_OpenTelemetry_API_ConnectedDevices {
 	m := &ThousandEyes_for_OpenTelemetry_API_ConnectedDevices{}
 	m.SetAdditionalData(make(map[string]any))
-	enabledValue := false
-	m.SetEnabled(&enabledValue)
 	return m
 }
 

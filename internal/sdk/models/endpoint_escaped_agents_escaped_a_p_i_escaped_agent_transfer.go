@@ -8,7 +8,7 @@ import (
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-type Agents struct {
+type Endpoint_Agents_API_AgentTransfer struct {
 	// Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 	additionalData map[string]any
 	// Unique ID of endpoint agent, from `/endpoint/agents` endpoint.
@@ -19,34 +19,34 @@ type Agents struct {
 	toAid *string
 }
 
-// NewAgents instantiates a new Agents and sets the default values.
-func NewAgents() *Agents {
-	m := &Agents{}
+// NewEndpoint_Agents_API_AgentTransfer instantiates a new Endpoint_Agents_API_AgentTransfer and sets the default values.
+func NewEndpoint_Agents_API_AgentTransfer() *Endpoint_Agents_API_AgentTransfer {
+	m := &Endpoint_Agents_API_AgentTransfer{}
 	m.SetAdditionalData(make(map[string]any))
 	return m
 }
 
-// CreateAgentsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
+// CreateEndpoint_Agents_API_AgentTransferFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 // returns a Parsable when successful
-func CreateAgentsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-	return NewAgents(), nil
+func CreateEndpoint_Agents_API_AgentTransferFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+	return NewEndpoint_Agents_API_AgentTransfer(), nil
 }
 
 // GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 // returns a map[string]any when successful
-func (m *Agents) GetAdditionalData() map[string]any {
+func (m *Endpoint_Agents_API_AgentTransfer) GetAdditionalData() map[string]any {
 	return m.additionalData
 }
 
 // GetAgentId gets the agentId property value. Unique ID of endpoint agent, from `/endpoint/agents` endpoint.
 // returns a *UUID when successful
-func (m *Agents) GetAgentId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID {
+func (m *Endpoint_Agents_API_AgentTransfer) GetAgentId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID {
 	return m.agentId
 }
 
 // GetFieldDeserializers the deserialization information for the current model
 // returns a map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error) when successful
-func (m *Agents) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+func (m *Endpoint_Agents_API_AgentTransfer) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 	res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error)
 	res["agentId"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
 		val, err := n.GetUUIDValue()
@@ -83,18 +83,18 @@ func (m *Agents) GetFieldDeserializers() map[string]func(i878a80d2330e89d2689638
 
 // GetFromAid gets the fromAid property value. A unique identifier associated with your account group. You can retrieve your `AccountGroupId` from the `/account-groups` endpoint.
 // returns a *string when successful
-func (m *Agents) GetFromAid() *string {
+func (m *Endpoint_Agents_API_AgentTransfer) GetFromAid() *string {
 	return m.fromAid
 }
 
 // GetToAid gets the toAid property value. A unique identifier associated with your account group. You can retrieve your `AccountGroupId` from the `/account-groups` endpoint.
 // returns a *string when successful
-func (m *Agents) GetToAid() *string {
+func (m *Endpoint_Agents_API_AgentTransfer) GetToAid() *string {
 	return m.toAid
 }
 
 // Serialize serializes information the current object
-func (m *Agents) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
+func (m *Endpoint_Agents_API_AgentTransfer) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter) error {
 	{
 		err := writer.WriteStringValue("fromAid", m.GetFromAid())
 		if err != nil {
@@ -117,26 +117,26 @@ func (m *Agents) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c
 }
 
 // SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Agents) SetAdditionalData(value map[string]any) {
+func (m *Endpoint_Agents_API_AgentTransfer) SetAdditionalData(value map[string]any) {
 	m.additionalData = value
 }
 
 // SetAgentId sets the agentId property value. Unique ID of endpoint agent, from `/endpoint/agents` endpoint.
-func (m *Agents) SetAgentId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
+func (m *Endpoint_Agents_API_AgentTransfer) SetAgentId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
 	m.agentId = value
 }
 
 // SetFromAid sets the fromAid property value. A unique identifier associated with your account group. You can retrieve your `AccountGroupId` from the `/account-groups` endpoint.
-func (m *Agents) SetFromAid(value *string) {
+func (m *Endpoint_Agents_API_AgentTransfer) SetFromAid(value *string) {
 	m.fromAid = value
 }
 
 // SetToAid sets the toAid property value. A unique identifier associated with your account group. You can retrieve your `AccountGroupId` from the `/account-groups` endpoint.
-func (m *Agents) SetToAid(value *string) {
+func (m *Endpoint_Agents_API_AgentTransfer) SetToAid(value *string) {
 	m.toAid = value
 }
 
-type Agentsable interface {
+type Endpoint_Agents_API_AgentTransferable interface {
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
 	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
 	GetAgentId() *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
