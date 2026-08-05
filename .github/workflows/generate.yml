@@ -152,7 +152,15 @@ jobs:
           ARGS=(-openapi-dir "${OPENAPI_DIR}" -out internal/sdk -client-name "${CLIENT_NAME}" -clean)
           [ -n "${INCLUDE}" ] && ARGS+=(-include "${INCLUDE}")
           [ -n "${EXCLUDE}" ] && ARGS+=(-exclude "${EXCLUDE}")
-          tfpfgen sdk generate "${ARGS[@]}"
+          # The postcheck builds the generated tree, and a new document version
+          # can import modules go.mod does not yet require. The files are
+          # already written when the postcheck refuses, so tidy against them
+          # and regenerate -- the second run proves the tree builds clean.
+          if ! tfpfgen sdk generate "${ARGS[@]}"; then
+            echo "postcheck refused; tidying the module against the generated tree and retrying"
+            go mod tidy
+            tfpfgen sdk generate "${ARGS[@]}"
+          fi
 
       - name: Draft blueprints
         env:
