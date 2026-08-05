@@ -14,8 +14,8 @@ on:
   workflow_dispatch:
     inputs:
       provider_name:
-        description: 'Provider name, e.g. thousandeyes. Names openapi/<name> and blueprints/<name>.'
-        required: true
+        description: 'Provider name. Defaults to the repository name minus terraform-provider-. Names openapi/<name> and blueprints/<name>.'
+        required: false
         type: string
       openapi_url:
         description: 'OpenAPI document URL. Required on the first run; omit later to re-fetch from the pinned source.'
@@ -68,10 +68,6 @@ jobs:
     name: '⚙️ Generate from the OpenAPI document'
     runs-on: ubuntu-latest
     timeout-minutes: 60
-    env:
-      PROVIDER_NAME: ${{ inputs.provider_name }}
-      OPENAPI_DIR: openapi/${{ inputs.provider_name }}
-      BLUEPRINT_DIR: blueprints/${{ inputs.provider_name }}
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
@@ -80,6 +76,18 @@ jobs:
 
       - name: Check Out
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Resolve the provider name
+        env:
+          INPUT_NAME: ${{ inputs.provider_name }}
+          REPO_NAME: ${{ github.event.repository.name }}
+        run: |
+          NAME="${INPUT_NAME:-${REPO_NAME#terraform-provider-}}"
+          {
+            echo "PROVIDER_NAME=${NAME}"
+            echo "OPENAPI_DIR=openapi/${NAME}"
+            echo "BLUEPRINT_DIR=blueprints/${NAME}"
+          } >> "$GITHUB_ENV"
 
       - name: Set up Go
         uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6.5.0
@@ -183,24 +191,6 @@ jobs:
           fi
           tfpfgen blueprint draft "${ARGS[@]}"
 
-      - name: Generate the provider (curated blueprints only)
-        run: |
-          # Drafted resource blueprints arrive under their canonical names, so
-          # the readiness signal is the one file drafting never writes: the
-          # hand-authored provider block (provider.blueprint.json). Without it
-          # the drafts are proposals, and the run stops at proposing them.
-          if [ -f "${BLUEPRINT_DIR}/provider.blueprint.json" ]; then
-            tfpfgen bindings check -blueprint "${BLUEPRINT_DIR}" -module .
-            tfpfgen provider generate -blueprint "${BLUEPRINT_DIR}" -out .
-            go mod tidy
-            go build ./...
-            go test ./... || true
-          else
-            echo "no provider block yet -- the drafted blueprints in ${BLUEPRINT_DIR} await curation"
-            echo "author ${BLUEPRINT_DIR}/provider.blueprint.json (name, goModule, sdk) to unlock provider generation"
-            go mod tidy || true
-          fi
-
       - name: Open a pull request with the results
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -220,7 +210,7 @@ jobs:
           git commit -m "Generate ${PROVIDER_NAME} from OpenAPI ${OPENAPI_VERSION}" \
             -m "tfpfgen pipeline run ${GITHUB_RUN_ID} against snapshot ${SNAPSHOT_NAME}. Generated content follows from the pinned snapshot and committed blueprints; drafted blueprints are proposals awaiting curation."
           git push --force origin "HEAD:$BRANCH"
-          BODY=$(printf 'Automated run of the tfpfgen pipeline (run %s).\n\n- OpenAPI document: version `%s`, snapshot `%s`\n- Blueprints: `%s` (drafted; awaiting curation and a hand-authored provider block)\n- SDK dialect: `%s`\n\nThis branch is generator-owned and force-pushed on rerun. Review, curate the drafts, and merge what should stand.' \
+          BODY=$(printf 'Automated run of the tfpfgen pipeline (run %s).\n\n- OpenAPI document: version `%s`, snapshot `%s`\n- Blueprints: `%s` (drafted; awaiting curation and a hand-authored provider block)\n- SDK dialect: `%s`\n\nStage one of the chain: document, SDK and drafted blueprints. When this run succeeds, the provider pipeline fires and appends the generated provider to this same branch if the curated provider block exists. This branch is generator-owned and force-pushed on rerun.' \
             "${GITHUB_RUN_ID}" "${OPENAPI_VERSION}" "${SNAPSHOT_NAME}" "${BLUEPRINT_DIR}" "${SDK_DIALECT}")
           gh pr create --base "${GITHUB_REF_NAME}" --head "$BRANCH" \
             --title "tfpfgen: generate ${PROVIDER_NAME} from OpenAPI ${OPENAPI_VERSION}" \
