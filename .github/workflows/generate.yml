@@ -206,14 +206,22 @@ jobs:
           fi
           tfpfgen blueprint draft "${ARGS[@]}"
           mkdir -p "${BLUEPRINT_DIR}"
+          # Proposals land under the .draft.json name the pipeline's loaders
+          # cannot open -- the same mechanism scenario worksheets use -- so a
+          # draft can never fail validation or generation. Promotion is a
+          # rename, which is a diff a reviewer sees.
           (cd "${SCRATCH}" && find . -name '*.json' -print0) | while IFS= read -r -d '' rel; do
-            dest="${BLUEPRINT_DIR}/${rel#./}"
+            rel="${rel#./}"
+            dest="${BLUEPRINT_DIR}/${rel}"
+            draft="${BLUEPRINT_DIR}/${rel%.json}.draft.json"
             if [ -e "$dest" ]; then
               echo "kept      $dest (curated; the draft is not copied over it)"
+            elif [ -e "$draft" ]; then
+              echo "kept      $draft (an existing draft is never overwritten)"
             else
-              mkdir -p "$(dirname "$dest")"
-              cp "${SCRATCH}/${rel#./}" "$dest"
-              echo "proposed  $dest"
+              mkdir -p "$(dirname "$draft")"
+              cp "${SCRATCH}/${rel}" "$draft"
+              echo "proposed  $draft (curate, then rename away the .draft)"
             fi
           done
 
