@@ -1,0 +1,612 @@
+{
+  "formatVersion": "4",
+  "resources": [
+    {
+      "key": "dashboard_snapshot",
+      "name": "dashboard_snapshot",
+      "goPackage": "dashboard_snapshot",
+      "goPackageAlias": "v7DashboardSnapshot",
+      "goTypeName": "DashboardSnapshotResource",
+      "modelTypeName": "DashboardSnapshotResourceModel",
+      "serviceGroup": "dashboard_snapshots",
+      "apiVersionDir": "v7",
+      "schema": {
+        "attributes": [
+          {
+            "name": "account_id",
+            "goField": "AccountID",
+            "type": {
+              "kind": "int64"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Identifier of the account group that the snapshot belongs to.",
+            "deprecationMessage": "The API documents this field as deprecated.",
+            "wire": {
+              "jsonPath": "accountId",
+              "sdkField": "AccountId",
+              "sdkGoType": "*int64",
+              "flatten": {
+                "func": "convert.PtrInt64ToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "aid",
+            "goField": "AID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Identifier of the account group that the snapshot belongs to.",
+            "wire": {
+              "jsonPath": "aid",
+              "sdkField": "Aid",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "anonymize_data",
+            "goField": "AnonymizeData",
+            "type": {
+              "kind": "bool"
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Set to `true` to anonymize the data in the snapshot.",
+            "wire": {
+              "jsonPath": "anonymizeData",
+              "sdkField": "AnonymizeData",
+              "sdkGoType": "*bool",
+              "expand": {
+                "func": "convert.FrameworkToPtrBool"
+              },
+              "flatten": {
+                "func": "convert.PtrBoolToFramework"
+              }
+            }
+          },
+          {
+            "name": "created_date",
+            "goField": "CreatedDate",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "UTC date when dashboard snapshot was created.",
+            "deprecationMessage": "The API documents this field as deprecated.",
+            "wire": {
+              "jsonPath": "createdDate",
+              "sdkField": "CreatedDate",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "dashboard_id",
+            "goField": "DashboardID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "TheIdentifierof the dashboard to generate a snapshot from",
+            "wire": {
+              "jsonPath": "dashboardId",
+              "sdkField": "DashboardId",
+              "sdkGoType": "*string",
+              "expand": {
+                "func": "convert.FrameworkToPtrString"
+              },
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              }
+            }
+          },
+          {
+            "name": "display_name",
+            "goField": "DisplayName",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "The name of the snapshot, does not have to be unique.",
+            "wire": {
+              "jsonPath": "displayName",
+              "sdkField": "DisplayName",
+              "sdkGoType": "*string",
+              "expand": {
+                "func": "convert.FrameworkToPtrString"
+              },
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              }
+            }
+          },
+          {
+            "name": "end_date",
+            "goField": "EndDate",
+            "type": {
+              "kind": "string",
+              "constraints": {
+                "format": "date-time"
+              }
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Date and time to end aggregating data (ISO date-time format).",
+            "wire": {
+              "jsonPath": "endDate",
+              "sdkField": "EndDate",
+              "sdkGoType": "*string",
+              "expand": {
+                "func": "convert.FrameworkToPtrString"
+              },
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              }
+            }
+          },
+          {
+            "name": "expiration_date",
+            "goField": "ExpirationDate",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Expiration date of the snapshot. If unspecified, the snapshot expires 1 year from its creation date. The expiration date must be set within 5 years from the current date.",
+            "deprecationMessage": "The API documents this field as deprecated.",
+            "wire": {
+              "jsonPath": "expirationDate",
+              "sdkField": "ExpirationDate",
+              "sdkGoType": "*string",
+              "expand": {
+                "func": "convert.FrameworkToPtrString"
+              },
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              }
+            }
+          },
+          {
+            "name": "is_scheduled",
+            "goField": "IsScheduled",
+            "type": {
+              "kind": "bool"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Set `true` if dashboard snapshot was generated from a schedule, `false` otherwise.",
+            "wire": {
+              "jsonPath": "isScheduled",
+              "sdkField": "IsScheduled",
+              "sdkGoType": "*bool",
+              "flatten": {
+                "func": "convert.PtrBoolToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "is_shared",
+            "goField": "IsShared",
+            "type": {
+              "kind": "bool"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Set `true` if dashboard snapshot is shared, `false` otherwise.",
+            "wire": {
+              "jsonPath": "isShared",
+              "sdkField": "IsShared",
+              "sdkGoType": "*bool",
+              "flatten": {
+                "func": "convert.PtrBoolToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "permalink",
+            "goField": "Permalink",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Hyperlink to dashboard snapshot in ThousandEyes Application",
+            "deprecationMessage": "The API documents this field as deprecated.",
+            "wire": {
+              "jsonPath": "permalink",
+              "sdkField": "Permalink",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "snapshot_created_date",
+            "goField": "SnapshotCreatedDate",
+            "type": {
+              "kind": "string",
+              "constraints": {
+                "format": "date-time"
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "UTC date when dashboard snapshot was created (ISO date-time format).",
+            "wire": {
+              "jsonPath": "snapshotCreatedDate",
+              "sdkField": "SnapshotCreatedDate",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "snapshot_expiration_date",
+            "goField": "SnapshotExpirationDate",
+            "type": {
+              "kind": "string",
+              "constraints": {
+                "format": "date-time"
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Expiration date of the snapshot. If unspecified, the snapshot expires 1 year from its creation date. The expiration date must be set within 5 years from the current date and adhere to the ISO date-time format.",
+            "wire": {
+              "jsonPath": "snapshotExpirationDate",
+              "sdkField": "SnapshotExpirationDate",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "snapshot_id",
+            "goField": "SnapshotID",
+            "type": {
+              "kind": "string",
+              "constraints": {
+                "format": "uuid"
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Identifier of the dashboard snapshot.",
+            "wire": {
+              "jsonPath": "snapshotId",
+              "sdkField": "SnapshotId",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "snapshot_name",
+            "goField": "SnapshotName",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Name of the dashboard snapshot.",
+            "wire": {
+              "jsonPath": "snapshotName",
+              "sdkField": "SnapshotName",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "start_date",
+            "goField": "StartDate",
+            "type": {
+              "kind": "string",
+              "constraints": {
+                "format": "date-time"
+              }
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Date and time to start aggregating data (ISO date-time format).",
+            "wire": {
+              "jsonPath": "startDate",
+              "sdkField": "StartDate",
+              "sdkGoType": "*string",
+              "expand": {
+                "func": "convert.FrameworkToPtrString"
+              },
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              }
+            }
+          },
+          {
+            "name": "time_span",
+            "goField": "TimeSpan",
+            "type": {
+              "kind": "single_nested",
+              "nestedObject": {
+                "goTypeName": "DashboardSnapshotAPIReportSnapshotTimeSpanModel",
+                "sdkType": "models.DashboardsAPIApiReportSnapshotTimeSpanable",
+                "constructorExpr": "models.NewDashboardsAPIApiReportSnapshotTimeSpan()",
+                "attrTypesVar": "dashboardSnapshotAPIReportSnapshotTimeSpanAttrTypes",
+                "objectTypeVar": "dashboardSnapshotAPIReportSnapshotTimeSpanObjectType",
+                "expandFunc": "expandDashboardSnapshotAPIReportSnapshotTimeSpan",
+                "flattenFunc": "flattenDashboardSnapshotAPIReportSnapshotTimeSpan",
+                "attributes": [
+                  {
+                    "name": "duration",
+                    "goField": "Duration",
+                    "type": {
+                      "kind": "int64"
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "Duration of dashboard snapshot in seconds.",
+                    "wire": {
+                      "jsonPath": "duration",
+                      "sdkField": "Duration",
+                      "sdkGoType": "*int64",
+                      "flatten": {
+                        "func": "convert.PtrInt64ToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "start",
+                    "goField": "Start",
+                    "type": {
+                      "kind": "string",
+                      "constraints": {
+                        "format": "date-time"
+                      }
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "UTC start date of dashboard snapshot (ISO date-time format).",
+                    "wire": {
+                      "jsonPath": "start",
+                      "sdkField": "Start",
+                      "sdkGoType": "*string",
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "start_date",
+                    "goField": "StartDate",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "UTC start date of dashboard snapshot.",
+                    "deprecationMessage": "The API documents this field as deprecated.",
+                    "wire": {
+                      "jsonPath": "startDate",
+                      "sdkField": "StartDate",
+                      "sdkGoType": "*string",
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  }
+                ]
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Time span of the dashboard snapshot.",
+            "wire": {
+              "jsonPath": "timeSpan",
+              "sdkField": "TimeSpan",
+              "sdkGoType": "models.DashboardsAPIApiReportSnapshotTimeSpanable",
+              "flatten": {
+                "func": "flattenDashboardSnapshotAPIReportSnapshotTimeSpan",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "timezone",
+            "goField": "Timezone",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Specifies the timezone used for date and time fields.",
+            "wire": {
+              "jsonPath": "timezone",
+              "sdkField": "Timezone",
+              "sdkGoType": "*string",
+              "expand": {
+                "func": "convert.FrameworkToPtrString"
+              },
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              }
+            }
+          }
+        ],
+        "markdownDescription": "Retrieve dashboard snapshot."
+      },
+      "binding": {
+        "service": {
+          "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
+          "alias": "models",
+          "typeName": "",
+          "accessor": "r.client"
+        },
+        "create": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "DashboardSnapshots"
+            },
+            {
+              "method": "Post",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "body"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.APIDashboardSnapshotable",
+          "httpMethod": "POST",
+          "pathTemplate": "/dashboard-snapshots"
+        },
+        "read": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "DashboardSnapshots"
+            },
+            {
+              "method": "BySnapshotId",
+              "args": [
+                {
+                  "kind": "stateField",
+                  "field": "ID"
+                }
+              ]
+            },
+            {
+              "method": "Get",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.APIDashboardSnapshotable",
+          "httpMethod": "GET",
+          "pathTemplate": "/dashboard-snapshots/{snapshotId}"
+        },
+        "update": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "DashboardSnapshots"
+            },
+            {
+              "method": "BySnapshotId",
+              "args": [
+                {
+                  "kind": "stateField",
+                  "field": "ID"
+                }
+              ]
+            },
+            {
+              "method": "Patch",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "body"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.APIDashboardSnapshotable",
+          "httpMethod": "PATCH",
+          "pathTemplate": "/dashboard-snapshots/{snapshotId}"
+        },
+        "delete": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "DashboardSnapshots"
+            },
+            {
+              "method": "BySnapshotId",
+              "args": [
+                {
+                  "kind": "stateField",
+                  "field": "ID"
+                }
+              ]
+            },
+            {
+              "method": "Delete",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "error",
+          "httpMethod": "DELETE",
+          "pathTemplate": "/dashboard-snapshots/{snapshotId}"
+        },
+        "id": {
+          "attribute": "id",
+          "goField": "ID",
+          "fromCreate": "created.GetId()",
+          "fromCreateIsPointer": true
+        },
+        "body": {
+          "requestType": "models.GenerateDashboardSnapshotRequest",
+          "responseType": "models.APIDashboardSnapshotable",
+          "constructorExpr": "models.NewGenerateDashboardSnapshotRequest()",
+          "updateRequestType": "models.UpdateSnapshotExpirationDateAPIRequest",
+          "updateConstructorExpr": "models.NewUpdateSnapshotExpirationDateAPIRequest()",
+          "accessStyle": "method"
+        }
+      },
+      "policy": {
+        "updateStyle": "patchMerge",
+        "delete": {
+          "notFoundIsSuccess": true
+        }
+      },
+      "import": {
+        "style": "passthroughId",
+        "attribute": "id"
+      }
+    }
+  ]
+}

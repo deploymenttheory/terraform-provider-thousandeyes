@@ -1,0 +1,1273 @@
+{
+  "formatVersion": "4",
+  "resources": [
+    {
+      "key": "stream",
+      "name": "stream",
+      "goPackage": "stream",
+      "goPackageAlias": "v7Stream",
+      "goTypeName": "StreamResource",
+      "modelTypeName": "StreamResourceModel",
+      "serviceGroup": "streaming",
+      "apiVersionDir": "v7",
+      "schema": {
+        "attributes": [
+          {
+            "name": "custom_headers",
+            "goField": "CustomHeaders",
+            "type": {
+              "kind": "map",
+              "elementType": {
+                "kind": "string"
+              }
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Custom headers.",
+            "wire": {
+              "jsonPath": "customHeaders",
+              "sdkField": "CustomHeaders",
+              "sdkGoType": "any"
+            }
+          },
+          {
+            "name": "data_model_version",
+            "goField": "DataModelVersion",
+            "type": {
+              "kind": "string",
+              "allowedValues": [
+                "v1",
+                "v2"
+              ]
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "The version of the data model used in the data stream.\nWhen using `v1`:\n  - The `signal` cannot be `trace`.",
+            "wire": {
+              "jsonPath": "dataModelVersion",
+              "sdkField": "DataModelVersion",
+              "sdkGoType": "*models.ThousandEyesForOpenTelemetryAPIDataModelVersion",
+              "expand": {
+                "func": "convert.FrameworkToKiotaEnum",
+                "typeArgs": [
+                  "models.ThousandEyesForOpenTelemetryAPIDataModelVersion"
+                ],
+                "returnsError": true,
+                "extraArgs": [
+                  "models.ParseThousandEyesForOpenTelemetryAPIDataModelVersion"
+                ]
+              },
+              "flatten": {
+                "func": "convert.KiotaEnumToFramework"
+              }
+            }
+          },
+          {
+            "name": "enabled",
+            "goField": "Enabled",
+            "type": {
+              "kind": "bool"
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Flag to enable or disable the stream integration.",
+            "wire": {
+              "jsonPath": "enabled",
+              "sdkField": "Enabled",
+              "sdkGoType": "*bool",
+              "expand": {
+                "func": "convert.FrameworkToPtrBool"
+              },
+              "flatten": {
+                "func": "convert.PtrBoolToFramework"
+              }
+            }
+          },
+          {
+            "name": "endpoint_agent_label",
+            "goField": "EndpointAgentLabel",
+            "type": {
+              "kind": "set_nested",
+              "nestedObject": {
+                "goTypeName": "StreamEndpointAgentLabelModel",
+                "sdkType": "models.ThousandEyesForOpenTelemetryAPIEndpointAgentLabelable",
+                "constructorExpr": "models.NewThousandEyesForOpenTelemetryAPIEndpointAgentLabel()",
+                "attrTypesVar": "streamEndpointAgentLabelAttrTypes",
+                "objectTypeVar": "streamEndpointAgentLabelObjectType",
+                "expandFunc": "expandStreamEndpointAgentLabels",
+                "flattenFunc": "flattenStreamEndpointAgentLabels",
+                "attributes": [
+                  {
+                    "name": "id",
+                    "goField": "ID",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "required",
+                    "markdownDescription": "The label ID of Endpoint Agent labels.",
+                    "wire": {
+                      "jsonPath": "id",
+                      "sdkField": "Id",
+                      "sdkGoType": "*string",
+                      "expand": {
+                        "func": "convert.FrameworkToPtrString"
+                      },
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "A collection of Endpoint Agent label IDs that determines what local network data is included in the data stream. `endpointAgentLabel` and `endpointAgentTag` represent the same data. Configure only one; both are synchronized.",
+            "wire": {
+              "jsonPath": "endpointAgentLabel",
+              "sdkField": "EndpointAgentLabel",
+              "sdkGoType": "[]models.ThousandEyesForOpenTelemetryAPIEndpointAgentLabelable",
+              "expand": {
+                "func": "expandStreamEndpointAgentLabels",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "flatten": {
+                "func": "flattenStreamEndpointAgentLabels",
+                "needsCtx": true,
+                "returnsError": true
+              }
+            }
+          },
+          {
+            "name": "endpoint_agent_tag",
+            "goField": "EndpointAgentTag",
+            "type": {
+              "kind": "set_nested",
+              "nestedObject": {
+                "goTypeName": "StreamEndpointAgentTagModel",
+                "sdkType": "models.ThousandEyesForOpenTelemetryAPIEndpointAgentTagable",
+                "constructorExpr": "models.NewThousandEyesForOpenTelemetryAPIEndpointAgentTag()",
+                "attrTypesVar": "streamEndpointAgentTagAttrTypes",
+                "objectTypeVar": "streamEndpointAgentTagObjectType",
+                "expandFunc": "expandStreamEndpointAgentTags",
+                "flattenFunc": "flattenStreamEndpointAgentTags",
+                "attributes": [
+                  {
+                    "name": "id",
+                    "goField": "ID",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "required",
+                    "markdownDescription": "The tag ID of Endpoint Agent tags.",
+                    "wire": {
+                      "jsonPath": "id",
+                      "sdkField": "Id",
+                      "sdkGoType": "*string",
+                      "expand": {
+                        "func": "convert.FrameworkToPtrString"
+                      },
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "A collection of Endpoint Agent Tag IDs that determines what local network data is included in the data stream. `endpointAgentLabel` and `endpointAgentTag` represent the same data. Configure only one; both are synchronized.",
+            "wire": {
+              "jsonPath": "endpointAgentTag",
+              "sdkField": "EndpointAgentTag",
+              "sdkGoType": "[]models.ThousandEyesForOpenTelemetryAPIEndpointAgentTagable",
+              "expand": {
+                "func": "expandStreamEndpointAgentTags",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "flatten": {
+                "func": "flattenStreamEndpointAgentTags",
+                "needsCtx": true,
+                "returnsError": true
+              }
+            }
+          },
+          {
+            "name": "endpoint_type",
+            "goField": "EndpointType",
+            "type": {
+              "kind": "string",
+              "allowedValues": [
+                "grpc",
+                "http"
+              ]
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "The type of connection used to send data to the endpoint.\n**Note**: When using the `splunk-hec` 'type', the `EndpointType` must be `http`.",
+            "wire": {
+              "jsonPath": "endpointType",
+              "sdkField": "EndpointType",
+              "sdkGoType": "*models.ThousandEyesForOpenTelemetryAPIEndpointType",
+              "expand": {
+                "func": "convert.FrameworkToKiotaEnum",
+                "typeArgs": [
+                  "models.ThousandEyesForOpenTelemetryAPIEndpointType"
+                ],
+                "returnsError": true,
+                "extraArgs": [
+                  "models.ParseThousandEyesForOpenTelemetryAPIEndpointType"
+                ]
+              },
+              "flatten": {
+                "func": "convert.KiotaEnumToFramework"
+              }
+            }
+          },
+          {
+            "name": "exporter_config",
+            "goField": "ExporterConfig",
+            "type": {
+              "kind": "single_nested",
+              "nestedObject": {
+                "goTypeName": "StreamExporterConfigModel",
+                "sdkType": "models.ThousandEyesForOpenTelemetryAPIExporterConfigable",
+                "constructorExpr": "models.NewThousandEyesForOpenTelemetryAPIExporterConfig()",
+                "attrTypesVar": "streamExporterConfigAttrTypes",
+                "objectTypeVar": "streamExporterConfigObjectType",
+                "expandFunc": "expandStreamExporterConfig",
+                "flattenFunc": "flattenStreamExporterConfig",
+                "attributes": [
+                  {
+                    "name": "authorization",
+                    "goField": "Authorization",
+                    "type": {
+                      "kind": "single_nested",
+                      "nestedObject": {
+                        "goTypeName": "StreamExporterConfigAuthorizationModel",
+                        "sdkType": "models.ThousandEyesForOpenTelemetryAPIExporterConfigAuthorizationable",
+                        "constructorExpr": "models.NewThousandEyesForOpenTelemetryAPIExporterConfigAuthorization()",
+                        "attrTypesVar": "streamExporterConfigAuthorizationAttrTypes",
+                        "objectTypeVar": "streamExporterConfigAuthorizationObjectType",
+                        "expandFunc": "expandStreamExporterConfigAuthorization",
+                        "flattenFunc": "flattenStreamExporterConfigAuthorization",
+                        "attributes": [
+                          {
+                            "name": "o_auth2",
+                            "goField": "OAuth2",
+                            "type": {
+                              "kind": "single_nested",
+                              "nestedObject": {
+                                "goTypeName": "StreamExporterConfigOAuth2Model",
+                                "sdkType": "models.ThousandEyesForOpenTelemetryAPIExporterConfigOAuth2able",
+                                "constructorExpr": "models.NewThousandEyesForOpenTelemetryAPIExporterConfigOAuth2()",
+                                "attrTypesVar": "streamExporterConfigOAuth2AttrTypes",
+                                "objectTypeVar": "streamExporterConfigOAuth2ObjectType",
+                                "expandFunc": "expandStreamExporterConfigOAuth2",
+                                "flattenFunc": "flattenStreamExporterConfigOAuth2",
+                                "attributes": [
+                                  {
+                                    "name": "client_id",
+                                    "goField": "ClientID",
+                                    "type": {
+                                      "kind": "string"
+                                    },
+                                    "computedOptionalRequired": "optional",
+                                    "markdownDescription": "The OAuth2 client ID.",
+                                    "wire": {
+                                      "jsonPath": "clientId",
+                                      "sdkField": "ClientId",
+                                      "sdkGoType": "*string",
+                                      "expand": {
+                                        "func": "convert.FrameworkToPtrString"
+                                      },
+                                      "flatten": {
+                                        "func": "convert.PtrStringToFramework"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "name": "client_secret",
+                                    "goField": "ClientSecret",
+                                    "type": {
+                                      "kind": "string"
+                                    },
+                                    "computedOptionalRequired": "optional",
+                                    "markdownDescription": "The OAuth2 client secret.",
+                                    "wire": {
+                                      "jsonPath": "clientSecret",
+                                      "sdkField": "ClientSecret",
+                                      "sdkGoType": "*string",
+                                      "expand": {
+                                        "func": "convert.FrameworkToPtrString"
+                                      },
+                                      "flatten": {
+                                        "func": "convert.PtrStringToFramework"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "name": "scopes",
+                                    "goField": "Scopes",
+                                    "type": {
+                                      "kind": "set",
+                                      "elementType": {
+                                        "kind": "string"
+                                      }
+                                    },
+                                    "computedOptionalRequired": "optional",
+                                    "markdownDescription": "The OAuth2 scopes.",
+                                    "wire": {
+                                      "jsonPath": "scopes",
+                                      "sdkField": "Scopes",
+                                      "sdkGoType": "[]string",
+                                      "expand": {
+                                        "func": "convert.FrameworkSetToStringSlice",
+                                        "needsCtx": true,
+                                        "returnsError": true
+                                      },
+                                      "flatten": {
+                                        "func": "convert.StringSliceToFrameworkSet",
+                                        "needsCtx": true,
+                                        "returnsError": true
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "name": "token_url",
+                                    "goField": "TokenURL",
+                                    "type": {
+                                      "kind": "string"
+                                    },
+                                    "computedOptionalRequired": "optional",
+                                    "markdownDescription": "The OAuth2 token URL.",
+                                    "wire": {
+                                      "jsonPath": "tokenUrl",
+                                      "sdkField": "TokenUrl",
+                                      "sdkGoType": "*string",
+                                      "expand": {
+                                        "func": "convert.FrameworkToPtrString"
+                                      },
+                                      "flatten": {
+                                        "func": "convert.PtrStringToFramework"
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            "computedOptionalRequired": "optional",
+                            "markdownDescription": "OAuth2 authentication configuration.",
+                            "wire": {
+                              "jsonPath": "oAuth2",
+                              "sdkField": "OAuth2",
+                              "sdkGoType": "models.ThousandEyesForOpenTelemetryAPIExporterConfigOAuth2able",
+                              "expand": {
+                                "func": "expandStreamExporterConfigOAuth2",
+                                "needsCtx": true,
+                                "returnsError": true
+                              },
+                              "flatten": {
+                                "func": "flattenStreamExporterConfigOAuth2",
+                                "needsCtx": true,
+                                "returnsError": true
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "computedOptionalRequired": "optional",
+                    "markdownDescription": "Authentication configuration type.",
+                    "wire": {
+                      "jsonPath": "authorization",
+                      "sdkField": "Authorization",
+                      "sdkGoType": "models.ThousandEyesForOpenTelemetryAPIExporterConfigAuthorizationable",
+                      "expand": {
+                        "func": "expandStreamExporterConfigAuthorization",
+                        "needsCtx": true,
+                        "returnsError": true
+                      },
+                      "flatten": {
+                        "func": "flattenStreamExporterConfigAuthorization",
+                        "needsCtx": true,
+                        "returnsError": true
+                      }
+                    }
+                  },
+                  {
+                    "name": "splunk_hec",
+                    "goField": "SplunkHec",
+                    "type": {
+                      "kind": "single_nested",
+                      "nestedObject": {
+                        "goTypeName": "StreamExporterConfigSplunkHecModel",
+                        "sdkType": "models.ThousandEyesForOpenTelemetryAPIExporterConfigSplunkHecable",
+                        "constructorExpr": "models.NewThousandEyesForOpenTelemetryAPIExporterConfigSplunkHec()",
+                        "attrTypesVar": "streamExporterConfigSplunkHecAttrTypes",
+                        "objectTypeVar": "streamExporterConfigSplunkHecObjectType",
+                        "expandFunc": "expandStreamExporterConfigSplunkHec",
+                        "flattenFunc": "flattenStreamExporterConfigSplunkHec",
+                        "attributes": [
+                          {
+                            "name": "index",
+                            "goField": "Index",
+                            "type": {
+                              "kind": "string"
+                            },
+                            "computedOptionalRequired": "optional",
+                            "markdownDescription": "The name of the Splunk HEC index where the event data will be stored.  This field is optional.",
+                            "wire": {
+                              "jsonPath": "index",
+                              "sdkField": "Index",
+                              "sdkGoType": "*string",
+                              "expand": {
+                                "func": "convert.FrameworkToPtrString"
+                              },
+                              "flatten": {
+                                "func": "convert.PtrStringToFramework"
+                              }
+                            }
+                          },
+                          {
+                            "name": "source",
+                            "goField": "Source",
+                            "type": {
+                              "kind": "string"
+                            },
+                            "computedOptionalRequired": "optional",
+                            "markdownDescription": "The Splunk HEC `source`. This field is optional.",
+                            "wire": {
+                              "jsonPath": "source",
+                              "sdkField": "Source",
+                              "sdkGoType": "*string",
+                              "expand": {
+                                "func": "convert.FrameworkToPtrString"
+                              },
+                              "flatten": {
+                                "func": "convert.PtrStringToFramework"
+                              }
+                            }
+                          },
+                          {
+                            "name": "source_type",
+                            "goField": "SourceType",
+                            "type": {
+                              "kind": "string"
+                            },
+                            "computedOptionalRequired": "optional",
+                            "markdownDescription": "The Splunk HEC `sourceType`. This field is optional.",
+                            "wire": {
+                              "jsonPath": "sourceType",
+                              "sdkField": "SourceType",
+                              "sdkGoType": "*string",
+                              "expand": {
+                                "func": "convert.FrameworkToPtrString"
+                              },
+                              "flatten": {
+                                "func": "convert.PtrStringToFramework"
+                              }
+                            }
+                          },
+                          {
+                            "name": "token",
+                            "goField": "Token",
+                            "type": {
+                              "kind": "string"
+                            },
+                            "computedOptionalRequired": "optional",
+                            "markdownDescription": "The Splunk HEC `token`. This is a required field.",
+                            "wire": {
+                              "jsonPath": "token",
+                              "sdkField": "Token",
+                              "sdkGoType": "*string",
+                              "expand": {
+                                "func": "convert.FrameworkToPtrString"
+                              },
+                              "flatten": {
+                                "func": "convert.PtrStringToFramework"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "computedOptionalRequired": "optional",
+                    "markdownDescription": "Splunk HEC configuration. This can only be configured when the `type` is `splunk-hec`.",
+                    "wire": {
+                      "jsonPath": "splunkHec",
+                      "sdkField": "SplunkHec",
+                      "sdkGoType": "models.ThousandEyesForOpenTelemetryAPIExporterConfigSplunkHecable",
+                      "expand": {
+                        "func": "expandStreamExporterConfigSplunkHec",
+                        "needsCtx": true,
+                        "returnsError": true
+                      },
+                      "flatten": {
+                        "func": "flattenStreamExporterConfigSplunkHec",
+                        "needsCtx": true,
+                        "returnsError": true
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Capability to set exporter configuration.",
+            "wire": {
+              "jsonPath": "exporterConfig",
+              "sdkField": "ExporterConfig",
+              "sdkGoType": "models.ThousandEyesForOpenTelemetryAPIExporterConfigable",
+              "expand": {
+                "func": "expandStreamExporterConfig",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "flatten": {
+                "func": "flattenStreamExporterConfig",
+                "needsCtx": true,
+                "returnsError": true
+              }
+            }
+          },
+          {
+            "name": "filters",
+            "goField": "Filters",
+            "type": {
+              "kind": "single_nested",
+              "nestedObject": {
+                "goTypeName": "StreamFiltersModel",
+                "sdkType": "models.ThousandEyesForOpenTelemetryAPIFiltersable",
+                "constructorExpr": "models.NewThousandEyesForOpenTelemetryAPIFilters()",
+                "attrTypesVar": "streamFiltersAttrTypes",
+                "objectTypeVar": "streamFiltersObjectType",
+                "expandFunc": "expandStreamFilters",
+                "flattenFunc": "flattenStreamFilters",
+                "attributes": [
+                  {
+                    "name": "test_types",
+                    "goField": "TestTypes",
+                    "type": {
+                      "kind": "single_nested",
+                      "nestedObject": {
+                        "goTypeName": "StreamFiltersTestTypesModel",
+                        "sdkType": "models.ThousandEyesForOpenTelemetryAPIFiltersTestTypesable",
+                        "constructorExpr": "models.NewThousandEyesForOpenTelemetryAPIFiltersTestTypes()",
+                        "attrTypesVar": "streamFiltersTestTypesAttrTypes",
+                        "objectTypeVar": "streamFiltersTestTypesObjectType",
+                        "expandFunc": "expandStreamFiltersTestTypes",
+                        "flattenFunc": "flattenStreamFiltersTestTypes",
+                        "attributes": [
+                          {
+                            "name": "values",
+                            "goField": "Values",
+                            "type": {
+                              "kind": "set",
+                              "elementType": {
+                                "kind": "string"
+                              }
+                            },
+                            "computedOptionalRequired": "optional",
+                            "markdownDescription": "A list of test types to filter data points.",
+                            "wire": {
+                              "jsonPath": "values",
+                              "sdkField": "Values",
+                              "sdkGoType": "[]string",
+                              "expand": {
+                                "func": "convert.FrameworkSetToStringSlice",
+                                "needsCtx": true,
+                                "returnsError": true
+                              },
+                              "flatten": {
+                                "func": "convert.StringSliceToFrameworkSet",
+                                "needsCtx": true,
+                                "returnsError": true
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "computedOptionalRequired": "optional",
+                    "markdownDescription": "Test types that can be used for filtering data points.",
+                    "wire": {
+                      "jsonPath": "testTypes",
+                      "sdkField": "TestTypes",
+                      "sdkGoType": "models.ThousandEyesForOpenTelemetryAPIFiltersTestTypesable",
+                      "expand": {
+                        "func": "expandStreamFiltersTestTypes",
+                        "needsCtx": true,
+                        "returnsError": true
+                      },
+                      "flatten": {
+                        "func": "flattenStreamFiltersTestTypes",
+                        "needsCtx": true,
+                        "returnsError": true
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Provides the ability to filter data points based on the specified test types.",
+            "wire": {
+              "jsonPath": "filters",
+              "sdkField": "Filters",
+              "sdkGoType": "models.ThousandEyesForOpenTelemetryAPIFiltersable",
+              "expand": {
+                "func": "expandStreamFilters",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "flatten": {
+                "func": "flattenStreamFilters",
+                "needsCtx": true,
+                "returnsError": true
+              }
+            }
+          },
+          {
+            "name": "id",
+            "goField": "ID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "The data stream ID",
+            "wire": {
+              "jsonPath": "id",
+              "sdkField": "Id",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "input_config",
+            "goField": "InputConfig",
+            "type": {
+              "kind": "single_nested",
+              "nestedObject": {
+                "goTypeName": "StreamInputConfigModel",
+                "sdkType": "models.ThousandEyesForOpenTelemetryAPIInputConfigable",
+                "constructorExpr": "models.NewThousandEyesForOpenTelemetryAPIInputConfig()",
+                "attrTypesVar": "streamInputConfigAttrTypes",
+                "objectTypeVar": "streamInputConfigObjectType",
+                "expandFunc": "expandStreamInputConfig",
+                "flattenFunc": "flattenStreamInputConfig",
+                "attributes": [
+                  {
+                    "name": "metric",
+                    "goField": "Metric",
+                    "type": {
+                      "kind": "single_nested",
+                      "nestedObject": {
+                        "goTypeName": "StreamInputConfigMetricModel",
+                        "sdkType": "models.ThousandEyesForOpenTelemetryAPIInputConfigMetricable",
+                        "constructorExpr": "models.NewThousandEyesForOpenTelemetryAPIInputConfigMetric()",
+                        "attrTypesVar": "streamInputConfigMetricAttrTypes",
+                        "objectTypeVar": "streamInputConfigMetricObjectType",
+                        "expandFunc": "expandStreamInputConfigMetric",
+                        "flattenFunc": "flattenStreamInputConfigMetric",
+                        "attributes": [
+                          {
+                            "name": "connected_devices",
+                            "goField": "ConnectedDevices",
+                            "type": {
+                              "kind": "single_nested",
+                              "nestedObject": {
+                                "goTypeName": "StreamConnectedDevicesModel",
+                                "sdkType": "models.ThousandEyesForOpenTelemetryAPIConnectedDevicesable",
+                                "constructorExpr": "models.NewThousandEyesForOpenTelemetryAPIConnectedDevices()",
+                                "attrTypesVar": "streamConnectedDevicesAttrTypes",
+                                "objectTypeVar": "streamConnectedDevicesObjectType",
+                                "expandFunc": "expandStreamConnectedDevices",
+                                "flattenFunc": "flattenStreamConnectedDevices",
+                                "attributes": [
+                                  {
+                                    "name": "enabled",
+                                    "goField": "Enabled",
+                                    "type": {
+                                      "kind": "bool"
+                                    },
+                                    "computedOptionalRequired": "required",
+                                    "markdownDescription": "Flag to enable or disable Connected Devices data.",
+                                    "wire": {
+                                      "jsonPath": "enabled",
+                                      "sdkField": "Enabled",
+                                      "sdkGoType": "*bool",
+                                      "expand": {
+                                        "func": "convert.FrameworkToPtrBool"
+                                      },
+                                      "flatten": {
+                                        "func": "convert.PtrBoolToFramework"
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            "computedOptionalRequired": "optional",
+                            "markdownDescription": "Configuration for Connected Devices metric data in the stream integration.",
+                            "wire": {
+                              "jsonPath": "connectedDevices",
+                              "sdkField": "ConnectedDevices",
+                              "sdkGoType": "models.ThousandEyesForOpenTelemetryAPIConnectedDevicesable",
+                              "expand": {
+                                "func": "expandStreamConnectedDevices",
+                                "needsCtx": true,
+                                "returnsError": true
+                              },
+                              "flatten": {
+                                "func": "flattenStreamConnectedDevices",
+                                "needsCtx": true,
+                                "returnsError": true
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "computedOptionalRequired": "optional",
+                    "markdownDescription": "Configuration for metric input data in the stream integration.",
+                    "wire": {
+                      "jsonPath": "metric",
+                      "sdkField": "Metric",
+                      "sdkGoType": "models.ThousandEyesForOpenTelemetryAPIInputConfigMetricable",
+                      "expand": {
+                        "func": "expandStreamInputConfigMetric",
+                        "needsCtx": true,
+                        "returnsError": true
+                      },
+                      "flatten": {
+                        "func": "flattenStreamInputConfigMetric",
+                        "needsCtx": true,
+                        "returnsError": true
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Configuration that specifies which input data is included for each signal.",
+            "wire": {
+              "jsonPath": "inputConfig",
+              "sdkField": "InputConfig",
+              "sdkGoType": "models.ThousandEyesForOpenTelemetryAPIInputConfigable",
+              "expand": {
+                "func": "expandStreamInputConfig",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "flatten": {
+                "func": "flattenStreamInputConfig",
+                "needsCtx": true,
+                "returnsError": true
+              }
+            }
+          },
+          {
+            "name": "signal",
+            "goField": "Signal",
+            "type": {
+              "kind": "string",
+              "allowedValues": [
+                "metric",
+                "trace",
+                "log"
+              ]
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "The OpenTelemetry signal of the stream integration.\nWhen using `trace` or `log`:\n  - `dataModelVersion` must be `v2`.",
+            "wire": {
+              "jsonPath": "signal",
+              "sdkField": "Signal",
+              "sdkGoType": "*models.ThousandEyesForOpenTelemetryAPISignal",
+              "expand": {
+                "func": "convert.FrameworkToKiotaEnum",
+                "typeArgs": [
+                  "models.ThousandEyesForOpenTelemetryAPISignal"
+                ],
+                "returnsError": true,
+                "extraArgs": [
+                  "models.ParseThousandEyesForOpenTelemetryAPISignal"
+                ]
+              },
+              "flatten": {
+                "func": "convert.KiotaEnumToFramework"
+              }
+            }
+          },
+          {
+            "name": "stream_endpoint_url",
+            "goField": "StreamEndpointURL",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "The URL ThousandEyes sends data stream to.\nFor a URL to be valid, it needs to: - Be syntactically correct. - Be reachable. - Use the HTTPS protocol. - When using the `grpc` endpointType, streamEndpointUrl cannot contain paths:\n    - Valid . `grpc` - `https://example.com`\n    - Invalid . `grpc` - `https://example.com/collector`.\n    - Valid . `http` - `https://example.com/collector`.\n\n- When using the `http` endpointType, the operation must match the exact final full URL (including the path if there is one) to which the data will be sent. Examples below:\n    - `https://api.honeycomb.io:443/v1/metrics`\n    - `https://ingest.eu0.signalfx.com/v2/datapoint/otlp`",
+            "wire": {
+              "jsonPath": "streamEndpointUrl",
+              "sdkField": "StreamEndpointUrl",
+              "sdkGoType": "*string",
+              "expand": {
+                "func": "convert.FrameworkToPtrString"
+              },
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              }
+            }
+          },
+          {
+            "name": "stream_status",
+            "goField": "StreamStatus",
+            "type": {
+              "kind": "single_nested",
+              "nestedObject": {
+                "goTypeName": "StreamStatusModel",
+                "sdkType": "models.ThousandEyesForOpenTelemetryAPIStreamStatusable",
+                "constructorExpr": "models.NewThousandEyesForOpenTelemetryAPIStreamStatus()",
+                "attrTypesVar": "streamStatusAttrTypes",
+                "objectTypeVar": "streamStatusObjectType",
+                "expandFunc": "expandStreamStatus",
+                "flattenFunc": "flattenStreamStatus",
+                "attributes": [
+                  {
+                    "name": "last_failure",
+                    "goField": "LastFailure",
+                    "type": {
+                      "kind": "int64"
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "Last timestamp when data failed to send the stream endpoint.",
+                    "wire": {
+                      "jsonPath": "lastFailure",
+                      "sdkField": "LastFailure",
+                      "sdkGoType": "*int64",
+                      "flatten": {
+                        "func": "convert.PtrInt64ToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "last_success",
+                    "goField": "LastSuccess",
+                    "type": {
+                      "kind": "int64"
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "Last timestamp when data was successfully sent to the stream endpoint.",
+                    "wire": {
+                      "jsonPath": "lastSuccess",
+                      "sdkField": "LastSuccess",
+                      "sdkGoType": "*int64",
+                      "flatten": {
+                        "func": "convert.PtrInt64ToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "status",
+                    "goField": "Status",
+                    "type": {
+                      "kind": "string",
+                      "allowedValues": [
+                        "connected",
+                        "pending",
+                        "failing"
+                      ]
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "The status of the stream integration. pending: No data is currently being sent to the stream endpoint. failing: Data is being sent but not successfully reaching the stream endpoint. connected: Data is being sent successfully to the stream endpoint.",
+                    "wire": {
+                      "jsonPath": "status",
+                      "sdkField": "Status",
+                      "sdkGoType": "*models.ThousandEyesForOpenTelemetryAPIStreamStatusType",
+                      "flatten": {
+                        "func": "convert.KiotaEnumToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  }
+                ]
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "wire": {
+              "jsonPath": "streamStatus",
+              "sdkField": "StreamStatus",
+              "sdkGoType": "models.ThousandEyesForOpenTelemetryAPIStreamStatusable",
+              "flatten": {
+                "func": "flattenStreamStatus",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "tag_match",
+            "goField": "TagMatch",
+            "type": {
+              "kind": "set_nested",
+              "nestedObject": {
+                "goTypeName": "StreamTagMatchModel",
+                "sdkType": "models.ThousandEyesForOpenTelemetryAPITagMatchable",
+                "constructorExpr": "models.NewThousandEyesForOpenTelemetryAPITagMatch()",
+                "attrTypesVar": "streamTagMatchAttrTypes",
+                "objectTypeVar": "streamTagMatchObjectType",
+                "expandFunc": "expandStreamTagMatches",
+                "flattenFunc": "flattenStreamTagMatches",
+                "attributes": [
+                  {
+                    "name": "key",
+                    "goField": "Key",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "optional",
+                    "markdownDescription": "The name of the tag key to match. The key is invalid if it includes characters that are not allowed by the [OpenTelemetry naming recommendations for attributes](https://opentelemetry.io/docs/specs/semconv/general/naming/#recommendations-for-application-developers).",
+                    "wire": {
+                      "jsonPath": "key",
+                      "sdkField": "Key",
+                      "sdkGoType": "*string",
+                      "expand": {
+                        "func": "convert.FrameworkToPtrString"
+                      },
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      }
+                    }
+                  },
+                  {
+                    "name": "value",
+                    "goField": "Value",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "optional",
+                    "markdownDescription": "The value of the tag to match",
+                    "wire": {
+                      "jsonPath": "value",
+                      "sdkField": "Value",
+                      "sdkGoType": "*string",
+                      "expand": {
+                        "func": "convert.FrameworkToPtrString"
+                      },
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "A collection of tags that determine what tests are included in the data stream. These tag values are also included as attributes in the data stream metrics. Tags are invalid if the tag key includes characters that are not allowed by the [OpenTelemetry naming recommendations for attributes](https://opentelemetry.io/docs/specs/semconv/general/naming/#recommendations-for-application-developers).",
+            "wire": {
+              "jsonPath": "tagMatch",
+              "sdkField": "TagMatch",
+              "sdkGoType": "[]models.ThousandEyesForOpenTelemetryAPITagMatchable",
+              "expand": {
+                "func": "expandStreamTagMatches",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "flatten": {
+                "func": "flattenStreamTagMatches",
+                "needsCtx": true,
+                "returnsError": true
+              }
+            }
+          },
+          {
+            "name": "test_match",
+            "goField": "TestMatch",
+            "type": {
+              "kind": "set_nested",
+              "nestedObject": {
+                "goTypeName": "StreamTestMatchModel",
+                "sdkType": "models.ThousandEyesForOpenTelemetryAPITestMatchable",
+                "constructorExpr": "models.NewThousandEyesForOpenTelemetryAPITestMatch()",
+                "attrTypesVar": "streamTestMatchAttrTypes",
+                "objectTypeVar": "streamTestMatchObjectType",
+                "expandFunc": "expandStreamTestMatches",
+                "flattenFunc": "flattenStreamTestMatches",
+                "attributes": [
+                  {
+                    "name": "domain",
+                    "goField": "Domain",
+                    "type": {
+                      "kind": "string",
+                      "allowedValues": [
+                        "cea",
+                        "endpoint"
+                      ]
+                    },
+                    "computedOptionalRequired": "optional",
+                    "markdownDescription": "The domain of the test to match.\n `cea` - Cloud and Enterprise Agent\n `endpoint` - Endpoint Agent",
+                    "wire": {
+                      "jsonPath": "domain",
+                      "sdkField": "Domain",
+                      "sdkGoType": "*models.ThousandEyesForOpenTelemetryAPITestMatchDomain",
+                      "expand": {
+                        "func": "convert.FrameworkToKiotaEnum",
+                        "typeArgs": [
+                          "models.ThousandEyesForOpenTelemetryAPITestMatchDomain"
+                        ],
+                        "returnsError": true,
+                        "extraArgs": [
+                          "models.ParseThousandEyesForOpenTelemetryAPITestMatchDomain"
+                        ]
+                      },
+                      "flatten": {
+                        "func": "convert.KiotaEnumToFramework"
+                      }
+                    }
+                  },
+                  {
+                    "name": "id",
+                    "goField": "ID",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "optional",
+                    "markdownDescription": "The ID of the test to match.",
+                    "wire": {
+                      "jsonPath": "id",
+                      "sdkField": "Id",
+                      "sdkGoType": "*string",
+                      "expand": {
+                        "func": "convert.FrameworkToPtrString"
+                      },
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "A collection of tests to be included in the data stream.",
+            "wire": {
+              "jsonPath": "testMatch",
+              "sdkField": "TestMatch",
+              "sdkGoType": "[]models.ThousandEyesForOpenTelemetryAPITestMatchable",
+              "expand": {
+                "func": "expandStreamTestMatches",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "flatten": {
+                "func": "flattenStreamTestMatches",
+                "needsCtx": true,
+                "returnsError": true
+              }
+            }
+          },
+          {
+            "name": "type",
+            "goField": "Type",
+            "type": {
+              "kind": "string",
+              "allowedValues": [
+                "opentelemetry",
+                "splunk-hec"
+              ]
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "The type of data stream to configure.\nWhen using `splunk-hec`:\n  - `endpointType` must be `http`.\n  - `exporterConfig.splunkHec.token` must contain the *Splunk HEC Token*.",
+            "wire": {
+              "jsonPath": "type",
+              "sdkField": "TypeEscaped",
+              "sdkGoType": "*models.ThousandEyesForOpenTelemetryAPIStreamType",
+              "expand": {
+                "func": "convert.FrameworkToKiotaEnum",
+                "typeArgs": [
+                  "models.ThousandEyesForOpenTelemetryAPIStreamType"
+                ],
+                "returnsError": true,
+                "extraArgs": [
+                  "models.ParseThousandEyesForOpenTelemetryAPIStreamType"
+                ]
+              },
+              "flatten": {
+                "func": "convert.KiotaEnumToFramework"
+              }
+            }
+          }
+        ],
+        "markdownDescription": "Retrieve data stream."
+      },
+      "binding": {
+        "service": {
+          "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
+          "alias": "models",
+          "typeName": "",
+          "accessor": "r.client"
+        },
+        "create": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Streams"
+            },
+            {
+              "method": "Post",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "body"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.GetStreamResponseable",
+          "httpMethod": "POST",
+          "pathTemplate": "/streams"
+        },
+        "read": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Streams"
+            },
+            {
+              "method": "ById",
+              "args": [
+                {
+                  "kind": "stateField",
+                  "field": "ID"
+                }
+              ]
+            },
+            {
+              "method": "Get",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.GetStreamResponseable",
+          "httpMethod": "GET",
+          "pathTemplate": "/streams/{id}"
+        },
+        "update": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Streams"
+            },
+            {
+              "method": "ById",
+              "args": [
+                {
+                  "kind": "stateField",
+                  "field": "ID"
+                }
+              ]
+            },
+            {
+              "method": "Put",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "body"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.GetStreamResponseable",
+          "httpMethod": "PUT",
+          "pathTemplate": "/streams/{id}"
+        },
+        "delete": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Streams"
+            },
+            {
+              "method": "ById",
+              "args": [
+                {
+                  "kind": "stateField",
+                  "field": "ID"
+                }
+              ]
+            },
+            {
+              "method": "Delete",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "error",
+          "httpMethod": "DELETE",
+          "pathTemplate": "/streams/{id}"
+        },
+        "id": {
+          "attribute": "id",
+          "goField": "ID",
+          "fromCreate": "created.GetId()",
+          "fromCreateIsPointer": true
+        },
+        "body": {
+          "requestType": "models.Stream",
+          "responseType": "models.GetStreamResponseable",
+          "constructorExpr": "models.NewStream()",
+          "updateRequestType": "models.PutStream",
+          "updateConstructorExpr": "models.NewPutStream()",
+          "accessStyle": "method"
+        }
+      },
+      "policy": {
+        "updateStyle": "putFull",
+        "delete": {
+          "notFoundIsSuccess": true
+        }
+      },
+      "import": {
+        "style": "passthroughId",
+        "attribute": "id"
+      }
+    }
+  ]
+}
