@@ -55,8 +55,6 @@ func NewDashboards_API_Dashboard() *Dashboards_API_Dashboard {
 	m := &Dashboards_API_Dashboard{
 		Dashboards_API_DashboardGlobalFilterId: *NewDashboards_API_DashboardGlobalFilterId(),
 	}
-	refreshRateValue := OFF_DASHBOARDS_API_REFRESHRATE
-	m.SetRefreshRate(&refreshRateValue)
 	return m
 }
 
