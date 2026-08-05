@@ -13,13 +13,13 @@
       "schema": {
         "attributes": [
           {
-            "name": "alert_suppression_window_id",
-            "goField": "AlertSuppressionWindowID",
+            "name": "id",
+            "goField": "ID",
             "type": {
               "kind": "string"
             },
             "computedOptionalRequired": "computed",
-            "markdownDescription": "Unique ID of the alert suppression window.",
+            "markdownDescription": "Unique ID of the alert suppression window.\n\nNamed `id` because terraform-plugin-testing populates import state only from an attribute literally called id; the wire field stays alertSuppressionWindowId.",
             "wire": {
               "jsonPath": "alertSuppressionWindowId",
               "sdkField": "AlertSuppressionWindowId",
@@ -37,16 +37,22 @@
               "kind": "int64"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Duration in seconds the suppression window is active.",
+            "markdownDescription": "Duration in seconds the suppression window is active.\n\nThe API refuses a window without a duration (live probe, 2026-08-03).\n\n<!-- probed:7.0.98-t1785764488786 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnRead": true,
+              "returnedOnCreate": true,
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "duration",
               "sdkField": "Duration",
               "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToPtrInt32"
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.PtrInt32ToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -57,8 +63,7 @@
               "kind": "single_nested",
               "nestedObject": {
                 "goTypeName": "AlertSuppressionWindowEndRepeatModel",
-                "sdkType": "models.AlertsAPIEndRepeatable",
-                "constructorExpr": "models.NewAlertsAPIEndRepeat()",
+                "sdkType": "models.Alerts_API_EndRepeatable",
                 "attrTypesVar": "alertSuppressionWindowEndRepeatAttrTypes",
                 "objectTypeVar": "alertSuppressionWindowEndRepeatObjectType",
                 "expandFunc": "expandAlertSuppressionWindowEndRepeat",
@@ -77,10 +82,10 @@
                       "sdkField": "Count",
                       "sdkGoType": "*int32",
                       "expand": {
-                        "func": "convert.FrameworkToPtrInt32"
+                        "func": "convert.FrameworkInt64ToPtrInt32"
                       },
                       "flatten": {
-                        "func": "convert.PtrInt32ToFramework"
+                        "func": "convert.PtrInt32ToFrameworkInt64"
                       }
                     }
                   },
@@ -98,12 +103,13 @@
                     "wire": {
                       "jsonPath": "date",
                       "sdkField": "Date",
-                      "sdkGoType": "*string",
+                      "sdkGoType": "*serialization.DateOnly",
                       "expand": {
-                        "func": "convert.FrameworkToPtrString"
+                        "func": "convert.FrameworkToPtrDateOnly",
+                        "returnsError": true
                       },
                       "flatten": {
-                        "func": "convert.PtrStringToFramework"
+                        "func": "convert.PtrDateOnlyToFramework"
                       }
                     }
                   },
@@ -118,36 +124,49 @@
                         "date"
                       ]
                     },
-                    "computedOptionalRequired": "optional",
-                    "markdownDescription": "End repeat options type.",
+                    "computedOptionalRequired": "computed_optional",
+                    "markdownDescription": "End repeat options type.\n\n<!-- probed:7.0.98-t1785764488786 -->\nValues accepted here: `count`, `never`, `date`.\nObserved: the API assigns \"never\" when this is omitted.\nThe API accepted a value from outside the documented set, so no OneOf validator is generated for this attribute.\n<!-- /probed -->",
+                    "behaviour": {
+                      "serverDefault": {
+                        "kind": "",
+                        "raw": "\"never\""
+                      },
+                      "acceptedValues": [
+                        "count",
+                        "never",
+                        "date"
+                      ],
+                      "valuesClosed": false
+                    },
                     "wire": {
                       "jsonPath": "type",
                       "sdkField": "TypeEscaped",
-                      "sdkGoType": "*models.AlertsAPIEndRepeatType",
+                      "sdkGoType": "*models.Alerts_API_EndRepeatType",
                       "expand": {
                         "func": "convert.FrameworkToKiotaEnum",
                         "typeArgs": [
-                          "models.AlertsAPIEndRepeatType"
+                          "models.Alerts_API_EndRepeatType"
                         ],
-                        "returnsError": true,
                         "extraArgs": [
-                          "models.ParseAlertsAPIEndRepeatType"
-                        ]
+                          "models.ParseAlerts_API_EndRepeatType"
+                        ],
+                        "returnsError": true
                       },
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.PtrStringerToFramework"
                       }
                     }
                   }
-                ]
+                ],
+                "constructorExpr": "models.NewAlerts_API_EndRepeat()"
               }
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "End repeat options.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "End repeat options.\n\nThe API assigns { type = \"never\" } when omitted (live acceptance, 2026-08-03).",
             "wire": {
               "jsonPath": "endRepeat",
               "sdkField": "EndRepeat",
-              "sdkGoType": "models.AlertsAPIEndRepeatable",
+              "sdkGoType": "models.Alerts_API_EndRepeatable",
               "expand": {
                 "func": "expandAlertSuppressionWindowEndRepeat",
                 "needsCtx": true,
@@ -166,8 +185,18 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
+            "computedOptionalRequired": "computed_optional",
             "markdownDescription": "Set to `false` for `disabled`, `true` for `enabled`.",
+            "behaviour": {
+              "requiredByApi": false,
+              "serverDefault": {
+                "kind": "bool",
+                "raw": "true"
+              },
+              "returnedOnRead": true,
+              "returnedOnCreate": true,
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "isEnabled",
               "sdkField": "IsEnabled",
@@ -187,7 +216,12 @@
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Name of the alert suppression window.",
+            "markdownDescription": "Name of the alert suppression window.\n\nThe API refuses a window without a name (live acceptance, 2026-08-03); the probe cannot test this itself because name carries the sweeper's prefix.",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnRead": true,
+              "returnedOnCreate": true
+            },
             "wire": {
               "jsonPath": "name",
               "sdkField": "Name",
@@ -207,8 +241,7 @@
               "kind": "single_nested",
               "nestedObject": {
                 "goTypeName": "AlertSuppressionWindowRepeatModel",
-                "sdkType": "models.AlertsAPIRepeatable",
-                "constructorExpr": "models.NewAlertsAPIRepeat()",
+                "sdkType": "models.Alerts_API_Repeatable",
                 "attrTypesVar": "alertSuppressionWindowRepeatAttrTypes",
                 "objectTypeVar": "alertSuppressionWindowRepeatObjectType",
                 "expandFunc": "expandAlertSuppressionWindowRepeat",
@@ -227,14 +260,20 @@
                     "wire": {
                       "jsonPath": "daysOfWeek",
                       "sdkField": "DaysOfWeek",
-                      "sdkGoType": "[]string",
+                      "sdkGoType": "[]models.Alerts_API_DaysOfWeek",
                       "expand": {
-                        "func": "convert.FrameworkSetToStringSlice",
+                        "func": "convert.FrameworkSetToKiotaEnumSlice",
+                        "typeArgs": [
+                          "models.Alerts_API_DaysOfWeek"
+                        ],
+                        "extraArgs": [
+                          "models.ParseAlerts_API_DaysOfWeek"
+                        ],
                         "needsCtx": true,
                         "returnsError": true
                       },
                       "flatten": {
-                        "func": "convert.StringSliceToFrameworkSet",
+                        "func": "convert.KiotaEnumSliceToFrameworkSet",
                         "needsCtx": true,
                         "returnsError": true
                       }
@@ -253,10 +292,10 @@
                       "sdkField": "IntervalLength",
                       "sdkGoType": "*int32",
                       "expand": {
-                        "func": "convert.FrameworkToPtrInt32"
+                        "func": "convert.FrameworkInt64ToPtrInt32"
                       },
                       "flatten": {
-                        "func": "convert.PtrInt32ToFramework"
+                        "func": "convert.PtrInt32ToFrameworkInt64"
                       }
                     }
                   },
@@ -272,23 +311,31 @@
                       ]
                     },
                     "computedOptionalRequired": "optional",
-                    "markdownDescription": "Repeat options interval type",
+                    "markdownDescription": "Repeat options interval type\n\n<!-- probed:7.0.98-t1785764488786 -->\nValues accepted here: `day`, `week`, `month`.\nThe API accepted a value from outside the documented set, so no OneOf validator is generated for this attribute.\n<!-- /probed -->",
+                    "behaviour": {
+                      "acceptedValues": [
+                        "day",
+                        "week",
+                        "month"
+                      ],
+                      "valuesClosed": false
+                    },
                     "wire": {
                       "jsonPath": "intervalType",
                       "sdkField": "IntervalType",
-                      "sdkGoType": "*models.AlertsAPIIntervalType",
+                      "sdkGoType": "*models.Alerts_API_IntervalType",
                       "expand": {
                         "func": "convert.FrameworkToKiotaEnum",
                         "typeArgs": [
-                          "models.AlertsAPIIntervalType"
+                          "models.Alerts_API_IntervalType"
                         ],
-                        "returnsError": true,
                         "extraArgs": [
-                          "models.ParseAlertsAPIIntervalType"
-                        ]
+                          "models.ParseAlerts_API_IntervalType"
+                        ],
+                        "returnsError": true
                       },
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.PtrStringerToFramework"
                       }
                     }
                   },
@@ -304,36 +351,58 @@
                         "custom"
                       ]
                     },
-                    "computedOptionalRequired": "optional",
-                    "markdownDescription": "Repeat options type.",
+                    "computedOptionalRequired": "computed_optional",
+                    "markdownDescription": "Repeat options type.\n\n<!-- probed:7.0.98-t1785764488786 -->\nValues accepted here: `day`, `week`, `month`, `custom`.\nObserved: the API assigns \"none\" when this is omitted.\nThe API accepted a value from outside the documented set, so no OneOf validator is generated for this attribute.\n<!-- /probed -->",
+                    "behaviour": {
+                      "serverDefault": {
+                        "kind": "",
+                        "raw": "\"none\""
+                      },
+                      "returnedOnRead": true,
+                      "returnedOnCreate": true,
+                      "acceptedValues": [
+                        "day",
+                        "week",
+                        "month",
+                        "custom"
+                      ],
+                      "valuesClosed": false
+                    },
                     "wire": {
                       "jsonPath": "type",
                       "sdkField": "TypeEscaped",
-                      "sdkGoType": "*models.AlertsAPIRepeatType",
+                      "sdkGoType": "*models.Alerts_API_RepeatType",
                       "expand": {
                         "func": "convert.FrameworkToKiotaEnum",
                         "typeArgs": [
-                          "models.AlertsAPIRepeatType"
+                          "models.Alerts_API_RepeatType"
                         ],
-                        "returnsError": true,
                         "extraArgs": [
-                          "models.ParseAlertsAPIRepeatType"
-                        ]
+                          "models.ParseAlerts_API_RepeatType"
+                        ],
+                        "returnsError": true
                       },
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.PtrStringerToFramework"
                       }
                     }
                   }
-                ]
+                ],
+                "constructorExpr": "models.NewAlerts_API_Repeat()"
               }
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Repeat options.",
+            "markdownDescription": "Repeat options.\n\nThe API requires repeat conditions on every window; a one-off window carries `type = \"none\"` (live probe, 2026-08-03).\n\n<!-- probed:7.0.98-t1785764488786 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnRead": true,
+              "returnedOnCreate": true,
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "repeat",
               "sdkField": "Repeat",
-              "sdkGoType": "models.AlertsAPIRepeatable",
+              "sdkGoType": "models.Alerts_API_Repeatable",
               "expand": {
                 "func": "expandAlertSuppressionWindowRepeat",
                 "needsCtx": true,
@@ -356,16 +425,21 @@
               }
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "The date/time when the alert suppression window starts (ISO date-time format).",
+            "markdownDescription": "The date/time when the alert suppression window starts (ISO date-time format).\n\n<!-- probed:7.0.98-t1785764488786 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "startDate",
               "sdkField": "StartDate",
-              "sdkGoType": "*string",
+              "sdkGoType": "*time.Time",
               "expand": {
-                "func": "convert.FrameworkToPtrString"
+                "func": "convert.FrameworkToPtrTime",
+                "returnsError": true
               },
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrTimeToFramework"
               }
             }
           },
@@ -385,9 +459,9 @@
             "wire": {
               "jsonPath": "status",
               "sdkField": "Status",
-              "sdkGoType": "*models.AlertsAPIAlertSuppressionWindowState",
+              "sdkGoType": "*models.Alerts_API_AlertSuppressionWindowState",
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               },
               "skipExpand": true
             }
@@ -402,7 +476,11 @@
               }
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "List of test IDs to assign to the alert suppression window.",
+            "markdownDescription": "List of test IDs to assign to the alert suppression window.\n\nThe response never carries testIds -- it echoes the linked tests as a nested collection instead -- so state carries the configured value.\n\n<!-- probed:7.0.98-t1785764972866 -->\nNeither the update response nor a read returns this field: it is write-only in practice, and state carries the configured value.\n<!-- /probed -->",
+            "behaviour": {
+              "returnedOnRead": false,
+              "returnedOnUpdate": false
+            },
             "wire": {
               "jsonPath": "testIds",
               "sdkField": "TestIds",
@@ -412,11 +490,7 @@
                 "needsCtx": true,
                 "returnsError": true
               },
-              "flatten": {
-                "func": "convert.StringSliceToFrameworkSet",
-                "needsCtx": true,
-                "returnsError": true
-              }
+              "skipFlatten": true
             }
           },
           {
@@ -426,8 +500,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "AlertSuppressionWindowSimpleTestModel",
-                "sdkType": "models.AlertsAPISimpleTestable",
-                "constructorExpr": "models.NewAlertsAPISimpleTest()",
+                "sdkType": "models.Alerts_API_SimpleTestable",
                 "attrTypesVar": "alertSuppressionWindowSimpleTestAttrTypes",
                 "objectTypeVar": "alertSuppressionWindowSimpleTestObjectType",
                 "expandFunc": "expandAlertSuppressionWindowSimpleTests",
@@ -473,19 +546,16 @@
                     "name": "created_date",
                     "goField": "CreatedDate",
                     "type": {
-                      "kind": "string",
-                      "constraints": {
-                        "format": "date-time"
-                      }
+                      "kind": "string"
                     },
                     "computedOptionalRequired": "computed",
                     "markdownDescription": "UTC created date (ISO date-time format).",
                     "wire": {
                       "jsonPath": "createdDate",
                       "sdkField": "CreatedDate",
-                      "sdkGoType": "*string",
+                      "sdkGoType": "*time.Time",
                       "flatten": {
-                        "func": "convert.PtrStringToFramework"
+                        "func": "convert.PtrTimeToFramework"
                       },
                       "skipExpand": true
                     }
@@ -546,9 +616,9 @@
                     "wire": {
                       "jsonPath": "interval",
                       "sdkField": "Interval",
-                      "sdkGoType": "*models.AlertsAPITestInterval",
+                      "sdkGoType": "*int32",
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.PtrInt32ToFrameworkString"
                       },
                       "skipExpand": true
                     }
@@ -593,19 +663,16 @@
                     "name": "modified_date",
                     "goField": "ModifiedDate",
                     "type": {
-                      "kind": "string",
-                      "constraints": {
-                        "format": "date-time"
-                      }
+                      "kind": "string"
                     },
                     "computedOptionalRequired": "computed",
                     "markdownDescription": "UTC last modification date (ISO date-time format).",
                     "wire": {
                       "jsonPath": "modifiedDate",
                       "sdkField": "ModifiedDate",
-                      "sdkGoType": "*string",
+                      "sdkGoType": "*time.Time",
                       "flatten": {
-                        "func": "convert.PtrStringToFramework"
+                        "func": "convert.PtrTimeToFramework"
                       },
                       "skipExpand": true
                     }
@@ -690,29 +757,31 @@
                     "wire": {
                       "jsonPath": "type",
                       "sdkField": "TypeEscaped",
-                      "sdkGoType": "*models.AlertsAPITestType",
+                      "sdkGoType": "*models.Alerts_API_TestType",
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.PtrStringerToFramework"
                       },
                       "skipExpand": true
                     }
                   }
-                ]
+                ],
+                "constructorExpr": "models.NewAlerts_API_SimpleTest()"
               }
             },
             "computedOptionalRequired": "computed",
-            "markdownDescription": "List of tests assigned to the alert suppression window.",
+            "markdownDescription": "List of tests assigned to the alert suppression window.\n\nDropped in v1: Read-only echo of the suppressed tests; testIds is the writable half and the echo would drift against it.",
             "wire": {
               "jsonPath": "tests",
               "sdkField": "Tests",
-              "sdkGoType": "[]models.AlertsAPISimpleTestable",
+              "sdkGoType": "[]models.Alerts_API_SimpleTestable",
               "flatten": {
                 "func": "flattenAlertSuppressionWindowSimpleTests",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            }
+            },
+            "drop": true
           }
         ],
         "markdownDescription": "Retrieve alert suppression window."
@@ -721,12 +790,10 @@
         "service": {
           "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
           "alias": "models",
-          "typeName": "",
           "accessor": "r.client"
         },
         "create": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "AlertSuppressionWindows"
@@ -748,13 +815,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.AlertSuppressionWindowDetailable",
+          "resultType": "models.Alerts_API_AlertSuppressionWindowDetailable",
           "httpMethod": "POST",
           "pathTemplate": "/alert-suppression-windows"
         },
         "read": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "AlertSuppressionWindows"
@@ -782,13 +848,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.AlertSuppressionWindowDetailable",
+          "resultType": "models.Alerts_API_AlertSuppressionWindowDetailable",
           "httpMethod": "GET",
           "pathTemplate": "/alert-suppression-windows/{windowId}"
         },
         "update": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "AlertSuppressionWindows"
@@ -819,13 +884,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.AlertSuppressionWindowDetailable",
+          "resultType": "models.Alerts_API_AlertSuppressionWindowDetailable",
           "httpMethod": "PUT",
           "pathTemplate": "/alert-suppression-windows/{windowId}"
         },
         "delete": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "AlertSuppressionWindows"
@@ -859,13 +923,13 @@
         "id": {
           "attribute": "id",
           "goField": "ID",
-          "fromCreate": "created.GetId()",
+          "fromCreate": "created.GetAlertSuppressionWindowId()",
           "fromCreateIsPointer": true
         },
         "body": {
-          "requestType": "models.AlertSuppressionWindowRequest",
-          "responseType": "models.AlertSuppressionWindowDetailable",
-          "constructorExpr": "models.NewAlertSuppressionWindowRequest()",
+          "requestType": "models.Alerts_API_AlertSuppressionWindowRequest",
+          "responseType": "models.Alerts_API_AlertSuppressionWindowDetailable",
+          "constructorExpr": "models.NewAlerts_API_AlertSuppressionWindowRequest()",
           "accessStyle": "method"
         }
       },
@@ -878,6 +942,27 @@
       "import": {
         "style": "passthroughId",
         "attribute": "id"
+      },
+      "accFixture": {
+        "values": [
+          {
+            "attr": "duration",
+            "hcl": "3600",
+            "wire": 3600
+          },
+          {
+            "attr": "repeat",
+            "hcl": "{ type = \"none\" }",
+            "wire": {
+              "type": "none"
+            }
+          },
+          {
+            "attr": "test_ids",
+            "hcl": "[]",
+            "wire": []
+          }
+        ]
       }
     }
   ]

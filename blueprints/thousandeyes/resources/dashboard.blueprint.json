@@ -87,13 +87,13 @@
             }
           },
           {
-            "name": "dashboard_id",
-            "goField": "DashboardID",
+            "name": "id",
+            "goField": "ID",
             "type": {
               "kind": "string"
             },
             "computedOptionalRequired": "computed",
-            "markdownDescription": "Identifier of a dashboard.",
+            "markdownDescription": "Identifier of a dashboard.\n\nNamed `id` because terraform-plugin-testing populates import state only from an attribute literally called id; the wire field stays dashboardId.",
             "wire": {
               "jsonPath": "dashboardId",
               "sdkField": "DashboardId",
@@ -136,9 +136,9 @@
             "wire": {
               "jsonPath": "dashboardModifiedDate",
               "sdkField": "DashboardModifiedDate",
-              "sdkGoType": "*string",
+              "sdkGoType": "*time.Time",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrTimeToFramework"
               },
               "skipExpand": true
             }
@@ -151,6 +151,9 @@
             },
             "computedOptionalRequired": "optional",
             "markdownDescription": "A text description of the dashboard's purpose and functionality. This information assists users in understanding the dashboard but isn't displayed when viewing a dashboard.",
+            "behaviour": {
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "description",
               "sdkField": "Description",
@@ -262,8 +265,19 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "When set to `true`, the defaultTimespan is used and overrides the widget's timespan. If set to `false`, the the widget's timespan is used.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "When set to `true`, the defaultTimespan is used and overrides the widget's timespan. If set to `false`, the the widget's timespan is used.\n\n<!-- probed:7.0.98-t1785769218413 -->\nObserved: the API assigns false when this is omitted.\nObserved: the API assigns false when this is omitted from an update.\nOmitting this field from an update resets it rather than preserving the stored value.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "false"
+              },
+              "returnedOnUpdate": true,
+              "updateDefault": {
+                "kind": "bool",
+                "raw": "false"
+              }
+            },
             "wire": {
               "jsonPath": "isGlobalOverride",
               "sdkField": "IsGlobalOverride",
@@ -300,8 +314,19 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "A dashboard can be viewed by other users in the account. If true, only the creator of the dashboard may view it. If false, all users in the same account may view it.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "A dashboard can be viewed by other users in the account. If true, only the creator of the dashboard may view it. If false, all users in the same account may view it.\n\n<!-- probed:7.0.98-t1785769218413 -->\nObserved: the API assigns false when this is omitted.\nObserved: the API assigns false when this is omitted from an update.\nOmitting this field from an update resets it rather than preserving the stored value.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "false"
+              },
+              "returnedOnUpdate": true,
+              "updateDefault": {
+                "kind": "bool",
+                "raw": "false"
+              }
+            },
             "wire": {
               "jsonPath": "isPrivate",
               "sdkField": "IsPrivate",
@@ -321,8 +346,7 @@
               "kind": "single_nested",
               "nestedObject": {
                 "goTypeName": "DashboardLayoutModel",
-                "sdkType": "models.DashboardsAPIDashboardLayoutable",
-                "constructorExpr": "models.NewDashboardsAPIDashboardLayout()",
+                "sdkType": "dashboards.DashboardLayout",
                 "attrTypesVar": "dashboardLayoutAttrTypes",
                 "objectTypeVar": "dashboardLayoutObjectType",
                 "expandFunc": "expandDashboardLayout",
@@ -335,8 +359,7 @@
                       "kind": "single_nested",
                       "nestedObject": {
                         "goTypeName": "DashboardLayoutDetailsModel",
-                        "sdkType": "models.DashboardsAPIDashboardLayoutDetailsable",
-                        "constructorExpr": "models.NewDashboardsAPIDashboardLayoutDetails()",
+                        "sdkType": "dashboards.DashboardLayoutDetails",
                         "attrTypesVar": "dashboardLayoutDetailsAttrTypes",
                         "objectTypeVar": "dashboardLayoutDetailsObjectType",
                         "expandFunc": "expandDashboardLayoutDetails",
@@ -349,8 +372,7 @@
                               "kind": "set_nested",
                               "nestedObject": {
                                 "goTypeName": "DashboardWidgetPositionModel",
-                                "sdkType": "models.DashboardsAPIWidgetPositionable",
-                                "constructorExpr": "models.NewDashboardsAPIWidgetPosition()",
+                                "sdkType": "dashboards.WidgetPosition",
                                 "attrTypesVar": "dashboardWidgetPositionAttrTypes",
                                 "objectTypeVar": "dashboardWidgetPositionObjectType",
                                 "expandFunc": "expandDashboardWidgetPositions",
@@ -367,12 +389,18 @@
                                     "wire": {
                                       "jsonPath": "h",
                                       "sdkField": "H",
-                                      "sdkGoType": "*int32",
+                                      "sdkGoType": "int",
                                       "expand": {
-                                        "func": "convert.FrameworkToPtrInt32"
+                                        "func": "convert.FrameworkToIntEnum",
+                                        "typeArgs": [
+                                          "int"
+                                        ]
                                       },
                                       "flatten": {
-                                        "func": "convert.PtrInt32ToFramework"
+                                        "func": "convert.IntEnumToFramework",
+                                        "typeArgs": [
+                                          "int"
+                                        ]
                                       }
                                     }
                                   },
@@ -386,7 +414,7 @@
                                     "markdownDescription": "Identifier of the widget this position applies to.",
                                     "wire": {
                                       "jsonPath": "id",
-                                      "sdkField": "Id",
+                                      "sdkField": "ID",
                                       "sdkGoType": "*string",
                                       "expand": {
                                         "func": "convert.FrameworkToPtrString"
@@ -407,12 +435,18 @@
                                     "wire": {
                                       "jsonPath": "w",
                                       "sdkField": "W",
-                                      "sdkGoType": "*int32",
+                                      "sdkGoType": "int",
                                       "expand": {
-                                        "func": "convert.FrameworkToPtrInt32"
+                                        "func": "convert.FrameworkToIntEnum",
+                                        "typeArgs": [
+                                          "int"
+                                        ]
                                       },
                                       "flatten": {
-                                        "func": "convert.PtrInt32ToFramework"
+                                        "func": "convert.IntEnumToFramework",
+                                        "typeArgs": [
+                                          "int"
+                                        ]
                                       }
                                     }
                                   },
@@ -427,12 +461,18 @@
                                     "wire": {
                                       "jsonPath": "x",
                                       "sdkField": "X",
-                                      "sdkGoType": "*int32",
+                                      "sdkGoType": "int",
                                       "expand": {
-                                        "func": "convert.FrameworkToPtrInt32"
+                                        "func": "convert.FrameworkToIntEnum",
+                                        "typeArgs": [
+                                          "int"
+                                        ]
                                       },
                                       "flatten": {
-                                        "func": "convert.PtrInt32ToFramework"
+                                        "func": "convert.IntEnumToFramework",
+                                        "typeArgs": [
+                                          "int"
+                                        ]
                                       }
                                     }
                                   },
@@ -447,12 +487,18 @@
                                     "wire": {
                                       "jsonPath": "y",
                                       "sdkField": "Y",
-                                      "sdkGoType": "*int32",
+                                      "sdkGoType": "int",
                                       "expand": {
-                                        "func": "convert.FrameworkToPtrInt32"
+                                        "func": "convert.FrameworkToIntEnum",
+                                        "typeArgs": [
+                                          "int"
+                                        ]
                                       },
                                       "flatten": {
-                                        "func": "convert.PtrInt32ToFramework"
+                                        "func": "convert.IntEnumToFramework",
+                                        "typeArgs": [
+                                          "int"
+                                        ]
                                       }
                                     }
                                   }
@@ -464,7 +510,7 @@
                             "wire": {
                               "jsonPath": "widgetPositioning",
                               "sdkField": "WidgetPositioning",
-                              "sdkGoType": "[]models.DashboardsAPIWidgetPositionable",
+                              "sdkGoType": "[]dashboards.WidgetPosition",
                               "expand": {
                                 "func": "expandDashboardWidgetPositions",
                                 "needsCtx": true,
@@ -485,16 +531,18 @@
                     "wire": {
                       "jsonPath": "details",
                       "sdkField": "Details",
-                      "sdkGoType": "models.DashboardsAPIDashboardLayoutDetailsable",
+                      "sdkGoType": "dashboards.DashboardLayoutDetails",
                       "expand": {
                         "func": "expandDashboardLayoutDetails",
                         "needsCtx": true,
-                        "returnsError": true
+                        "returnsError": true,
+                        "deref": true
                       },
                       "flatten": {
                         "func": "flattenDashboardLayoutDetails",
                         "needsCtx": true,
-                        "returnsError": true
+                        "returnsError": true,
+                        "takesAddress": true
                       }
                     }
                   },
@@ -508,7 +556,7 @@
                     "markdownDescription": "Unique identifier for the layout.",
                     "wire": {
                       "jsonPath": "layoutId",
-                      "sdkField": "LayoutId",
+                      "sdkField": "LayoutID",
                       "sdkGoType": "*string",
                       "expand": {
                         "func": "convert.FrameworkToPtrString"
@@ -529,23 +577,30 @@
                       ]
                     },
                     "computedOptionalRequired": "required",
-                    "markdownDescription": "Type of the layout.",
+                    "markdownDescription": "Type of the layout.\n\n<!-- probed:7.0.98-t1785769218413 -->\nValues accepted here: `grid`, `vertical`.\nObserved: the API assigns \"vertical\" when this is omitted.\nThe API accepted a value from outside the documented set, so no OneOf validator is generated for this attribute.\n<!-- /probed -->",
+                    "behaviour": {
+                      "serverDefault": {
+                        "kind": "",
+                        "raw": "\"vertical\""
+                      },
+                      "acceptedValues": [
+                        "grid",
+                        "vertical"
+                      ],
+                      "valuesClosed": false
+                    },
                     "wire": {
                       "jsonPath": "type",
-                      "sdkField": "TypeEscaped",
-                      "sdkGoType": "*models.DashboardsAPIDashboardLayoutType",
+                      "sdkField": "Type",
+                      "sdkGoType": "dashboards.DashboardLayoutType",
                       "expand": {
-                        "func": "convert.FrameworkToKiotaEnum",
+                        "func": "convert.FrameworkToEnum",
                         "typeArgs": [
-                          "models.DashboardsAPIDashboardLayoutType"
-                        ],
-                        "returnsError": true,
-                        "extraArgs": [
-                          "models.ParseDashboardsAPIDashboardLayoutType"
+                          "dashboards.DashboardLayoutType"
                         ]
                       },
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       }
                     }
                   }
@@ -553,11 +608,11 @@
               }
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Dashboard layout configuration for arranging widgets.",
+            "markdownDescription": "Dashboard layout configuration for arranging widgets.\n\nDropped in v1: layout positions widgets, and widgets are the stated v1 drop -- and the SDK's value-typed Layout carries an always-serialised empty type the API refuses whenever the struct travels unset (live acceptance, 2026-08-03).",
             "wire": {
               "jsonPath": "layout",
               "sdkField": "Layout",
-              "sdkGoType": "models.DashboardsAPIDashboardLayoutable",
+              "sdkGoType": "*dashboards.DashboardLayout",
               "expand": {
                 "func": "expandDashboardLayout",
                 "needsCtx": true,
@@ -568,7 +623,8 @@
                 "needsCtx": true,
                 "returnsError": true
               }
-            }
+            },
+            "drop": true
           },
           {
             "name": "migrated_report",
@@ -628,49 +684,16 @@
             }
           },
           {
-            "name": "refresh_rate",
-            "goField": "RefreshRate",
-            "type": {
-              "kind": "string",
-              "allowedValues": [
-                "off",
-                "2m",
-                "5m",
-                "10m",
-                "15m",
-                "30m",
-                "60m"
-              ]
-            },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Auto-refresh interval for a dashboard. Use `off` to disable auto-refresh.",
-            "wire": {
-              "jsonPath": "refreshRate",
-              "sdkField": "RefreshRate",
-              "sdkGoType": "*models.DashboardsAPIRefreshRate",
-              "expand": {
-                "func": "convert.FrameworkToKiotaEnum",
-                "typeArgs": [
-                  "models.DashboardsAPIRefreshRate"
-                ],
-                "returnsError": true,
-                "extraArgs": [
-                  "models.ParseDashboardsAPIRefreshRate"
-                ]
-              },
-              "flatten": {
-                "func": "convert.KiotaEnumToFramework"
-              }
-            }
-          },
-          {
             "name": "title",
             "goField": "Title",
             "type": {
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Title of a dashboard.",
+            "markdownDescription": "Title of a dashboard.\n\nMarked required-by-API by curation: title is the sweeper's field, so the probe cannot test omitting it, and a titleless dashboard is unaddressable in the UI either way.",
+            "behaviour": {
+              "requiredByApi": true
+            },
             "wire": {
               "jsonPath": "title",
               "sdkField": "Title",
@@ -690,12 +713,10 @@
         "service": {
           "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
           "alias": "models",
-          "typeName": "",
           "accessor": "r.client"
         },
         "create": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Dashboards"
@@ -717,13 +738,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.APIDashboardable",
+          "resultType": "models.Dashboards_API_Dashboardable",
           "httpMethod": "POST",
           "pathTemplate": "/dashboards"
         },
         "read": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Dashboards"
@@ -751,13 +771,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.APIDashboardable",
+          "resultType": "models.Dashboards_API_ApiDashboardable",
           "httpMethod": "GET",
           "pathTemplate": "/dashboards/{dashboardId}"
         },
         "update": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Dashboards"
@@ -788,13 +807,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.APIDashboardable",
+          "resultType": "models.Dashboards_API_Dashboardable",
           "httpMethod": "PUT",
           "pathTemplate": "/dashboards/{dashboardId}"
         },
         "delete": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Dashboards"
@@ -828,13 +846,13 @@
         "id": {
           "attribute": "id",
           "goField": "ID",
-          "fromCreate": "created.GetId()",
+          "fromCreate": "created.GetDashboardId()",
           "fromCreateIsPointer": true
         },
         "body": {
-          "requestType": "models.Dashboard",
-          "responseType": "models.APIDashboardable",
-          "constructorExpr": "models.NewDashboard()",
+          "requestType": "models.Dashboards_API_Dashboard",
+          "responseType": "models.Dashboards_API_ApiDashboardable",
+          "constructorExpr": "models.NewDashboards_API_Dashboard()",
           "accessStyle": "method"
         }
       },

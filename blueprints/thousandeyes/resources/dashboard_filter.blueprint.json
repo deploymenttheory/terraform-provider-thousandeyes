@@ -2,12 +2,12 @@
   "formatVersion": "4",
   "resources": [
     {
-      "key": "dashboards_filter",
-      "name": "dashboards_filter",
-      "goPackage": "dashboards_filter",
-      "goPackageAlias": "v7DashboardsFilter",
-      "goTypeName": "DashboardsFilterResource",
-      "modelTypeName": "DashboardsFilterResourceModel",
+      "key": "dashboard_filter",
+      "name": "dashboard_filter",
+      "goPackage": "dashboard_filter",
+      "goPackageAlias": "v7DashboardFilter",
+      "goTypeName": "DashboardFilterResource",
+      "modelTypeName": "DashboardFilterResourceModel",
       "serviceGroup": "dashboards_filters",
       "apiVersionDir": "v7",
       "schema": {
@@ -36,13 +36,12 @@
             "type": {
               "kind": "set_nested",
               "nestedObject": {
-                "goTypeName": "DashboardsFilterAPIContextFiltersModel",
-                "sdkType": "models.DashboardsAPIApiContextFiltersable",
-                "constructorExpr": "models.NewDashboardsAPIApiContextFilters()",
-                "attrTypesVar": "dashboardsFilterAPIContextFiltersAttrTypes",
-                "objectTypeVar": "dashboardsFilterAPIContextFiltersObjectType",
-                "expandFunc": "expandDashboardsFilterAPIContextFilterses",
-                "flattenFunc": "flattenDashboardsFilterAPIContextFilterses",
+                "goTypeName": "DashboardFilterApiContextFiltersModel",
+                "sdkType": "models.Dashboards_API_ApiDataSourceFiltersable",
+                "attrTypesVar": "dashboardsFilterApiContextFiltersAttrTypes",
+                "objectTypeVar": "dashboardsFilterApiContextFiltersObjectType",
+                "expandFunc": "expandDashboardFilterApiContextFilterses",
+                "flattenFunc": "flattenDashboardFilterApiContextFilterses",
                 "attributes": [
                   {
                     "name": "data_source_id",
@@ -51,7 +50,15 @@
                       "kind": "string"
                     },
                     "computedOptionalRequired": "required",
-                    "markdownDescription": "Types of data source.",
+                    "markdownDescription": "Types of data source.\n\n<!-- probed:7.0.98-t1785769235108 -->\nObserved: the API assigns \"VIRTUAL_AGENT\" when this is omitted.\n<!-- /probed -->",
+                    "behaviour": {
+                      "serverDefault": {
+                        "kind": "",
+                        "raw": "\"VIRTUAL_AGENT\""
+                      },
+                      "returnedOnRead": true,
+                      "returnedOnCreate": true
+                    },
                     "wire": {
                       "jsonPath": "dataSourceId",
                       "sdkField": "DataSourceId",
@@ -70,13 +77,12 @@
                     "type": {
                       "kind": "set_nested",
                       "nestedObject": {
-                        "goTypeName": "DashboardsFilterAPIDataSourceFilterModel",
-                        "sdkType": "models.DashboardsAPIApiDataSourceFilterable",
-                        "constructorExpr": "models.NewDashboardsAPIApiDataSourceFilter()",
-                        "attrTypesVar": "dashboardsFilterAPIDataSourceFilterAttrTypes",
-                        "objectTypeVar": "dashboardsFilterAPIDataSourceFilterObjectType",
-                        "expandFunc": "expandDashboardsFilterAPIDataSourceFilters",
-                        "flattenFunc": "flattenDashboardsFilterAPIDataSourceFilters",
+                        "goTypeName": "DashboardFilterApiDataSourceFilterModel",
+                        "sdkType": "models.Dashboards_API_ApiDataSourceFilterable",
+                        "attrTypesVar": "dashboardsFilterApiDataSourceFilterAttrTypes",
+                        "objectTypeVar": "dashboardsFilterApiDataSourceFilterObjectType",
+                        "expandFunc": "expandDashboardFilterApiDataSourceFilters",
+                        "flattenFunc": "flattenDashboardFilterApiDataSourceFilters",
                         "attributes": [
                           {
                             "name": "filter_id",
@@ -85,7 +91,15 @@
                               "kind": "string"
                             },
                             "computedOptionalRequired": "required",
-                            "markdownDescription": "Data source property to filter by.",
+                            "markdownDescription": "Data source property to filter by.\n\n<!-- probed:7.0.98-t1785769235108 -->\nObserved: the API assigns \"TEST\" when this is omitted.\n<!-- /probed -->",
+                            "behaviour": {
+                              "serverDefault": {
+                                "kind": "",
+                                "raw": "\"TEST\""
+                              },
+                              "returnedOnRead": true,
+                              "returnedOnCreate": true
+                            },
                             "wire": {
                               "jsonPath": "filterId",
                               "sdkField": "FilterId",
@@ -109,6 +123,10 @@
                             },
                             "computedOptionalRequired": "required",
                             "markdownDescription": "Dashboard metric associated with the filter property.",
+                            "behaviour": {
+                              "returnedOnRead": true,
+                              "returnedOnCreate": true
+                            },
                             "wire": {
                               "jsonPath": "metricIds",
                               "sdkField": "MetricIds",
@@ -136,6 +154,10 @@
                             },
                             "computedOptionalRequired": "required",
                             "markdownDescription": "Values to filter by based on the specified `filterId`.",
+                            "behaviour": {
+                              "returnedOnRead": true,
+                              "returnedOnCreate": true
+                            },
                             "wire": {
                               "jsonPath": "values",
                               "sdkField": "Values",
@@ -152,43 +174,55 @@
                               }
                             }
                           }
-                        ]
+                        ],
+                        "constructorExpr": "models.NewDashboards_API_ApiDataSourceFilter()"
                       }
                     },
                     "computedOptionalRequired": "required",
                     "markdownDescription": "List of different filter properties.",
+                    "behaviour": {
+                      "returnedOnRead": true,
+                      "returnedOnCreate": true
+                    },
                     "wire": {
                       "jsonPath": "filters",
                       "sdkField": "Filters",
-                      "sdkGoType": "[]models.DashboardsAPIApiDataSourceFilterable",
+                      "sdkGoType": "[]models.Dashboards_API_ApiDataSourceFilterable",
                       "expand": {
-                        "func": "expandDashboardsFilterAPIDataSourceFilters",
+                        "func": "expandDashboardFilterApiDataSourceFilters",
                         "needsCtx": true,
                         "returnsError": true
                       },
                       "flatten": {
-                        "func": "flattenDashboardsFilterAPIDataSourceFilters",
+                        "func": "flattenDashboardFilterApiDataSourceFilters",
                         "needsCtx": true,
                         "returnsError": true
                       }
                     }
                   }
-                ]
+                ],
+                "constructorExpr": "models.NewDashboards_API_ApiDataSourceFilters()"
               }
             },
             "computedOptionalRequired": "required",
-            "markdownDescription": "List of filters to be applied to a dashboard.",
+            "markdownDescription": "List of filters to be applied to a dashboard.\n\n<!-- probed:7.0.98-t1785769235108 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnRead": true,
+              "returnedOnCreate": true,
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "context",
               "sdkField": "Context",
-              "sdkGoType": "[]models.DashboardsAPIApiContextFiltersable",
+              "sdkGoType": "[]models.Dashboards_API_ApiDataSourceFiltersable",
               "expand": {
-                "func": "expandDashboardsFilterAPIContextFilterses",
+                "func": "expandDashboardFilterApiContextFilterses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "flatten": {
-                "func": "flattenDashboardsFilterAPIContextFilterses",
+                "func": "flattenDashboardFilterApiContextFilterses",
                 "needsCtx": true,
                 "returnsError": true
               }
@@ -200,13 +234,12 @@
             "type": {
               "kind": "single_nested",
               "nestedObject": {
-                "goTypeName": "DashboardsFilterAPIDashboardFilterUserDetailsModel",
-                "sdkType": "models.DashboardsAPIApiDashboardFilterUserDetailsable",
-                "constructorExpr": "models.NewDashboardsAPIApiDashboardFilterUserDetails()",
-                "attrTypesVar": "dashboardsFilterAPIDashboardFilterUserDetailsAttrTypes",
-                "objectTypeVar": "dashboardsFilterAPIDashboardFilterUserDetailsObjectType",
-                "expandFunc": "expandDashboardsFilterAPIDashboardFilterUserDetails",
-                "flattenFunc": "flattenDashboardsFilterAPIDashboardFilterUserDetails",
+                "goTypeName": "DashboardFilterApiDashboardFilterUserDetailsModel",
+                "sdkType": "models.Dashboards_API_ApiDashboardFilterUserDetailsable",
+                "attrTypesVar": "dashboardsFilterApiDashboardFilterUserDetailsAttrTypes",
+                "objectTypeVar": "dashboardsFilterApiDashboardFilterUserDetailsObjectType",
+                "expandFunc": "expandDashboardFilterApiDashboardFilterUserDetails",
+                "flattenFunc": "flattenDashboardFilterApiDashboardFilterUserDetails",
                 "attributes": [
                   {
                     "name": "name",
@@ -221,7 +254,7 @@
                       "sdkField": "Name",
                       "sdkGoType": "*string",
                       "flatten": {
-                        "func": "convert.PtrStringToFramework"
+                        "func": "convert.PtrEnumToFramework"
                       },
                       "skipExpand": true
                     }
@@ -244,7 +277,8 @@
                       "skipExpand": true
                     }
                   }
-                ]
+                ],
+                "constructorExpr": "models.NewDashboards_API_ApiDashboardFilterUserDetails()"
               }
             },
             "computedOptionalRequired": "computed",
@@ -252,9 +286,9 @@
             "wire": {
               "jsonPath": "createdBy",
               "sdkField": "CreatedBy",
-              "sdkGoType": "models.DashboardsAPIApiDashboardFilterUserDetailsable",
+              "sdkGoType": "models.Dashboards_API_ApiDashboardFilterUserDetailsable",
               "flatten": {
-                "func": "flattenDashboardsFilterAPIDashboardFilterUserDetails",
+                "func": "flattenDashboardFilterApiDashboardFilterUserDetails",
                 "needsCtx": true,
                 "returnsError": true
               },
@@ -275,9 +309,9 @@
             "wire": {
               "jsonPath": "createdDate",
               "sdkField": "CreatedDate",
-              "sdkGoType": "*string",
+              "sdkGoType": "*time.Time",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrTimeToFramework"
               },
               "skipExpand": true
             }
@@ -289,7 +323,14 @@
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "An optional description of the filter.",
+            "markdownDescription": "An optional description of the filter.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": false,
+              "returnedOnRead": true,
+              "returnedOnCreate": true,
+              "returnedOnUpdate": true,
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "description",
               "sdkField": "Description",
@@ -298,7 +339,7 @@
                 "func": "convert.FrameworkToPtrString"
               },
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               }
             }
           },
@@ -326,13 +367,12 @@
             "type": {
               "kind": "single_nested",
               "nestedObject": {
-                "goTypeName": "DashboardsFilterAPIDashboardFilterUserDetailsModel2",
-                "sdkType": "models.DashboardsAPIApiDashboardFilterUserDetailsable",
-                "constructorExpr": "models.NewDashboardsAPIApiDashboardFilterUserDetails()",
-                "attrTypesVar": "dashboardsFilterAPIDashboardFilterUserDetailsAttrTypes2",
-                "objectTypeVar": "dashboardsFilterAPIDashboardFilterUserDetailsObjectType2",
-                "expandFunc": "expandDashboardsFilterAPIDashboardFilterUserDetails2",
-                "flattenFunc": "flattenDashboardsFilterAPIDashboardFilterUserDetails2",
+                "goTypeName": "DashboardFilterApiDashboardFilterUserDetailsModel2",
+                "sdkType": "models.Dashboards_API_ApiDashboardFilterUserDetailsable",
+                "attrTypesVar": "dashboardsFilterApiDashboardFilterUserDetailsAttrTypes2",
+                "objectTypeVar": "dashboardsFilterApiDashboardFilterUserDetailsObjectType2",
+                "expandFunc": "expandDashboardFilterApiDashboardFilterUserDetails2",
+                "flattenFunc": "flattenDashboardFilterApiDashboardFilterUserDetails2",
                 "attributes": [
                   {
                     "name": "name",
@@ -347,7 +387,7 @@
                       "sdkField": "Name",
                       "sdkGoType": "*string",
                       "flatten": {
-                        "func": "convert.PtrStringToFramework"
+                        "func": "convert.PtrEnumToFramework"
                       },
                       "skipExpand": true
                     }
@@ -370,7 +410,8 @@
                       "skipExpand": true
                     }
                   }
-                ]
+                ],
+                "constructorExpr": "models.NewDashboards_API_ApiDashboardFilterUserDetails()"
               }
             },
             "computedOptionalRequired": "computed",
@@ -378,9 +419,9 @@
             "wire": {
               "jsonPath": "modifiedBy",
               "sdkField": "ModifiedBy",
-              "sdkGoType": "models.DashboardsAPIApiDashboardFilterUserDetailsable",
+              "sdkGoType": "models.Dashboards_API_ApiDashboardFilterUserDetailsable",
               "flatten": {
-                "func": "flattenDashboardsFilterAPIDashboardFilterUserDetails2",
+                "func": "flattenDashboardFilterApiDashboardFilterUserDetails2",
                 "needsCtx": true,
                 "returnsError": true
               },
@@ -401,9 +442,9 @@
             "wire": {
               "jsonPath": "modifiedDate",
               "sdkField": "ModifiedDate",
-              "sdkGoType": "*string",
+              "sdkGoType": "*time.Time",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrTimeToFramework"
               },
               "skipExpand": true
             }
@@ -416,6 +457,10 @@
             },
             "computedOptionalRequired": "required",
             "markdownDescription": "The name of the dashboard filter, this must be unique.",
+            "behaviour": {
+              "returnedOnRead": true,
+              "returnedOnCreate": true
+            },
             "wire": {
               "jsonPath": "name",
               "sdkField": "Name",
@@ -424,7 +469,7 @@
                 "func": "convert.FrameworkToPtrString"
               },
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               }
             }
           }
@@ -435,12 +480,10 @@
         "service": {
           "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
           "alias": "models",
-          "typeName": "",
           "accessor": "r.client"
         },
         "create": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Dashboards"
@@ -465,13 +508,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.APIContextFilterResponseable",
+          "resultType": "models.Dashboards_API_ApiContextFilterResponseable",
           "httpMethod": "POST",
           "pathTemplate": "/dashboards/filters"
         },
         "read": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Dashboards"
@@ -502,13 +544,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.APIContextFilterResponseable",
+          "resultType": "models.Dashboards_API_ApiContextFilterResponseable",
           "httpMethod": "GET",
           "pathTemplate": "/dashboards/filters/{id}"
         },
         "update": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Dashboards"
@@ -542,13 +583,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.APIContextFilterResponseable",
+          "resultType": "models.Dashboards_API_ApiContextFilterResponseable",
           "httpMethod": "PUT",
           "pathTemplate": "/dashboards/filters/{id}"
         },
         "delete": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Dashboards"
@@ -589,9 +629,9 @@
           "fromCreateIsPointer": true
         },
         "body": {
-          "requestType": "models.APIContextFilterRequest",
-          "responseType": "models.APIContextFilterResponseable",
-          "constructorExpr": "models.NewAPIContextFilterRequest()",
+          "requestType": "models.Dashboards_API_ApiContextFilterRequest",
+          "responseType": "models.Dashboards_API_ApiContextFilterResponseable",
+          "constructorExpr": "models.NewDashboards_API_ApiContextFilterRequest()",
           "accessStyle": "method"
         }
       },
@@ -604,6 +644,28 @@
       "import": {
         "style": "passthroughId",
         "attribute": "id"
+      },
+      "accFixture": {
+        "values": [
+          {
+            "attr": "context",
+            "hcl": "[{ data_source_id = \"VIRTUAL_AGENT\", filters = [{ filter_id = \"TEST\", metric_ids = [], values = [\"281474976977085\"] }] }]",
+            "wire": [
+              {
+                "dataSourceId": "VIRTUAL_AGENT",
+                "filters": [
+                  {
+                    "filterId": "TEST",
+                    "metricIds": [],
+                    "values": [
+                      "281474976977085"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       }
     }
   ]

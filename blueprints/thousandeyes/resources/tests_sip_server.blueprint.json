@@ -19,8 +19,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsSIPServerAlertRuleModel",
-                "sdkType": "models.TestsAPIAlertRuleable",
-                "constructorExpr": "models.NewTestsAPIAlertRule()",
+                "sdkType": "sip_server_tests.AlertRule",
                 "attrTypesVar": "testsSIPServerAlertRuleAttrTypes",
                 "objectTypeVar": "testsSIPServerAlertRuleObjectType",
                 "expandFunc": "expandTestsSIPServerAlertRules",
@@ -66,19 +65,15 @@
                     "wire": {
                       "jsonPath": "alertType",
                       "sdkField": "AlertType",
-                      "sdkGoType": "*models.TestsAPIAlertType",
+                      "sdkGoType": "sip_server_tests.AlertType",
                       "expand": {
-                        "func": "convert.FrameworkToKiotaEnum",
+                        "func": "convert.FrameworkToEnum",
                         "typeArgs": [
-                          "models.TestsAPIAlertType"
-                        ],
-                        "returnsError": true,
-                        "extraArgs": [
-                          "models.ParseTestsAPIAlertType"
+                          "sip_server_tests.AlertType"
                         ]
                       },
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       }
                     }
                   },
@@ -98,19 +93,15 @@
                     "wire": {
                       "jsonPath": "direction",
                       "sdkField": "Direction",
-                      "sdkGoType": "*models.TestsAPIAlertDirection",
+                      "sdkGoType": "sip_server_tests.AlertDirection",
                       "expand": {
-                        "func": "convert.FrameworkToKiotaEnum",
+                        "func": "convert.FrameworkToEnum",
                         "typeArgs": [
-                          "models.TestsAPIAlertDirection"
-                        ],
-                        "returnsError": true,
-                        "extraArgs": [
-                          "models.ParseTestsAPIAlertDirection"
+                          "sip_server_tests.AlertDirection"
                         ]
                       },
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       }
                     }
                   },
@@ -161,9 +152,9 @@
                     "wire": {
                       "jsonPath": "minimumSources",
                       "sdkField": "MinimumSources",
-                      "sdkGoType": "*int32",
+                      "sdkGoType": "*int64",
                       "flatten": {
-                        "func": "convert.PtrInt32ToFramework"
+                        "func": "convert.PtrInt64ToFramework"
                       },
                       "skipExpand": true
                     }
@@ -179,9 +170,9 @@
                     "wire": {
                       "jsonPath": "minimumSourcesPct",
                       "sdkField": "MinimumSourcesPct",
-                      "sdkGoType": "*int32",
+                      "sdkGoType": "*int64",
                       "flatten": {
-                        "func": "convert.PtrInt32ToFramework"
+                        "func": "convert.PtrInt64ToFramework"
                       },
                       "skipExpand": true
                     }
@@ -202,9 +193,9 @@
                     "wire": {
                       "jsonPath": "roundsViolatingMode",
                       "sdkField": "RoundsViolatingMode",
-                      "sdkGoType": "*models.TestsAPIAlertRoundsViolationMode",
+                      "sdkGoType": "sip_server_tests.AlertRoundsViolationMode",
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       },
                       "skipExpand": true
                     }
@@ -216,13 +207,13 @@
                       "kind": "int64"
                     },
                     "computedOptionalRequired": "computed",
-                    "markdownDescription": "Specifies the divisor (y value) for the “X of Y times” condition.",
+                    "markdownDescription": "Specifies the divisor (y value) for the \u201cX of Y times\u201d condition.",
                     "wire": {
                       "jsonPath": "roundsViolatingOutOf",
                       "sdkField": "RoundsViolatingOutOf",
-                      "sdkGoType": "*int32",
+                      "sdkGoType": "*int64",
                       "flatten": {
-                        "func": "convert.PtrInt32ToFramework"
+                        "func": "convert.PtrInt64ToFramework"
                       },
                       "skipExpand": true
                     }
@@ -234,13 +225,13 @@
                       "kind": "int64"
                     },
                     "computedOptionalRequired": "computed",
-                    "markdownDescription": "Specifies the numerator (x value) for the “X of Y times” condition",
+                    "markdownDescription": "Specifies the numerator (x value) for the \u201cX of Y times\u201d condition",
                     "wire": {
                       "jsonPath": "roundsViolatingRequired",
                       "sdkField": "RoundsViolatingRequired",
-                      "sdkGoType": "*int32",
+                      "sdkGoType": "*int64",
                       "flatten": {
-                        "func": "convert.PtrInt32ToFramework"
+                        "func": "convert.PtrInt64ToFramework"
                       },
                       "skipExpand": true
                     }
@@ -255,7 +246,7 @@
                     "markdownDescription": "Unique ID of the rule.",
                     "wire": {
                       "jsonPath": "ruleId",
-                      "sdkField": "RuleId",
+                      "sdkField": "RuleID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -297,9 +288,9 @@
                     "wire": {
                       "jsonPath": "sensitivityLevel",
                       "sdkField": "SensitivityLevel",
-                      "sdkGoType": "*models.TestsAPISensitivityLevel",
+                      "sdkGoType": "sip_server_tests.SensitivityLevel",
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       },
                       "skipExpand": true
                     }
@@ -322,19 +313,15 @@
                     "wire": {
                       "jsonPath": "severity",
                       "sdkField": "Severity",
-                      "sdkGoType": "*models.TestsAPISeverity",
+                      "sdkGoType": "sip_server_tests.Severity",
                       "expand": {
-                        "func": "convert.FrameworkToKiotaEnum",
+                        "func": "convert.FrameworkToEnum",
                         "typeArgs": [
-                          "models.TestsAPISeverity"
-                        ],
-                        "returnsError": true,
-                        "extraArgs": [
-                          "models.ParseTestsAPISeverity"
+                          "sip_server_tests.Severity"
                         ]
                       },
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       }
                     }
                   }
@@ -346,7 +333,7 @@
             "wire": {
               "jsonPath": "alertRules",
               "sdkField": "AlertRules",
-              "sdkGoType": "[]models.TestsAPIAlertRuleable",
+              "sdkGoType": "[]sip_server_tests.AlertRule",
               "expand": {
                 "func": "expandTestsSIPServerAlertRules",
                 "needsCtx": true,
@@ -357,7 +344,8 @@
                 "needsCtx": true,
                 "returnsError": true
               }
-            }
+            },
+            "drop": true
           },
           {
             "name": "alerts_enabled",
@@ -404,7 +392,10 @@
               "kind": "bool"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Set to `true` to enable bgp measurements.",
+            "markdownDescription": "Set to `true` to enable bgp measurements.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "bgpMeasurements",
               "sdkField": "BgpMeasurements",
@@ -430,7 +421,7 @@
               "sdkField": "CreatedBy",
               "sdkGoType": "*string",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               },
               "skipExpand": true
             }
@@ -449,9 +440,9 @@
             "wire": {
               "jsonPath": "createdDate",
               "sdkField": "CreatedDate",
-              "sdkGoType": "*string",
+              "sdkGoType": "*time.Time",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrTimeToFramework"
               },
               "skipExpand": true
             }
@@ -483,7 +474,10 @@
               "kind": "bool"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Test is enabled.",
+            "markdownDescription": "Test is enabled.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "enabled",
               "sdkField": "Enabled",
@@ -507,16 +501,19 @@
               }
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Sets packets rate sent to measure the network in packets per second.",
+            "markdownDescription": "Sets packets rate sent to measure the network in packets per second.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "fixedPacketRate",
               "sdkField": "FixedPacketRate",
               "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToPtrInt32"
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.PtrInt32ToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -524,7 +521,7 @@
             "name": "interval",
             "goField": "Interval",
             "type": {
-              "kind": "string",
+              "kind": "int64",
               "allowedValues": [
                 "60",
                 "120",
@@ -536,23 +533,19 @@
               ]
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Interval between test runs in seconds.",
+            "markdownDescription": "Interval between test runs in seconds.\n\nDocumented intervals, in seconds: `60`, `120`, `300`, `600`, `900`, `1800`, `3600`.\n\nThe request carries this field unconditionally, so omitting it sends zero, which the API refuses (the 2026-08-03 scheduled acceptance run).",
+            "behaviour": {
+              "requiredByApi": true
+            },
             "wire": {
               "jsonPath": "interval",
               "sdkField": "Interval",
-              "sdkGoType": "*models.TestsAPITestInterval",
+              "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToKiotaEnum",
-                "typeArgs": [
-                  "models.TestsAPITestInterval"
-                ],
-                "returnsError": true,
-                "extraArgs": [
-                  "models.ParseTestsAPITestInterval"
-                ]
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -569,23 +562,26 @@
               ]
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "IP version policy. Overrides the IPv6 policy configured at the agent level.",
+            "markdownDescription": "IP version policy. Overrides the IPv6 policy configured at the agent level.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "ipv6Policy",
               "sdkField": "Ipv6Policy",
-              "sdkGoType": "*models.TestsAPITestIpv6Policy",
+              "sdkGoType": "*models.Tests_API_TestIpv6Policy",
               "expand": {
                 "func": "convert.FrameworkToKiotaEnum",
                 "typeArgs": [
-                  "models.TestsAPITestIpv6Policy"
+                  "models.Tests_API_TestIpv6Policy"
                 ],
-                "returnsError": true,
                 "extraArgs": [
-                  "models.ParseTestsAPITestIpv6Policy"
-                ]
+                  "models.ParseTests_API_TestIpv6Policy"
+                ],
+                "returnsError": true
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               }
             }
           },
@@ -596,8 +592,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsSIPServerTestLabelsModel",
-                "sdkType": "models.TestsAPITestLabelsable",
-                "constructorExpr": "models.NewTestsAPITestLabels()",
+                "sdkType": "sip_server_tests.TestLabels",
                 "attrTypesVar": "testsSIPServerTestLabelsAttrTypes",
                 "objectTypeVar": "testsSIPServerTestLabelsObjectType",
                 "expandFunc": "expandTestsSIPServerTestLabelses",
@@ -631,7 +626,7 @@
                     "markdownDescription": "Label ID.",
                     "wire": {
                       "jsonPath": "labelId",
-                      "sdkField": "LabelId",
+                      "sdkField": "LabelID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -665,14 +660,15 @@
             "wire": {
               "jsonPath": "labels",
               "sdkField": "Labels",
-              "sdkGoType": "[]models.TestsAPITestLabelsable",
+              "sdkGoType": "[]sip_server_tests.TestLabels",
               "flatten": {
                 "func": "flattenTestsSIPServerTestLabelses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            }
+            },
+            "drop": true
           },
           {
             "name": "live_share",
@@ -724,9 +720,9 @@
             "wire": {
               "jsonPath": "modifiedDate",
               "sdkField": "ModifiedDate",
-              "sdkGoType": "*string",
+              "sdkGoType": "*time.Time",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrTimeToFramework"
               },
               "skipExpand": true
             }
@@ -738,8 +734,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsSIPServerTestBGPMonitorsModel",
-                "sdkType": "models.TestsAPITestBgpMonitorsable",
-                "constructorExpr": "models.NewTestsAPITestBgpMonitors()",
+                "sdkType": "sip_server_tests.TestBgpMonitors",
                 "attrTypesVar": "testsSIPServerTestBGPMonitorsAttrTypes",
                 "objectTypeVar": "testsSIPServerTestBGPMonitorsObjectType",
                 "expandFunc": "expandTestsSIPServerTestBGPMonitorses",
@@ -755,7 +750,7 @@
                     "markdownDescription": "Country ID",
                     "wire": {
                       "jsonPath": "countryId",
-                      "sdkField": "CountryId",
+                      "sdkField": "CountryID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -773,7 +768,7 @@
                     "markdownDescription": "IP address of the BGP monitor",
                     "wire": {
                       "jsonPath": "ipAddress",
-                      "sdkField": "IpAddress",
+                      "sdkField": "IPAddress",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -791,7 +786,7 @@
                     "markdownDescription": "BGP monitor ID",
                     "wire": {
                       "jsonPath": "monitorId",
-                      "sdkField": "MonitorId",
+                      "sdkField": "MonitorID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -832,9 +827,9 @@
                     "wire": {
                       "jsonPath": "monitorType",
                       "sdkField": "MonitorType",
-                      "sdkGoType": "*models.TestsAPIMonitorType",
+                      "sdkGoType": "sip_server_tests.MonitorType",
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       },
                       "skipExpand": true
                     }
@@ -865,14 +860,15 @@
             "wire": {
               "jsonPath": "monitors",
               "sdkField": "Monitors",
-              "sdkGoType": "[]models.TestsAPITestBgpMonitorsable",
+              "sdkGoType": "[]sip_server_tests.TestBgpMonitors",
               "flatten": {
                 "func": "flattenTestsSIPServerTestBGPMonitorses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            }
+            },
+            "drop": true
           },
           {
             "name": "mtu_measurements",
@@ -881,7 +877,10 @@
               "kind": "bool"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Set `true` to measure MTU sizes on network from agents to the target.",
+            "markdownDescription": "Set `true` to measure MTU sizes on network from agents to the target.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "mtuMeasurements",
               "sdkField": "MtuMeasurements",
@@ -901,7 +900,10 @@
               "kind": "bool"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Enable or disable network measurements. Set to true to enable or false to disable network measurements.",
+            "markdownDescription": "Enable or disable network measurements. Set to true to enable or false to disable network measurements.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "networkMeasurements",
               "sdkField": "NetworkMeasurements",
@@ -925,16 +927,19 @@
               }
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Number of path traces executed by the agent.",
+            "markdownDescription": "Number of path traces executed by the agent.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "numPathTraces",
               "sdkField": "NumPathTraces",
               "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToPtrInt32"
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.PtrInt32ToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -987,23 +992,26 @@
               ]
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Select `inSession` to perform the path trace within a TCP session.",
+            "markdownDescription": "Select `inSession` to perform the path trace within a TCP session.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "pathTraceMode",
               "sdkField": "PathTraceMode",
-              "sdkGoType": "*models.TestsAPITestPathTraceMode",
+              "sdkGoType": "*models.Tests_API_TestPathTraceMode",
               "expand": {
                 "func": "convert.FrameworkToKiotaEnum",
                 "typeArgs": [
-                  "models.TestsAPITestPathTraceMode"
+                  "models.Tests_API_TestPathTraceMode"
                 ],
-                "returnsError": true,
                 "extraArgs": [
-                  "models.ParseTestsAPITestPathTraceMode"
-                ]
+                  "models.ParseTests_API_TestPathTraceMode"
+                ],
+                "returnsError": true
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               }
             }
           },
@@ -1024,7 +1032,7 @@
               "sdkField": "Port",
               "sdkGoType": "*int32",
               "flatten": {
-                "func": "convert.PtrInt32ToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               },
               "skipExpand": true
             }
@@ -1041,23 +1049,26 @@
               ]
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Probe mode used by network test, only valid when the protocol is set to TCP.",
+            "markdownDescription": "Probe mode used by network test, only valid when the protocol is set to TCP.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "probeMode",
               "sdkField": "ProbeMode",
-              "sdkGoType": "*models.TestsAPITestProbeMode",
+              "sdkGoType": "*models.Tests_API_TestProbeMode",
               "expand": {
                 "func": "convert.FrameworkToKiotaEnum",
                 "typeArgs": [
-                  "models.TestsAPITestProbeMode"
+                  "models.Tests_API_TestProbeMode"
                 ],
-                "returnsError": true,
                 "extraArgs": [
-                  "models.ParseTestsAPITestProbeMode"
-                ]
+                  "models.ParseTests_API_TestProbeMode"
+                ],
+                "returnsError": true
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               }
             }
           },
@@ -1077,9 +1088,9 @@
             "wire": {
               "jsonPath": "protocol",
               "sdkField": "Protocol",
-              "sdkGoType": "*models.TestsAPISipTestProtocol",
+              "sdkGoType": "*models.Tests_API_SipTestProtocol",
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               },
               "skipExpand": true
             }
@@ -1091,7 +1102,10 @@
               "kind": "bool"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Indicates whether agents should randomize the start time in each test round.",
+            "markdownDescription": "Indicates whether agents should randomize the start time in each test round.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "randomizedStartTime",
               "sdkField": "RandomizedStartTime",
@@ -1149,8 +1163,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsSIPServerTestSharedAccountsModel",
-                "sdkType": "models.TestsAPITestSharedAccountsable",
-                "constructorExpr": "models.NewTestsAPITestSharedAccounts()",
+                "sdkType": "sip_server_tests.TestSharedAccounts",
                 "attrTypesVar": "testsSIPServerTestSharedAccountsAttrTypes",
                 "objectTypeVar": "testsSIPServerTestSharedAccountsObjectType",
                 "expandFunc": "expandTestsSIPServerTestSharedAccountses",
@@ -1166,7 +1179,7 @@
                     "markdownDescription": "Account group ID.",
                     "wire": {
                       "jsonPath": "aid",
-                      "sdkField": "Aid",
+                      "sdkField": "AID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -1200,14 +1213,15 @@
             "wire": {
               "jsonPath": "sharedWithAccounts",
               "sdkField": "SharedWithAccounts",
-              "sdkGoType": "[]models.TestsAPITestSharedAccountsable",
+              "sdkGoType": "[]sip_server_tests.TestSharedAccounts",
               "flatten": {
                 "func": "flattenTestsSIPServerTestSharedAccountses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            }
+            },
+            "drop": true
           },
           {
             "name": "sip_registrar",
@@ -1244,10 +1258,10 @@
               "sdkField": "SipTargetTime",
               "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToPtrInt32"
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.PtrInt32ToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -1268,10 +1282,10 @@
               "sdkField": "SipTimeLimit",
               "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToPtrInt32"
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.PtrInt32ToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -1282,8 +1296,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsSIPServerTestTagsModel",
-                "sdkType": "models.TestsAPITestTagsable",
-                "constructorExpr": "models.NewTestsAPITestTags()",
+                "sdkType": "sip_server_tests.TestTags",
                 "attrTypesVar": "testsSIPServerTestTagsAttrTypes",
                 "objectTypeVar": "testsSIPServerTestTagsObjectType",
                 "expandFunc": "expandTestsSIPServerTestTagses",
@@ -1293,16 +1306,13 @@
                     "name": "id",
                     "goField": "ID",
                     "type": {
-                      "kind": "string",
-                      "constraints": {
-                        "format": "uuid"
-                      }
+                      "kind": "string"
                     },
                     "computedOptionalRequired": "computed",
                     "markdownDescription": "Unique tag ID.",
                     "wire": {
                       "jsonPath": "id",
-                      "sdkField": "Id",
+                      "sdkField": "ID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -1354,14 +1364,15 @@
             "wire": {
               "jsonPath": "tags",
               "sdkField": "Tags",
-              "sdkGoType": "[]models.TestsAPITestTagsable",
+              "sdkGoType": "[]sip_server_tests.TestTags",
               "flatten": {
                 "func": "flattenTestsSIPServerTestTagses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            }
+            },
+            "drop": true
           },
           {
             "name": "target_sip_credentials",
@@ -1370,12 +1381,11 @@
               "kind": "single_nested",
               "nestedObject": {
                 "goTypeName": "TestsSIPServerTestSIPCredentialsModel",
-                "sdkType": "models.TestsAPITestSipCredentialsable",
-                "constructorExpr": "models.NewTestsAPITestSipCredentials()",
+                "sdkType": "sip_server_tests.TestSipCredentials",
                 "attrTypesVar": "testsSIPServerTestSIPCredentialsAttrTypes",
                 "objectTypeVar": "testsSIPServerTestSIPCredentialsObjectType",
                 "expandFunc": "expandTestsSIPServerTestSIPCredentials",
-                "flattenFunc": "flattenTestsSIPServerTestSIPCredentials",
+                "flattenFunc": "",
                 "attributes": [
                   {
                     "name": "auth_user",
@@ -1390,11 +1400,12 @@
                       "sdkField": "AuthUser",
                       "sdkGoType": "*string",
                       "expand": {
-                        "func": "convert.FrameworkToPtrString"
+                        "func": "convert.FrameworkToEnum",
+                        "typeArgs": [
+                          "sip_server_tests.TestSipAuthUser"
+                        ]
                       },
-                      "flatten": {
-                        "func": "convert.PtrStringToFramework"
-                      }
+                      "skipFlatten": true
                     }
                   },
                   {
@@ -1410,11 +1421,12 @@
                       "sdkField": "Password",
                       "sdkGoType": "*string",
                       "expand": {
-                        "func": "convert.FrameworkToPtrString"
+                        "func": "convert.FrameworkToEnum",
+                        "typeArgs": [
+                          "sip_server_tests.TestPassword"
+                        ]
                       },
-                      "flatten": {
-                        "func": "convert.PtrStringToFramework"
-                      }
+                      "skipFlatten": true
                     }
                   },
                   {
@@ -1432,13 +1444,14 @@
                     "wire": {
                       "jsonPath": "port",
                       "sdkField": "Port",
-                      "sdkGoType": "*int32",
+                      "sdkGoType": "*int64",
                       "expand": {
-                        "func": "convert.FrameworkToPtrInt32"
+                        "func": "convert.FrameworkToIntEnum",
+                        "typeArgs": [
+                          "sip_server_tests.TestPort"
+                        ]
                       },
-                      "flatten": {
-                        "func": "convert.PtrInt32ToFramework"
-                      }
+                      "skipFlatten": true
                     }
                   },
                   {
@@ -1457,20 +1470,14 @@
                     "wire": {
                       "jsonPath": "protocol",
                       "sdkField": "Protocol",
-                      "sdkGoType": "*models.TestsAPISipTestProtocol",
+                      "sdkGoType": "sip_server_tests.SipTestProtocol",
                       "expand": {
-                        "func": "convert.FrameworkToKiotaEnum",
+                        "func": "convert.FrameworkToEnum",
                         "typeArgs": [
-                          "models.TestsAPISipTestProtocol"
-                        ],
-                        "returnsError": true,
-                        "extraArgs": [
-                          "models.ParseTestsAPISipTestProtocol"
+                          "sip_server_tests.SipTestProtocol"
                         ]
                       },
-                      "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
-                      }
+                      "skipFlatten": true
                     }
                   },
                   {
@@ -1486,11 +1493,12 @@
                       "sdkField": "SipRegistrar",
                       "sdkGoType": "*string",
                       "expand": {
-                        "func": "convert.FrameworkToPtrString"
+                        "func": "convert.FrameworkToEnum",
+                        "typeArgs": [
+                          "sip_server_tests.TestSipRegistrar"
+                        ]
                       },
-                      "flatten": {
-                        "func": "convert.PtrStringToFramework"
-                      }
+                      "skipFlatten": true
                     }
                   },
                   {
@@ -1506,36 +1514,35 @@
                       "sdkField": "User",
                       "sdkGoType": "*string",
                       "expand": {
-                        "func": "convert.FrameworkToPtrString"
+                        "func": "convert.FrameworkToEnum",
+                        "typeArgs": [
+                          "sip_server_tests.TestSipUser"
+                        ]
                       },
-                      "flatten": {
-                        "func": "convert.PtrStringToFramework"
-                      }
+                      "skipFlatten": true
                     }
                   }
                 ]
               }
             },
             "computedOptionalRequired": "required",
+            "markdownDescription": "Sent on write only: the read reports these credentials through its own top-level fields.",
             "wire": {
               "jsonPath": "targetSipCredentials",
               "sdkField": "TargetSipCredentials",
-              "sdkGoType": "models.TestsAPITestSipCredentialsable",
+              "sdkGoType": "*sip_server_tests.TestSipCredentials",
               "expand": {
                 "func": "expandTestsSIPServerTestSIPCredentials",
                 "needsCtx": true,
                 "returnsError": true
               },
-              "flatten": {
-                "func": "flattenTestsSIPServerTestSIPCredentials",
-                "needsCtx": true,
-                "returnsError": true
-              }
-            }
+              "skipFlatten": true
+            },
+            "drop": true
           },
           {
-            "name": "test_id",
-            "goField": "TestID",
+            "name": "id",
+            "goField": "ID",
             "type": {
               "kind": "string"
             },
@@ -1597,9 +1604,9 @@
             "wire": {
               "jsonPath": "type",
               "sdkField": "TypeEscaped",
-              "sdkGoType": "*models.TestsAPITestType",
+              "sdkGoType": "*models.Tests_API_TestType",
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               },
               "skipExpand": true
             }
@@ -1611,7 +1618,10 @@
               "kind": "bool"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Indicate if all available public BGP monitors should be used, when ommited defaults to `bgpMeasurements` value.",
+            "markdownDescription": "Indicate if all available public BGP monitors should be used, when omitted defaults to `bgpMeasurements` value.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "usePublicBgp",
               "sdkField": "UsePublicBgp",
@@ -1637,9 +1647,58 @@
               "sdkField": "User",
               "sdkGoType": "*string",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               },
               "skipExpand": true
+            }
+          },
+          {
+            "name": "agents",
+            "goField": "Agents",
+            "type": {
+              "kind": "set_nested",
+              "nestedObject": {
+                "goTypeName": "SipServerAgentModel",
+                "sdkType": "models.Tests_API_TestAgentRequestable",
+                "attrTypesVar": "sipServerAgentAttrTypes",
+                "objectTypeVar": "sipServerAgentObjectType",
+                "expandFunc": "expandSipServerAgents",
+                "flattenFunc": "",
+                "attributes": [
+                  {
+                    "name": "agent_id",
+                    "goField": "AgentID",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "required",
+                    "markdownDescription": "The agent to run the test from. Get identifiers from `/agents`; cloud agent identifiers are stable public values.",
+                    "wire": {
+                      "jsonPath": "agentId",
+                      "sdkField": "AgentId",
+                      "sdkGoType": "*string",
+                      "expand": {
+                        "func": "convert.FrameworkToPtrString"
+                      },
+                      "skipFlatten": true
+                    }
+                  }
+                ],
+                "constructorExpr": "models.NewTests_API_TestAgentRequest()"
+              }
+            },
+            "computedOptionalRequired": "required",
+            "markdownDescription": "The agents the test runs from. Sent on create and update; the read reports assignment through its own fields, so this does not round-trip into state.",
+            "wire": {
+              "jsonPath": "agents",
+              "sdkField": "Agents",
+              "sdkGoType": "[]models.Tests_API_TestAgentRequestable",
+              "expand": {
+                "func": "expandSipServerAgents",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "skipFlatten": true
             }
           }
         ],
@@ -1649,12 +1708,10 @@
         "service": {
           "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
           "alias": "models",
-          "typeName": "",
           "accessor": "r.client"
         },
         "create": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -1679,13 +1736,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.SIPServerTestResponseable",
+          "resultType": "models.Tests_API_SipServerTestResponseable",
           "httpMethod": "POST",
           "pathTemplate": "/tests/sip-server"
         },
         "read": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -1716,13 +1772,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.SIPServerTestResponseable",
+          "resultType": "models.Tests_API_SipServerTestResponseable",
           "httpMethod": "GET",
           "pathTemplate": "/tests/sip-server/{testId}"
         },
         "update": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -1756,13 +1811,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.SIPServerTestResponseable",
+          "resultType": "models.Tests_API_SipServerTestResponseable",
           "httpMethod": "PUT",
           "pathTemplate": "/tests/sip-server/{testId}"
         },
         "delete": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -1799,13 +1853,13 @@
         "id": {
           "attribute": "id",
           "goField": "ID",
-          "fromCreate": "created.GetId()",
+          "fromCreate": "created.GetTestId()",
           "fromCreateIsPointer": true
         },
         "body": {
-          "requestType": "models.SIPServerTestRequest",
-          "responseType": "models.SIPServerTestResponseable",
-          "constructorExpr": "models.NewSIPServerTestRequest()",
+          "requestType": "models.Tests_API_SipServerTestRequest",
+          "responseType": "models.Tests_API_SipServerTestResponseable",
+          "constructorExpr": "models.NewTests_API_SipServerTestRequest()",
           "accessStyle": "method"
         }
       },
@@ -1818,6 +1872,32 @@
       "import": {
         "style": "passthroughId",
         "attribute": "id"
+      },
+      "sweep": {
+        "nameField": "testName"
+      },
+      "accFixture": {
+        "values": [
+          {
+            "attr": "agents",
+            "hcl": "[{ agent_id = \"3\" }]"
+          },
+          {
+            "attr": "interval",
+            "hcl": "3600"
+          },
+          {
+            "attr": "fixed_packet_rate",
+            "hcl": "50"
+          },
+          {
+            "attr": "network_measurements",
+            "hcl": "false"
+          }
+        ]
+      },
+      "accTest": {
+        "skipUnlessEnv": "TFPFGEN_ACC_SIP"
       }
     }
   ]

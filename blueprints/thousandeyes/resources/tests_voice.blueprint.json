@@ -19,8 +19,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsVoiceAlertRuleModel",
-                "sdkType": "models.TestsAPIAlertRuleable",
-                "constructorExpr": "models.NewTestsAPIAlertRule()",
+                "sdkType": "voice_tests.AlertRule",
                 "attrTypesVar": "testsVoiceAlertRuleAttrTypes",
                 "objectTypeVar": "testsVoiceAlertRuleObjectType",
                 "expandFunc": "expandTestsVoiceAlertRules",
@@ -66,19 +65,15 @@
                     "wire": {
                       "jsonPath": "alertType",
                       "sdkField": "AlertType",
-                      "sdkGoType": "*models.TestsAPIAlertType",
+                      "sdkGoType": "voice_tests.AlertType",
                       "expand": {
-                        "func": "convert.FrameworkToKiotaEnum",
+                        "func": "convert.FrameworkToEnum",
                         "typeArgs": [
-                          "models.TestsAPIAlertType"
-                        ],
-                        "returnsError": true,
-                        "extraArgs": [
-                          "models.ParseTestsAPIAlertType"
+                          "voice_tests.AlertType"
                         ]
                       },
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       }
                     }
                   },
@@ -98,19 +93,15 @@
                     "wire": {
                       "jsonPath": "direction",
                       "sdkField": "Direction",
-                      "sdkGoType": "*models.TestsAPIAlertDirection",
+                      "sdkGoType": "voice_tests.AlertDirection",
                       "expand": {
-                        "func": "convert.FrameworkToKiotaEnum",
+                        "func": "convert.FrameworkToEnum",
                         "typeArgs": [
-                          "models.TestsAPIAlertDirection"
-                        ],
-                        "returnsError": true,
-                        "extraArgs": [
-                          "models.ParseTestsAPIAlertDirection"
+                          "voice_tests.AlertDirection"
                         ]
                       },
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       }
                     }
                   },
@@ -161,9 +152,9 @@
                     "wire": {
                       "jsonPath": "minimumSources",
                       "sdkField": "MinimumSources",
-                      "sdkGoType": "*int32",
+                      "sdkGoType": "*int64",
                       "flatten": {
-                        "func": "convert.PtrInt32ToFramework"
+                        "func": "convert.PtrInt64ToFramework"
                       },
                       "skipExpand": true
                     }
@@ -179,9 +170,9 @@
                     "wire": {
                       "jsonPath": "minimumSourcesPct",
                       "sdkField": "MinimumSourcesPct",
-                      "sdkGoType": "*int32",
+                      "sdkGoType": "*int64",
                       "flatten": {
-                        "func": "convert.PtrInt32ToFramework"
+                        "func": "convert.PtrInt64ToFramework"
                       },
                       "skipExpand": true
                     }
@@ -202,9 +193,9 @@
                     "wire": {
                       "jsonPath": "roundsViolatingMode",
                       "sdkField": "RoundsViolatingMode",
-                      "sdkGoType": "*models.TestsAPIAlertRoundsViolationMode",
+                      "sdkGoType": "voice_tests.AlertRoundsViolationMode",
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       },
                       "skipExpand": true
                     }
@@ -216,13 +207,13 @@
                       "kind": "int64"
                     },
                     "computedOptionalRequired": "computed",
-                    "markdownDescription": "Specifies the divisor (y value) for the “X of Y times” condition.",
+                    "markdownDescription": "Specifies the divisor (y value) for the \u201cX of Y times\u201d condition.",
                     "wire": {
                       "jsonPath": "roundsViolatingOutOf",
                       "sdkField": "RoundsViolatingOutOf",
-                      "sdkGoType": "*int32",
+                      "sdkGoType": "*int64",
                       "flatten": {
-                        "func": "convert.PtrInt32ToFramework"
+                        "func": "convert.PtrInt64ToFramework"
                       },
                       "skipExpand": true
                     }
@@ -234,13 +225,13 @@
                       "kind": "int64"
                     },
                     "computedOptionalRequired": "computed",
-                    "markdownDescription": "Specifies the numerator (x value) for the “X of Y times” condition",
+                    "markdownDescription": "Specifies the numerator (x value) for the \u201cX of Y times\u201d condition",
                     "wire": {
                       "jsonPath": "roundsViolatingRequired",
                       "sdkField": "RoundsViolatingRequired",
-                      "sdkGoType": "*int32",
+                      "sdkGoType": "*int64",
                       "flatten": {
-                        "func": "convert.PtrInt32ToFramework"
+                        "func": "convert.PtrInt64ToFramework"
                       },
                       "skipExpand": true
                     }
@@ -255,7 +246,7 @@
                     "markdownDescription": "Unique ID of the rule.",
                     "wire": {
                       "jsonPath": "ruleId",
-                      "sdkField": "RuleId",
+                      "sdkField": "RuleID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -297,9 +288,9 @@
                     "wire": {
                       "jsonPath": "sensitivityLevel",
                       "sdkField": "SensitivityLevel",
-                      "sdkGoType": "*models.TestsAPISensitivityLevel",
+                      "sdkGoType": "voice_tests.SensitivityLevel",
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       },
                       "skipExpand": true
                     }
@@ -322,19 +313,15 @@
                     "wire": {
                       "jsonPath": "severity",
                       "sdkField": "Severity",
-                      "sdkGoType": "*models.TestsAPISeverity",
+                      "sdkGoType": "voice_tests.Severity",
                       "expand": {
-                        "func": "convert.FrameworkToKiotaEnum",
+                        "func": "convert.FrameworkToEnum",
                         "typeArgs": [
-                          "models.TestsAPISeverity"
-                        ],
-                        "returnsError": true,
-                        "extraArgs": [
-                          "models.ParseTestsAPISeverity"
+                          "voice_tests.Severity"
                         ]
                       },
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       }
                     }
                   }
@@ -346,7 +333,7 @@
             "wire": {
               "jsonPath": "alertRules",
               "sdkField": "AlertRules",
-              "sdkGoType": "[]models.TestsAPIAlertRuleable",
+              "sdkGoType": "[]voice_tests.AlertRule",
               "expand": {
                 "func": "expandTestsVoiceAlertRules",
                 "needsCtx": true,
@@ -357,7 +344,8 @@
                 "needsCtx": true,
                 "returnsError": true
               }
-            }
+            },
+            "drop": true
           },
           {
             "name": "alerts_enabled",
@@ -386,7 +374,10 @@
               "kind": "bool"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Set to `true` to enable bgp measurements.",
+            "markdownDescription": "Set to `true` to enable bgp measurements.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "bgpMeasurements",
               "sdkField": "BgpMeasurements",
@@ -450,7 +441,7 @@
               "sdkField": "CreatedBy",
               "sdkGoType": "*string",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               },
               "skipExpand": true
             }
@@ -469,9 +460,9 @@
             "wire": {
               "jsonPath": "createdDate",
               "sdkField": "CreatedDate",
-              "sdkGoType": "*string",
+              "sdkGoType": "*time.Time",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrTimeToFramework"
               },
               "skipExpand": true
             }
@@ -509,7 +500,7 @@
               "sdkField": "Dscp",
               "sdkGoType": "*string",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               },
               "skipExpand": true
             }
@@ -545,23 +536,26 @@
               ]
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "DSCP ID [to see list for acceptable values](https://docs.thousandeyes.com/product-documentation/tests/dscp-options-in-network-tests)",
+            "markdownDescription": "DSCP ID [to see list for acceptable values](https://docs.thousandeyes.com/product-documentation/tests/dscp-options-in-network-tests)\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "dscpId",
               "sdkField": "DscpId",
-              "sdkGoType": "*models.TestsAPITestDscpId",
+              "sdkGoType": "*models.Tests_API_TestDscpId",
               "expand": {
                 "func": "convert.FrameworkToKiotaEnum",
                 "typeArgs": [
-                  "models.TestsAPITestDscpId"
+                  "models.Tests_API_TestDscpId"
                 ],
-                "returnsError": true,
                 "extraArgs": [
-                  "models.ParseTestsAPITestDscpId"
-                ]
+                  "models.ParseTests_API_TestDscpId"
+                ],
+                "returnsError": true
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               }
             }
           },
@@ -582,10 +576,10 @@
               "sdkField": "Duration",
               "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToPtrInt32"
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.PtrInt32ToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -596,7 +590,10 @@
               "kind": "bool"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Test is enabled.",
+            "markdownDescription": "Test is enabled.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "enabled",
               "sdkField": "Enabled",
@@ -613,7 +610,7 @@
             "name": "interval",
             "goField": "Interval",
             "type": {
-              "kind": "string",
+              "kind": "int64",
               "allowedValues": [
                 "60",
                 "120",
@@ -625,23 +622,19 @@
               ]
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Interval between test runs in seconds.",
+            "markdownDescription": "Interval between test runs in seconds.\n\nDocumented intervals, in seconds: `60`, `120`, `300`, `600`, `900`, `1800`, `3600`.\n\nThe request carries this field unconditionally, so omitting it sends zero, which the API refuses (the 2026-08-03 scheduled acceptance run).",
+            "behaviour": {
+              "requiredByApi": true
+            },
             "wire": {
               "jsonPath": "interval",
               "sdkField": "Interval",
-              "sdkGoType": "*models.TestsAPITestInterval",
+              "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToKiotaEnum",
-                "typeArgs": [
-                  "models.TestsAPITestInterval"
-                ],
-                "returnsError": true,
-                "extraArgs": [
-                  "models.ParseTestsAPITestInterval"
-                ]
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -662,10 +655,10 @@
               "sdkField": "JitterBuffer",
               "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToPtrInt32"
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.PtrInt32ToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -676,8 +669,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsVoiceTestLabelsModel",
-                "sdkType": "models.TestsAPITestLabelsable",
-                "constructorExpr": "models.NewTestsAPITestLabels()",
+                "sdkType": "voice_tests.TestLabels",
                 "attrTypesVar": "testsVoiceTestLabelsAttrTypes",
                 "objectTypeVar": "testsVoiceTestLabelsObjectType",
                 "expandFunc": "expandTestsVoiceTestLabelses",
@@ -711,7 +703,7 @@
                     "markdownDescription": "Label ID.",
                     "wire": {
                       "jsonPath": "labelId",
-                      "sdkField": "LabelId",
+                      "sdkField": "LabelID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -745,14 +737,15 @@
             "wire": {
               "jsonPath": "labels",
               "sdkField": "Labels",
-              "sdkGoType": "[]models.TestsAPITestLabelsable",
+              "sdkGoType": "[]voice_tests.TestLabels",
               "flatten": {
                 "func": "flattenTestsVoiceTestLabelses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            }
+            },
+            "drop": true
           },
           {
             "name": "live_share",
@@ -804,9 +797,9 @@
             "wire": {
               "jsonPath": "modifiedDate",
               "sdkField": "ModifiedDate",
-              "sdkGoType": "*string",
+              "sdkGoType": "*time.Time",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrTimeToFramework"
               },
               "skipExpand": true
             }
@@ -818,8 +811,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsVoiceTestBGPMonitorsModel",
-                "sdkType": "models.TestsAPITestBgpMonitorsable",
-                "constructorExpr": "models.NewTestsAPITestBgpMonitors()",
+                "sdkType": "voice_tests.TestBgpMonitors",
                 "attrTypesVar": "testsVoiceTestBGPMonitorsAttrTypes",
                 "objectTypeVar": "testsVoiceTestBGPMonitorsObjectType",
                 "expandFunc": "expandTestsVoiceTestBGPMonitorses",
@@ -835,7 +827,7 @@
                     "markdownDescription": "Country ID",
                     "wire": {
                       "jsonPath": "countryId",
-                      "sdkField": "CountryId",
+                      "sdkField": "CountryID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -853,7 +845,7 @@
                     "markdownDescription": "IP address of the BGP monitor",
                     "wire": {
                       "jsonPath": "ipAddress",
-                      "sdkField": "IpAddress",
+                      "sdkField": "IPAddress",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -871,7 +863,7 @@
                     "markdownDescription": "BGP monitor ID",
                     "wire": {
                       "jsonPath": "monitorId",
-                      "sdkField": "MonitorId",
+                      "sdkField": "MonitorID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -912,9 +904,9 @@
                     "wire": {
                       "jsonPath": "monitorType",
                       "sdkField": "MonitorType",
-                      "sdkGoType": "*models.TestsAPIMonitorType",
+                      "sdkGoType": "voice_tests.MonitorType",
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       },
                       "skipExpand": true
                     }
@@ -945,14 +937,15 @@
             "wire": {
               "jsonPath": "monitors",
               "sdkField": "Monitors",
-              "sdkGoType": "[]models.TestsAPITestBgpMonitorsable",
+              "sdkGoType": "[]voice_tests.TestBgpMonitors",
               "flatten": {
                 "func": "flattenTestsVoiceTestBGPMonitorses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            }
+            },
+            "drop": true
           },
           {
             "name": "num_path_traces",
@@ -965,16 +958,19 @@
               }
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Number of path traces executed by the agent.",
+            "markdownDescription": "Number of path traces executed by the agent.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "numPathTraces",
               "sdkField": "NumPathTraces",
               "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToPtrInt32"
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.PtrInt32ToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -995,10 +991,10 @@
               "sdkField": "Port",
               "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToPtrInt32"
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.PtrInt32ToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -1009,7 +1005,10 @@
               "kind": "bool"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Indicates whether agents should randomize the start time in each test round.",
+            "markdownDescription": "Indicates whether agents should randomize the start time in each test round.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "randomizedStartTime",
               "sdkField": "RandomizedStartTime",
@@ -1047,8 +1046,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsVoiceTestSharedAccountsModel",
-                "sdkType": "models.TestsAPITestSharedAccountsable",
-                "constructorExpr": "models.NewTestsAPITestSharedAccounts()",
+                "sdkType": "voice_tests.TestSharedAccounts",
                 "attrTypesVar": "testsVoiceTestSharedAccountsAttrTypes",
                 "objectTypeVar": "testsVoiceTestSharedAccountsObjectType",
                 "expandFunc": "expandTestsVoiceTestSharedAccountses",
@@ -1064,7 +1062,7 @@
                     "markdownDescription": "Account group ID.",
                     "wire": {
                       "jsonPath": "aid",
-                      "sdkField": "Aid",
+                      "sdkField": "AID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -1098,14 +1096,15 @@
             "wire": {
               "jsonPath": "sharedWithAccounts",
               "sdkField": "SharedWithAccounts",
-              "sdkGoType": "[]models.TestsAPITestSharedAccountsable",
+              "sdkGoType": "[]voice_tests.TestSharedAccounts",
               "flatten": {
                 "func": "flattenTestsVoiceTestSharedAccountses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            }
+            },
+            "drop": true
           },
           {
             "name": "tags",
@@ -1114,8 +1113,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsVoiceTestTagsModel",
-                "sdkType": "models.TestsAPITestTagsable",
-                "constructorExpr": "models.NewTestsAPITestTags()",
+                "sdkType": "voice_tests.TestTags",
                 "attrTypesVar": "testsVoiceTestTagsAttrTypes",
                 "objectTypeVar": "testsVoiceTestTagsObjectType",
                 "expandFunc": "expandTestsVoiceTestTagses",
@@ -1125,16 +1123,13 @@
                     "name": "id",
                     "goField": "ID",
                     "type": {
-                      "kind": "string",
-                      "constraints": {
-                        "format": "uuid"
-                      }
+                      "kind": "string"
                     },
                     "computedOptionalRequired": "computed",
                     "markdownDescription": "Unique tag ID.",
                     "wire": {
                       "jsonPath": "id",
-                      "sdkField": "Id",
+                      "sdkField": "ID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -1186,14 +1181,15 @@
             "wire": {
               "jsonPath": "tags",
               "sdkField": "Tags",
-              "sdkGoType": "[]models.TestsAPITestTagsable",
+              "sdkGoType": "[]voice_tests.TestTags",
               "flatten": {
                 "func": "flattenTestsVoiceTestTagses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            }
+            },
+            "drop": true
           },
           {
             "name": "target_agent_id",
@@ -1211,13 +1207,13 @@
                 "func": "convert.FrameworkToPtrString"
               },
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               }
             }
           },
           {
-            "name": "test_id",
-            "goField": "TestID",
+            "name": "id",
+            "goField": "ID",
             "type": {
               "kind": "string"
             },
@@ -1264,9 +1260,9 @@
             "wire": {
               "jsonPath": "type",
               "sdkField": "TypeEscaped",
-              "sdkGoType": "*string",
+              "sdkGoType": "*models.Tests_API_TestType",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrStringerToFramework"
               },
               "skipExpand": true
             }
@@ -1278,7 +1274,10 @@
               "kind": "bool"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Indicate if all available public BGP monitors should be used, when ommited defaults to `bgpMeasurements` value.",
+            "markdownDescription": "Indicate if all available public BGP monitors should be used, when omitted defaults to `bgpMeasurements` value.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "usePublicBgp",
               "sdkField": "UsePublicBgp",
@@ -1290,6 +1289,55 @@
                 "func": "convert.PtrBoolToFramework"
               }
             }
+          },
+          {
+            "name": "agents",
+            "goField": "Agents",
+            "type": {
+              "kind": "set_nested",
+              "nestedObject": {
+                "goTypeName": "VoiceAgentModel",
+                "sdkType": "models.Tests_API_TestAgentRequestable",
+                "attrTypesVar": "voiceAgentAttrTypes",
+                "objectTypeVar": "voiceAgentObjectType",
+                "expandFunc": "expandVoiceAgents",
+                "flattenFunc": "",
+                "attributes": [
+                  {
+                    "name": "agent_id",
+                    "goField": "AgentID",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "required",
+                    "markdownDescription": "The agent to run the test from. Get identifiers from `/agents`; cloud agent identifiers are stable public values.",
+                    "wire": {
+                      "jsonPath": "agentId",
+                      "sdkField": "AgentId",
+                      "sdkGoType": "*string",
+                      "expand": {
+                        "func": "convert.FrameworkToPtrString"
+                      },
+                      "skipFlatten": true
+                    }
+                  }
+                ],
+                "constructorExpr": "models.NewTests_API_TestAgentRequest()"
+              }
+            },
+            "computedOptionalRequired": "required",
+            "markdownDescription": "The agents the test runs from. Sent on create and update; the read reports assignment through its own fields, so this does not round-trip into state.",
+            "wire": {
+              "jsonPath": "agents",
+              "sdkField": "Agents",
+              "sdkGoType": "[]models.Tests_API_TestAgentRequestable",
+              "expand": {
+                "func": "expandVoiceAgents",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "skipFlatten": true
+            }
           }
         ],
         "markdownDescription": "Get Voice test."
@@ -1298,12 +1346,10 @@
         "service": {
           "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
           "alias": "models",
-          "typeName": "",
           "accessor": "r.client"
         },
         "create": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -1328,13 +1374,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.VoiceTestResponseable",
+          "resultType": "models.Tests_API_VoiceTestResponseable",
           "httpMethod": "POST",
           "pathTemplate": "/tests/voice"
         },
         "read": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -1365,13 +1410,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.VoiceTestResponseable",
+          "resultType": "models.Tests_API_VoiceTestResponseable",
           "httpMethod": "GET",
           "pathTemplate": "/tests/voice/{testId}"
         },
         "update": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -1405,13 +1449,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.VoiceTestResponseable",
+          "resultType": "models.Tests_API_VoiceTestResponseable",
           "httpMethod": "PUT",
           "pathTemplate": "/tests/voice/{testId}"
         },
         "delete": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -1448,13 +1491,13 @@
         "id": {
           "attribute": "id",
           "goField": "ID",
-          "fromCreate": "created.GetId()",
+          "fromCreate": "created.GetTestId()",
           "fromCreateIsPointer": true
         },
         "body": {
-          "requestType": "models.VoiceTestRequest",
-          "responseType": "models.VoiceTestResponseable",
-          "constructorExpr": "models.NewVoiceTestRequest()",
+          "requestType": "models.Tests_API_VoiceTestRequest",
+          "responseType": "models.Tests_API_VoiceTestResponseable",
+          "constructorExpr": "models.NewTests_API_VoiceTestRequest()",
           "accessStyle": "method"
         }
       },
@@ -1467,6 +1510,24 @@
       "import": {
         "style": "passthroughId",
         "attribute": "id"
+      },
+      "sweep": {
+        "nameField": "testName"
+      },
+      "accFixture": {
+        "values": [
+          {
+            "attr": "agents",
+            "hcl": "[{ agent_id = \"3\" }]"
+          },
+          {
+            "attr": "interval",
+            "hcl": "3600"
+          }
+        ]
+      },
+      "accTest": {
+        "skipUnlessEnv": "TFPFGEN_ACC_ENTERPRISE"
       }
     }
   ]

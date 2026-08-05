@@ -18,8 +18,15 @@
             "type": {
               "kind": "string"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "UI color",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "UI color\n\n<!-- probed:7.0.98-t1785833092712 -->\nObserved: the API assigns \"#d9d9d9\" when this is omitted.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "\"#d9d9d9\""
+              },
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "color",
               "sdkField": "Color",
@@ -39,8 +46,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "EndpointLabelFilterModel",
-                "sdkType": "models.EndpointAgentLabelsAPIFilterable",
-                "constructorExpr": "models.NewEndpointAgentLabelsAPIFilter()",
+                "sdkType": "models.Endpoint_Agent_Labels_API_Filterable",
                 "attrTypesVar": "endpointLabelFilterAttrTypes",
                 "objectTypeVar": "endpointLabelFilterObjectType",
                 "expandFunc": "expandEndpointLabelFilters",
@@ -71,24 +77,50 @@
                         "asn"
                       ]
                     },
-                    "computedOptionalRequired": "optional",
-                    "markdownDescription": "Type of filter - the data that will be used to filter.",
+                    "computedOptionalRequired": "computed_optional",
+                    "markdownDescription": "Type of filter - the data that will be used to filter.\n\n<!-- probed:7.0.98-t1785833092712 -->\nValues accepted here: `agent-id`, `public-network`, `local-network`, `connection`, `gateway`, `platform`, `agent-type`, `vpn-vendor`, `vpn-gateway-address`, `vpn-client-network`, `vpn-client-address`, `ip-address-family`, `ssid`, `bssid`, `hostname`, `username`, `asn`.\nObserved: the API assigns \"platform\" when this is omitted.\nThe API accepted a value from outside the documented set, so no OneOf validator is generated for this attribute.\n<!-- /probed -->",
+                    "behaviour": {
+                      "serverDefault": {
+                        "kind": "",
+                        "raw": "\"platform\""
+                      },
+                      "acceptedValues": [
+                        "agent-id",
+                        "public-network",
+                        "local-network",
+                        "connection",
+                        "gateway",
+                        "platform",
+                        "agent-type",
+                        "vpn-vendor",
+                        "vpn-gateway-address",
+                        "vpn-client-network",
+                        "vpn-client-address",
+                        "ip-address-family",
+                        "ssid",
+                        "bssid",
+                        "hostname",
+                        "username",
+                        "asn"
+                      ],
+                      "valuesClosed": false
+                    },
                     "wire": {
                       "jsonPath": "key",
                       "sdkField": "Key",
-                      "sdkGoType": "*models.EndpointAgentLabelsAPIFilterType",
+                      "sdkGoType": "*models.Endpoint_Agent_Labels_API_FilterType",
                       "expand": {
                         "func": "convert.FrameworkToKiotaEnum",
                         "typeArgs": [
-                          "models.EndpointAgentLabelsAPIFilterType"
+                          "models.Endpoint_Agent_Labels_API_FilterType"
                         ],
-                        "returnsError": true,
                         "extraArgs": [
-                          "models.ParseEndpointAgentLabelsAPIFilterType"
-                        ]
+                          "models.ParseEndpoint_Agent_Labels_API_FilterType"
+                        ],
+                        "returnsError": true
                       },
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.PtrStringerToFramework"
                       }
                     }
                   },
@@ -102,24 +134,35 @@
                         "not-in"
                       ]
                     },
-                    "computedOptionalRequired": "optional",
-                    "markdownDescription": "Type of matching to be applied for the values:\n\n* `in`: The value on the agent must match one of the list of values provided.\n* `not-in`: The value on the agent must not match any of the list of values provided.",
+                    "computedOptionalRequired": "computed_optional",
+                    "markdownDescription": "Type of matching to be applied for the values:\n\n* `in`: The value on the agent must match one of the list of values provided.\n* `not-in`: The value on the agent must not match any of the list of values provided.\n\n<!-- probed:7.0.98-t1785833092712 -->\nValues accepted here: `in`, `not-in`.\nObserved: the API assigns \"in\" when this is omitted.\nThe API accepted a value from outside the documented set, so no OneOf validator is generated for this attribute.\n<!-- /probed -->",
+                    "behaviour": {
+                      "serverDefault": {
+                        "kind": "",
+                        "raw": "\"in\""
+                      },
+                      "acceptedValues": [
+                        "in",
+                        "not-in"
+                      ],
+                      "valuesClosed": false
+                    },
                     "wire": {
                       "jsonPath": "mode",
                       "sdkField": "Mode",
-                      "sdkGoType": "*models.EndpointAgentLabelsAPILabelFilterMode",
+                      "sdkGoType": "*models.Endpoint_Agent_Labels_API_LabelFilterMode",
                       "expand": {
                         "func": "convert.FrameworkToKiotaEnum",
                         "typeArgs": [
-                          "models.EndpointAgentLabelsAPILabelFilterMode"
+                          "models.Endpoint_Agent_Labels_API_LabelFilterMode"
                         ],
-                        "returnsError": true,
                         "extraArgs": [
-                          "models.ParseEndpointAgentLabelsAPILabelFilterMode"
-                        ]
+                          "models.ParseEndpoint_Agent_Labels_API_LabelFilterMode"
+                        ],
+                        "returnsError": true
                       },
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.PtrStringerToFramework"
                       }
                     }
                   },
@@ -149,15 +192,20 @@
                       }
                     }
                   }
-                ]
+                ],
+                "constructorExpr": "models.NewEndpoint_Agent_Labels_API_Filter()"
               }
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "The filters combined using the matchType to determine the label's match.",
+            "markdownDescription": "The filters combined using the matchType to determine the label's match.\n\nThe API refuses a label without at least one filter (live probe, 2026-08-04).\n\nOnly returned when the read asks for expand=filters; the generated read always does (live probe, 2026-08-04).\n\n<!-- probed:7.0.98-t1785833092712 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "filters",
               "sdkField": "Filters",
-              "sdkGoType": "[]models.EndpointAgentLabelsAPIFilterable",
+              "sdkGoType": "[]models.Endpoint_Agent_Labels_API_Filterable",
               "expand": {
                 "func": "expandEndpointLabelFilters",
                 "needsCtx": true,
@@ -183,7 +231,7 @@
               "sdkField": "Id",
               "sdkGoType": "*string",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               },
               "skipExpand": true
             }
@@ -199,23 +247,32 @@
               ]
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Specifies how the filters are combined for matching this label.\n\n* `and`: All filters must be matched.\n* `or`: Any of the filters should match.",
+            "markdownDescription": "Specifies how the filters are combined for matching this label.\n\n* `and`: All filters must be matched.\n* `or`: Any of the filters should match.\n\n<!-- probed:7.0.98-t1785833092712 -->\nValues accepted here: `and`, `or`.\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnUpdate": true,
+              "acceptedValues": [
+                "and",
+                "or"
+              ],
+              "valuesClosed": true
+            },
             "wire": {
               "jsonPath": "matchType",
               "sdkField": "MatchType",
-              "sdkGoType": "*models.EndpointAgentLabelsAPIMatchType",
+              "sdkGoType": "*models.Endpoint_Agent_Labels_API_MatchType",
               "expand": {
                 "func": "convert.FrameworkToKiotaEnum",
                 "typeArgs": [
-                  "models.EndpointAgentLabelsAPIMatchType"
+                  "models.Endpoint_Agent_Labels_API_MatchType"
                 ],
-                "returnsError": true,
                 "extraArgs": [
-                  "models.ParseEndpointAgentLabelsAPIMatchType"
-                ]
+                  "models.ParseEndpoint_Agent_Labels_API_MatchType"
+                ],
+                "returnsError": true
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               }
             }
           },
@@ -226,12 +283,18 @@
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "The label name.",
+            "markdownDescription": "The label name.\n\nRequired-by-API by curation: the sweeper's field, unprobeable by omission.",
+            "behaviour": {
+              "requiredByApi": true
+            },
             "wire": {
               "jsonPath": "name",
               "sdkField": "Name",
               "sdkGoType": "*string",
               "expand": {
+                "func": "convert.FrameworkToPtrString"
+              },
+              "updateExpand": {
                 "func": "convert.FrameworkToPtrString"
               },
               "flatten": {
@@ -246,12 +309,10 @@
         "service": {
           "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
           "alias": "models",
-          "typeName": "",
           "accessor": "r.client"
         },
         "create": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Endpoint"
@@ -276,13 +337,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.LabelResponseable",
+          "resultType": "models.Endpoint_Agent_Labels_API_LabelResponseable",
           "httpMethod": "POST",
           "pathTemplate": "/endpoint/labels"
         },
         "read": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Endpoint"
@@ -307,19 +367,30 @@
                 },
                 {
                   "kind": "literal",
-                  "expr": "nil"
+                  "expr": "&abstractions.RequestConfiguration[endpoint.LabelsLabelsItemRequestBuilderGetQueryParameters]{QueryParameters: &endpoint.LabelsLabelsItemRequestBuilderGetQueryParameters{Expand: []models.Endpoint_Agent_Labels_API_ExpandLabelOptions{models.FILTERS_ENDPOINT_AGENT_LABELS_API_EXPANDLABELOPTIONS}}}",
+                  "imports": [
+                    {
+                      "path": "github.com/microsoft/kiota-abstractions-go",
+                      "alias": "abstractions"
+                    },
+                    {
+                      "path": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/endpoint"
+                    },
+                    {
+                      "path": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models"
+                    }
+                  ]
                 }
               ]
             }
           ],
           "return": "resultError",
-          "resultType": "models.LabelResponseable",
+          "resultType": "models.Endpoint_Agent_Labels_API_LabelResponseable",
           "httpMethod": "GET",
           "pathTemplate": "/endpoint/labels/{id}"
         },
         "update": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Endpoint"
@@ -353,13 +424,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.LabelResponseable",
+          "resultType": "models.Endpoint_Agent_Labels_API_LabelResponseable",
           "httpMethod": "PATCH",
           "pathTemplate": "/endpoint/labels/{id}"
         },
         "delete": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Endpoint"
@@ -400,12 +470,12 @@
           "fromCreateIsPointer": true
         },
         "body": {
-          "requestType": "models.LabelRequest",
-          "responseType": "models.LabelResponseable",
-          "constructorExpr": "models.NewLabelRequest()",
-          "updateRequestType": "models.Label",
-          "updateConstructorExpr": "models.NewLabel()",
-          "accessStyle": "method"
+          "requestType": "models.Endpoint_Agent_Labels_API_LabelRequest",
+          "responseType": "models.Endpoint_Agent_Labels_API_LabelResponseable",
+          "constructorExpr": "models.NewEndpoint_Agent_Labels_API_LabelRequest()",
+          "accessStyle": "method",
+          "updateRequestType": "models.Endpoint_Agent_Labels_API_Label",
+          "updateConstructorExpr": "models.NewEndpoint_Agent_Labels_API_Label()"
         }
       },
       "policy": {
@@ -417,6 +487,23 @@
       "import": {
         "style": "passthroughId",
         "attribute": "id"
+      },
+      "accFixture": {
+        "values": [
+          {
+            "attr": "filters",
+            "hcl": "[{ key = \"platform\", mode = \"in\", values = [\"windows\"] }]",
+            "wire": [
+              {
+                "key": "platform",
+                "mode": "in",
+                "values": [
+                  "windows"
+                ]
+              }
+            ]
+          }
+        ]
       }
     }
   ]

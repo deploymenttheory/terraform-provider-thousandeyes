@@ -19,8 +19,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsFTPServerAlertRuleModel",
-                "sdkType": "models.TestsAPIAlertRuleable",
-                "constructorExpr": "models.NewTestsAPIAlertRule()",
+                "sdkType": "ftp_server_tests.AlertRule",
                 "attrTypesVar": "testsFTPServerAlertRuleAttrTypes",
                 "objectTypeVar": "testsFTPServerAlertRuleObjectType",
                 "expandFunc": "expandTestsFTPServerAlertRules",
@@ -66,19 +65,15 @@
                     "wire": {
                       "jsonPath": "alertType",
                       "sdkField": "AlertType",
-                      "sdkGoType": "*models.TestsAPIAlertType",
+                      "sdkGoType": "ftp_server_tests.AlertType",
                       "expand": {
-                        "func": "convert.FrameworkToKiotaEnum",
+                        "func": "convert.FrameworkToEnum",
                         "typeArgs": [
-                          "models.TestsAPIAlertType"
-                        ],
-                        "returnsError": true,
-                        "extraArgs": [
-                          "models.ParseTestsAPIAlertType"
+                          "ftp_server_tests.AlertType"
                         ]
                       },
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       }
                     }
                   },
@@ -98,19 +93,15 @@
                     "wire": {
                       "jsonPath": "direction",
                       "sdkField": "Direction",
-                      "sdkGoType": "*models.TestsAPIAlertDirection",
+                      "sdkGoType": "ftp_server_tests.AlertDirection",
                       "expand": {
-                        "func": "convert.FrameworkToKiotaEnum",
+                        "func": "convert.FrameworkToEnum",
                         "typeArgs": [
-                          "models.TestsAPIAlertDirection"
-                        ],
-                        "returnsError": true,
-                        "extraArgs": [
-                          "models.ParseTestsAPIAlertDirection"
+                          "ftp_server_tests.AlertDirection"
                         ]
                       },
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       }
                     }
                   },
@@ -161,9 +152,9 @@
                     "wire": {
                       "jsonPath": "minimumSources",
                       "sdkField": "MinimumSources",
-                      "sdkGoType": "*int32",
+                      "sdkGoType": "*int64",
                       "flatten": {
-                        "func": "convert.PtrInt32ToFramework"
+                        "func": "convert.PtrInt64ToFramework"
                       },
                       "skipExpand": true
                     }
@@ -179,9 +170,9 @@
                     "wire": {
                       "jsonPath": "minimumSourcesPct",
                       "sdkField": "MinimumSourcesPct",
-                      "sdkGoType": "*int32",
+                      "sdkGoType": "*int64",
                       "flatten": {
-                        "func": "convert.PtrInt32ToFramework"
+                        "func": "convert.PtrInt64ToFramework"
                       },
                       "skipExpand": true
                     }
@@ -202,9 +193,9 @@
                     "wire": {
                       "jsonPath": "roundsViolatingMode",
                       "sdkField": "RoundsViolatingMode",
-                      "sdkGoType": "*models.TestsAPIAlertRoundsViolationMode",
+                      "sdkGoType": "ftp_server_tests.AlertRoundsViolationMode",
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       },
                       "skipExpand": true
                     }
@@ -216,13 +207,13 @@
                       "kind": "int64"
                     },
                     "computedOptionalRequired": "computed",
-                    "markdownDescription": "Specifies the divisor (y value) for the “X of Y times” condition.",
+                    "markdownDescription": "Specifies the divisor (y value) for the \u201cX of Y times\u201d condition.",
                     "wire": {
                       "jsonPath": "roundsViolatingOutOf",
                       "sdkField": "RoundsViolatingOutOf",
-                      "sdkGoType": "*int32",
+                      "sdkGoType": "*int64",
                       "flatten": {
-                        "func": "convert.PtrInt32ToFramework"
+                        "func": "convert.PtrInt64ToFramework"
                       },
                       "skipExpand": true
                     }
@@ -234,13 +225,13 @@
                       "kind": "int64"
                     },
                     "computedOptionalRequired": "computed",
-                    "markdownDescription": "Specifies the numerator (x value) for the “X of Y times” condition",
+                    "markdownDescription": "Specifies the numerator (x value) for the \u201cX of Y times\u201d condition",
                     "wire": {
                       "jsonPath": "roundsViolatingRequired",
                       "sdkField": "RoundsViolatingRequired",
-                      "sdkGoType": "*int32",
+                      "sdkGoType": "*int64",
                       "flatten": {
-                        "func": "convert.PtrInt32ToFramework"
+                        "func": "convert.PtrInt64ToFramework"
                       },
                       "skipExpand": true
                     }
@@ -255,7 +246,7 @@
                     "markdownDescription": "Unique ID of the rule.",
                     "wire": {
                       "jsonPath": "ruleId",
-                      "sdkField": "RuleId",
+                      "sdkField": "RuleID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -297,9 +288,9 @@
                     "wire": {
                       "jsonPath": "sensitivityLevel",
                       "sdkField": "SensitivityLevel",
-                      "sdkGoType": "*models.TestsAPISensitivityLevel",
+                      "sdkGoType": "ftp_server_tests.SensitivityLevel",
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       },
                       "skipExpand": true
                     }
@@ -322,19 +313,15 @@
                     "wire": {
                       "jsonPath": "severity",
                       "sdkField": "Severity",
-                      "sdkGoType": "*models.TestsAPISeverity",
+                      "sdkGoType": "ftp_server_tests.Severity",
                       "expand": {
-                        "func": "convert.FrameworkToKiotaEnum",
+                        "func": "convert.FrameworkToEnum",
                         "typeArgs": [
-                          "models.TestsAPISeverity"
-                        ],
-                        "returnsError": true,
-                        "extraArgs": [
-                          "models.ParseTestsAPISeverity"
+                          "ftp_server_tests.Severity"
                         ]
                       },
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       }
                     }
                   }
@@ -346,7 +333,7 @@
             "wire": {
               "jsonPath": "alertRules",
               "sdkField": "AlertRules",
-              "sdkGoType": "[]models.TestsAPIAlertRuleable",
+              "sdkGoType": "[]ftp_server_tests.AlertRule",
               "expand": {
                 "func": "expandTestsFTPServerAlertRules",
                 "needsCtx": true,
@@ -357,7 +344,8 @@
                 "needsCtx": true,
                 "returnsError": true
               }
-            }
+            },
+            "drop": true
           },
           {
             "name": "alerts_enabled",
@@ -365,8 +353,15 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Indicates if alerts are enabled.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Indicates if alerts are enabled.\n\n<!-- probed:7.0.98-t1785745105202 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "true"
+              },
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "alertsEnabled",
               "sdkField": "AlertsEnabled",
@@ -385,8 +380,16 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Set to `true` to enable bandwidth measurements, only applies to Enterprise agents assigned to the test.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Set to `true` to enable bandwidth measurements, only applies to Enterprise agents assigned to the test.\n\n<!-- probed:7.0.98-t1785745105202 -->\nObserved: the API assigns false when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "false"
+              },
+              "returnedOnUpdate": true,
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "bandwidthMeasurements",
               "sdkField": "BandwidthMeasurements",
@@ -405,8 +408,16 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Set to `true` to enable bgp measurements.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Set to `true` to enable bgp measurements.\n\n<!-- probed:7.0.98-t1785745105202 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "true"
+              },
+              "returnedOnUpdate": true,
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "bgpMeasurements",
               "sdkField": "BgpMeasurements",
@@ -432,7 +443,7 @@
               "sdkField": "CreatedBy",
               "sdkGoType": "*string",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               },
               "skipExpand": true
             }
@@ -451,9 +462,9 @@
             "wire": {
               "jsonPath": "createdDate",
               "sdkField": "CreatedDate",
-              "sdkGoType": "*string",
+              "sdkGoType": "*time.Time",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrTimeToFramework"
               },
               "skipExpand": true
             }
@@ -465,7 +476,11 @@
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "A description of the test.",
+            "markdownDescription": "A description of the test.\n\n<!-- probed:7.0.98-t1785758238083 -->\nNeither the update response nor a read returns this field: it is write-only in practice, and state carries the configured value.\n<!-- /probed -->",
+            "behaviour": {
+              "returnedOnRead": false,
+              "returnedOnUpdate": false
+            },
             "wire": {
               "jsonPath": "description",
               "sdkField": "Description",
@@ -485,16 +500,20 @@
               "kind": "int64"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Specify maximum number of bytes to download from the target object.",
+            "markdownDescription": "Specify maximum number of bytes to download from the target object.\n\n<!-- probed:7.0.98-t1785758238083 -->\nNeither the update response nor a read returns this field: it is write-only in practice, and state carries the configured value.\n<!-- /probed -->",
+            "behaviour": {
+              "returnedOnRead": false,
+              "returnedOnUpdate": false
+            },
             "wire": {
               "jsonPath": "downloadLimit",
               "sdkField": "DownloadLimit",
               "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToPtrInt32"
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.PtrInt32ToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -504,8 +523,16 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Test is enabled.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Test is enabled.\n\n<!-- probed:7.0.98-t1785745105202 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "true"
+              },
+              "returnedOnUpdate": true,
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "enabled",
               "sdkField": "Enabled",
@@ -529,16 +556,21 @@
               }
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Sets packets rate sent to measure the network in packets per second.",
+            "markdownDescription": "Sets packets rate sent to measure the network in packets per second.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->\n\n<!-- probed:7.0.98-t1785758238083 -->\nNeither the update response nor a read returns this field: it is write-only in practice, and state carries the configured value.\n<!-- /probed -->",
+            "behaviour": {
+              "returnedOnRead": false,
+              "returnedOnUpdate": false,
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "fixedPacketRate",
               "sdkField": "FixedPacketRate",
               "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToPtrInt32"
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.PtrInt32ToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -552,17 +584,24 @@
                 "maximum": 6000
               }
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Target time for operation completion; specified in milliseconds.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Target time for operation completion; specified in milliseconds.\n\n<!-- probed:7.0.98-t1785745105202 -->\nObserved: the API assigns 1000 when this is omitted.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "1000"
+              },
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "ftpTargetTime",
               "sdkField": "FtpTargetTime",
               "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToPtrInt32"
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.PtrInt32ToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -576,17 +615,24 @@
                 "maximum": 60
               }
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Set the time limit for the test in seconds.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Set the time limit for the test in seconds.\n\n<!-- probed:7.0.98-t1785745105202 -->\nObserved: the API assigns 5 when this is omitted.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "5"
+              },
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "ftpTimeLimit",
               "sdkField": "FtpTimeLimit",
               "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToPtrInt32"
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.PtrInt32ToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -594,7 +640,7 @@
             "name": "interval",
             "goField": "Interval",
             "type": {
-              "kind": "string",
+              "kind": "int64",
               "allowedValues": [
                 "60",
                 "120",
@@ -606,23 +652,20 @@
               ]
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Interval between test runs in seconds.",
+            "markdownDescription": "Interval between test runs in seconds.\n\nDocumented intervals, in seconds: `60`, `120`, `300`, `600`, `900`, `1800`, `3600`.\n\nThe request carries this field unconditionally, so omitting it sends zero, which the API refuses (the 2026-08-03 scheduled acceptance run).\n\n<!-- probed:7.0.98-t1785745105202 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "interval",
               "sdkField": "Interval",
-              "sdkGoType": "*models.TestsAPITestInterval",
+              "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToKiotaEnum",
-                "typeArgs": [
-                  "models.TestsAPITestInterval"
-                ],
-                "returnsError": true,
-                "extraArgs": [
-                  "models.ParseTestsAPITestInterval"
-                ]
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -638,24 +681,28 @@
                 "use-agent-policy"
               ]
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "IP version policy. Overrides the IPv6 policy configured at the agent level.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "IP version policy. Overrides the IPv6 policy configured at the agent level.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "returnedOnUpdate": true,
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "ipv6Policy",
               "sdkField": "Ipv6Policy",
-              "sdkGoType": "*models.TestsAPITestIpv6Policy",
+              "sdkGoType": "*models.Tests_API_TestIpv6Policy",
               "expand": {
                 "func": "convert.FrameworkToKiotaEnum",
                 "typeArgs": [
-                  "models.TestsAPITestIpv6Policy"
+                  "models.Tests_API_TestIpv6Policy"
                 ],
-                "returnsError": true,
                 "extraArgs": [
-                  "models.ParseTestsAPITestIpv6Policy"
-                ]
+                  "models.ParseTests_API_TestIpv6Policy"
+                ],
+                "returnsError": true
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               }
             }
           },
@@ -666,8 +713,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsFTPServerTestLabelsModel",
-                "sdkType": "models.TestsAPITestLabelsable",
-                "constructorExpr": "models.NewTestsAPITestLabels()",
+                "sdkType": "ftp_server_tests.TestLabels",
                 "attrTypesVar": "testsFTPServerTestLabelsAttrTypes",
                 "objectTypeVar": "testsFTPServerTestLabelsObjectType",
                 "expandFunc": "expandTestsFTPServerTestLabelses",
@@ -701,7 +747,7 @@
                     "markdownDescription": "Label ID.",
                     "wire": {
                       "jsonPath": "labelId",
-                      "sdkField": "LabelId",
+                      "sdkField": "LabelID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -735,14 +781,15 @@
             "wire": {
               "jsonPath": "labels",
               "sdkField": "Labels",
-              "sdkGoType": "[]models.TestsAPITestLabelsable",
+              "sdkGoType": "[]ftp_server_tests.TestLabels",
               "flatten": {
                 "func": "flattenTestsFTPServerTestLabelses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            }
+            },
+            "drop": true
           },
           {
             "name": "live_share",
@@ -794,9 +841,9 @@
             "wire": {
               "jsonPath": "modifiedDate",
               "sdkField": "ModifiedDate",
-              "sdkGoType": "*string",
+              "sdkGoType": "*time.Time",
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrTimeToFramework"
               },
               "skipExpand": true
             }
@@ -808,8 +855,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsFTPServerTestBGPMonitorsModel",
-                "sdkType": "models.TestsAPITestBgpMonitorsable",
-                "constructorExpr": "models.NewTestsAPITestBgpMonitors()",
+                "sdkType": "ftp_server_tests.TestBgpMonitors",
                 "attrTypesVar": "testsFTPServerTestBGPMonitorsAttrTypes",
                 "objectTypeVar": "testsFTPServerTestBGPMonitorsObjectType",
                 "expandFunc": "expandTestsFTPServerTestBGPMonitorses",
@@ -825,7 +871,7 @@
                     "markdownDescription": "Country ID",
                     "wire": {
                       "jsonPath": "countryId",
-                      "sdkField": "CountryId",
+                      "sdkField": "CountryID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -843,7 +889,7 @@
                     "markdownDescription": "IP address of the BGP monitor",
                     "wire": {
                       "jsonPath": "ipAddress",
-                      "sdkField": "IpAddress",
+                      "sdkField": "IPAddress",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -861,7 +907,7 @@
                     "markdownDescription": "BGP monitor ID",
                     "wire": {
                       "jsonPath": "monitorId",
-                      "sdkField": "MonitorId",
+                      "sdkField": "MonitorID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -902,9 +948,9 @@
                     "wire": {
                       "jsonPath": "monitorType",
                       "sdkField": "MonitorType",
-                      "sdkGoType": "*models.TestsAPIMonitorType",
+                      "sdkGoType": "ftp_server_tests.MonitorType",
                       "flatten": {
-                        "func": "convert.KiotaEnumToFramework"
+                        "func": "convert.EnumToFramework"
                       },
                       "skipExpand": true
                     }
@@ -935,14 +981,15 @@
             "wire": {
               "jsonPath": "monitors",
               "sdkField": "Monitors",
-              "sdkGoType": "[]models.TestsAPITestBgpMonitorsable",
+              "sdkGoType": "[]ftp_server_tests.TestBgpMonitors",
               "flatten": {
                 "func": "flattenTestsFTPServerTestBGPMonitorses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            }
+            },
+            "drop": true
           },
           {
             "name": "mtu_measurements",
@@ -950,8 +997,16 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Set `true` to measure MTU sizes on network from agents to the target.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Set `true` to measure MTU sizes on network from agents to the target.\n\n<!-- probed:7.0.98-t1785745105202 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "true"
+              },
+              "returnedOnUpdate": true,
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "mtuMeasurements",
               "sdkField": "MtuMeasurements",
@@ -970,18 +1025,24 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Enable or disable network measurements. Set to true to enable or false to disable network measurements.",
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Enable or disable network measurements. Set to true to enable or false to disable network measurements.\n\n<!-- probed:7.0.98-t1785745105202 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->\n\nComputed only on this endpoint: the SDK's value-typed omitempty bool cannot send false, and an update carrying true without an explicit bandwidthMeasurements false is refused for cloud agents (live rehearsal + acceptance, 2026-08-03) -- no configurable value is expressible in both directions.",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "true"
+              },
+              "returnedOnUpdate": true,
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "networkMeasurements",
               "sdkField": "NetworkMeasurements",
               "sdkGoType": "*bool",
-              "expand": {
-                "func": "convert.FrameworkToPtrBool"
-              },
               "flatten": {
                 "func": "convert.PtrBoolToFramework"
-              }
+              },
+              "skipExpand": true
             }
           },
           {
@@ -994,17 +1055,25 @@
                 "maximum": 10
               }
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Number of path traces executed by the agent.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Number of path traces executed by the agent.\n\n<!-- probed:7.0.98-t1785745105202 -->\nObserved: the API assigns 3 when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "3"
+              },
+              "returnedOnUpdate": true,
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "numPathTraces",
               "sdkField": "NumPathTraces",
               "sdkGoType": "*int32",
               "expand": {
-                "func": "convert.FrameworkToPtrInt32"
+                "func": "convert.FrameworkInt64ToPtrInt32"
               },
               "flatten": {
-                "func": "convert.PtrInt32ToFramework"
+                "func": "convert.PtrInt32ToFrameworkInt64"
               }
             }
           },
@@ -1015,7 +1084,14 @@
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Password for Basic/NTLM authentication.",
+            "sensitive": true,
+            "markdownDescription": "Password for Basic/NTLM authentication.\n\n<!-- probed:7.0.98-t1785758238083 -->\nNeither the update response nor a read returns this field: it is write-only in practice, and state carries the configured value.\n<!-- /probed -->\n\nWrite-only: the API never returns it (the 2026-08-03 acceptance run (#13)); state carries the configured value.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnRead": false,
+              "returnedOnUpdate": false,
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "password",
               "sdkField": "Password",
@@ -1023,9 +1099,7 @@
               "expand": {
                 "func": "convert.FrameworkToPtrString"
               },
-              "flatten": {
-                "func": "convert.PtrStringToFramework"
-              }
+              "skipFlatten": true
             }
           },
           {
@@ -1038,24 +1112,28 @@
                 "in-session"
               ]
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Select `inSession` to perform the path trace within a TCP session.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Select `inSession` to perform the path trace within a TCP session.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "returnedOnUpdate": true,
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "pathTraceMode",
               "sdkField": "PathTraceMode",
-              "sdkGoType": "*models.TestsAPITestPathTraceMode",
+              "sdkGoType": "*models.Tests_API_TestPathTraceMode",
               "expand": {
                 "func": "convert.FrameworkToKiotaEnum",
                 "typeArgs": [
-                  "models.TestsAPITestPathTraceMode"
+                  "models.Tests_API_TestPathTraceMode"
                 ],
-                "returnsError": true,
                 "extraArgs": [
-                  "models.ParseTestsAPITestPathTraceMode"
-                ]
+                  "models.ParseTests_API_TestPathTraceMode"
+                ],
+                "returnsError": true
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               }
             }
           },
@@ -1070,24 +1148,28 @@
                 "syn"
               ]
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Probe mode used by network test, only valid when the protocol is set to TCP.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Probe mode used by network test, only valid when the protocol is set to TCP.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "returnedOnUpdate": true,
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "probeMode",
               "sdkField": "ProbeMode",
-              "sdkGoType": "*models.TestsAPITestProbeMode",
+              "sdkGoType": "*models.Tests_API_TestProbeMode",
               "expand": {
                 "func": "convert.FrameworkToKiotaEnum",
                 "typeArgs": [
-                  "models.TestsAPITestProbeMode"
+                  "models.Tests_API_TestProbeMode"
                 ],
-                "returnsError": true,
                 "extraArgs": [
-                  "models.ParseTestsAPITestProbeMode"
-                ]
+                  "models.ParseTests_API_TestProbeMode"
+                ],
+                "returnsError": true
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               }
             }
           },
@@ -1102,24 +1184,41 @@
                 "udp"
               ]
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Protocol used by dependent network tests (end-to-end, path trace, PMTUD).",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Protocol used by dependent network tests (end-to-end, path trace, PMTUD).\n\n<!-- probed:7.0.98-t1785745105202 -->\nValues accepted here: `tcp`, `icmp`.\nThe specification documents `udp`, which the API rejected.\nObserved: the API assigns \"tcp\" when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "immutable": false,
+              "serverDefault": {
+                "kind": "",
+                "raw": "\"tcp\""
+              },
+              "returnedOnUpdate": true,
+              "zeroValueUnsendable": true,
+              "acceptedValues": [
+                "tcp",
+                "icmp"
+              ],
+              "rejectedValues": [
+                "udp"
+              ],
+              "valuesClosed": true
+            },
             "wire": {
               "jsonPath": "protocol",
               "sdkField": "Protocol",
-              "sdkGoType": "*models.TestsAPITestProtocol",
+              "sdkGoType": "*models.Tests_API_TestProtocol",
               "expand": {
                 "func": "convert.FrameworkToKiotaEnum",
                 "typeArgs": [
-                  "models.TestsAPITestProtocol"
+                  "models.Tests_API_TestProtocol"
                 ],
-                "returnsError": true,
                 "extraArgs": [
-                  "models.ParseTestsAPITestProtocol"
-                ]
+                  "models.ParseTests_API_TestProtocol"
+                ],
+                "returnsError": true
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               }
             }
           },
@@ -1129,8 +1228,16 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Indicates whether agents should randomize the start time in each test round.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Indicates whether agents should randomize the start time in each test round.\n\n<!-- probed:7.0.98-t1785745105202 -->\nObserved: the API assigns false when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "false"
+              },
+              "returnedOnUpdate": true,
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "randomizedStartTime",
               "sdkField": "RandomizedStartTime",
@@ -1155,23 +1262,32 @@
               ]
             },
             "computedOptionalRequired": "required",
-            "markdownDescription": "Set the type of activity for the test.",
+            "markdownDescription": "Set the type of activity for the test.\n\n<!-- probed:7.0.98-t1785745105202 -->\nValues accepted here: `download`, `list`.\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnUpdate": true,
+              "acceptedValues": [
+                "download",
+                "list"
+              ],
+              "valuesClosed": true
+            },
             "wire": {
               "jsonPath": "requestType",
               "sdkField": "RequestType",
-              "sdkGoType": "*models.TestsAPIFtpServerRequestType",
+              "sdkGoType": "*models.Tests_API_FtpServerRequestType",
               "expand": {
                 "func": "convert.FrameworkToKiotaEnum",
                 "typeArgs": [
-                  "models.TestsAPIFtpServerRequestType"
+                  "models.Tests_API_FtpServerRequestType"
                 ],
-                "returnsError": true,
                 "extraArgs": [
-                  "models.ParseTestsAPIFtpServerRequestType"
-                ]
+                  "models.ParseTests_API_FtpServerRequestType"
+                ],
+                "returnsError": true
               },
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               }
             }
           },
@@ -1200,8 +1316,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsFTPServerTestSharedAccountsModel",
-                "sdkType": "models.TestsAPITestSharedAccountsable",
-                "constructorExpr": "models.NewTestsAPITestSharedAccounts()",
+                "sdkType": "ftp_server_tests.TestSharedAccounts",
                 "attrTypesVar": "testsFTPServerTestSharedAccountsAttrTypes",
                 "objectTypeVar": "testsFTPServerTestSharedAccountsObjectType",
                 "expandFunc": "expandTestsFTPServerTestSharedAccountses",
@@ -1217,7 +1332,7 @@
                     "markdownDescription": "Account group ID.",
                     "wire": {
                       "jsonPath": "aid",
-                      "sdkField": "Aid",
+                      "sdkField": "AID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -1251,14 +1366,15 @@
             "wire": {
               "jsonPath": "sharedWithAccounts",
               "sdkField": "SharedWithAccounts",
-              "sdkGoType": "[]models.TestsAPITestSharedAccountsable",
+              "sdkGoType": "[]ftp_server_tests.TestSharedAccounts",
               "flatten": {
                 "func": "flattenTestsFTPServerTestSharedAccountses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            }
+            },
+            "drop": true
           },
           {
             "name": "tags",
@@ -1267,8 +1383,7 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsFTPServerTestTagsModel",
-                "sdkType": "models.TestsAPITestTagsable",
-                "constructorExpr": "models.NewTestsAPITestTags()",
+                "sdkType": "ftp_server_tests.TestTags",
                 "attrTypesVar": "testsFTPServerTestTagsAttrTypes",
                 "objectTypeVar": "testsFTPServerTestTagsObjectType",
                 "expandFunc": "expandTestsFTPServerTestTagses",
@@ -1278,16 +1393,13 @@
                     "name": "id",
                     "goField": "ID",
                     "type": {
-                      "kind": "string",
-                      "constraints": {
-                        "format": "uuid"
-                      }
+                      "kind": "string"
                     },
                     "computedOptionalRequired": "computed",
                     "markdownDescription": "Unique tag ID.",
                     "wire": {
                       "jsonPath": "id",
-                      "sdkField": "Id",
+                      "sdkField": "ID",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -1339,18 +1451,19 @@
             "wire": {
               "jsonPath": "tags",
               "sdkField": "Tags",
-              "sdkGoType": "[]models.TestsAPITestTagsable",
+              "sdkGoType": "[]ftp_server_tests.TestTags",
               "flatten": {
                 "func": "flattenTestsFTPServerTestTagses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            }
+            },
+            "drop": true
           },
           {
-            "name": "test_id",
-            "goField": "TestID",
+            "name": "id",
+            "goField": "ID",
             "type": {
               "kind": "string"
             },
@@ -1372,8 +1485,8 @@
             "type": {
               "kind": "string"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "The name of the test. Test name must be unique.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "The name of the test. Test name must be unique.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.",
             "wire": {
               "jsonPath": "testName",
               "sdkField": "TestName",
@@ -1412,9 +1525,9 @@
             "wire": {
               "jsonPath": "type",
               "sdkField": "TypeEscaped",
-              "sdkGoType": "*models.TestsAPITestType",
+              "sdkGoType": "*models.Tests_API_TestType",
               "flatten": {
-                "func": "convert.KiotaEnumToFramework"
+                "func": "convert.PtrStringerToFramework"
               },
               "skipExpand": true
             }
@@ -1426,7 +1539,12 @@
               "kind": "string"
             },
             "computedOptionalRequired": "required",
-            "markdownDescription": "Target for the test.",
+            "markdownDescription": "Target for the test.\n\nThe test's target: the API refuses a create without it, whatever the specification marks.\n\n<!-- probed:7.0.98-t1785745105202 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->\n\nThe API normalises this value (appends a trailing slash; the 2026-08-03 acceptance run (#13)); state carries the configured form.",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnUpdate": true,
+              "normalises": "appends a trailing slash"
+            },
             "wire": {
               "jsonPath": "url",
               "sdkField": "Url",
@@ -1434,9 +1552,7 @@
               "expand": {
                 "func": "convert.FrameworkToPtrString"
               },
-              "flatten": {
-                "func": "convert.PtrStringToFramework"
-              }
+              "skipFlatten": true
             }
           },
           {
@@ -1445,8 +1561,15 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Explicitly set the flag to use active FTP.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Explicitly set the flag to use active FTP.\n\n<!-- probed:7.0.98-t1785745105202 -->\nObserved: the API assigns false when this is omitted.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "false"
+              },
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "useActiveFtp",
               "sdkField": "UseActiveFtp",
@@ -1465,8 +1588,15 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Use explicit FTPS (ftp over SSL). By default, tests will autodetect when it is appropriate to use FTPS.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Use explicit FTPS (ftp over SSL). By default, tests will autodetect when it is appropriate to use FTPS.\n\n<!-- probed:7.0.98-t1785745105202 -->\nObserved: the API assigns false when this is omitted.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "false"
+              },
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "useExplicitFtps",
               "sdkField": "UseExplicitFtps",
@@ -1485,8 +1615,16 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Indicate if all available public BGP monitors should be used, when ommited defaults to `bgpMeasurements` value.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Indicate if all available public BGP monitors should be used, when omitted defaults to `bgpMeasurements` value.\n\n<!-- probed:7.0.98-t1785745105202 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "true"
+              },
+              "returnedOnUpdate": true,
+              "zeroValueUnsendable": true
+            },
             "wire": {
               "jsonPath": "usePublicBgp",
               "sdkField": "UsePublicBgp",
@@ -1506,7 +1644,11 @@
               "kind": "string"
             },
             "computedOptionalRequired": "required",
-            "markdownDescription": "Username for Basic/NTLM authentication.",
+            "markdownDescription": "Username for Basic/NTLM authentication.\n\n<!-- probed:7.0.98-t1785745105202 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "username",
               "sdkField": "Username",
@@ -1515,8 +1657,62 @@
                 "func": "convert.FrameworkToPtrString"
               },
               "flatten": {
-                "func": "convert.PtrStringToFramework"
+                "func": "convert.PtrEnumToFramework"
               }
+            }
+          },
+          {
+            "name": "agents",
+            "goField": "Agents",
+            "type": {
+              "kind": "set_nested",
+              "nestedObject": {
+                "goTypeName": "FtpServerAgentModel",
+                "sdkType": "models.Tests_API_TestAgentRequestable",
+                "attrTypesVar": "ftpServerAgentAttrTypes",
+                "objectTypeVar": "ftpServerAgentObjectType",
+                "expandFunc": "expandFtpServerAgents",
+                "flattenFunc": "",
+                "attributes": [
+                  {
+                    "name": "agent_id",
+                    "goField": "AgentID",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "required",
+                    "markdownDescription": "The agent to run the test from. Get identifiers from `/agents`; cloud agent identifiers are stable public values.",
+                    "wire": {
+                      "jsonPath": "agentId",
+                      "sdkField": "AgentId",
+                      "sdkGoType": "*string",
+                      "expand": {
+                        "func": "convert.FrameworkToPtrString"
+                      },
+                      "skipFlatten": true
+                    }
+                  }
+                ],
+                "constructorExpr": "models.NewTests_API_TestAgentRequest()"
+              }
+            },
+            "computedOptionalRequired": "required",
+            "markdownDescription": "The agents the test runs from. Sent on create and update; the read reports assignment through its own fields, so this does not round-trip into state.\n\n<!-- probed:7.0.98-t1785758238083 -->\nNeither the update response nor a read returns this field: it is write-only in practice, and state carries the configured value.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnRead": false,
+              "returnedOnUpdate": false
+            },
+            "wire": {
+              "jsonPath": "agents",
+              "sdkField": "Agents",
+              "sdkGoType": "[]models.Tests_API_TestAgentRequestable",
+              "expand": {
+                "func": "expandFtpServerAgents",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "skipFlatten": true
             }
           }
         ],
@@ -1526,12 +1722,10 @@
         "service": {
           "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
           "alias": "models",
-          "typeName": "",
           "accessor": "r.client"
         },
         "create": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -1556,13 +1750,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.FTPServerTestResponseable",
+          "resultType": "models.Tests_API_FtpServerTestResponseable",
           "httpMethod": "POST",
           "pathTemplate": "/tests/ftp-server"
         },
         "read": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -1593,13 +1786,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.FTPServerTestResponseable",
+          "resultType": "models.Tests_API_FtpServerTestResponseable",
           "httpMethod": "GET",
           "pathTemplate": "/tests/ftp-server/{testId}"
         },
         "update": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -1633,13 +1825,12 @@
             }
           ],
           "return": "resultError",
-          "resultType": "models.FTPServerTestResponseable",
+          "resultType": "models.Tests_API_FtpServerTestResponseable",
           "httpMethod": "PUT",
           "pathTemplate": "/tests/ftp-server/{testId}"
         },
         "delete": {
           "style": "fluent",
-          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -1676,13 +1867,13 @@
         "id": {
           "attribute": "id",
           "goField": "ID",
-          "fromCreate": "created.GetId()",
+          "fromCreate": "created.GetTestId()",
           "fromCreateIsPointer": true
         },
         "body": {
-          "requestType": "models.FTPServerTestRequest",
-          "responseType": "models.FTPServerTestResponseable",
-          "constructorExpr": "models.NewFTPServerTestRequest()",
+          "requestType": "models.Tests_API_FtpServerTestRequest",
+          "responseType": "models.Tests_API_FtpServerTestResponseable",
+          "constructorExpr": "models.NewTests_API_FtpServerTestRequest()",
           "accessStyle": "method"
         }
       },
@@ -1695,6 +1886,45 @@
       "import": {
         "style": "passthroughId",
         "attribute": "id"
+      },
+      "sweep": {
+        "nameField": "testName"
+      },
+      "accFixture": {
+        "values": [
+          {
+            "attr": "agents",
+            "hcl": "[{ agent_id = \"3\" }]"
+          },
+          {
+            "attr": "url",
+            "hcl": "\"ftp://speedtest.tele2.net\""
+          },
+          {
+            "attr": "username",
+            "hcl": "\"anonymous\""
+          },
+          {
+            "attr": "password",
+            "hcl": "\"guest\""
+          },
+          {
+            "attr": "interval",
+            "hcl": "3600"
+          },
+          {
+            "attr": "fixed_packet_rate",
+            "hcl": "50"
+          },
+          {
+            "attr": "bandwidth_measurements",
+            "hcl": "false"
+          },
+          {
+            "attr": "ftp_time_limit",
+            "hcl": "30"
+          }
+        ]
       }
     }
   ]
