@@ -1028,8 +1028,8 @@
                 "kind": "string"
               }
             },
-            "computedOptionalRequired": "computed",
-            "markdownDescription": "Array of test IDs to link to alert rule (get `testId` from `/tests` endpoint).",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Array of test IDs to link to alert rule (get `testId` from `/tests` endpoint).\n\nWritable: the create and update body carries testIds, and linking tests to the rule happens here -- the tests_* resources deliberately do not carry alertRules (their request and response shapes disagree).",
             "wire": {
               "jsonPath": "testIds",
               "sdkField": "TestIds",
@@ -1039,7 +1039,11 @@
                 "needsCtx": true,
                 "returnsError": true
               },
-              "skipExpand": true
+              "expand": {
+                "func": "convert.FrameworkSetToStringSlice",
+                "needsCtx": true,
+                "returnsError": true
+              }
             }
           },
           {
