@@ -591,3 +591,20 @@ func PtrEnumToFramework[T ~string](p *T) types.String {
 	}
 	return types.StringValue(string(*p))
 }
+
+// FrameworkSetToUUIDSlice converts a set of id strings into the []uuid.UUID a
+// Kiota write model wants -- endpoint test agents and tag assignments carry
+// typed uuids on the wire. Malformed entries become the zero uuid, which the
+// API answers with its own validation error naming the field; a provider must
+// never crash on configuration.
+func FrameworkSetToUUIDSlice(ctx context.Context, v types.Set) ([]uuid.UUID, diag.Diagnostics) {
+	raw, diags := FrameworkSetToStringSlice(ctx, v)
+	if raw == nil {
+		return nil, diags
+	}
+	out := make([]uuid.UUID, len(raw))
+	for i, s := range raw {
+		out[i] = ParseUUID(s)
+	}
+	return out, diags
+}
