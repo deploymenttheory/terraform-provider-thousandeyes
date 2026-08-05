@@ -50,6 +50,11 @@ on:
         required: false
         default: '1.34.1'
         type: string
+      draft_blueprints:
+        description: 'Draft blueprints even when a curated set exists (drafting overwrites files that share a name; review the diff with care).'
+        required: false
+        default: false
+        type: boolean
       kiota_sha256:
         description: 'sha256 of the kiota linux-x64 release zip. Verified when set; the run prints the computed digest either way, so pin it from the first run''s log.'
         required: false
@@ -181,7 +186,15 @@ jobs:
       - name: Draft blueprints
         env:
           DIALECT: ${{ inputs.sdk_dialect }}
+          FORCE_DRAFT: ${{ inputs.draft_blueprints }}
         run: |
+          # Drafting writes canonical names, so on a curated set it would
+          # overwrite files a human owns. Once the provider block exists,
+          # drafting only runs when asked for explicitly.
+          if [ -f "${BLUEPRINT_DIR}/provider.blueprint.json" ] && [ "${FORCE_DRAFT}" != "true" ]; then
+            echo "curated blueprints present; skipping drafting (set draft_blueprints=true to draft alongside them)"
+            exit 0
+          fi
           mkdir -p "${BLUEPRINT_DIR}"
           ARGS=(-openapi-dir "${OPENAPI_DIR}" -sdk-dialect "${DIALECT}" -out "${BLUEPRINT_DIR}")
           if [ "${DIALECT}" = "kiotaFluent" ]; then
