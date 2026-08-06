@@ -250,6 +250,13 @@ jobs:
           fi
           for facts in "recordings/${PROVIDER_NAME}"/*/*/facts.json; do
             [ -e "$facts" ] || continue
+            # A recording that established nothing is a real outcome, not an
+            # error: merge reports "nothing to do" and exits non-zero, which
+            # would fail the run over a probe that simply found no facts.
+            if [ "$(jq 'length' "$facts")" -eq 0 ]; then
+              echo "skipping $facts (the recording established no facts)"
+              continue
+            fi
             echo "merging $facts"
             tfpfgen blueprint merge -blueprint "${BLUEPRINT_DIR}" \
               -facts "$facts" -strategy apply -allow-conflicts

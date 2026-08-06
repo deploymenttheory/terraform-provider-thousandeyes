@@ -97,6 +97,7 @@ merge:
 	@if [ -d "recordings/$(PROVIDER_NAME)" ]; then \
 		for facts in recordings/$(PROVIDER_NAME)/*/*/facts.json; do \
 			[ -e "$$facts" ] || continue; \
+			[ "$$(jq 'length' "$$facts")" -eq 0 ] && continue; \
 			echo "merging $$facts"; \
 			tfpfgen blueprint merge -blueprint "$(BLUEPRINT_DIR)" \
 				-facts "$$facts" -strategy apply -allow-conflicts; \
