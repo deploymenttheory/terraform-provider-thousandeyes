@@ -18,8 +18,15 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Indicates if alerts are enabled.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Indicates if alerts are enabled.\n\n<!-- probed:7.0.98-t1785744867250 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "true"
+              },
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "alertsEnabled",
               "sdkField": "AlertsEnabled",
@@ -38,8 +45,15 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Set to `true` to enable bgp measurements.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Set to `true` to enable bgp measurements.\n\n<!-- probed:7.0.98-t1785744867250 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "true"
+              },
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "bgpMeasurements",
               "sdkField": "BgpMeasurements",
@@ -60,6 +74,9 @@
             },
             "computedOptionalRequired": "optional",
             "markdownDescription": "Comma separated list of domains to send the client certificate.",
+            "behaviour": {
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "clientCertDomainsAllowList",
               "sdkField": "ClientCertDomainsAllowList",
@@ -98,8 +115,15 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Indicates whether network data to the proxy should be collected.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Indicates whether network data to the proxy should be collected.\n\n<!-- probed:7.0.98-t1785744867250 -->\nObserved: the API assigns false when this is omitted.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "false"
+              },
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "collectProxyNetworkData",
               "sdkField": "CollectProxyNetworkData",
@@ -186,6 +210,9 @@
             },
             "computedOptionalRequired": "optional",
             "markdownDescription": "A description of the test.",
+            "behaviour": {
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "description",
               "sdkField": "Description",
@@ -204,8 +231,19 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Adds distributed tracing headers to API requests using B3 and W3C standards.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Adds distributed tracing headers to API requests using B3 and W3C standards.\n\n<!-- probed:7.0.98-t1785758194545 -->\nObserved: the API assigns false when this is omitted from an update.\nOmitting this field from an update resets it rather than preserving the stored value.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "false"
+              },
+              "returnedOnUpdate": true,
+              "updateDefault": {
+                "kind": "bool",
+                "raw": "false"
+              }
+            },
             "wire": {
               "jsonPath": "distributedTracing",
               "sdkField": "DistributedTracing",
@@ -224,8 +262,15 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Test is enabled.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Test is enabled.\n\n<!-- probed:7.0.98-t1785744867250 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "true"
+              },
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "enabled",
               "sdkField": "Enabled",
@@ -245,7 +290,11 @@
               "kind": "bool"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "To disable following HTTP/301 or HTTP/302 redirect directives, set this parameter to `false`.",
+            "markdownDescription": "To disable following HTTP/301 or HTTP/302 redirect directives, set this parameter to `false`.\n\n<!-- probed:7.0.98-t1785758194545 -->\nNeither the update response nor a read returns this field: it is write-only in practice, and state carries the configured value.\n<!-- /probed -->",
+            "behaviour": {
+              "returnedOnRead": false,
+              "returnedOnUpdate": false
+            },
             "wire": {
               "jsonPath": "followRedirects",
               "sdkField": "FollowRedirects",
@@ -292,7 +341,11 @@
               ]
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Interval between test runs in seconds.",
+            "markdownDescription": "Interval between test runs in seconds.\n\n<!-- probed:7.0.98-t1785744867250 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "interval",
               "sdkField": "Interval",
@@ -596,8 +649,15 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Set `true` to measure MTU sizes on network from agents to the target.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Set `true` to measure MTU sizes on network from agents to the target.\n\n<!-- probed:7.0.98-t1785744867250 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "true"
+              },
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "mtuMeasurements",
               "sdkField": "MtuMeasurements",
@@ -616,8 +676,15 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Enable or disable network measurements. Set to true to enable or false to disable network measurements.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Enable or disable network measurements. Set to true to enable or false to disable network measurements.\n\n<!-- probed:7.0.98-t1785744867250 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "true"
+              },
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "networkMeasurements",
               "sdkField": "NetworkMeasurements",
@@ -640,8 +707,16 @@
                 "maximum": 10
               }
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Number of path traces executed by the agent.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Number of path traces executed by the agent.\n\n<!-- probed:7.0.98-t1785758194545 -->\nConditionally, when networkMeasurements is \"false\": round-trips alone, and is stored as null the moment \"networkMeasurements\" rides along; isolated by bisecting the maximal body's delta. Not applied to the schema, because this holds only under that condition and the schema has no way to say so.\nNeither the update response nor a read returns this field: it is write-only in practice, and state carries the configured value.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "3"
+              },
+              "returnedOnRead": false,
+              "returnedOnUpdate": false
+            },
             "wire": {
               "jsonPath": "numPathTraces",
               "sdkField": "NumPathTraces",
@@ -660,8 +735,15 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Flag indicating if a proxy other than the default should be used. To override the default proxy for agents, set to `true` and specify a value for `overrideProxyId`.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Flag indicating if a proxy other than the default should be used. To override the default proxy for agents, set to `true` and specify a value for `overrideProxyId`.\n\n<!-- probed:7.0.98-t1785744867250 -->\nObserved: the API assigns false when this is omitted.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "false"
+              },
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "overrideAgentProxy",
               "sdkField": "OverrideAgentProxy",
@@ -706,6 +788,9 @@
             },
             "computedOptionalRequired": "optional",
             "markdownDescription": "Select `inSession` to perform the path trace within a TCP session.",
+            "behaviour": {
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "pathTraceMode",
               "sdkField": "PathTraceMode",
@@ -812,6 +897,9 @@
             },
             "computedOptionalRequired": "optional",
             "markdownDescription": "Probe mode used by network test, only valid when the protocol is set to TCP.",
+            "behaviour": {
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "probeMode",
               "sdkField": "ProbeMode",
@@ -842,8 +930,23 @@
                 "udp"
               ]
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Protocol used by dependent network tests (end-to-end, path trace, PMTUD).",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Protocol used by dependent network tests (end-to-end, path trace, PMTUD).\n\n<!-- probed:7.0.98-t1785744867250 -->\nValues accepted here: `tcp`, `icmp`.\nThe specification documents `udp`, which the API rejected.\nObserved: the API assigns \"tcp\" when this is omitted.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "\"tcp\""
+              },
+              "returnedOnUpdate": true,
+              "acceptedValues": [
+                "tcp",
+                "icmp"
+              ],
+              "rejectedValues": [
+                "udp"
+              ],
+              "valuesClosed": true
+            },
             "wire": {
               "jsonPath": "protocol",
               "sdkField": "Protocol",
@@ -869,8 +972,15 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Indicates whether agents should randomize the start time in each test round.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Indicates whether agents should randomize the start time in each test round.\n\n<!-- probed:7.0.98-t1785744867250 -->\nObserved: the API assigns false when this is omitted.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "false"
+              },
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "randomizedStartTime",
               "sdkField": "RandomizedStartTime",
@@ -922,7 +1032,14 @@
                               ]
                             },
                             "computedOptionalRequired": "optional",
-                            "markdownDescription": "Set to `status-code` to assert the response status code. Set to `response-body` to assert data is present in the response body. Use `ApiRequestAssertion` to set the value for the assertion.",
+                            "markdownDescription": "Set to `status-code` to assert the response status code. Set to `response-body` to assert data is present in the response body. Use `ApiRequestAssertion` to set the value for the assertion.\n\n<!-- probed:7.0.98-t1785744867250 -->\nValues accepted here: `status-code`, `response-body`.\nThe API accepted a value from outside the documented set, so no OneOf validator is generated for this attribute.\n<!-- /probed -->",
+                            "behaviour": {
+                              "acceptedValues": [
+                                "status-code",
+                                "response-body"
+                              ],
+                              "valuesClosed": false
+                            },
                             "wire": {
                               "jsonPath": "name",
                               "sdkField": "Name",
@@ -957,7 +1074,18 @@
                               ]
                             },
                             "computedOptionalRequired": "optional",
-                            "markdownDescription": "If `name = status-code``, accepted values are [is, is-not]. If `name = response-body``, accepted values are [includes, not-includes, matches, not-matches]`.",
+                            "markdownDescription": "If `name = status-code``, accepted values are [is, is-not]. If `name = response-body``, accepted values are [includes, not-includes, matches, not-matches]`.\n\n<!-- probed:7.0.98-t1785744867250 -->\nValues accepted here: `is`, `is-not`, `includes`, `not-includes`, `matches`, `not-matches`.\nThe API accepted a value from outside the documented set, so no OneOf validator is generated for this attribute.\n<!-- /probed -->",
+                            "behaviour": {
+                              "acceptedValues": [
+                                "is",
+                                "is-not",
+                                "includes",
+                                "not-includes",
+                                "matches",
+                                "not-matches"
+                              ],
+                              "valuesClosed": false
+                            },
                             "wire": {
                               "jsonPath": "operator",
                               "sdkField": "Operator",
@@ -1030,8 +1158,21 @@
                         "oauth2"
                       ]
                     },
-                    "computedOptionalRequired": "optional",
-                    "markdownDescription": "Will override the Authorization request header.",
+                    "computedOptionalRequired": "computed_optional",
+                    "markdownDescription": "Will override the Authorization request header.\n\n<!-- probed:7.0.98-t1785744867250 -->\nValues accepted here: `none`, `basic`, `bearer-token`, `oauth2`.\nObserved: the API assigns \"none\" when this is omitted.\nThe API accepted a value from outside the documented set, so no OneOf validator is generated for this attribute.\n<!-- /probed -->",
+                    "behaviour": {
+                      "serverDefault": {
+                        "kind": "",
+                        "raw": "\"none\""
+                      },
+                      "acceptedValues": [
+                        "none",
+                        "basic",
+                        "bearer-token",
+                        "oauth2"
+                      ],
+                      "valuesClosed": false
+                    },
                     "wire": {
                       "jsonPath": "authType",
                       "sdkField": "AuthType",
@@ -1102,7 +1243,14 @@
                       ]
                     },
                     "computedOptionalRequired": "optional",
-                    "markdownDescription": "The OAuth2 client authentication location type.",
+                    "markdownDescription": "The OAuth2 client authentication location type.\n\n<!-- probed:7.0.98-t1785744867250 -->\nValues accepted here: `basic-auth-header`, `in-body`.\nThe API accepted a value from outside the documented set, so no OneOf validator is generated for this attribute.\n<!-- /probed -->",
+                    "behaviour": {
+                      "acceptedValues": [
+                        "basic-auth-header",
+                        "in-body"
+                      ],
+                      "valuesClosed": false
+                    },
                     "wire": {
                       "jsonPath": "clientAuthentication",
                       "sdkField": "ClientAuthentication",
@@ -1168,8 +1316,14 @@
                     "type": {
                       "kind": "bool"
                     },
-                    "computedOptionalRequired": "optional",
-                    "markdownDescription": "Set to `true` if API response body should be collected and saved. Set to `false` if API response body should not be saved.",
+                    "computedOptionalRequired": "computed_optional",
+                    "markdownDescription": "Set to `true` if API response body should be collected and saved. Set to `false` if API response body should not be saved.\n\n<!-- probed:7.0.98-t1785744867250 -->\nObserved: the API assigns false when this is omitted.\n<!-- /probed -->",
+                    "behaviour": {
+                      "serverDefault": {
+                        "kind": "",
+                        "raw": "false"
+                      }
+                    },
                     "wire": {
                       "jsonPath": "collectApiResponse",
                       "sdkField": "CollectApiResponse",
@@ -1270,8 +1424,22 @@
                         "patch"
                       ]
                     },
-                    "computedOptionalRequired": "optional",
-                    "markdownDescription": "HTTP request method.",
+                    "computedOptionalRequired": "computed_optional",
+                    "markdownDescription": "HTTP request method.\n\n<!-- probed:7.0.98-t1785744867250 -->\nValues accepted here: `get`, `post`, `put`, `delete`, `patch`.\nObserved: the API assigns \"get\" when this is omitted.\nThe API accepted a value from outside the documented set, so no OneOf validator is generated for this attribute.\n<!-- /probed -->",
+                    "behaviour": {
+                      "serverDefault": {
+                        "kind": "",
+                        "raw": "\"get\""
+                      },
+                      "acceptedValues": [
+                        "get",
+                        "post",
+                        "put",
+                        "delete",
+                        "patch"
+                      ],
+                      "valuesClosed": false
+                    },
                     "wire": {
                       "jsonPath": "method",
                       "sdkField": "Method",
@@ -1298,7 +1466,13 @@
                       "kind": "string"
                     },
                     "computedOptionalRequired": "required",
-                    "markdownDescription": "API step name, must be unique.",
+                    "markdownDescription": "API step name, must be unique.\n\n<!-- probed:7.0.98-t1785744867250 -->\nObserved: the API assigns \"step-1\" when this is omitted.\n<!-- /probed -->",
+                    "behaviour": {
+                      "serverDefault": {
+                        "kind": "",
+                        "raw": "\"step-1\""
+                      }
+                    },
                     "wire": {
                       "jsonPath": "name",
                       "sdkField": "Name",
@@ -1378,7 +1552,13 @@
                       "kind": "string"
                     },
                     "computedOptionalRequired": "required",
-                    "markdownDescription": "Request url. Supports variables in the format `{{variableName}}`.",
+                    "markdownDescription": "Request url. Supports variables in the format `{{variableName}}`.\n\n<!-- probed:7.0.98-t1785744867250 -->\nObserved: the API assigns \"https://api.stripe.com/healthcheck\" when this is omitted.\n<!-- /probed -->",
+                    "behaviour": {
+                      "serverDefault": {
+                        "kind": "",
+                        "raw": "\"https://api.stripe.com/healthcheck\""
+                      }
+                    },
                     "wire": {
                       "jsonPath": "url",
                       "sdkField": "Url",
@@ -1492,8 +1672,14 @@
                     "type": {
                       "kind": "bool"
                     },
-                    "computedOptionalRequired": "optional",
-                    "markdownDescription": "Ignore or acknowledge certificate errors. Set to false to ignore certificate errors.",
+                    "computedOptionalRequired": "computed_optional",
+                    "markdownDescription": "Ignore or acknowledge certificate errors. Set to false to ignore certificate errors.\n\n<!-- probed:7.0.98-t1785744867250 -->\nObserved: the API assigns false when this is omitted.\n<!-- /probed -->",
+                    "behaviour": {
+                      "serverDefault": {
+                        "kind": "",
+                        "raw": "false"
+                      }
+                    },
                     "wire": {
                       "jsonPath": "verifyCertificate",
                       "sdkField": "VerifyCertificate",
@@ -1530,6 +1716,11 @@
               }
             },
             "computedOptionalRequired": "required",
+            "markdownDescription": "<!-- probed:7.0.98-t1785744867250 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "requests",
               "sdkField": "Requests",
@@ -1646,7 +1837,11 @@
               ]
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "SSL version options:\n\n* Use '0' for automatic selection.\n* Use '3' for SSLv3.\n* Use '4' for TLS v1.0.\n* Use '5' for TLS v1.1.\n* Use '6' for TLS v1.2.\n* Use '7' for TLS v1.3.",
+            "markdownDescription": "SSL version options:\n\n* Use '0' for automatic selection.\n* Use '3' for SSLv3.\n* Use '4' for TLS v1.0.\n* Use '5' for TLS v1.1.\n* Use '6' for TLS v1.2.\n* Use '7' for TLS v1.3.\n\n<!-- probed:7.0.98-t1785758194545 -->\nNeither the update response nor a read returns this field: it is write-only in practice, and state carries the configured value.\n<!-- /probed -->",
+            "behaviour": {
+              "returnedOnRead": false,
+              "returnedOnUpdate": false
+            },
             "wire": {
               "jsonPath": "sslVersionId",
               "sdkField": "SslVersionId",
@@ -1764,8 +1959,15 @@
                 "maximum": 60
               }
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Target time for completion metric, defaults to 50% of time limit specified in seconds. (0 means default behavior)",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Target time for completion metric, defaults to 50% of time limit specified in seconds. (0 means default behavior)\n\n<!-- probed:7.0.98-t1785744867250 -->\nObserved: the API assigns 6 when this is omitted.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "6"
+              },
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "targetTime",
               "sdkField": "TargetTime",
@@ -1808,8 +2010,15 @@
                 "maximum": 180
               }
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Time limit for transaction in seconds. Exceeding this limit will result in a Timeout error.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Time limit for transaction in seconds. Exceeding this limit will result in a Timeout error.\n\n<!-- probed:7.0.98-t1785744867250 -->\nObserved: the API assigns 10 when this is omitted.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "10"
+              },
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "timeLimit",
               "sdkField": "TimeLimit",
@@ -1847,7 +2056,11 @@
               "kind": "string"
             },
             "computedOptionalRequired": "required",
-            "markdownDescription": "Target for the test.",
+            "markdownDescription": "Target for the test.\n\n<!-- probed:7.0.98-t1785744867250 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "url",
               "sdkField": "Url",
@@ -1866,8 +2079,15 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Indicate if all available public BGP monitors should be used, when ommited defaults to `bgpMeasurements` value.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Indicate if all available public BGP monitors should be used, when ommited defaults to `bgpMeasurements` value.\n\n<!-- probed:7.0.98-t1785744867250 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "true"
+              },
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "usePublicBgp",
               "sdkField": "UsePublicBgp",
@@ -1926,7 +2146,15 @@
                       ]
                     },
                     "computedOptionalRequired": "optional",
-                    "markdownDescription": "The target setting that the credential should be used for.",
+                    "markdownDescription": "The target setting that the credential should be used for.\n\n<!-- probed:7.0.98-t1785744867250 -->\nValues accepted here: `username`, `password`, `script`.\nThe API accepted a value from outside the documented set, so no OneOf validator is generated for this attribute.\n<!-- /probed -->",
+                    "behaviour": {
+                      "acceptedValues": [
+                        "username",
+                        "password",
+                        "script"
+                      ],
+                      "valuesClosed": false
+                    },
                     "wire": {
                       "jsonPath": "target",
                       "sdkField": "Target",

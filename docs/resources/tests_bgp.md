@@ -17,13 +17,13 @@ Get BGP test.
 
 ### Optional
 
-- `alerts_enabled` (Boolean) Indicates if alerts are enabled.
+- `alerts_enabled` (Boolean) Indicates if alerts are enabled. <!-- probed:7.0.98-t1785744878231 --> Observed: the API assigns true when this is omitted. <!-- /probed -->
 - `description` (String) A description of the test.
-- `enabled` (Boolean) Test is enabled.
-- `include_covered_prefixes` (Boolean) Indicate if queries for subprefixes detected under this prefix should included.
+- `enabled` (Boolean) Test is enabled. <!-- probed:7.0.98-t1785744878231 --> Observed: the API assigns true when this is omitted. <!-- /probed -->
+- `include_covered_prefixes` (Boolean) Indicate if queries for subprefixes detected under this prefix should included. <!-- probed:7.0.98-t1785744878231 --> Observed: the API assigns false when this is omitted. <!-- /probed -->
 - `test_name` (String) The name of the test. Test name must be unique.
 - `timeouts` (Block, Optional) (see [below for nested schema](#nestedblock--timeouts))
-- `use_public_bgp` (Boolean) Indicate if all available public BGP monitors should be used, when ommited defaults to `bgpMeasurements` value.
+- `use_public_bgp` (Boolean) Indicate if all available public BGP monitors should be used, when ommited defaults to `bgpMeasurements` value. <!-- probed:7.0.98-t1785744878231 --> Observed: the API assigns true when this is omitted. <!-- /probed -->
 
 ### Read-Only
 

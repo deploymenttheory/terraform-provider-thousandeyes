@@ -73,7 +73,7 @@ resource "thousandeyes_tests_web_transaction" "example" {
 - `password` (String) Password for Basic/NTLM authentication.
 - `path_trace_mode` (String) Select `inSession` to perform the path trace within a TCP session.
 - `probe_mode` (String) Probe mode used by network test, only valid when the protocol is set to TCP.
-- `protocol` (String) Protocol used by dependent network tests (end-to-end, path trace, PMTUD).
+- `protocol` (String) Protocol used by dependent network tests (end-to-end, path trace, PMTUD). <!-- probed:7.0.98-t1785745177323 --> The specification documents `udp`, which the API rejected. <!-- /probed -->
 - `randomized_start_time` (Boolean) Indicates whether agents should randomize the start time in each test round.
 - `ssl_version_id` (String) SSL version options: * Use '0' for automatic selection. * Use '3' for SSLv3. * Use '4' for TLS v1.0. * Use '5' for TLS v1.1. * Use '6' for TLS v1.2. * Use '7' for TLS v1.3.
 - `subinterval` (Number) Subinterval for round-robin testing (in seconds). Must be less than or equal to interval and must evenly divide interval.

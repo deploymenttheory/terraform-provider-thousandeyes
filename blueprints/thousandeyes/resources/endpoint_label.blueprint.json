@@ -18,8 +18,15 @@
             "type": {
               "kind": "string"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "UI color",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "UI color\n\n<!-- probed:7.0.98-t1785833092712 -->\nObserved: the API assigns \"#d9d9d9\" when this is omitted.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "\"#d9d9d9\""
+              },
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "color",
               "sdkField": "Color",
@@ -71,8 +78,34 @@
                         "asn"
                       ]
                     },
-                    "computedOptionalRequired": "optional",
-                    "markdownDescription": "Type of filter - the data that will be used to filter.",
+                    "computedOptionalRequired": "computed_optional",
+                    "markdownDescription": "Type of filter - the data that will be used to filter.\n\n<!-- probed:7.0.98-t1785833092712 -->\nValues accepted here: `agent-id`, `public-network`, `local-network`, `connection`, `gateway`, `platform`, `agent-type`, `vpn-vendor`, `vpn-gateway-address`, `vpn-client-network`, `vpn-client-address`, `ip-address-family`, `ssid`, `bssid`, `hostname`, `username`, `asn`.\nObserved: the API assigns \"platform\" when this is omitted.\nThe API accepted a value from outside the documented set, so no OneOf validator is generated for this attribute.\n<!-- /probed -->",
+                    "behaviour": {
+                      "serverDefault": {
+                        "kind": "",
+                        "raw": "\"platform\""
+                      },
+                      "acceptedValues": [
+                        "agent-id",
+                        "public-network",
+                        "local-network",
+                        "connection",
+                        "gateway",
+                        "platform",
+                        "agent-type",
+                        "vpn-vendor",
+                        "vpn-gateway-address",
+                        "vpn-client-network",
+                        "vpn-client-address",
+                        "ip-address-family",
+                        "ssid",
+                        "bssid",
+                        "hostname",
+                        "username",
+                        "asn"
+                      ],
+                      "valuesClosed": false
+                    },
                     "wire": {
                       "jsonPath": "key",
                       "sdkField": "Key",
@@ -102,8 +135,19 @@
                         "not-in"
                       ]
                     },
-                    "computedOptionalRequired": "optional",
-                    "markdownDescription": "Type of matching to be applied for the values:\n\n* `in`: The value on the agent must match one of the list of values provided.\n* `not-in`: The value on the agent must not match any of the list of values provided.",
+                    "computedOptionalRequired": "computed_optional",
+                    "markdownDescription": "Type of matching to be applied for the values:\n\n* `in`: The value on the agent must match one of the list of values provided.\n* `not-in`: The value on the agent must not match any of the list of values provided.\n\n<!-- probed:7.0.98-t1785833092712 -->\nValues accepted here: `in`, `not-in`.\nObserved: the API assigns \"in\" when this is omitted.\nThe API accepted a value from outside the documented set, so no OneOf validator is generated for this attribute.\n<!-- /probed -->",
+                    "behaviour": {
+                      "serverDefault": {
+                        "kind": "",
+                        "raw": "\"in\""
+                      },
+                      "acceptedValues": [
+                        "in",
+                        "not-in"
+                      ],
+                      "valuesClosed": false
+                    },
                     "wire": {
                       "jsonPath": "mode",
                       "sdkField": "Mode",
@@ -153,7 +197,11 @@
               }
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "The filters combined using the matchType to determine the label's match.",
+            "markdownDescription": "The filters combined using the matchType to determine the label's match.\n\n<!-- probed:7.0.98-t1785833092712 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "filters",
               "sdkField": "Filters",
@@ -199,7 +247,16 @@
               ]
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Specifies how the filters are combined for matching this label.\n\n* `and`: All filters must be matched.\n* `or`: Any of the filters should match.",
+            "markdownDescription": "Specifies how the filters are combined for matching this label.\n\n* `and`: All filters must be matched.\n* `or`: Any of the filters should match.\n\n<!-- probed:7.0.98-t1785833092712 -->\nValues accepted here: `and`, `or`.\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnUpdate": true,
+              "acceptedValues": [
+                "and",
+                "or"
+              ],
+              "valuesClosed": true
+            },
             "wire": {
               "jsonPath": "matchType",
               "sdkField": "MatchType",

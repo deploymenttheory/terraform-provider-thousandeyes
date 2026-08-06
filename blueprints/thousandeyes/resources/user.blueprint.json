@@ -145,7 +145,10 @@
               }
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "User's email address.",
+            "markdownDescription": "User's email address.\n\n<!-- probed:7.0.98-t1785772809774 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true
+            },
             "wire": {
               "jsonPath": "email",
               "sdkField": "Email",

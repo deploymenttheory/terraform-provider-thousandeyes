@@ -19,7 +19,13 @@
               "kind": "int64"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Duration in seconds the suppression window is active.",
+            "markdownDescription": "Duration in seconds the suppression window is active.\n\n<!-- probed:7.0.98-t1785764488786 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnRead": true,
+              "returnedOnCreate": true,
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "duration",
               "sdkField": "Duration",
@@ -101,8 +107,20 @@
                         "date"
                       ]
                     },
-                    "computedOptionalRequired": "optional",
-                    "markdownDescription": "End repeat options type.",
+                    "computedOptionalRequired": "computed_optional",
+                    "markdownDescription": "End repeat options type.\n\n<!-- probed:7.0.98-t1785764488786 -->\nValues accepted here: `count`, `never`, `date`.\nObserved: the API assigns \"never\" when this is omitted.\nThe API accepted a value from outside the documented set, so no OneOf validator is generated for this attribute.\n<!-- /probed -->",
+                    "behaviour": {
+                      "serverDefault": {
+                        "kind": "",
+                        "raw": "\"never\""
+                      },
+                      "acceptedValues": [
+                        "count",
+                        "never",
+                        "date"
+                      ],
+                      "valuesClosed": false
+                    },
                     "wire": {
                       "jsonPath": "type",
                       "sdkField": "TypeEscaped",
@@ -169,6 +187,12 @@
             },
             "computedOptionalRequired": "optional",
             "markdownDescription": "Set to `false` for `disabled`, `true` for `enabled`.",
+            "behaviour": {
+              "requiredByApi": false,
+              "returnedOnRead": true,
+              "returnedOnCreate": true,
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "isEnabled",
               "sdkField": "IsEnabled",
@@ -189,6 +213,10 @@
             },
             "computedOptionalRequired": "optional",
             "markdownDescription": "Name of the alert suppression window.",
+            "behaviour": {
+              "returnedOnRead": true,
+              "returnedOnCreate": true
+            },
             "wire": {
               "jsonPath": "name",
               "sdkField": "Name",
@@ -279,7 +307,15 @@
                       ]
                     },
                     "computedOptionalRequired": "optional",
-                    "markdownDescription": "Repeat options interval type",
+                    "markdownDescription": "Repeat options interval type\n\n<!-- probed:7.0.98-t1785764488786 -->\nValues accepted here: `day`, `week`, `month`.\nThe API accepted a value from outside the documented set, so no OneOf validator is generated for this attribute.\n<!-- /probed -->",
+                    "behaviour": {
+                      "acceptedValues": [
+                        "day",
+                        "week",
+                        "month"
+                      ],
+                      "valuesClosed": false
+                    },
                     "wire": {
                       "jsonPath": "intervalType",
                       "sdkField": "IntervalType",
@@ -311,8 +347,23 @@
                         "custom"
                       ]
                     },
-                    "computedOptionalRequired": "optional",
-                    "markdownDescription": "Repeat options type.",
+                    "computedOptionalRequired": "computed_optional",
+                    "markdownDescription": "Repeat options type.\n\n<!-- probed:7.0.98-t1785764488786 -->\nValues accepted here: `day`, `week`, `month`, `custom`.\nObserved: the API assigns \"none\" when this is omitted.\nThe API accepted a value from outside the documented set, so no OneOf validator is generated for this attribute.\n<!-- /probed -->",
+                    "behaviour": {
+                      "serverDefault": {
+                        "kind": "",
+                        "raw": "\"none\""
+                      },
+                      "returnedOnRead": true,
+                      "returnedOnCreate": true,
+                      "acceptedValues": [
+                        "day",
+                        "week",
+                        "month",
+                        "custom"
+                      ],
+                      "valuesClosed": false
+                    },
                     "wire": {
                       "jsonPath": "type",
                       "sdkField": "TypeEscaped",
@@ -336,7 +387,13 @@
               }
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Repeat options.",
+            "markdownDescription": "Repeat options.\n\n<!-- probed:7.0.98-t1785764488786 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnRead": true,
+              "returnedOnCreate": true,
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "repeat",
               "sdkField": "Repeat",
@@ -363,7 +420,11 @@
               }
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "The date/time when the alert suppression window starts (ISO date-time format).",
+            "markdownDescription": "The date/time when the alert suppression window starts (ISO date-time format).\n\n<!-- probed:7.0.98-t1785764488786 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "startDate",
               "sdkField": "StartDate",

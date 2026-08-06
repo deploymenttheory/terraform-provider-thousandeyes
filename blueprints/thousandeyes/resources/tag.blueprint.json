@@ -24,7 +24,18 @@
               ]
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "The access level of the tag. The access level determines the label's visibility in the UI and the permissions required to modify it. Accepted values are:\n\n\n* `all`: The tag is visible and editable by any user in the account group with the standard **View tags** or **Edit tags** permission. Default for all user-created tags.\n\n* `partner`: The tag is owned by a specific integration partner. Only that partner can read or modify it. It's hidden from all regular account users and excluded from their GET responses.\n\n* `system`: Reserved for ThousandEyes internal use only. This value may appear in GET responses on internally managed tags but cannot be set by users or integration partners.",
+            "markdownDescription": "The access level of the tag. The access level determines the label's visibility in the UI and the permissions required to modify it. Accepted values are:\n\n\n* `all`: The tag is visible and editable by any user in the account group with the standard **View tags** or **Edit tags** permission. Default for all user-created tags.\n\n* `partner`: The tag is owned by a specific integration partner. Only that partner can read or modify it. It's hidden from all regular account users and excluded from their GET responses.\n\n* `system`: Reserved for ThousandEyes internal use only. This value may appear in GET responses on internally managed tags but cannot be set by users or integration partners.\n\n<!-- probed:7.0.97-t1785500655892 -->\nValues accepted here: `all`.\nThe specification documents `system`, which the API rejected.\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "requiredByApi": true,
+              "returnedOnRead": true,
+              "acceptedValues": [
+                "all"
+              ],
+              "rejectedValues": [
+                "system"
+              ],
+              "valuesClosed": true
+            },
             "wire": {
               "jsonPath": "accessType",
               "sdkField": "AccessType",
@@ -158,8 +169,16 @@
             "type": {
               "kind": "string"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Tag color",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Tag color\n\n<!-- probed:7.0.97-t1785500655892 -->\nObserved: the API assigns \"#A7EB10\" when this is omitted.\n<!-- /probed -->",
+            "behaviour": {
+              "immutable": false,
+              "serverDefault": {
+                "kind": "",
+                "raw": "\"#A7EB10\""
+              },
+              "returnedOnRead": true
+            },
             "wire": {
               "jsonPath": "color",
               "sdkField": "Color",
@@ -201,6 +220,10 @@
             },
             "computedOptionalRequired": "optional",
             "markdownDescription": "The tag's description.",
+            "behaviour": {
+              "writable": true,
+              "returnedOnRead": true
+            },
             "wire": {
               "jsonPath": "description",
               "sdkField": "Description",
@@ -234,7 +257,26 @@
                       "kind": "string"
                     },
                     "computedOptionalRequired": "optional",
-                    "markdownDescription": "Filter key used for filtering.\n\nWhen `scope` is `default`, accepted values are `agent-id`, `location`, `serial-number`, `public-network`, `local-network`, `connection`, `gateway`, `platform`, `nic-model`, `nic-driver-version`, `agent-type`, `proxy-target`, `vpn-vendor`, `vpn-gateway-address`, `vpn-target`, `vpn-client-network`, `vpn-client-address`, `ip-address-family`, `ssid`, `bssid`, `hostname`, `username`, and `asn`.\n\nWhen `scope` is `custom`, use a user-defined check-in metadata key.",
+                    "markdownDescription": "Filter key used for filtering.\n\nWhen `scope` is `default`, accepted values are `agent-id`, `location`, `serial-number`, `public-network`, `local-network`, `connection`, `gateway`, `platform`, `nic-model`, `nic-driver-version`, `agent-type`, `proxy-target`, `vpn-vendor`, `vpn-gateway-address`, `vpn-target`, `vpn-client-network`, `vpn-client-address`, `ip-address-family`, `ssid`, `bssid`, `hostname`, `username`, and `asn`.\n\nWhen `scope` is `custom`, use a user-defined check-in metadata key.\n\n<!-- probed:7.0.97-t1785500655892 -->\nConditionally, when objectType is \"endpoint-agent\" and type is \"dynamic\": the field appeared in the read after 1 create(s), when objectType is \"endpoint-agent\" and type is \"dynamic\". Applied as a behaviour variant.\n<!-- /probed -->",
+                    "behaviour": {
+                      "conditional": [
+                        {
+                          "when": [
+                            {
+                              "jsonPath": "objectType",
+                              "equals": "endpoint-agent"
+                            },
+                            {
+                              "jsonPath": "type",
+                              "equals": "dynamic"
+                            }
+                          ],
+                          "behaviour": {
+                            "returnedOnRead": true
+                          }
+                        }
+                      ]
+                    },
                     "wire": {
                       "jsonPath": "key",
                       "sdkField": "Key",
@@ -258,7 +300,26 @@
                       ]
                     },
                     "computedOptionalRequired": "optional",
-                    "markdownDescription": "Type of matching logic applied to the values:\n\n* `in`: The value on the agent must match one of the list of values provided.\n* `not-in`: The value on the agent must not match any of the list of values provided.",
+                    "markdownDescription": "Type of matching logic applied to the values:\n\n* `in`: The value on the agent must match one of the list of values provided.\n* `not-in`: The value on the agent must not match any of the list of values provided.\n\n<!-- probed:7.0.97-t1785500655892 -->\nConditionally, when objectType is \"endpoint-agent\" and type is \"dynamic\": the field appeared in the read after 1 create(s), when objectType is \"endpoint-agent\" and type is \"dynamic\". Applied as a behaviour variant.\n<!-- /probed -->",
+                    "behaviour": {
+                      "conditional": [
+                        {
+                          "when": [
+                            {
+                              "jsonPath": "objectType",
+                              "equals": "endpoint-agent"
+                            },
+                            {
+                              "jsonPath": "type",
+                              "equals": "dynamic"
+                            }
+                          ],
+                          "behaviour": {
+                            "returnedOnRead": true
+                          }
+                        }
+                      ]
+                    },
                     "wire": {
                       "jsonPath": "mode",
                       "sdkField": "Mode",
@@ -289,7 +350,26 @@
                       ]
                     },
                     "computedOptionalRequired": "optional",
-                    "markdownDescription": "Scope of the filter.\n\n* `default`: The filter is from the default set provided by ThousandEyes.\n* `custom`: The filter is user-defined. Set in check-in metadata.",
+                    "markdownDescription": "Scope of the filter.\n\n* `default`: The filter is from the default set provided by ThousandEyes.\n* `custom`: The filter is user-defined. Set in check-in metadata.\n\n<!-- probed:7.0.97-t1785500655892 -->\nConditionally, when objectType is \"endpoint-agent\" and type is \"dynamic\": the field appeared in the read after 1 create(s), when objectType is \"endpoint-agent\" and type is \"dynamic\". Applied as a behaviour variant.\n<!-- /probed -->",
+                    "behaviour": {
+                      "conditional": [
+                        {
+                          "when": [
+                            {
+                              "jsonPath": "objectType",
+                              "equals": "endpoint-agent"
+                            },
+                            {
+                              "jsonPath": "type",
+                              "equals": "dynamic"
+                            }
+                          ],
+                          "behaviour": {
+                            "returnedOnRead": true
+                          }
+                        }
+                      ]
+                    },
                     "wire": {
                       "jsonPath": "scope",
                       "sdkField": "Scope",
@@ -319,6 +399,26 @@
                       }
                     },
                     "computedOptionalRequired": "optional",
+                    "markdownDescription": "<!-- probed:7.0.97-t1785500655892 -->\nConditionally, when objectType is \"endpoint-agent\" and type is \"dynamic\": the field appeared in the read after 1 create(s), when objectType is \"endpoint-agent\" and type is \"dynamic\". Applied as a behaviour variant.\n<!-- /probed -->",
+                    "behaviour": {
+                      "conditional": [
+                        {
+                          "when": [
+                            {
+                              "jsonPath": "objectType",
+                              "equals": "endpoint-agent"
+                            },
+                            {
+                              "jsonPath": "type",
+                              "equals": "dynamic"
+                            }
+                          ],
+                          "behaviour": {
+                            "returnedOnRead": true
+                          }
+                        }
+                      ]
+                    },
                     "wire": {
                       "jsonPath": "values",
                       "sdkField": "Values",
@@ -339,7 +439,27 @@
               }
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "The combination of filters (filter keys) dynamically assigned to an `endpoint-agent` as determined by the matching logic (`and` or `or`). For example, if you filter on `bssid` and `ssid` with a matching logic of `and`, both filters are assigned as tags to the `endpoint-agent`; `or` means either filter can be assigned. **Note:** filters currently only apply to `endpoint-agent` object types.",
+            "markdownDescription": "The combination of filters (filter keys) dynamically assigned to an `endpoint-agent` as determined by the matching logic (`and` or `or`). For example, if you filter on `bssid` and `ssid` with a matching logic of `and`, both filters are assigned as tags to the `endpoint-agent`; `or` means either filter can be assigned. **Note:** filters currently only apply to `endpoint-agent` object types.\n\n<!-- probed:7.0.97-t1785500655892 -->\nConditionally, when objectType is \"endpoint-agent\" and type is \"dynamic\": a create omitting this field was refused with 400 and the error named the field, when objectType is \"endpoint-agent\" and type is \"dynamic\". Applied as a behaviour variant.\nConditionally, when objectType is \"endpoint-agent\" and type is \"dynamic\": the field appeared in the read after 1 create(s), when objectType is \"endpoint-agent\" and type is \"dynamic\". Applied as a behaviour variant.\n<!-- /probed -->",
+            "behaviour": {
+              "conditional": [
+                {
+                  "when": [
+                    {
+                      "jsonPath": "objectType",
+                      "equals": "endpoint-agent"
+                    },
+                    {
+                      "jsonPath": "type",
+                      "equals": "dynamic"
+                    }
+                  ],
+                  "behaviour": {
+                    "requiredByApi": true,
+                    "returnedOnRead": true
+                  }
+                }
+              ]
+            },
             "wire": {
               "jsonPath": "filters",
               "sdkField": "Filters",
@@ -362,7 +482,15 @@
             "type": {
               "kind": "string"
             },
-            "computedOptionalRequired": "optional",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "<!-- probed:7.0.97-t1785500655892 -->\nObserved: the API assigns \"LABEL\" when this is omitted.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "\"LABEL\""
+              },
+              "returnedOnRead": true
+            },
             "wire": {
               "jsonPath": "icon",
               "sdkField": "Icon",
@@ -404,6 +532,11 @@
             },
             "computedOptionalRequired": "optional",
             "markdownDescription": "The tags's key",
+            "behaviour": {
+              "writable": true,
+              "immutable": false,
+              "returnedOnRead": true
+            },
             "wire": {
               "jsonPath": "key",
               "sdkField": "Key",
@@ -444,7 +577,53 @@
               ]
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Specifies how filters (tag keys) are applied (matched) to objects for tag assignment.\n* `and`: All filters must be matched.\n* `or`: Any of the filters should match.\n\nNote: filtering and matching currently only apply to `endpoint-agent` object types, as these functions are used for dynamic tag assignment.",
+            "markdownDescription": "Specifies how filters (tag keys) are applied (matched) to objects for tag assignment.\n* `and`: All filters must be matched.\n* `or`: Any of the filters should match.\n\nNote: filtering and matching currently only apply to `endpoint-agent` object types, as these functions are used for dynamic tag assignment.\n\n<!-- probed:7.0.97-t1785500655892 -->\nValues accepted here: `and`, `or`.\nConditionally, when objectType is \"endpoint-agent\" and type is \"dynamic\": a create omitting this field was refused with 400 and the error named the field, when objectType is \"endpoint-agent\" and type is \"dynamic\". Applied as a behaviour variant.\nConditionally, when objectType is \"endpoint-agent\": the field appeared in the read after 1 create(s), when objectType is \"endpoint-agent\". Applied as a behaviour variant.\nConditionally, when objectType is \"test\": the field was sent on 1 create(s) and appeared in no read response, including every expansion the plan declares, when objectType is \"test\". Applied as a behaviour variant.\n<!-- /probed -->",
+            "behaviour": {
+              "acceptedValues": [
+                "and",
+                "or"
+              ],
+              "valuesClosed": true,
+              "conditional": [
+                {
+                  "when": [
+                    {
+                      "jsonPath": "objectType",
+                      "equals": "endpoint-agent"
+                    }
+                  ],
+                  "behaviour": {
+                    "returnedOnRead": true
+                  }
+                },
+                {
+                  "when": [
+                    {
+                      "jsonPath": "objectType",
+                      "equals": "endpoint-agent"
+                    },
+                    {
+                      "jsonPath": "type",
+                      "equals": "dynamic"
+                    }
+                  ],
+                  "behaviour": {
+                    "requiredByApi": true
+                  }
+                },
+                {
+                  "when": [
+                    {
+                      "jsonPath": "objectType",
+                      "equals": "test"
+                    }
+                  ],
+                  "behaviour": {
+                    "returnedOnRead": false
+                  }
+                }
+              ]
+            },
             "wire": {
               "jsonPath": "matchType",
               "sdkField": "MatchType",
@@ -500,7 +679,21 @@
               ]
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "The object type associated with the tag",
+            "markdownDescription": "The object type associated with the tag\n\n<!-- probed:7.0.97-t1785500655892 -->\nValues accepted here: `test`, `dashboard`, `endpoint-test`, `v-agent`, `connected-devices-test`.\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "writable": true,
+              "immutable": true,
+              "requiredByApi": true,
+              "returnedOnRead": true,
+              "acceptedValues": [
+                "test",
+                "dashboard",
+                "endpoint-test",
+                "v-agent",
+                "connected-devices-test"
+              ],
+              "valuesClosed": true
+            },
             "wire": {
               "jsonPath": "objectType",
               "sdkField": "ObjectType",
@@ -531,7 +724,22 @@
               ]
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "The nature of the tag - whether the tag is dynamically assigned to objects based on a filter rule or statically assigned to specified objects. Currently only `endpoint-agent` object types support dynamic assignment; all other object types (for example, `test`, `agent`) support only static assignment.",
+            "markdownDescription": "The nature of the tag - whether the tag is dynamically assigned to objects based on a filter rule or statically assigned to specified objects. Currently only `endpoint-agent` object types support dynamic assignment; all other object types (for example, `test`, `agent`) support only static assignment.\n\n<!-- probed:7.0.97-t1785500655892 -->\nConditionally, when objectType is \"endpoint-agent\": a create omitting this field was refused with 400 and the error named the field, when objectType is \"endpoint-agent\". Applied as a behaviour variant.\n<!-- /probed -->",
+            "behaviour": {
+              "conditional": [
+                {
+                  "when": [
+                    {
+                      "jsonPath": "objectType",
+                      "equals": "endpoint-agent"
+                    }
+                  ],
+                  "behaviour": {
+                    "requiredByApi": true
+                  }
+                }
+              ]
+            },
             "wire": {
               "jsonPath": "type",
               "sdkField": "TypeEscaped",
@@ -558,7 +766,12 @@
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "The tag's value",
+            "markdownDescription": "The tag's value\n\n<!-- probed:7.0.97-t1785500655892 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
+            "behaviour": {
+              "writable": true,
+              "requiredByApi": true,
+              "returnedOnRead": true
+            },
             "wire": {
               "jsonPath": "value",
               "sdkField": "Value",
