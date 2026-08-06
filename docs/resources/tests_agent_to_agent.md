@@ -17,51 +17,46 @@ Get Agent to Agent test.
 
 ### Required
 
-- `agents` (Attributes Set) The agents the test runs from. Sent on create and update; the read reports assignment through its own fields, so this does not round-trip into state. (see [below for nested schema](#nestedatt--agents))
 - `target_agent_id` (String) `agentId` of the target agent for the test.
 
 ### Optional
 
 - `alerts_enabled` (Boolean) Indicates if alerts are enabled.
-- `bgp_measurements` (Boolean) Set to `true` to enable bgp measurements. <!-- probed:static --> The SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or "" silently becomes an omission. <!-- /probed -->
+- `bgp_measurements` (Boolean) Set to `true` to enable bgp measurements.
 - `description` (String) A description of the test.
-- `direction` (String) Direction of the test, which affects how results are shown. <!-- probed:static --> The SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or "" silently becomes an omission. <!-- /probed -->
-- `dscp_id` (String) DSCP ID [to see list for acceptable values](https://docs.thousandeyes.com/product-documentation/tests/dscp-options-in-network-tests) <!-- probed:static --> The SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or "" silently becomes an omission. <!-- /probed -->
-- `enabled` (Boolean) Test is enabled. <!-- probed:static --> The SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or "" silently becomes an omission. <!-- /probed -->
-- `fixed_packet_rate` (Number) Sets packets rate sent to measure the network in packets per second. <!-- probed:static --> The SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or "" silently becomes an omission. <!-- /probed -->
-- `interval` (Number) Interval between test runs in seconds. Documented intervals, in seconds: `60`, `120`, `300`, `600`, `900`, `1800`, `3600`. The request carries this field unconditionally, so omitting it sends zero, which the API refuses (the 2026-08-03 scheduled acceptance run).
+- `direction` (String) Direction of the test, which affects how results are shown.
+- `dscp_id` (String) DSCP ID [to see list for acceptable values](https://docs.thousandeyes.com/product-documentation/tests/dscp-options-in-network-tests)
+- `enabled` (Boolean) Test is enabled.
+- `fixed_packet_rate` (Number) Sets packets rate sent to measure the network in packets per second.
+- `interval` (Number) Interval between test runs in seconds.
 - `mss` (Number) Maximum segment size, in bytes.
-- `num_path_traces` (Number) Number of path traces executed by the agent. <!-- probed:static --> The SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or "" silently becomes an omission. <!-- /probed -->
-- `path_trace_mode` (String) Select `inSession` to perform the path trace within a TCP session. <!-- probed:static --> The SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or "" silently becomes an omission. <!-- /probed -->
-- `port` (Number) Target port. <!-- probed:static --> The SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or "" silently becomes an omission. <!-- /probed -->
-- `protocol` (String) <!-- probed:static --> The SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or "" silently becomes an omission. <!-- /probed -->
-- `randomized_start_time` (Boolean) Indicates whether agents should randomize the start time in each test round. <!-- probed:static --> The SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or "" silently becomes an omission. <!-- /probed -->
+- `num_path_traces` (Number) Number of path traces executed by the agent.
+- `path_trace_mode` (String) Select `inSession` to perform the path trace within a TCP session.
+- `port` (Number) Target port.
+- `protocol` (String)
+- `randomized_start_time` (Boolean) Indicates whether agents should randomize the start time in each test round.
 - `test_name` (String) The name of the test. Test name must be unique.
 - `throughput_duration` (Number) The throughput duration.
 - `throughput_measurements` (Boolean) Enable or disable throughput measurements. Throughput measurements cannot be enabled when the source or target of the test is a cloud agent.
 - `throughput_rate` (Number) The throughput rate, only applicable for UDP protocol.
 - `timeouts` (Block, Optional) (see [below for nested schema](#nestedblock--timeouts))
-- `use_public_bgp` (Boolean) Indicate if all available public BGP monitors should be used, when omitted defaults to `bgpMeasurements` value. <!-- probed:static --> The SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or "" silently becomes an omission. <!-- /probed -->
+- `use_public_bgp` (Boolean) Indicate if all available public BGP monitors should be used, when ommited defaults to `bgpMeasurements` value.
 
 ### Read-Only
 
 - `created_by` (String) User that created the test.
 - `created_date` (String) UTC created date (ISO date-time format).
 - `dscp` (String) DSCP label.
-- `id` (String) Each test is assigned an unique ID; this is used to access test information and results from other endpoints.
+- `id` (String) Each test is assigned an unique ID; this is used to access test information and results from other endpoints. Named `id` per the import convention; the wire field stays testId.
+- `labels` (Attributes Set) Labels to which the test is assigned. This field is not returned for Instant Tests. (see [below for nested schema](#nestedatt--labels))
 - `live_share` (Boolean) Indicates if the test is shared with the account group.
 - `modified_by` (String) User that modified the test.
 - `modified_date` (String) UTC last modification date (ISO date-time format).
+- `monitors` (Attributes Set) Contains list of enabled BGP monitors. (see [below for nested schema](#nestedatt--monitors))
 - `saved_event` (Boolean) Indicates if the test is a saved event. **Note**: **Saved Events** are now called **Private Snapshots** in the user interface. This change does not affect API.
+- `shared_with_accounts` (Attributes Set) Contains list of account group IDs. Test is shared with the listed account groups (get `aid` from `/account-groups` endpoint) (see [below for nested schema](#nestedatt--shared_with_accounts))
+- `tags` (Attributes Set) Tags assigned to the test. Returned only when `expand=tag` is specified. This field is not returned for Instant Tests. For more information, see `/tags`. (see [below for nested schema](#nestedatt--tags))
 - `type` (String) This is a read only value, as test type is implicit in the test creation url.
-
-<a id="nestedatt--agents"></a>
-### Nested Schema for `agents`
-
-Required:
-
-- `agent_id` (String) The agent to run the test from. Get identifiers from `/agents`; cloud agent identifiers are stable public values.
-
 
 <a id="nestedblock--timeouts"></a>
 ### Nested Schema for `timeouts`
@@ -72,3 +67,45 @@ Optional:
 - `delete` (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
 - `read` (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
 - `update` (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+
+
+<a id="nestedatt--labels"></a>
+### Nested Schema for `labels`
+
+Read-Only:
+
+- `is_builtin` (Boolean) Value indicating if the label in question is BuiltIn (Account Admin, Organization Admin, Regular User).
+- `label_id` (String) Label ID.
+- `name` (String) Name of the label.
+
+
+<a id="nestedatt--monitors"></a>
+### Nested Schema for `monitors`
+
+Read-Only:
+
+- `country_id` (String) Country ID
+- `ip_address` (String) IP address of the BGP monitor
+- `monitor_id` (String) BGP monitor ID
+- `monitor_name` (String) Display name of the BGP monitor
+- `monitor_type` (String) Type of monitor
+- `network` (String) Name of the autonomous system in which the monitor is found
+
+
+<a id="nestedatt--shared_with_accounts"></a>
+### Nested Schema for `shared_with_accounts`
+
+Read-Only:
+
+- `aid` (String) Account group ID.
+- `name` (String) Account group name.
+
+
+<a id="nestedatt--tags"></a>
+### Nested Schema for `tags`
+
+Read-Only:
+
+- `id` (String) Unique tag ID.
+- `key` (String) Tag key. For example, "Location" or "Department".
+- `value` (String) Tag value. For example, "San Francisco" or "Engineering".

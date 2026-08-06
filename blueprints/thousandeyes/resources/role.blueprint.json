@@ -13,6 +13,24 @@
       "schema": {
         "attributes": [
           {
+            "name": "id",
+            "goField": "ID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Unique ID representing the role. Named `id` per the import convention; the wire field stays roleId.",
+            "wire": {
+              "jsonPath": "roleId",
+              "sdkField": "RoleId",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
             "name": "is_builtin",
             "goField": "IsBuiltin",
             "type": {
@@ -37,12 +55,7 @@
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Name of the role.\n\nRequired-by-API by curation: the sweeper's field, unprobeable by omission.",
-            "behaviour": {
-              "requiredByApi": true,
-              "returnedOnRead": true,
-              "returnedOnCreate": true
-            },
+            "markdownDescription": "Name of the role.",
             "wire": {
               "jsonPath": "name",
               "sdkField": "Name",
@@ -54,53 +67,6 @@
                 "func": "convert.PtrStringToFramework"
               }
             }
-          },
-          {
-            "name": "permissions",
-            "goField": "Permissions",
-            "type": {
-              "kind": "set",
-              "elementType": {
-                "kind": "string"
-              }
-            },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "List of permission ids to grant (permissionId values from the permissions API). The response echoes permissions as expanded objects, never this id list, so state carries the configured value.\n\nEffectively required: a permission-less role create answers 500 (live probe, 2026-08-03).\n\n<!-- probed:7.0.98-t1785772662063 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
-            "behaviour": {
-              "requiredByApi": true,
-              "returnedOnRead": true,
-              "returnedOnCreate": true,
-              "returnedOnUpdate": true
-            },
-            "wire": {
-              "jsonPath": "permissions",
-              "sdkField": "Permissions",
-              "sdkGoType": "[]string",
-              "expand": {
-                "func": "convert.FrameworkSetToStringSlice",
-                "needsCtx": true,
-                "returnsError": true
-              },
-              "skipFlatten": true
-            }
-          },
-          {
-            "name": "id",
-            "goField": "ID",
-            "type": {
-              "kind": "string"
-            },
-            "computedOptionalRequired": "computed",
-            "markdownDescription": "Unique ID representing the role.\n\nNamed `id` per the import convention; the wire field stays roleId.",
-            "wire": {
-              "jsonPath": "roleId",
-              "sdkField": "RoleId",
-              "sdkGoType": "*string",
-              "flatten": {
-                "func": "convert.PtrStringToFramework"
-              },
-              "skipExpand": true
-            }
           }
         ],
         "markdownDescription": "Retrieve role."
@@ -109,10 +75,12 @@
         "service": {
           "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
           "alias": "models",
+          "typeName": "",
           "accessor": "r.client"
         },
         "create": {
           "style": "fluent",
+          "method": "",
           "chain": [
             {
               "method": "Roles"
@@ -140,6 +108,7 @@
         },
         "read": {
           "style": "fluent",
+          "method": "",
           "chain": [
             {
               "method": "Roles"
@@ -173,6 +142,7 @@
         },
         "update": {
           "style": "fluent",
+          "method": "",
           "chain": [
             {
               "method": "Roles"
@@ -209,6 +179,7 @@
         },
         "delete": {
           "style": "fluent",
+          "method": "",
           "chain": [
             {
               "method": "Roles"
@@ -261,21 +232,6 @@
       "import": {
         "style": "passthroughId",
         "attribute": "id"
-      },
-      "accFixture": {
-        "values": [
-          {
-            "attr": "permissions",
-            "hcl": "[\"1\", \"2\"]",
-            "wire": [
-              "1",
-              "2"
-            ]
-          }
-        ]
-      },
-      "accTest": {
-        "skipUnlessEnv": "TFPFGEN_ACC_ADMIN"
       }
     }
   ]

@@ -1,0 +1,473 @@
+{
+  "formatVersion": "4",
+  "resources": [
+    {
+      "key": "operations_webhook",
+      "name": "operations_webhook",
+      "goPackage": "operations_webhook",
+      "goPackageAlias": "v7OperationsWebhook",
+      "goTypeName": "OperationsWebhookResource",
+      "modelTypeName": "OperationsWebhookResourceModel",
+      "serviceGroup": "webhook_operations",
+      "apiVersionDir": "v7",
+      "schema": {
+        "attributes": [
+          {
+            "name": "category",
+            "goField": "Category",
+            "type": {
+              "kind": "string",
+              "allowedValues": [
+                "alerts",
+                "recommendations",
+                "traffic-monitoring"
+              ]
+            },
+            "computedOptionalRequired": "required",
+            "wire": {
+              "jsonPath": "category",
+              "sdkField": "Category",
+              "sdkGoType": "*models.Integrations_API_OperationCategory",
+              "expand": {
+                "func": "convert.FrameworkToKiotaEnum",
+                "typeArgs": [
+                  "models.Integrations_API_OperationCategory"
+                ],
+                "returnsError": true,
+                "extraArgs": [
+                  "models.ParseIntegrations_API_OperationCategory"
+                ]
+              },
+              "flatten": {
+                "func": "convert.PtrStringerToFramework"
+              }
+            }
+          },
+          {
+            "name": "enabled",
+            "goField": "Enabled",
+            "type": {
+              "kind": "bool"
+            },
+            "computedOptionalRequired": "optional",
+            "wire": {
+              "jsonPath": "enabled",
+              "sdkField": "Enabled",
+              "sdkGoType": "*bool",
+              "expand": {
+                "func": "convert.FrameworkToPtrBool"
+              },
+              "flatten": {
+                "func": "convert.PtrBoolToFramework"
+              }
+            }
+          },
+          {
+            "name": "headers",
+            "goField": "Headers",
+            "type": {
+              "kind": "set_nested",
+              "nestedObject": {
+                "goTypeName": "OperationsWebhookHeaderModel",
+                "sdkType": "models.Integrations_API_Headerable",
+                "constructorExpr": "models.NewIntegrations_API_Header()",
+                "attrTypesVar": "operationsWebhookHeaderAttrTypes",
+                "objectTypeVar": "operationsWebhookHeaderObjectType",
+                "expandFunc": "expandOperationsWebhookHeaders",
+                "flattenFunc": "flattenOperationsWebhookHeaders",
+                "attributes": [
+                  {
+                    "name": "name",
+                    "goField": "Name",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "required",
+                    "wire": {
+                      "jsonPath": "name",
+                      "sdkField": "Name",
+                      "sdkGoType": "*string",
+                      "expand": {
+                        "func": "convert.FrameworkToPtrString"
+                      },
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      }
+                    }
+                  },
+                  {
+                    "name": "value",
+                    "goField": "Value",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "required",
+                    "wire": {
+                      "jsonPath": "value",
+                      "sdkField": "Value",
+                      "sdkGoType": "*string",
+                      "expand": {
+                        "func": "convert.FrameworkToPtrString"
+                      },
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "computedOptionalRequired": "optional",
+            "wire": {
+              "jsonPath": "headers",
+              "sdkField": "Headers",
+              "sdkGoType": "[]models.Integrations_API_Headerable",
+              "expand": {
+                "func": "expandOperationsWebhookHeaders",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "flatten": {
+                "func": "flattenOperationsWebhookHeaders",
+                "needsCtx": true,
+                "returnsError": true
+              }
+            }
+          },
+          {
+            "name": "id",
+            "goField": "ID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "wire": {
+              "jsonPath": "id",
+              "sdkField": "Id",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "name",
+            "goField": "Name",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "required",
+            "wire": {
+              "jsonPath": "name",
+              "sdkField": "Name",
+              "sdkGoType": "*string",
+              "expand": {
+                "func": "convert.FrameworkToPtrString"
+              },
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              }
+            }
+          },
+          {
+            "name": "path",
+            "goField": "Path",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "optional",
+            "wire": {
+              "jsonPath": "path",
+              "sdkField": "Path",
+              "sdkGoType": "*string",
+              "expand": {
+                "func": "convert.FrameworkToPtrString"
+              },
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              }
+            }
+          },
+          {
+            "name": "payload",
+            "goField": "Payload",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Handlebars template for the payload.",
+            "wire": {
+              "jsonPath": "payload",
+              "sdkField": "Payload",
+              "sdkGoType": "*string",
+              "expand": {
+                "func": "convert.FrameworkToPtrString"
+              },
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              }
+            }
+          },
+          {
+            "name": "query_params",
+            "goField": "QueryParams",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Handlebars template for the query params. Most compile into a proper JSON object where each object property will define the query param name and the object property value define the corresponding query param value.",
+            "wire": {
+              "jsonPath": "queryParams",
+              "sdkField": "QueryParams",
+              "sdkGoType": "*string",
+              "expand": {
+                "func": "convert.FrameworkToPtrString"
+              },
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              }
+            }
+          },
+          {
+            "name": "status",
+            "goField": "Status",
+            "type": {
+              "kind": "string",
+              "allowedValues": [
+                "pending",
+                "connected",
+                "failing",
+                "unverified"
+              ]
+            },
+            "computedOptionalRequired": "required",
+            "markdownDescription": "The connectivity status of the operation to its target endpoint. Indicates whether the operation can successfully connect and communicate with the target URL. Values: 'pending' (initial state, not yet tested), 'connected' (successfully connected), 'failing' (connection or execution issues), 'unverified' (not yet verified/tested).",
+            "wire": {
+              "jsonPath": "status",
+              "sdkField": "Status",
+              "sdkGoType": "*models.Integrations_API_OperationStatus",
+              "expand": {
+                "func": "convert.FrameworkToKiotaEnum",
+                "typeArgs": [
+                  "models.Integrations_API_OperationStatus"
+                ],
+                "returnsError": true,
+                "extraArgs": [
+                  "models.ParseIntegrations_API_OperationStatus"
+                ]
+              },
+              "flatten": {
+                "func": "convert.PtrStringerToFramework"
+              }
+            }
+          },
+          {
+            "name": "type",
+            "goField": "Type",
+            "type": {
+              "kind": "string",
+              "allowedValues": [
+                "webhook"
+              ]
+            },
+            "computedOptionalRequired": "optional",
+            "wire": {
+              "jsonPath": "type",
+              "sdkField": "TypeEscaped",
+              "sdkGoType": "*models.Integrations_API_OperationType",
+              "expand": {
+                "func": "convert.FrameworkToKiotaEnum",
+                "typeArgs": [
+                  "models.Integrations_API_OperationType"
+                ],
+                "returnsError": true,
+                "extraArgs": [
+                  "models.ParseIntegrations_API_OperationType"
+                ]
+              },
+              "flatten": {
+                "func": "convert.PtrStringerToFramework"
+              }
+            }
+          }
+        ],
+        "markdownDescription": "Retrieve webhook operation."
+      },
+      "binding": {
+        "service": {
+          "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
+          "alias": "models",
+          "typeName": "",
+          "accessor": "r.client"
+        },
+        "create": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Operations"
+            },
+            {
+              "method": "Webhooks"
+            },
+            {
+              "method": "Post",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "body"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.Integrations_API_WebhookOperationable",
+          "httpMethod": "POST",
+          "pathTemplate": "/operations/webhooks"
+        },
+        "read": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Operations"
+            },
+            {
+              "method": "Webhooks"
+            },
+            {
+              "method": "ById",
+              "args": [
+                {
+                  "kind": "stateField",
+                  "field": "ID"
+                }
+              ]
+            },
+            {
+              "method": "Get",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.Integrations_API_WebhookOperationable",
+          "httpMethod": "GET",
+          "pathTemplate": "/operations/webhooks/{id}"
+        },
+        "update": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Operations"
+            },
+            {
+              "method": "Webhooks"
+            },
+            {
+              "method": "ById",
+              "args": [
+                {
+                  "kind": "stateField",
+                  "field": "ID"
+                }
+              ]
+            },
+            {
+              "method": "Put",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "body"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.Integrations_API_WebhookOperationable",
+          "httpMethod": "PUT",
+          "pathTemplate": "/operations/webhooks/{id}"
+        },
+        "delete": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Operations"
+            },
+            {
+              "method": "Webhooks"
+            },
+            {
+              "method": "ById",
+              "args": [
+                {
+                  "kind": "stateField",
+                  "field": "ID"
+                }
+              ]
+            },
+            {
+              "method": "Delete",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "error",
+          "httpMethod": "DELETE",
+          "pathTemplate": "/operations/webhooks/{id}"
+        },
+        "id": {
+          "attribute": "id",
+          "goField": "ID",
+          "fromCreate": "created.GetId()",
+          "fromCreateIsPointer": true
+        },
+        "body": {
+          "requestType": "models.Integrations_API_WebhookOperation",
+          "responseType": "models.Integrations_API_WebhookOperationable",
+          "constructorExpr": "models.NewIntegrations_API_WebhookOperation()",
+          "accessStyle": "method"
+        }
+      },
+      "policy": {
+        "updateStyle": "putFull",
+        "delete": {
+          "notFoundIsSuccess": true
+        }
+      },
+      "import": {
+        "style": "passthroughId",
+        "attribute": "id"
+      }
+    }
+  ]
+}

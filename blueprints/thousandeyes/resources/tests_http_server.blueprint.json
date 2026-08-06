@@ -19,7 +19,8 @@
               "kind": "single_nested",
               "nestedObject": {
                 "goTypeName": "TestsHTTPServerAgentInterfacesModel",
-                "sdkType": "http_server_tests.AgentInterfaces",
+                "sdkType": "models.Tests_API_AgentInterfacesable",
+                "constructorExpr": "models.NewTests_API_AgentInterfaces()",
                 "attrTypesVar": "testsHTTPServerAgentInterfacesAttrTypes",
                 "objectTypeVar": "testsHTTPServerAgentInterfacesObjectType",
                 "expandFunc": "expandTestsHTTPServerAgentInterfaces",
@@ -35,7 +36,7 @@
                     "markdownDescription": "The agent ID of the enterprise agent for the test.",
                     "wire": {
                       "jsonPath": "agentId",
-                      "sdkField": "AgentID",
+                      "sdkField": "AgentId",
                       "sdkGoType": "*string",
                       "expand": {
                         "func": "convert.FrameworkToPtrString"
@@ -72,7 +73,7 @@
             "wire": {
               "jsonPath": "agentInterfaces",
               "sdkField": "AgentInterfaces",
-              "sdkGoType": "*http_server_tests.AgentInterfaces",
+              "sdkGoType": "models.Tests_API_AgentInterfacesable",
               "expand": {
                 "func": "expandTestsHTTPServerAgentInterfaces",
                 "needsCtx": true,
@@ -83,343 +84,7 @@
                 "needsCtx": true,
                 "returnsError": true
               }
-            },
-            "drop": true
-          },
-          {
-            "name": "alert_rules",
-            "goField": "AlertRules",
-            "type": {
-              "kind": "set_nested",
-              "nestedObject": {
-                "goTypeName": "TestsHTTPServerAlertRuleModel",
-                "sdkType": "http_server_tests.AlertRule",
-                "attrTypesVar": "testsHTTPServerAlertRuleAttrTypes",
-                "objectTypeVar": "testsHTTPServerAlertRuleObjectType",
-                "expandFunc": "expandTestsHTTPServerAlertRules",
-                "flattenFunc": "flattenTestsHTTPServerAlertRules",
-                "attributes": [
-                  {
-                    "name": "alert_type",
-                    "goField": "AlertType",
-                    "type": {
-                      "kind": "string",
-                      "allowedValues": [
-                        "page-load",
-                        "http-server",
-                        "end-to-end-server",
-                        "end-to-end-agent",
-                        "voice",
-                        "dns-server",
-                        "dns-trace",
-                        "dnssec",
-                        "bgp",
-                        "path-trace",
-                        "ftp",
-                        "sip-server",
-                        "transactions",
-                        "web-transactions",
-                        "agent",
-                        "network-outage",
-                        "application-outage",
-                        "device-device",
-                        "device-interface",
-                        "endpoint-network-server",
-                        "endpoint-http-server",
-                        "endpoint-path-trace",
-                        "endpoint-browser-sessions-agent",
-                        "endpoint-browser-sessions-application",
-                        "api",
-                        "web-transaction",
-                        "unknown"
-                      ]
-                    },
-                    "computedOptionalRequired": "optional",
-                    "markdownDescription": "Type of alert being triggered. In multi-layered tests, this value represents the layer the alert relates to. See [Alert Details](https://developer.cisco.com/docs/thousandeyes/retrieve-alert-details/) documentation for a list of possible values",
-                    "wire": {
-                      "jsonPath": "alertType",
-                      "sdkField": "AlertType",
-                      "sdkGoType": "http_server_tests.AlertType",
-                      "expand": {
-                        "func": "convert.FrameworkToEnum",
-                        "typeArgs": [
-                          "http_server_tests.AlertType"
-                        ]
-                      },
-                      "flatten": {
-                        "func": "convert.EnumToFramework"
-                      }
-                    }
-                  },
-                  {
-                    "name": "direction",
-                    "goField": "Direction",
-                    "type": {
-                      "kind": "string",
-                      "allowedValues": [
-                        "to-target",
-                        "from-target",
-                        "bidirectional"
-                      ]
-                    },
-                    "computedOptionalRequired": "optional",
-                    "markdownDescription": "Direction for applicable alert types (eg. path trace, End-to-End (Agent) etc.)",
-                    "wire": {
-                      "jsonPath": "direction",
-                      "sdkField": "Direction",
-                      "sdkGoType": "http_server_tests.AlertDirection",
-                      "expand": {
-                        "func": "convert.FrameworkToEnum",
-                        "typeArgs": [
-                          "http_server_tests.AlertDirection"
-                        ]
-                      },
-                      "flatten": {
-                        "func": "convert.EnumToFramework"
-                      }
-                    }
-                  },
-                  {
-                    "name": "expression",
-                    "goField": "Expression",
-                    "type": {
-                      "kind": "string"
-                    },
-                    "computedOptionalRequired": "computed",
-                    "markdownDescription": "String expression of alert rule",
-                    "wire": {
-                      "jsonPath": "expression",
-                      "sdkField": "Expression",
-                      "sdkGoType": "*string",
-                      "flatten": {
-                        "func": "convert.PtrStringToFramework"
-                      },
-                      "skipExpand": true
-                    }
-                  },
-                  {
-                    "name": "is_default",
-                    "goField": "IsDefault",
-                    "type": {
-                      "kind": "bool"
-                    },
-                    "computedOptionalRequired": "computed",
-                    "markdownDescription": "Alert rules allow up to 1 alert rule to be selected as a default for each type. By checking the default option, this alert rule will be automatically included on subsequently created tests that test a metric used in alerting here",
-                    "wire": {
-                      "jsonPath": "isDefault",
-                      "sdkField": "IsDefault",
-                      "sdkGoType": "*bool",
-                      "flatten": {
-                        "func": "convert.PtrBoolToFramework"
-                      },
-                      "skipExpand": true
-                    }
-                  },
-                  {
-                    "name": "minimum_sources",
-                    "goField": "MinimumSources",
-                    "type": {
-                      "kind": "int64"
-                    },
-                    "computedOptionalRequired": "computed",
-                    "markdownDescription": "The minimum number of agents or monitors that must meet the specified criteria in order to trigger the alert",
-                    "wire": {
-                      "jsonPath": "minimumSources",
-                      "sdkField": "MinimumSources",
-                      "sdkGoType": "*int64",
-                      "flatten": {
-                        "func": "convert.PtrInt64ToFramework"
-                      },
-                      "skipExpand": true
-                    }
-                  },
-                  {
-                    "name": "minimum_sources_pct",
-                    "goField": "MinimumSourcesPct",
-                    "type": {
-                      "kind": "int64"
-                    },
-                    "computedOptionalRequired": "computed",
-                    "markdownDescription": "the minimum percentage of all assigned agents or monitors that must meet the specified criteria in order to trigger the alert",
-                    "wire": {
-                      "jsonPath": "minimumSourcesPct",
-                      "sdkField": "MinimumSourcesPct",
-                      "sdkGoType": "*int64",
-                      "flatten": {
-                        "func": "convert.PtrInt64ToFramework"
-                      },
-                      "skipExpand": true
-                    }
-                  },
-                  {
-                    "name": "rounds_violating_mode",
-                    "goField": "RoundsViolatingMode",
-                    "type": {
-                      "kind": "string",
-                      "allowedValues": [
-                        "exact",
-                        "any",
-                        "auto"
-                      ]
-                    },
-                    "computedOptionalRequired": "computed",
-                    "markdownDescription": "`exact` requires the same agents to meet the threshold in consecutive rounds. `auto` is only enabled for CEA and Endpoint Scheduled test rules. The default is `any`.",
-                    "wire": {
-                      "jsonPath": "roundsViolatingMode",
-                      "sdkField": "RoundsViolatingMode",
-                      "sdkGoType": "http_server_tests.AlertRoundsViolationMode",
-                      "flatten": {
-                        "func": "convert.EnumToFramework"
-                      },
-                      "skipExpand": true
-                    }
-                  },
-                  {
-                    "name": "rounds_violating_out_of",
-                    "goField": "RoundsViolatingOutOf",
-                    "type": {
-                      "kind": "int64"
-                    },
-                    "computedOptionalRequired": "computed",
-                    "markdownDescription": "Specifies the divisor (y value) for the \u201cX of Y times\u201d condition.",
-                    "wire": {
-                      "jsonPath": "roundsViolatingOutOf",
-                      "sdkField": "RoundsViolatingOutOf",
-                      "sdkGoType": "*int64",
-                      "flatten": {
-                        "func": "convert.PtrInt64ToFramework"
-                      },
-                      "skipExpand": true
-                    }
-                  },
-                  {
-                    "name": "rounds_violating_required",
-                    "goField": "RoundsViolatingRequired",
-                    "type": {
-                      "kind": "int64"
-                    },
-                    "computedOptionalRequired": "computed",
-                    "markdownDescription": "Specifies the numerator (x value) for the \u201cX of Y times\u201d condition",
-                    "wire": {
-                      "jsonPath": "roundsViolatingRequired",
-                      "sdkField": "RoundsViolatingRequired",
-                      "sdkGoType": "*int64",
-                      "flatten": {
-                        "func": "convert.PtrInt64ToFramework"
-                      },
-                      "skipExpand": true
-                    }
-                  },
-                  {
-                    "name": "rule_id",
-                    "goField": "RuleID",
-                    "type": {
-                      "kind": "string"
-                    },
-                    "computedOptionalRequired": "computed",
-                    "markdownDescription": "Unique ID of the rule.",
-                    "wire": {
-                      "jsonPath": "ruleId",
-                      "sdkField": "RuleID",
-                      "sdkGoType": "*string",
-                      "flatten": {
-                        "func": "convert.PtrStringToFramework"
-                      },
-                      "skipExpand": true
-                    }
-                  },
-                  {
-                    "name": "rule_name",
-                    "goField": "RuleName",
-                    "type": {
-                      "kind": "string"
-                    },
-                    "computedOptionalRequired": "computed",
-                    "markdownDescription": "Name of the alert rule",
-                    "wire": {
-                      "jsonPath": "ruleName",
-                      "sdkField": "RuleName",
-                      "sdkGoType": "*string",
-                      "flatten": {
-                        "func": "convert.PtrStringToFramework"
-                      },
-                      "skipExpand": true
-                    }
-                  },
-                  {
-                    "name": "sensitivity_level",
-                    "goField": "SensitivityLevel",
-                    "type": {
-                      "kind": "string",
-                      "allowedValues": [
-                        "high",
-                        "medium",
-                        "low"
-                      ]
-                    },
-                    "computedOptionalRequired": "computed",
-                    "markdownDescription": "Used when `roundsViolatingMode` is set to `auto`. The default is `medium`. Higher sensitivity increases the likelihood of triggering alerts.",
-                    "wire": {
-                      "jsonPath": "sensitivityLevel",
-                      "sdkField": "SensitivityLevel",
-                      "sdkGoType": "http_server_tests.SensitivityLevel",
-                      "flatten": {
-                        "func": "convert.EnumToFramework"
-                      },
-                      "skipExpand": true
-                    }
-                  },
-                  {
-                    "name": "severity",
-                    "goField": "Severity",
-                    "type": {
-                      "kind": "string",
-                      "allowedValues": [
-                        "info",
-                        "major",
-                        "minor",
-                        "critical",
-                        "unknown"
-                      ]
-                    },
-                    "computedOptionalRequired": "optional",
-                    "markdownDescription": "The severity of the alert.",
-                    "wire": {
-                      "jsonPath": "severity",
-                      "sdkField": "Severity",
-                      "sdkGoType": "http_server_tests.Severity",
-                      "expand": {
-                        "func": "convert.FrameworkToEnum",
-                        "typeArgs": [
-                          "http_server_tests.Severity"
-                        ]
-                      },
-                      "flatten": {
-                        "func": "convert.EnumToFramework"
-                      }
-                    }
-                  }
-                ]
-              }
-            },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Contains list of enabled alert rule objects.",
-            "wire": {
-              "jsonPath": "alertRules",
-              "sdkField": "AlertRules",
-              "sdkGoType": "[]http_server_tests.AlertRule",
-              "expand": {
-                "func": "expandTestsHTTPServerAlertRules",
-                "needsCtx": true,
-                "returnsError": true
-              },
-              "flatten": {
-                "func": "flattenTestsHTTPServerAlertRules",
-                "needsCtx": true,
-                "returnsError": true
-              }
-            },
-            "drop": true
+            }
           },
           {
             "name": "alerts_enabled",
@@ -427,15 +92,8 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "Indicates if alerts are enabled.\n\n<!-- probed:7.0.98-t1785744687658 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->",
-            "behaviour": {
-              "serverDefault": {
-                "kind": "",
-                "raw": "true"
-              },
-              "returnedOnUpdate": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Indicates if alerts are enabled.",
             "wire": {
               "jsonPath": "alertsEnabled",
               "sdkField": "AlertsEnabled",
@@ -454,16 +112,8 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "Allows TLS renegotiation with servers not supporting RFC 5746. Default Set to true to allow unsafe legacy renegotiation.\n\n<!-- probed:7.0.98-t1785744687658 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "serverDefault": {
-                "kind": "",
-                "raw": "true"
-              },
-              "returnedOnUpdate": true,
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Allows TLS renegotiation with servers not supporting RFC 5746. Default Set to true to allow unsafe legacy renegotiation.",
             "wire": {
               "jsonPath": "allowUnsafeLegacyRenegotiation",
               "sdkField": "AllowUnsafeLegacyRenegotiation",
@@ -489,12 +139,8 @@
                 "oauth"
               ]
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "HTTP authentication type.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "returnedOnUpdate": true,
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "HTTP authentication type.",
             "wire": {
               "jsonPath": "authType",
               "sdkField": "AuthType",
@@ -504,10 +150,10 @@
                 "typeArgs": [
                   "models.Tests_API_TestAuthType"
                 ],
+                "returnsError": true,
                 "extraArgs": [
                   "models.ParseTests_API_TestAuthType"
-                ],
-                "returnsError": true
+                ]
               },
               "flatten": {
                 "func": "convert.PtrStringerToFramework"
@@ -520,16 +166,8 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "Set to `true` to enable bandwidth measurements, only applies to Enterprise agents assigned to the test.\n\n<!-- probed:7.0.98-t1785744687658 -->\nObserved: the API assigns false when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "serverDefault": {
-                "kind": "",
-                "raw": "false"
-              },
-              "returnedOnUpdate": true,
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Set to `true` to enable bandwidth measurements, only applies to Enterprise agents assigned to the test.",
             "wire": {
               "jsonPath": "bandwidthMeasurements",
               "sdkField": "BandwidthMeasurements",
@@ -548,16 +186,8 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "Set to `true` to enable bgp measurements.\n\n<!-- probed:7.0.98-t1785744687658 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "serverDefault": {
-                "kind": "",
-                "raw": "true"
-              },
-              "returnedOnUpdate": true,
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Set to `true` to enable bgp measurements.",
             "wire": {
               "jsonPath": "bgpMeasurements",
               "sdkField": "BgpMeasurements",
@@ -577,10 +207,7 @@
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "String representation (containing newline characters) of client certificate, the private key must be placed first, then the certificate.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "zeroValueUnsendable": true
-            },
+            "markdownDescription": "String representation (containing newline characters) of client certificate, the private key must be placed first, then the certificate.",
             "wire": {
               "jsonPath": "clientCertificate",
               "sdkField": "ClientCertificate",
@@ -589,7 +216,7 @@
                 "func": "convert.FrameworkToPtrString"
               },
               "flatten": {
-                "func": "convert.PtrEnumToFramework"
+                "func": "convert.PtrStringToFramework"
               }
             }
           },
@@ -599,16 +226,8 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "Indicates whether network data to the proxy should be collected.\n\n<!-- probed:7.0.98-t1785744687658 -->\nObserved: the API assigns false when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "serverDefault": {
-                "kind": "",
-                "raw": "false"
-              },
-              "returnedOnUpdate": true,
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Indicates whether network data to the proxy should be collected.",
             "wire": {
               "jsonPath": "collectProxyNetworkData",
               "sdkField": "CollectProxyNetworkData",
@@ -627,15 +246,8 @@
             "type": {
               "kind": "string"
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "Content regex, this field does not require escaping.\n\n<!-- probed:7.0.98-t1785744687658 -->\nObserved: the API assigns \"\" when this is omitted.\n<!-- /probed -->",
-            "behaviour": {
-              "serverDefault": {
-                "kind": "",
-                "raw": "\"\""
-              },
-              "returnedOnUpdate": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Content regex, this field does not require escaping.",
             "wire": {
               "jsonPath": "contentRegex",
               "sdkField": "ContentRegex",
@@ -661,7 +273,7 @@
               "sdkField": "CreatedBy",
               "sdkGoType": "*string",
               "flatten": {
-                "func": "convert.PtrEnumToFramework"
+                "func": "convert.PtrStringToFramework"
               },
               "skipExpand": true
             }
@@ -688,102 +300,13 @@
             }
           },
           {
-            "name": "custom_headers",
-            "goField": "CustomHeaders",
-            "type": {
-              "kind": "single_nested",
-              "nestedObject": {
-                "goTypeName": "TestsHTTPServerTestCustomHeadersModel",
-                "sdkType": "http_server_tests.TestCustomHeaders",
-                "attrTypesVar": "testsHTTPServerTestCustomHeadersAttrTypes",
-                "objectTypeVar": "testsHTTPServerTestCustomHeadersObjectType",
-                "expandFunc": "expandTestsHTTPServerTestCustomHeaders",
-                "flattenFunc": "flattenTestsHTTPServerTestCustomHeaders",
-                "attributes": [
-                  {
-                    "name": "all",
-                    "goField": "All",
-                    "type": {
-                      "kind": "map",
-                      "elementType": {
-                        "kind": "string"
-                      }
-                    },
-                    "computedOptionalRequired": "optional",
-                    "markdownDescription": "Use these HTTP headers for all domains.",
-                    "wire": {
-                      "jsonPath": "all",
-                      "sdkField": "All",
-                      "sdkGoType": "any"
-                    }
-                  },
-                  {
-                    "name": "domains",
-                    "goField": "Domains",
-                    "type": {
-                      "kind": "map",
-                      "elementType": {
-                        "kind": "string"
-                      }
-                    },
-                    "computedOptionalRequired": "optional",
-                    "markdownDescription": "Use these HTTP headers for the specified domains.",
-                    "wire": {
-                      "jsonPath": "domains",
-                      "sdkField": "Domains",
-                      "sdkGoType": "any"
-                    }
-                  },
-                  {
-                    "name": "root",
-                    "goField": "Root",
-                    "type": {
-                      "kind": "map",
-                      "elementType": {
-                        "kind": "string"
-                      }
-                    },
-                    "computedOptionalRequired": "optional",
-                    "markdownDescription": "Use these HTTP headers for root server request.",
-                    "wire": {
-                      "jsonPath": "root",
-                      "sdkField": "Root",
-                      "sdkGoType": "any"
-                    }
-                  }
-                ]
-              }
-            },
-            "computedOptionalRequired": "optional",
-            "wire": {
-              "jsonPath": "customHeaders",
-              "sdkField": "CustomHeaders",
-              "sdkGoType": "*http_server_tests.TestCustomHeaders",
-              "expand": {
-                "func": "expandTestsHTTPServerTestCustomHeaders",
-                "needsCtx": true,
-                "returnsError": true
-              },
-              "flatten": {
-                "func": "flattenTestsHTTPServerTestCustomHeaders",
-                "needsCtx": true,
-                "returnsError": true
-              }
-            },
-            "drop": true
-          },
-          {
             "name": "description",
             "goField": "Description",
             "type": {
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "A description of the test.\n\n<!-- probed:7.0.98-t1785758268502 -->\nNeither the update response nor a read returns this field: it is write-only in practice, and state carries the configured value.\n<!-- /probed -->",
-            "behaviour": {
-              "returnedOnRead": false,
-              "returnedOnUpdate": false
-            },
+            "markdownDescription": "A description of the test.",
             "wire": {
               "jsonPath": "description",
               "sdkField": "Description",
@@ -803,12 +326,7 @@
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Specify the HTTP status code value that indicates a successful response. The default value accepts any 2xx or 3xx status code.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->\n\n<!-- probed:7.0.98-t1785758268502 -->\nNeither the update response nor a read returns this field: it is write-only in practice, and state carries the configured value.\n<!-- /probed -->",
-            "behaviour": {
-              "returnedOnRead": false,
-              "returnedOnUpdate": false,
-              "zeroValueUnsendable": true
-            },
+            "markdownDescription": "Specify the HTTP status code value that indicates a successful response. The default value accepts any 2xx or 3xx status code.",
             "wire": {
               "jsonPath": "desiredStatusCode",
               "sdkField": "DesiredStatusCode",
@@ -817,7 +335,7 @@
                 "func": "convert.FrameworkToPtrString"
               },
               "flatten": {
-                "func": "convert.PtrEnumToFramework"
+                "func": "convert.PtrStringToFramework"
               }
             }
           },
@@ -827,16 +345,8 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "Adds distributed tracing headers to API requests using B3 and W3C standards.\n\n<!-- probed:7.0.98-t1785744687658 -->\nObserved: the API assigns false when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "serverDefault": {
-                "kind": "",
-                "raw": "false"
-              },
-              "returnedOnUpdate": true,
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Adds distributed tracing headers to API requests using B3 and W3C standards.",
             "wire": {
               "jsonPath": "distributedTracing",
               "sdkField": "DistributedTracing",
@@ -859,11 +369,7 @@
               }
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "IP address to use for DNS override.\n\n<!-- probed:7.0.98-t1785758268502 -->\nNeither the update response nor a read returns this field: it is write-only in practice, and state carries the configured value.\n<!-- /probed -->",
-            "behaviour": {
-              "returnedOnRead": false,
-              "returnedOnUpdate": false
-            },
+            "markdownDescription": "IP address to use for DNS override.",
             "wire": {
               "jsonPath": "dnsOverride",
               "sdkField": "DnsOverride",
@@ -883,11 +389,7 @@
               "kind": "int64"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Specifies maximum number of bytes to download from the target object.\n\n<!-- probed:7.0.98-t1785758268502 -->\nNeither the update response nor a read returns this field: it is write-only in practice, and state carries the configured value.\n<!-- /probed -->",
-            "behaviour": {
-              "returnedOnRead": false,
-              "returnedOnUpdate": false
-            },
+            "markdownDescription": "Specifies maximum number of bytes to download from the target object.",
             "wire": {
               "jsonPath": "downloadLimit",
               "sdkField": "DownloadLimit",
@@ -906,16 +408,8 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "Test is enabled.\n\n<!-- probed:7.0.98-t1785744687658 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "serverDefault": {
-                "kind": "",
-                "raw": "true"
-              },
-              "returnedOnUpdate": true,
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Test is enabled.",
             "wire": {
               "jsonPath": "enabled",
               "sdkField": "Enabled",
@@ -939,12 +433,7 @@
               }
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Sets packets rate sent to measure the network in packets per second.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->\n\n<!-- probed:7.0.98-t1785758268502 -->\nNeither the update response nor a read returns this field: it is write-only in practice, and state carries the configured value.\n<!-- /probed -->",
-            "behaviour": {
-              "returnedOnRead": false,
-              "returnedOnUpdate": false,
-              "zeroValueUnsendable": true
-            },
+            "markdownDescription": "Sets packets rate sent to measure the network in packets per second.",
             "wire": {
               "jsonPath": "fixedPacketRate",
               "sdkField": "FixedPacketRate",
@@ -963,16 +452,8 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "To disable following HTTP/301 or HTTP/302 redirect directives, set this parameter to `false`.\n\n<!-- probed:7.0.98-t1785744687658 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "serverDefault": {
-                "kind": "",
-                "raw": "true"
-              },
-              "returnedOnUpdate": true,
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "To disable following HTTP/301 or HTTP/302 redirect directives, set this parameter to `false`.",
             "wire": {
               "jsonPath": "followRedirects",
               "sdkField": "FollowRedirects",
@@ -995,11 +476,7 @@
               }
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "HTTP request headers used.\n\n<!-- probed:7.0.98-t1785758268502 -->\nNeither the update response nor a read returns this field: it is write-only in practice, and state carries the configured value.\n<!-- /probed -->",
-            "behaviour": {
-              "returnedOnRead": false,
-              "returnedOnUpdate": false
-            },
+            "markdownDescription": "HTTP request headers used.",
             "wire": {
               "jsonPath": "headers",
               "sdkField": "Headers",
@@ -1026,16 +503,8 @@
                 "maximum": 5000
               }
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "Target time for HTTP server completion, specified in milliseconds.\n\n<!-- probed:7.0.98-t1785744687658 -->\nObserved: the API assigns 1000 when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "serverDefault": {
-                "kind": "",
-                "raw": "1000"
-              },
-              "returnedOnUpdate": true,
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Target time for HTTP server completion, specified in milliseconds.",
             "wire": {
               "jsonPath": "httpTargetTime",
               "sdkField": "HttpTargetTime",
@@ -1058,16 +527,8 @@
                 "maximum": 60
               }
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "HTTP time limit in seconds.\n\n<!-- probed:7.0.98-t1785744687658 -->\nObserved: the API assigns 5 when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "serverDefault": {
-                "kind": "",
-                "raw": "5"
-              },
-              "returnedOnUpdate": true,
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "HTTP time limit in seconds.",
             "wire": {
               "jsonPath": "httpTimeLimit",
               "sdkField": "HttpTimeLimit",
@@ -1090,16 +551,8 @@
                 "maximum": 2
               }
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "HTTP protocol version. Set to '2' to prefer HTTP/2, or '1' to use only HTTP/1.1.\n\n<!-- probed:7.0.98-t1785744687658 -->\nObserved: the API assigns 2 when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "serverDefault": {
-                "kind": "",
-                "raw": "2"
-              },
-              "returnedOnUpdate": true,
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "HTTP protocol version. Set to '2' to prefer HTTP/2, or '1' to use only HTTP/1.1.",
             "wire": {
               "jsonPath": "httpVersion",
               "sdkField": "HttpVersion",
@@ -1113,18 +566,31 @@
             }
           },
           {
+            "name": "id",
+            "goField": "ID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Each test is assigned an unique ID; this is used to access test information and results from other endpoints. Named `id` per the import convention; the wire field stays testId.",
+            "wire": {
+              "jsonPath": "testId",
+              "sdkField": "TestId",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
             "name": "include_headers",
             "goField": "IncludeHeaders",
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "Set to `true` to capture response headers for objects loaded by the test.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->\n\n<!-- probed:7.0.98-t1785758268502 -->\nNeither the update response nor a read returns this field: it is write-only in practice, and state carries the configured value.\n<!-- /probed -->",
-            "behaviour": {
-              "returnedOnRead": false,
-              "returnedOnUpdate": false,
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Set to `true` to capture response headers for objects loaded by the test.",
             "wire": {
               "jsonPath": "includeHeaders",
               "sdkField": "IncludeHeaders",
@@ -1153,11 +619,7 @@
               ]
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Interval between test runs in seconds.\n\nDocumented intervals, in seconds: `60`, `120`, `300`, `600`, `900`, `1800`, `3600`.\n\nThe request carries this field unconditionally, so omitting it sends zero, which the API refuses (the 2026-08-03 scheduled acceptance run).\n\n<!-- probed:7.0.98-t1785744687658 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
-            "behaviour": {
-              "requiredByApi": true,
-              "returnedOnUpdate": true
-            },
+            "markdownDescription": "Interval between test runs in seconds.",
             "wire": {
               "jsonPath": "interval",
               "sdkField": "Interval",
@@ -1182,12 +644,8 @@
                 "use-agent-policy"
               ]
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "IP version policy. Overrides the IPv6 policy configured at the agent level.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "returnedOnUpdate": true,
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "IP version policy. Overrides the IPv6 policy configured at the agent level.",
             "wire": {
               "jsonPath": "ipv6Policy",
               "sdkField": "Ipv6Policy",
@@ -1197,10 +655,10 @@
                 "typeArgs": [
                   "models.Tests_API_TestIpv6Policy"
                 ],
+                "returnsError": true,
                 "extraArgs": [
                   "models.ParseTests_API_TestIpv6Policy"
-                ],
-                "returnsError": true
+                ]
               },
               "flatten": {
                 "func": "convert.PtrStringerToFramework"
@@ -1214,7 +672,8 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsHTTPServerTestLabelsModel",
-                "sdkType": "http_server_tests.TestLabels",
+                "sdkType": "models.Tests_API_TestLabelable",
+                "constructorExpr": "models.NewTests_API_TestLabel()",
                 "attrTypesVar": "testsHTTPServerTestLabelsAttrTypes",
                 "objectTypeVar": "testsHTTPServerTestLabelsObjectType",
                 "expandFunc": "expandTestsHTTPServerTestLabelses",
@@ -1248,7 +707,7 @@
                     "markdownDescription": "Label ID.",
                     "wire": {
                       "jsonPath": "labelId",
-                      "sdkField": "LabelID",
+                      "sdkField": "LabelId",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -1282,15 +741,14 @@
             "wire": {
               "jsonPath": "labels",
               "sdkField": "Labels",
-              "sdkGoType": "[]http_server_tests.TestLabels",
+              "sdkGoType": "[]models.Tests_API_TestLabelable",
               "flatten": {
                 "func": "flattenTestsHTTPServerTestLabelses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            },
-            "drop": true
+            }
           },
           {
             "name": "live_share",
@@ -1356,7 +814,8 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsHTTPServerTestBGPMonitorsModel",
-                "sdkType": "http_server_tests.TestBgpMonitors",
+                "sdkType": "models.Tests_API_Monitorable",
+                "constructorExpr": "models.NewTests_API_Monitor()",
                 "attrTypesVar": "testsHTTPServerTestBGPMonitorsAttrTypes",
                 "objectTypeVar": "testsHTTPServerTestBGPMonitorsObjectType",
                 "expandFunc": "expandTestsHTTPServerTestBGPMonitorses",
@@ -1372,7 +831,7 @@
                     "markdownDescription": "Country ID",
                     "wire": {
                       "jsonPath": "countryId",
-                      "sdkField": "CountryID",
+                      "sdkField": "CountryId",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -1408,7 +867,7 @@
                     "markdownDescription": "BGP monitor ID",
                     "wire": {
                       "jsonPath": "monitorId",
-                      "sdkField": "MonitorID",
+                      "sdkField": "MonitorId",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -1449,9 +908,9 @@
                     "wire": {
                       "jsonPath": "monitorType",
                       "sdkField": "MonitorType",
-                      "sdkGoType": "http_server_tests.MonitorType",
+                      "sdkGoType": "*models.Tests_API_MonitorType",
                       "flatten": {
-                        "func": "convert.EnumToFramework"
+                        "func": "convert.PtrStringerToFramework"
                       },
                       "skipExpand": true
                     }
@@ -1482,15 +941,14 @@
             "wire": {
               "jsonPath": "monitors",
               "sdkField": "Monitors",
-              "sdkGoType": "[]http_server_tests.TestBgpMonitors",
+              "sdkGoType": "[]models.Tests_API_Monitorable",
               "flatten": {
                 "func": "flattenTestsHTTPServerTestBGPMonitorses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            },
-            "drop": true
+            }
           },
           {
             "name": "mtu_measurements",
@@ -1498,16 +956,8 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "Set `true` to measure MTU sizes on network from agents to the target.\n\n<!-- probed:7.0.98-t1785744687658 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "serverDefault": {
-                "kind": "",
-                "raw": "true"
-              },
-              "returnedOnUpdate": true,
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Set `true` to measure MTU sizes on network from agents to the target.",
             "wire": {
               "jsonPath": "mtuMeasurements",
               "sdkField": "MtuMeasurements",
@@ -1526,24 +976,18 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "computed",
-            "markdownDescription": "Enable or disable network measurements. Set to true to enable or false to disable network measurements.\n\n<!-- probed:7.0.98-t1785744687658 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->\n\nComputed only on this endpoint: the SDK's value-typed omitempty bool cannot send false, and an update carrying true without an explicit bandwidthMeasurements false is refused for cloud agents (live rehearsal + acceptance, 2026-08-03) -- no configurable value is expressible in both directions.",
-            "behaviour": {
-              "serverDefault": {
-                "kind": "",
-                "raw": "true"
-              },
-              "returnedOnUpdate": true,
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Enable or disable network measurements. Set to true to enable or false to disable network measurements.",
             "wire": {
               "jsonPath": "networkMeasurements",
               "sdkField": "NetworkMeasurements",
               "sdkGoType": "*bool",
+              "expand": {
+                "func": "convert.FrameworkToPtrBool"
+              },
               "flatten": {
                 "func": "convert.PtrBoolToFramework"
-              },
-              "skipExpand": true
+              }
             }
           },
           {
@@ -1556,16 +1000,8 @@
                 "maximum": 10
               }
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "Number of path traces executed by the agent.\n\n<!-- probed:7.0.98-t1785744687658 -->\nObserved: the API assigns 3 when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "serverDefault": {
-                "kind": "",
-                "raw": "3"
-              },
-              "returnedOnUpdate": true,
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Number of path traces executed by the agent.",
             "wire": {
               "jsonPath": "numPathTraces",
               "sdkField": "NumPathTraces",
@@ -1585,7 +1021,8 @@
               "kind": "single_nested",
               "nestedObject": {
                 "goTypeName": "TestsHTTPServerOAuthModel",
-                "sdkType": "http_server_tests.OAuth",
+                "sdkType": "models.Tests_API_OAuthable",
+                "constructorExpr": "models.NewTests_API_OAuth()",
                 "attrTypesVar": "testsHTTPServerOAuthAttrTypes",
                 "objectTypeVar": "testsHTTPServerOAuthObjectType",
                 "expandFunc": "expandTestsHTTPServerOAuth",
@@ -1607,15 +1044,19 @@
                     "wire": {
                       "jsonPath": "authType",
                       "sdkField": "AuthType",
-                      "sdkGoType": "http_server_tests.OAuthAuthType",
+                      "sdkGoType": "*models.Tests_API_OAuthAuthType",
                       "expand": {
-                        "func": "convert.FrameworkToEnum",
+                        "func": "convert.FrameworkToKiotaEnum",
                         "typeArgs": [
-                          "http_server_tests.OAuthAuthType"
+                          "models.Tests_API_OAuthAuthType"
+                        ],
+                        "returnsError": true,
+                        "extraArgs": [
+                          "models.ParseTests_API_OAuthAuthType"
                         ]
                       },
                       "flatten": {
-                        "func": "convert.EnumToFramework"
+                        "func": "convert.PtrStringerToFramework"
                       }
                     }
                   },
@@ -1655,7 +1096,7 @@
                         "func": "convert.FrameworkToPtrString"
                       },
                       "flatten": {
-                        "func": "convert.PtrEnumToFramework"
+                        "func": "convert.PtrStringToFramework"
                       }
                     }
                   },
@@ -1694,15 +1135,19 @@
                     "wire": {
                       "jsonPath": "requestMethod",
                       "sdkField": "RequestMethod",
-                      "sdkGoType": "http_server_tests.RequestMethod",
+                      "sdkGoType": "*models.Tests_API_RequestMethod",
                       "expand": {
-                        "func": "convert.FrameworkToEnum",
+                        "func": "convert.FrameworkToKiotaEnum",
                         "typeArgs": [
-                          "http_server_tests.RequestMethod"
+                          "models.Tests_API_RequestMethod"
+                        ],
+                        "returnsError": true,
+                        "extraArgs": [
+                          "models.ParseTests_API_RequestMethod"
                         ]
                       },
                       "flatten": {
-                        "func": "convert.EnumToFramework"
+                        "func": "convert.PtrStringerToFramework"
                       }
                     }
                   },
@@ -1716,16 +1161,13 @@
                     "markdownDescription": "Target for the test.",
                     "wire": {
                       "jsonPath": "testUrl",
-                      "sdkField": "TestURL",
+                      "sdkField": "TestUrl",
                       "sdkGoType": "*string",
                       "expand": {
-                        "func": "convert.FrameworkToEnum",
-                        "typeArgs": [
-                          "http_server_tests.TestUrl"
-                        ]
+                        "func": "convert.FrameworkToPtrString"
                       },
                       "flatten": {
-                        "func": "convert.EnumToFramework"
+                        "func": "convert.PtrStringToFramework"
                       }
                     }
                   },
@@ -1745,7 +1187,7 @@
                         "func": "convert.FrameworkToPtrString"
                       },
                       "flatten": {
-                        "func": "convert.PtrEnumToFramework"
+                        "func": "convert.PtrStringToFramework"
                       }
                     }
                   }
@@ -1757,7 +1199,7 @@
             "wire": {
               "jsonPath": "oAuth",
               "sdkField": "OAuth",
-              "sdkGoType": "*http_server_tests.OAuth",
+              "sdkGoType": "models.Tests_API_OAuthable",
               "expand": {
                 "func": "expandTestsHTTPServerOAuth",
                 "needsCtx": true,
@@ -1768,8 +1210,7 @@
                 "needsCtx": true,
                 "returnsError": true
               }
-            },
-            "drop": true
+            }
           },
           {
             "name": "override_agent_proxy",
@@ -1777,16 +1218,8 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "Flag indicating if a proxy other than the default should be used. To override the default proxy for agents, set to `true` and specify a value for `overrideProxyId`.\n\n<!-- probed:7.0.98-t1785744687658 -->\nObserved: the API assigns false when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "serverDefault": {
-                "kind": "",
-                "raw": "false"
-              },
-              "returnedOnUpdate": true,
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Flag indicating if a proxy other than the default should be used. To override the default proxy for agents, set to `true` and specify a value for `overrideProxyId`.",
             "wire": {
               "jsonPath": "overrideAgentProxy",
               "sdkField": "OverrideAgentProxy",
@@ -1806,10 +1239,7 @@
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "ID of the proxy to be used if the default proxy is overridden.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "zeroValueUnsendable": true
-            },
+            "markdownDescription": "ID of the proxy to be used if the default proxy is overridden.",
             "wire": {
               "jsonPath": "overrideProxyId",
               "sdkField": "OverrideProxyId",
@@ -1818,7 +1248,7 @@
                 "func": "convert.FrameworkToPtrString"
               },
               "flatten": {
-                "func": "convert.PtrEnumToFramework"
+                "func": "convert.PtrStringToFramework"
               }
             }
           },
@@ -1829,10 +1259,7 @@
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Password for Basic/NTLM authentication.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "zeroValueUnsendable": true
-            },
+            "markdownDescription": "Password for Basic/NTLM authentication.",
             "wire": {
               "jsonPath": "password",
               "sdkField": "Password",
@@ -1841,7 +1268,7 @@
                 "func": "convert.FrameworkToPtrString"
               },
               "flatten": {
-                "func": "convert.PtrEnumToFramework"
+                "func": "convert.PtrStringToFramework"
               }
             }
           },
@@ -1855,12 +1282,8 @@
                 "in-session"
               ]
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "Select `inSession` to perform the path trace within a TCP session.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "returnedOnUpdate": true,
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Select `inSession` to perform the path trace within a TCP session.",
             "wire": {
               "jsonPath": "pathTraceMode",
               "sdkField": "PathTraceMode",
@@ -1870,10 +1293,10 @@
                 "typeArgs": [
                   "models.Tests_API_TestPathTraceMode"
                 ],
+                "returnsError": true,
                 "extraArgs": [
                   "models.ParseTests_API_TestPathTraceMode"
-                ],
-                "returnsError": true
+                ]
               },
               "flatten": {
                 "func": "convert.PtrStringerToFramework"
@@ -1887,11 +1310,7 @@
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Enter the body for the HTTP POST request in this field. No special escaping is required. If content is provided and `requestMethod` is not specified, `requestMethod` is automatically set to `post`.\n\n<!-- probed:7.0.98-t1785758268502 -->\nNeither the update response nor a read returns this field: it is write-only in practice, and state carries the configured value.\n<!-- /probed -->",
-            "behaviour": {
-              "returnedOnRead": false,
-              "returnedOnUpdate": false
-            },
+            "markdownDescription": "Enter the body for the HTTP POST request in this field. No special escaping is required. If content is provided and `requestMethod` is not specified, `requestMethod` is automatically set to `post`.",
             "wire": {
               "jsonPath": "postBody",
               "sdkField": "PostBody",
@@ -1915,12 +1334,8 @@
                 "syn"
               ]
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "Probe mode used by network test, only valid when the protocol is set to TCP.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "returnedOnUpdate": true,
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Probe mode used by network test, only valid when the protocol is set to TCP.",
             "wire": {
               "jsonPath": "probeMode",
               "sdkField": "ProbeMode",
@@ -1930,10 +1345,10 @@
                 "typeArgs": [
                   "models.Tests_API_TestProbeMode"
                 ],
+                "returnsError": true,
                 "extraArgs": [
                   "models.ParseTests_API_TestProbeMode"
-                ],
-                "returnsError": true
+                ]
               },
               "flatten": {
                 "func": "convert.PtrStringerToFramework"
@@ -1951,25 +1366,8 @@
                 "udp"
               ]
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "Protocol used by dependent network tests (end-to-end, path trace, PMTUD).\n\n<!-- probed:7.0.98-t1785744687658 -->\nValues accepted here: `tcp`, `icmp`.\nThe specification documents `udp`, which the API rejected.\nObserved: the API assigns \"tcp\" when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "immutable": false,
-              "serverDefault": {
-                "kind": "",
-                "raw": "\"tcp\""
-              },
-              "returnedOnUpdate": true,
-              "zeroValueUnsendable": true,
-              "acceptedValues": [
-                "tcp",
-                "icmp"
-              ],
-              "rejectedValues": [
-                "udp"
-              ],
-              "valuesClosed": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Protocol used by dependent network tests (end-to-end, path trace, PMTUD).",
             "wire": {
               "jsonPath": "protocol",
               "sdkField": "Protocol",
@@ -1979,10 +1377,10 @@
                 "typeArgs": [
                   "models.Tests_API_TestProtocol"
                 ],
+                "returnsError": true,
                 "extraArgs": [
                   "models.ParseTests_API_TestProtocol"
-                ],
-                "returnsError": true
+                ]
               },
               "flatten": {
                 "func": "convert.PtrStringerToFramework"
@@ -1995,16 +1393,8 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "Indicates whether agents should randomize the start time in each test round.\n\n<!-- probed:7.0.98-t1785744687658 -->\nObserved: the API assigns false when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "serverDefault": {
-                "kind": "",
-                "raw": "false"
-              },
-              "returnedOnUpdate": true,
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Indicates whether agents should randomize the start time in each test round.",
             "wire": {
               "jsonPath": "randomizedStartTime",
               "sdkField": "RandomizedStartTime",
@@ -2027,12 +1417,8 @@
                 "post"
               ]
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "HTTP request method.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "returnedOnUpdate": true,
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "HTTP request method.",
             "wire": {
               "jsonPath": "requestMethod",
               "sdkField": "RequestMethod",
@@ -2042,10 +1428,10 @@
                 "typeArgs": [
                   "models.Tests_API_RequestMethod"
                 ],
+                "returnsError": true,
                 "extraArgs": [
                   "models.ParseTests_API_RequestMethod"
-                ],
-                "returnsError": true
+                ]
               },
               "flatten": {
                 "func": "convert.PtrStringerToFramework"
@@ -2077,7 +1463,8 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsHTTPServerTestSharedAccountsModel",
-                "sdkType": "http_server_tests.TestSharedAccounts",
+                "sdkType": "models.Tests_API_SharedWithAccountable",
+                "constructorExpr": "models.NewTests_API_SharedWithAccount()",
                 "attrTypesVar": "testsHTTPServerTestSharedAccountsAttrTypes",
                 "objectTypeVar": "testsHTTPServerTestSharedAccountsObjectType",
                 "expandFunc": "expandTestsHTTPServerTestSharedAccountses",
@@ -2093,7 +1480,7 @@
                     "markdownDescription": "Account group ID.",
                     "wire": {
                       "jsonPath": "aid",
-                      "sdkField": "AID",
+                      "sdkField": "Aid",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -2127,15 +1514,14 @@
             "wire": {
               "jsonPath": "sharedWithAccounts",
               "sdkField": "SharedWithAccounts",
-              "sdkGoType": "[]http_server_tests.TestSharedAccounts",
+              "sdkGoType": "[]models.Tests_API_SharedWithAccountable",
               "flatten": {
                 "func": "flattenTestsHTTPServerTestSharedAccountses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            },
-            "drop": true
+            }
           },
           {
             "name": "ssl_version",
@@ -2150,7 +1536,7 @@
               "sdkField": "SslVersion",
               "sdkGoType": "*string",
               "flatten": {
-                "func": "convert.PtrEnumToFramework"
+                "func": "convert.PtrStringToFramework"
               },
               "skipExpand": true
             }
@@ -2169,12 +1555,8 @@
                 "7"
               ]
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "SSL version options:\n\n* Use '0' for automatic selection.\n* Use '3' for SSLv3.\n* Use '4' for TLS v1.0.\n* Use '5' for TLS v1.1.\n* Use '6' for TLS v1.2.\n* Use '7' for TLS v1.3.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "returnedOnUpdate": true,
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "SSL version options:\n\n* Use '0' for automatic selection.\n* Use '3' for SSLv3.\n* Use '4' for TLS v1.0.\n* Use '5' for TLS v1.1.\n* Use '6' for TLS v1.2.\n* Use '7' for TLS v1.3.",
             "wire": {
               "jsonPath": "sslVersionId",
               "sdkField": "SslVersionId",
@@ -2184,10 +1566,10 @@
                 "typeArgs": [
                   "models.Tests_API_TestSslVersionId"
                 ],
+                "returnsError": true,
                 "extraArgs": [
                   "models.ParseTests_API_TestSslVersionId"
-                ],
-                "returnsError": true
+                ]
               },
               "flatten": {
                 "func": "convert.PtrStringerToFramework"
@@ -2201,7 +1583,8 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsHTTPServerTestTagsModel",
-                "sdkType": "http_server_tests.TestTags",
+                "sdkType": "models.Tests_API_TestTagable",
+                "constructorExpr": "models.NewTests_API_TestTag()",
                 "attrTypesVar": "testsHTTPServerTestTagsAttrTypes",
                 "objectTypeVar": "testsHTTPServerTestTagsObjectType",
                 "expandFunc": "expandTestsHTTPServerTestTagses",
@@ -2211,16 +1594,19 @@
                     "name": "id",
                     "goField": "ID",
                     "type": {
-                      "kind": "string"
+                      "kind": "string",
+                      "constraints": {
+                        "format": "uuid"
+                      }
                     },
                     "computedOptionalRequired": "computed",
                     "markdownDescription": "Unique tag ID.",
                     "wire": {
                       "jsonPath": "id",
-                      "sdkField": "ID",
-                      "sdkGoType": "*string",
+                      "sdkField": "Id",
+                      "sdkGoType": "*uuid.UUID",
                       "flatten": {
-                        "func": "convert.PtrStringToFramework"
+                        "func": "convert.PtrStringerToFramework"
                       },
                       "skipExpand": true
                     }
@@ -2269,30 +1655,11 @@
             "wire": {
               "jsonPath": "tags",
               "sdkField": "Tags",
-              "sdkGoType": "[]http_server_tests.TestTags",
+              "sdkGoType": "[]models.Tests_API_TestTagable",
               "flatten": {
                 "func": "flattenTestsHTTPServerTestTagses",
                 "needsCtx": true,
                 "returnsError": true
-              },
-              "skipExpand": true
-            },
-            "drop": true
-          },
-          {
-            "name": "id",
-            "goField": "ID",
-            "type": {
-              "kind": "string"
-            },
-            "computedOptionalRequired": "computed",
-            "markdownDescription": "Each test is assigned an unique ID; this is used to access test information and results from other endpoints.",
-            "wire": {
-              "jsonPath": "testId",
-              "sdkField": "TestId",
-              "sdkGoType": "*string",
-              "flatten": {
-                "func": "convert.PtrStringToFramework"
               },
               "skipExpand": true
             }
@@ -2303,8 +1670,8 @@
             "type": {
               "kind": "string"
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "The name of the test. Test name must be unique.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.",
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "The name of the test. Test name must be unique.",
             "wire": {
               "jsonPath": "testName",
               "sdkField": "TestName",
@@ -2357,11 +1724,7 @@
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Target for the test.\n\nThe test's target: the API refuses a create without it, whatever the specification marks.\n\n<!-- probed:7.0.98-t1785744687658 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
-            "behaviour": {
-              "requiredByApi": true,
-              "returnedOnUpdate": true
-            },
+            "markdownDescription": "Target for the test.",
             "wire": {
               "jsonPath": "url",
               "sdkField": "Url",
@@ -2370,7 +1733,7 @@
                 "func": "convert.FrameworkToPtrString"
               },
               "flatten": {
-                "func": "convert.PtrEnumToFramework"
+                "func": "convert.PtrStringToFramework"
               }
             }
           },
@@ -2380,16 +1743,8 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "Set to true to use NTLM, false to use Basic Authentication. Requires username and password to be set.\n\n<!-- probed:7.0.98-t1785744687658 -->\nObserved: the API assigns false when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "serverDefault": {
-                "kind": "",
-                "raw": "false"
-              },
-              "returnedOnUpdate": true,
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Set to true to use NTLM, false to use Basic Authentication. Requires username and password to be set.",
             "wire": {
               "jsonPath": "useNtlm",
               "sdkField": "UseNtlm",
@@ -2408,16 +1763,8 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "Indicate if all available public BGP monitors should be used, when omitted defaults to `bgpMeasurements` value.\n\n<!-- probed:7.0.98-t1785744687658 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "serverDefault": {
-                "kind": "",
-                "raw": "true"
-              },
-              "returnedOnUpdate": true,
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Indicate if all available public BGP monitors should be used, when ommited defaults to `bgpMeasurements` value.",
             "wire": {
               "jsonPath": "usePublicBgp",
               "sdkField": "UsePublicBgp",
@@ -2437,12 +1784,7 @@
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "User-agent string to be provided during the test.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->\n\n<!-- probed:7.0.98-t1785758268502 -->\nNeither the update response nor a read returns this field: it is write-only in practice, and state carries the configured value.\n<!-- /probed -->",
-            "behaviour": {
-              "returnedOnRead": false,
-              "returnedOnUpdate": false,
-              "zeroValueUnsendable": true
-            },
+            "markdownDescription": "User-agent string to be provided during the test.",
             "wire": {
               "jsonPath": "userAgent",
               "sdkField": "UserAgent",
@@ -2451,7 +1793,7 @@
                 "func": "convert.FrameworkToPtrString"
               },
               "flatten": {
-                "func": "convert.PtrEnumToFramework"
+                "func": "convert.PtrStringToFramework"
               }
             }
           },
@@ -2462,10 +1804,7 @@
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Username for Basic/NTLM authentication.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "zeroValueUnsendable": true
-            },
+            "markdownDescription": "Username for Basic/NTLM authentication.",
             "wire": {
               "jsonPath": "username",
               "sdkField": "Username",
@@ -2474,7 +1813,7 @@
                 "func": "convert.FrameworkToPtrString"
               },
               "flatten": {
-                "func": "convert.PtrEnumToFramework"
+                "func": "convert.PtrStringToFramework"
               }
             }
           },
@@ -2486,6 +1825,7 @@
               "nestedObject": {
                 "goTypeName": "TestsHTTPServerTestVaultCredentialModel",
                 "sdkType": "models.Tests_API_TestVaultCredentialable",
+                "constructorExpr": "models.NewTests_API_TestVaultCredential()",
                 "attrTypesVar": "testsHTTPServerTestVaultCredentialAttrTypes",
                 "objectTypeVar": "testsHTTPServerTestVaultCredentialObjectType",
                 "expandFunc": "expandTestsHTTPServerTestVaultCredentials",
@@ -2533,22 +1873,21 @@
                         "typeArgs": [
                           "models.Tests_API_TestVaultCredentialTarget"
                         ],
+                        "returnsError": true,
                         "extraArgs": [
                           "models.ParseTests_API_TestVaultCredentialTarget"
-                        ],
-                        "returnsError": true
+                        ]
                       },
                       "flatten": {
                         "func": "convert.PtrStringerToFramework"
                       }
                     }
                   }
-                ],
-                "constructorExpr": "models.NewTests_API_TestVaultCredential()"
+                ]
               }
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "List of credential IDs that are stored in an external vault.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.",
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "List of credential IDs that are stored in an external vault.",
             "wire": {
               "jsonPath": "vaultCredentials",
               "sdkField": "VaultCredentials",
@@ -2571,16 +1910,8 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "Ignore or acknowledge certificate errors. Set to false to ignore certificate errors.\n\n<!-- probed:7.0.98-t1785744687658 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "serverDefault": {
-                "kind": "",
-                "raw": "true"
-              },
-              "returnedOnUpdate": true,
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Ignore or acknowledge certificate errors. Set to false to ignore certificate errors.",
             "wire": {
               "jsonPath": "verifyCertificate",
               "sdkField": "VerifyCertificate",
@@ -2592,60 +1923,6 @@
                 "func": "convert.PtrBoolToFramework"
               }
             }
-          },
-          {
-            "name": "agents",
-            "goField": "Agents",
-            "type": {
-              "kind": "set_nested",
-              "nestedObject": {
-                "goTypeName": "HttpServerAgentModel",
-                "sdkType": "models.Tests_API_TestAgentRequestable",
-                "attrTypesVar": "httpServerAgentAttrTypes",
-                "objectTypeVar": "httpServerAgentObjectType",
-                "expandFunc": "expandHttpServerAgents",
-                "flattenFunc": "",
-                "attributes": [
-                  {
-                    "name": "agent_id",
-                    "goField": "AgentID",
-                    "type": {
-                      "kind": "string"
-                    },
-                    "computedOptionalRequired": "required",
-                    "markdownDescription": "The agent to run the test from. Get identifiers from `/agents`; cloud agent identifiers are stable public values.",
-                    "wire": {
-                      "jsonPath": "agentId",
-                      "sdkField": "AgentId",
-                      "sdkGoType": "*string",
-                      "expand": {
-                        "func": "convert.FrameworkToPtrString"
-                      },
-                      "skipFlatten": true
-                    }
-                  }
-                ],
-                "constructorExpr": "models.NewTests_API_TestAgentRequest()"
-              }
-            },
-            "computedOptionalRequired": "required",
-            "markdownDescription": "The agents the test runs from. Sent on create and update; the read reports assignment through its own fields, so this does not round-trip into state.\n\n<!-- probed:7.0.98-t1785758268502 -->\nNeither the update response nor a read returns this field: it is write-only in practice, and state carries the configured value.\n<!-- /probed -->",
-            "behaviour": {
-              "requiredByApi": true,
-              "returnedOnRead": false,
-              "returnedOnUpdate": false
-            },
-            "wire": {
-              "jsonPath": "agents",
-              "sdkField": "Agents",
-              "sdkGoType": "[]models.Tests_API_TestAgentRequestable",
-              "expand": {
-                "func": "expandHttpServerAgents",
-                "needsCtx": true,
-                "returnsError": true
-              },
-              "skipFlatten": true
-            }
           }
         ],
         "markdownDescription": "Get HTTP Server test."
@@ -2654,10 +1931,12 @@
         "service": {
           "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
           "alias": "models",
+          "typeName": "",
           "accessor": "r.client"
         },
         "create": {
           "style": "fluent",
+          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -2688,6 +1967,7 @@
         },
         "read": {
           "style": "fluent",
+          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -2724,6 +2004,7 @@
         },
         "update": {
           "style": "fluent",
+          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -2763,6 +2044,7 @@
         },
         "delete": {
           "style": "fluent",
+          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -2818,48 +2100,6 @@
       "import": {
         "style": "passthroughId",
         "attribute": "id"
-      },
-      "sweep": {
-        "nameField": "testName"
-      },
-      "accFixture": {
-        "values": [
-          {
-            "attr": "agents",
-            "hcl": "[{ agent_id = \"3\" }]"
-          },
-          {
-            "attr": "bandwidth_measurements",
-            "hcl": "false"
-          },
-          {
-            "attr": "desired_status_code",
-            "hcl": "\"200\""
-          },
-          {
-            "attr": "dns_override",
-            "hcl": "\"8.8.8.8\""
-          },
-          {
-            "attr": "fixed_packet_rate",
-            "hcl": "50"
-          },
-          {
-            "attr": "headers",
-            "hcl": "[\"X-Tfacc: yes\"]",
-            "wire": [
-              "X-Tfacc: yes"
-            ]
-          },
-          {
-            "attr": "interval",
-            "hcl": "3600"
-          },
-          {
-            "attr": "url",
-            "hcl": "\"https://www.example.com\""
-          }
-        ]
       }
     }
   ]

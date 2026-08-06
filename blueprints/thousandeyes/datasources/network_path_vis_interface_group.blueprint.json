@@ -1,0 +1,172 @@
+{
+  "formatVersion": "4",
+  "dataSources": [
+    {
+      "key": "network_path_vis_interface_group",
+      "name": "network_path_vis_interface_group",
+      "goPackage": "network_path_vis_interface_group",
+      "goPackageAlias": "v7NetworkPathVisInterfaceGroupDs",
+      "goTypeName": "NetworkPathVisInterfaceGroupDataSource",
+      "modelTypeName": "NetworkPathVisInterfaceGroupDataSourceModel",
+      "serviceGroup": "path_visualization_interface_groups",
+      "apiVersionDir": "v7",
+      "schema": {
+        "attributes": [
+          {
+            "name": "aid",
+            "goField": "AID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Account Group Id",
+            "wire": {
+              "jsonPath": "aid",
+              "sdkField": "Aid",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "group_id",
+            "goField": "GroupID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Group ID",
+            "wire": {
+              "jsonPath": "groupId",
+              "sdkField": "GroupId",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "group_name",
+            "goField": "GroupName",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Name of the path visualization interface group",
+            "wire": {
+              "jsonPath": "groupName",
+              "sdkField": "GroupName",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "ip_addresses",
+            "goField": "IPAddresses",
+            "type": {
+              "kind": "set",
+              "elementType": {
+                "kind": "string"
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Array of IP addresses associated with the interface group",
+            "wire": {
+              "jsonPath": "ipAddresses",
+              "sdkField": "IpAddresses",
+              "sdkGoType": "[]string",
+              "flatten": {
+                "func": "convert.StringSliceToFrameworkSet",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "rdns_regexes",
+            "goField": "RdnsRegexes",
+            "type": {
+              "kind": "set",
+              "elementType": {
+                "kind": "string"
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Array of RDNS Regexes associated with the interface group",
+            "wire": {
+              "jsonPath": "rdnsRegexes",
+              "sdkField": "RdnsRegexes",
+              "sdkGoType": "[]string",
+              "flatten": {
+                "func": "convert.StringSliceToFrameworkSet",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "skipExpand": true
+            }
+          }
+        ],
+        "markdownDescription": "Create interface group for path visualization."
+      },
+      "binding": {
+        "service": {
+          "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
+          "alias": "models",
+          "typeName": "",
+          "accessor": "d.client"
+        },
+        "list": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Network"
+            },
+            {
+              "method": "PathVis"
+            },
+            {
+              "method": "InterfaceGroups"
+            },
+            {
+              "method": "Get",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.Tests_API_InterfaceGroupsable",
+          "httpMethod": "GET",
+          "pathTemplate": "/network/path-vis/interface-groups"
+        },
+        "collectionField": "GetPathVisInterfaceGroups()",
+        "elementType": "models.Tests_API_InterfaceGroupable",
+        "selectors": [
+          {
+            "attribute": "group_name",
+            "goField": "GroupName",
+            "sdkField": "GroupName"
+          }
+        ],
+        "response": {
+          "type": "models.Tests_API_InterfaceGroupable",
+          "accessStyle": "method"
+        }
+      }
+    }
+  ]
+}

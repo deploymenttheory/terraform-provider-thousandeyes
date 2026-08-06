@@ -1,0 +1,287 @@
+{
+  "formatVersion": "4",
+  "dataSources": [
+    {
+      "key": "agents_proxy",
+      "name": "agents_proxy",
+      "goPackage": "agents_proxy",
+      "goPackageAlias": "v7AgentsProxyDs",
+      "goTypeName": "AgentsProxyDataSource",
+      "modelTypeName": "AgentsProxyDataSourceModel",
+      "serviceGroup": "agent_proxies",
+      "apiVersionDir": "v7",
+      "schema": {
+        "attributes": [
+          {
+            "name": "aid",
+            "goField": "AID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Account id that this proxy configuration belongs to",
+            "wire": {
+              "jsonPath": "aid",
+              "sdkField": "Aid",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "auth_type",
+            "goField": "AuthType",
+            "type": {
+              "kind": "string",
+              "allowedValues": [
+                "basic",
+                "ntlm",
+                "kerberos",
+                "unknown"
+              ]
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "The type of authentication the proxy requires",
+            "wire": {
+              "jsonPath": "authType",
+              "sdkField": "AuthType",
+              "sdkGoType": "*models.Agents_API_ProxyAuthType",
+              "flatten": {
+                "func": "convert.PtrStringerToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "bypass_list",
+            "goField": "BypassList",
+            "type": {
+              "kind": "set",
+              "elementType": {
+                "kind": "string"
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "A list of hostnames, network prefixes, or wildcards used to determine which test targets should not be proxied. If all tests should be proxied, leave empty.",
+            "wire": {
+              "jsonPath": "bypassList",
+              "sdkField": "BypassList",
+              "sdkGoType": "[]string",
+              "flatten": {
+                "func": "convert.StringSliceToFrameworkSet",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "is_local_configured",
+            "goField": "IsLocalConfigured",
+            "type": {
+              "kind": "bool"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Set to `true` if this proxy configuration comes from the agent’s config file. Specify `false` if the proxy configuration was created in the ThousandEyes application.",
+            "wire": {
+              "jsonPath": "isLocalConfigured",
+              "sdkField": "IsLocalConfigured",
+              "sdkGoType": "*bool",
+              "flatten": {
+                "func": "convert.PtrBoolToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "last_modified",
+            "goField": "LastModified",
+            "type": {
+              "kind": "string",
+              "constraints": {
+                "format": "date-time"
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Last modification timestamp of the proxy. Expressed in UTC (ISO date-time format).",
+            "wire": {
+              "jsonPath": "lastModified",
+              "sdkField": "LastModified",
+              "sdkGoType": "*time.Time",
+              "flatten": {
+                "func": "convert.PtrTimeToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "location",
+            "goField": "Location",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "The location of the proxy. If proxyType is `static` use the format `hostname:port`. If location is `pac`, then specify the URL where the PAC file can be obtained.",
+            "wire": {
+              "jsonPath": "location",
+              "sdkField": "Location",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "name",
+            "goField": "Name",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Expression of agent notification rule.",
+            "wire": {
+              "jsonPath": "name",
+              "sdkField": "Name",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "password",
+            "goField": "Password",
+            "type": {
+              "kind": "string",
+              "constraints": {
+                "format": "password"
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Password for proxy authentication",
+            "wire": {
+              "jsonPath": "password",
+              "sdkField": "Password",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "proxy_id",
+            "goField": "ProxyID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Agent proxy's unique ID.",
+            "wire": {
+              "jsonPath": "proxyId",
+              "sdkField": "ProxyId",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "type",
+            "goField": "Type",
+            "type": {
+              "kind": "string",
+              "allowedValues": [
+                "static",
+                "pac"
+              ]
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "The type of proxy, STATIC or PAC.",
+            "wire": {
+              "jsonPath": "type",
+              "sdkField": "TypeEscaped",
+              "sdkGoType": "*models.Agents_API_ProxyType",
+              "flatten": {
+                "func": "convert.PtrStringerToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "user",
+            "goField": "User",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Username for proxy authentication.",
+            "wire": {
+              "jsonPath": "user",
+              "sdkField": "User",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          }
+        ]
+      },
+      "binding": {
+        "service": {
+          "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
+          "alias": "models",
+          "typeName": "",
+          "accessor": "d.client"
+        },
+        "list": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Agents"
+            },
+            {
+              "method": "Proxies"
+            },
+            {
+              "method": "Get",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.Agents_API_AgentProxiesable",
+          "httpMethod": "GET",
+          "pathTemplate": "/agents/proxies"
+        },
+        "collectionField": "GetAgentProxies()",
+        "elementType": "models.Agents_API_AgentProxyable",
+        "selectors": [
+          {
+            "attribute": "name",
+            "goField": "Name",
+            "sdkField": "Name"
+          }
+        ],
+        "response": {
+          "type": "models.Agents_API_AgentProxyable",
+          "accessStyle": "method"
+        }
+      }
+    }
+  ]
+}

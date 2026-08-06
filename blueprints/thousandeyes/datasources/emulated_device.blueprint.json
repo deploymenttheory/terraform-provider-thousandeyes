@@ -1,0 +1,234 @@
+{
+  "formatVersion": "4",
+  "dataSources": [
+    {
+      "key": "emulated_device",
+      "name": "emulated_device",
+      "goPackage": "emulated_device",
+      "goPackageAlias": "v7EmulatedDeviceDs",
+      "goTypeName": "EmulatedDeviceDataSource",
+      "modelTypeName": "EmulatedDeviceDataSourceModel",
+      "serviceGroup": "emulation",
+      "apiVersionDir": "v7",
+      "schema": {
+        "attributes": [
+          {
+            "name": "available_user_agents",
+            "goField": "AvailableUserAgents",
+            "type": {
+              "kind": "set",
+              "elementType": {
+                "kind": "string"
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "A list of user-agent strings for this emulated device.",
+            "wire": {
+              "jsonPath": "availableUserAgents",
+              "sdkField": "AvailableUserAgents",
+              "sdkGoType": "[]string",
+              "flatten": {
+                "func": "convert.StringSliceToFrameworkSet",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "category",
+            "goField": "Category",
+            "type": {
+              "kind": "string",
+              "allowedValues": [
+                "desktop",
+                "laptop",
+                "phone",
+                "tablet"
+              ]
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "The type of device being emulated.",
+            "wire": {
+              "jsonPath": "category",
+              "sdkField": "Category",
+              "sdkGoType": "*models.Emulation_API_EmulatedDeviceCategory",
+              "flatten": {
+                "func": "convert.PtrStringerToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "code_name",
+            "goField": "CodeName",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "A code corresponding to the device name.",
+            "wire": {
+              "jsonPath": "codeName",
+              "sdkField": "CodeName",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "default_user_agent_template",
+            "goField": "DefaultUserAgentTemplate",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "The default user-agent template to use for this device.",
+            "wire": {
+              "jsonPath": "defaultUserAgentTemplate",
+              "sdkField": "DefaultUserAgentTemplate",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "height",
+            "goField": "Height",
+            "type": {
+              "kind": "int64",
+              "constraints": {
+                "minimum": 50,
+                "maximum": 9999
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "The height of the display of the emulated device.",
+            "wire": {
+              "jsonPath": "height",
+              "sdkField": "Height",
+              "sdkGoType": "*int32",
+              "flatten": {
+                "func": "convert.PtrInt32ToFrameworkInt64"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "id",
+            "goField": "ID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "ID of the emulated device.",
+            "wire": {
+              "jsonPath": "id",
+              "sdkField": "Id",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "name",
+            "goField": "Name",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "The device name",
+            "wire": {
+              "jsonPath": "name",
+              "sdkField": "Name",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "width",
+            "goField": "Width",
+            "type": {
+              "kind": "int64",
+              "constraints": {
+                "minimum": 50,
+                "maximum": 9999
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "The width of the display of the emulated device.",
+            "wire": {
+              "jsonPath": "width",
+              "sdkField": "Width",
+              "sdkGoType": "*int32",
+              "flatten": {
+                "func": "convert.PtrInt32ToFrameworkInt64"
+              },
+              "skipExpand": true
+            }
+          }
+        ],
+        "markdownDescription": "Create emulated device."
+      },
+      "binding": {
+        "service": {
+          "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
+          "alias": "models",
+          "typeName": "",
+          "accessor": "d.client"
+        },
+        "list": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "EmulatedDevices"
+            },
+            {
+              "method": "Get",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.Emulation_API_EmulatedDeviceResponsesable",
+          "httpMethod": "GET",
+          "pathTemplate": "/emulated-devices"
+        },
+        "collectionField": "GetEmulatedDevices()",
+        "elementType": "models.Emulation_API_EmulatedDeviceResponseable",
+        "selectors": [
+          {
+            "attribute": "code_name",
+            "goField": "CodeName",
+            "sdkField": "CodeName"
+          },
+          {
+            "attribute": "name",
+            "goField": "Name",
+            "sdkField": "Name"
+          }
+        ],
+        "response": {
+          "type": "models.Emulation_API_EmulatedDeviceResponseable",
+          "accessStyle": "method"
+        }
+      }
+    }
+  ]
+}

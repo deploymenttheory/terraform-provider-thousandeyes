@@ -1,5 +1,0 @@
-resource "thousandeyes_endpoint_label" "example" {
-  filters    = [{ key = "platform", mode = "in", values = ["windows"] }]
-  match_type = "and"
-  name       = "tfacc-name"
-}
