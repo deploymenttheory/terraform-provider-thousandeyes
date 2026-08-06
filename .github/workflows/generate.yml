@@ -219,6 +219,13 @@ jobs:
         # spec offers and the SDK cannot express is a named removal in this log,
         # not a hand edit.
         run: |
+          # Drafting owns these two directories wholesale: a blueprint no run
+          # would re-produce -- a renamed key, a family the spec dropped, a
+          # curated leftover -- is stale state whose aliases and registrations
+          # collide with the drafted set's. Ephemerals, actions and scenario
+          # files live elsewhere and are untouched.
+          find "${BLUEPRINT_DIR}/resources" "${BLUEPRINT_DIR}/datasources" \
+            -name '*.blueprint.json' -delete 2>/dev/null || true
           tfpfgen blueprint draft -openapi-dir "${OPENAPI_DIR}" \
             -sdk-dialect kiotaFluent \
             -sdk-models-package "$(go list -m)/internal/sdk/models" \

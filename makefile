@@ -87,6 +87,8 @@ init:
 		-openapi-dir "$(OPENAPI_DIR)" -out "$(BLUEPRINT_DIR)" -force
 
 draft:
+	@find "$(BLUEPRINT_DIR)/resources" "$(BLUEPRINT_DIR)/datasources" \
+		-name '*.blueprint.json' -delete 2>/dev/null || true
 	tfpfgen blueprint draft -openapi-dir "$(OPENAPI_DIR)" -sdk-dialect kiotaFluent \
 		-sdk-models-package "$$(go list -m)/internal/sdk/models" \
 		-out "$(BLUEPRINT_DIR)" -prune-module .
