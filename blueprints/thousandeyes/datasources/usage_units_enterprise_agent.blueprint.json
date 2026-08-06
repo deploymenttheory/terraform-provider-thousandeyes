@@ -1,0 +1,184 @@
+{
+  "formatVersion": "4",
+  "dataSources": [
+    {
+      "key": "usage_units_enterprise_agent",
+      "name": "usage_units_enterprise_agent",
+      "goPackage": "usage_units_enterprise_agent",
+      "goPackageAlias": "v7UsageUnitsEnterpriseAgentDs",
+      "goTypeName": "UsageUnitsEnterpriseAgentDataSource",
+      "modelTypeName": "UsageUnitsEnterpriseAgentDataSourceModel",
+      "serviceGroup": "usage",
+      "apiVersionDir": "v7",
+      "schema": {
+        "attributes": [
+          {
+            "name": "account_group_name",
+            "goField": "AccountGroupName",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Name of the account group which owns the tests that are incurring enterprise agent units.",
+            "wire": {
+              "jsonPath": "accountGroupName",
+              "sdkField": "AccountGroupName",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "agent_id",
+            "goField": "AgentID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Unique identifier of the enterprise agent generating usage. This field may be omitted when not available.",
+            "wire": {
+              "jsonPath": "agentId",
+              "sdkField": "AgentId",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "agent_name",
+            "goField": "AgentName",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Name of the enterprise agent generating usage.",
+            "wire": {
+              "jsonPath": "agentName",
+              "sdkField": "AgentName",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "aid",
+            "goField": "AID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Unique identifier of the account group where some tests are incurring the enterprise agent units.",
+            "wire": {
+              "jsonPath": "aid",
+              "sdkField": "Aid",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "enterprise_units_projected",
+            "goField": "EnterpriseUnitsProjected",
+            "type": {
+              "kind": "int64"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Number of enterprise units projected in the current usage period, based on units consumed to date and configuration of enabled tests. This value is updated hourly. Returns non-zero value only for organizations with metered billing.",
+            "wire": {
+              "jsonPath": "enterpriseUnitsProjected",
+              "sdkField": "EnterpriseUnitsProjected",
+              "sdkGoType": "*int64",
+              "flatten": {
+                "func": "convert.PtrInt64ToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "enterprise_units_used",
+            "goField": "EnterpriseUnitsUsed",
+            "type": {
+              "kind": "int64"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Number of enterprise agent units owned by the specific account group in the usage period.",
+            "wire": {
+              "jsonPath": "enterpriseUnitsUsed",
+              "sdkField": "EnterpriseUnitsUsed",
+              "sdkGoType": "*int64",
+              "flatten": {
+                "func": "convert.PtrInt64ToFramework"
+              },
+              "skipExpand": true
+            }
+          }
+        ]
+      },
+      "binding": {
+        "service": {
+          "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
+          "alias": "models",
+          "typeName": "",
+          "accessor": "d.client"
+        },
+        "list": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Usage"
+            },
+            {
+              "method": "Units"
+            },
+            {
+              "method": "EnterpriseAgents"
+            },
+            {
+              "method": "Get",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.Usage_API_EnterpriseAgentsUsageable",
+          "httpMethod": "GET",
+          "pathTemplate": "/usage/units/enterprise-agents"
+        },
+        "collectionField": "GetBreakdowns()",
+        "elementType": "models.Usage_API_EnterpriseAgentUnitsByTestOwnerAccountGroupable",
+        "selectors": [
+          {
+            "attribute": "account_group_name",
+            "goField": "AccountGroupName",
+            "sdkField": "AccountGroupName"
+          },
+          {
+            "attribute": "agent_name",
+            "goField": "AgentName",
+            "sdkField": "AgentName"
+          }
+        ],
+        "response": {
+          "type": "models.Usage_API_EnterpriseAgentUnitsByTestOwnerAccountGroupable",
+          "accessStyle": "method"
+        }
+      }
+    }
+  ]
+}

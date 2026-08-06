@@ -1,5 +1,0 @@
-resource "thousandeyes_tests_page_load" "example" {
-  interval = 3600
-  url      = "https://www.example.com"
-  agents   = [{ agent_id = "3" }]
-}

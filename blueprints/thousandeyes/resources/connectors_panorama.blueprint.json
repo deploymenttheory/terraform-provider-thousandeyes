@@ -1,0 +1,297 @@
+{
+  "formatVersion": "4",
+  "resources": [
+    {
+      "key": "connectors_panorama",
+      "name": "connectors_panorama",
+      "goPackage": "connectors_panorama",
+      "goPackageAlias": "v7ConnectorsPanorama",
+      "goTypeName": "ConnectorsPanoramaResource",
+      "modelTypeName": "ConnectorsPanoramaResourceModel",
+      "serviceGroup": "panorama_connectors",
+      "apiVersionDir": "v7",
+      "schema": {
+        "attributes": [
+          {
+            "name": "id",
+            "goField": "ID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Unique ID of the Panorama connector.",
+            "wire": {
+              "jsonPath": "id",
+              "sdkField": "Id",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "last_modified_date",
+            "goField": "LastModifiedDate",
+            "type": {
+              "kind": "int64"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Time when the connector was last modified, in milliseconds since the Unix epoch.",
+            "wire": {
+              "jsonPath": "lastModifiedDate",
+              "sdkField": "LastModifiedDate",
+              "sdkGoType": "*int64",
+              "flatten": {
+                "func": "convert.PtrInt64ToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "name",
+            "goField": "Name",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "required",
+            "markdownDescription": "Name of the Panorama connector.",
+            "wire": {
+              "jsonPath": "name",
+              "sdkField": "Name",
+              "sdkGoType": "*string",
+              "expand": {
+                "func": "convert.FrameworkToPtrString"
+              },
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              }
+            }
+          },
+          {
+            "name": "target",
+            "goField": "Target",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "required",
+            "markdownDescription": "URL of the Panorama instance.",
+            "wire": {
+              "jsonPath": "target",
+              "sdkField": "Target",
+              "sdkGoType": "*string",
+              "expand": {
+                "func": "convert.FrameworkToPtrString"
+              },
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              }
+            }
+          },
+          {
+            "name": "type",
+            "goField": "Type",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "required",
+            "markdownDescription": "Connector type.",
+            "wire": {
+              "jsonPath": "type",
+              "sdkField": "TypeEscaped",
+              "sdkGoType": "*models.Integrations_API_PanoramaConnector_type",
+              "expand": {
+                "func": "convert.FrameworkToKiotaEnum",
+                "typeArgs": [
+                  "models.Integrations_API_PanoramaConnector_type"
+                ],
+                "returnsError": true,
+                "extraArgs": [
+                  "models.ParseIntegrations_API_PanoramaConnector_type"
+                ]
+              },
+              "flatten": {
+                "func": "convert.PtrStringerToFramework"
+              }
+            }
+          }
+        ],
+        "markdownDescription": "Retrieve Panorama connector."
+      },
+      "binding": {
+        "service": {
+          "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
+          "alias": "models",
+          "typeName": "",
+          "accessor": "r.client"
+        },
+        "create": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Connectors"
+            },
+            {
+              "method": "Panorama"
+            },
+            {
+              "method": "Post",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "body"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.Integrations_API_PanoramaConnectorable",
+          "httpMethod": "POST",
+          "pathTemplate": "/connectors/panorama"
+        },
+        "read": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Connectors"
+            },
+            {
+              "method": "Panorama"
+            },
+            {
+              "method": "ById",
+              "args": [
+                {
+                  "kind": "stateField",
+                  "field": "ID"
+                }
+              ]
+            },
+            {
+              "method": "Get",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.Integrations_API_PanoramaConnectorable",
+          "httpMethod": "GET",
+          "pathTemplate": "/connectors/panorama/{id}"
+        },
+        "update": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Connectors"
+            },
+            {
+              "method": "Panorama"
+            },
+            {
+              "method": "ById",
+              "args": [
+                {
+                  "kind": "stateField",
+                  "field": "ID"
+                }
+              ]
+            },
+            {
+              "method": "Put",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "body"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.Integrations_API_PanoramaConnectorable",
+          "httpMethod": "PUT",
+          "pathTemplate": "/connectors/panorama/{id}"
+        },
+        "delete": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Connectors"
+            },
+            {
+              "method": "Panorama"
+            },
+            {
+              "method": "ById",
+              "args": [
+                {
+                  "kind": "stateField",
+                  "field": "ID"
+                }
+              ]
+            },
+            {
+              "method": "Delete",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "error",
+          "httpMethod": "DELETE",
+          "pathTemplate": "/connectors/panorama/{id}"
+        },
+        "id": {
+          "attribute": "id",
+          "goField": "ID",
+          "fromCreate": "created.GetId()",
+          "fromCreateIsPointer": true
+        },
+        "body": {
+          "requestType": "models.Integrations_API_PanoramaConnector",
+          "responseType": "models.Integrations_API_PanoramaConnectorable",
+          "constructorExpr": "models.NewIntegrations_API_PanoramaConnector()",
+          "accessStyle": "method"
+        }
+      },
+      "policy": {
+        "updateStyle": "putFull",
+        "delete": {
+          "notFoundIsSuccess": true
+        }
+      },
+      "import": {
+        "style": "passthroughId",
+        "attribute": "id"
+      }
+    }
+  ]
+}

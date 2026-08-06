@@ -3,1259 +3,1668 @@
   "toolVersion": "dev",
   "files": [
     {
+      "path": "examples/data-sources/thousandeyes_agents_proxy/data-source.tf",
+      "sha256": "72b22d7cea4ca065cf4fab90fad43d128067d9cfe38d4ac1f701672a41f4da06",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "examples/data-sources/thousandeyes_audit_user_event/data-source.tf",
+      "sha256": "fd78a607934695aded7d257da3fc46607ee636cc77d84acff1cbee8520165f07",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "examples/data-sources/thousandeyes_emulated_device/data-source.tf",
+      "sha256": "7fe63f2b8a2ffe0902484c49c2acb345c68ea1ff0a04b911b3e8ddff2642ec92",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "examples/data-sources/thousandeyes_endpoint_proxy/data-source.tf",
+      "sha256": "17d7e2f6f00e70882c831683b7cbe08f085bd47a697ccaaca476ab6b1838667c",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "examples/data-sources/thousandeyes_endpoint_test_results_local_network/data-source.tf",
+      "sha256": "68e7b228c8de9f0be61c700862940edbb412280ef4c711bbe990468d30643a67",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "examples/data-sources/thousandeyes_endpoint_tests_real_user_test/data-source.tf",
+      "sha256": "1c26f8e02eed64530709bec5432cd867c6568c3e0984a92d272dabe5a67d3576",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "examples/data-sources/thousandeyes_endpoint_tests_scheduled_test/data-source.tf",
+      "sha256": "7ee7c76cd78d4076e9e700b3e24e744334e791b9127255f1084f5ab80000e8d5",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "examples/data-sources/thousandeyes_monitor/data-source.tf",
+      "sha256": "3e14df158ee02a65e22afc7ca36412d965bf1dcbb52f49da618d88d2ff63ef41",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "examples/data-sources/thousandeyes_network_path_vis_interface_group/data-source.tf",
+      "sha256": "41335fae45622eb0f563cb55546d61fb58ff885215ee452d1b485fd40e39cd93",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "examples/data-sources/thousandeyes_test/data-source.tf",
+      "sha256": "5825f0b312c476c30fecfbda724e8ebdb9c6d3e6167209f0f3f3f644df073f1c",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "examples/data-sources/thousandeyes_usage_units_enterprise_agent/data-source.tf",
+      "sha256": "d3480eeff0246d655d98eebc09db8b340e5532ec6228b4d773a14c87020b6df2",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "examples/data-sources/thousandeyes_usage_units_test/data-source.tf",
+      "sha256": "87f5107933c8840a157b6cb2249f97a0a2e049eb191bf1809acfb413598e5b01",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "examples/ephemeral-resources/thousandeyes_credential/ephemeral-resource.tf",
+      "sha256": "a8af4ccdc856ae3ece83a28d87e4c604b641ac7fedb752e6fca2f7b58b97bf25",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "examples/provider/provider.tf",
+      "sha256": "5fa149dfc071d8adf9903550413cc75ade0059c64f06c1aee534d80b327189e1",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "examples/resources/thousandeyes_alerts_rule/resource.tf",
+      "sha256": "2aabf14e6c28dca19d4516657bc3941c3bfbc9a2ee2d4e055e38132469c8e893",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "examples/resources/thousandeyes_connectors_generic/resource.tf",
+      "sha256": "6e4d4c624082636c9181c9eeeb71916ba090f8505988413a9e01e0ffd9687b78",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "examples/resources/thousandeyes_connectors_panorama/resource.tf",
+      "sha256": "a30cb404efbcf6f4e94bb60c03b708823389e5c24a67c172073d489144195d1f",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "examples/resources/thousandeyes_operations_webhook/resource.tf",
+      "sha256": "885f1e70725915035b105122bab1a792a4a9ecd05c491cf47d907cc2d0d77b17",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "examples/resources/thousandeyes_tests_dns_server/resource.tf",
+      "sha256": "29747d974f46aa7bcde0f39045ab76fd5f888a31f34fe1fd7a2e2f28344048c6",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "examples/resources/thousandeyes_tests_dns_trace/resource.tf",
+      "sha256": "d6f04d8da681ae69f772af8c225206e731c04df1c22e79bcd7662c54cc820b33",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "examples/resources/thousandeyes_tests_dnssec/resource.tf",
+      "sha256": "65996920bf64a58c603d3e40f53a1244ea2fe78e2edc1c690eaa5cf624aa5e8c",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "examples/resources/thousandeyes_tests_web_transaction/resource.tf",
+      "sha256": "ce14f9939cacd4ba66bdf6501a9a4e8fb8f6905456b3b712c8c2754e27e9703c",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/acceptance/acceptance.go",
+      "sha256": "0e57eb4a679eb6e17310ea2483a18158d31d132610efc7ff639ea78516bd35a0",
+      "blueprint": "blueprints/thousandeyes/provider.blueprint.json",
+      "origin": "scaffold"
+    },
+    {
+      "path": "internal/acceptance/check/check.go",
+      "sha256": "3f4271963e063f446c52980c9f0c127ce1c66f1a612bbd26caef8239b51566d2",
+      "blueprint": "blueprints/thousandeyes/provider.blueprint.json",
+      "origin": "scaffold"
+    },
+    {
+      "path": "internal/acceptance/check/context.go",
+      "sha256": "0da2ac0e716fc2c6e61d662a38adc3fbe1394cf7c74a12444145d3a7bb5a4209",
+      "blueprint": "blueprints/thousandeyes/provider.blueprint.json",
+      "origin": "scaffold"
+    },
+    {
+      "path": "internal/acceptance/destroy/destroy.go",
+      "sha256": "6d83aa9ecc49dd8ac3c6cfa0f299029e6a2ac31af14d1d9ad1487208d828f581",
+      "blueprint": "blueprints/thousandeyes/provider.blueprint.json",
+      "origin": "scaffold"
+    },
+    {
+      "path": "internal/acceptance/exists/client.go",
+      "sha256": "f6226e83a6017804391da096a11069c54c8461dd00e20956fafe76904a9aa054",
+      "blueprint": "blueprints/thousandeyes/provider.blueprint.json",
+      "origin": "scaffold"
+    },
+    {
+      "path": "internal/acceptance/exists/exists.go",
+      "sha256": "369f9dfc33f7ac9f78f135475bd0e13ce8a1d929b1cfc2d4fdbe151c1de1cd52",
+      "blueprint": "blueprints/thousandeyes/provider.blueprint.json",
+      "origin": "scaffold"
+    },
+    {
+      "path": "internal/acceptance/testlog/testlog.go",
+      "sha256": "9a2a27663b330eaf549fd98d71ca4e3751d003ec2cc0f79580b98dd6da593b2d",
+      "blueprint": "blueprints/thousandeyes/provider.blueprint.json",
+      "origin": "scaffold"
+    },
+    {
+      "path": "internal/acceptance/types/types.go",
+      "sha256": "a62857d3eba3b35c75985cd862a53ecdc3ff0c94566cc9e78b92a05bbff4a4c1",
+      "blueprint": "blueprints/thousandeyes/provider.blueprint.json",
+      "origin": "scaffold"
+    },
+    {
+      "path": "internal/client/client.go",
+      "sha256": "50c4683ac27cc060ecbfbeed3a68751c94ab3ceb1688f6baa82c9cab14bdacf0",
+      "blueprint": "blueprints/thousandeyes/provider.blueprint.json",
+      "origin": "scaffold"
+    },
+    {
+      "path": "internal/client/client_wire_test.go",
+      "sha256": "877bcf0f784664991b152e5c1348f39ac287b7c6f5e08230eb4a2b3348a395d1",
+      "blueprint": "blueprints/thousandeyes/provider.blueprint.json",
+      "origin": "scaffold"
+    },
+    {
       "path": "internal/provider/actions.go",
-      "sha256": "34a961cf6431523edca665ff5870364e07f57dd233efa1d34b260da8c3c2af75",
+      "sha256": "961b34f1f39566f6282a44fee6a9a117c52086673ac795e157a5c1a63c0eb87c",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/provider/datasources.go",
-      "sha256": "b6df1ce09edce0f2fb1d7b9a277ed131c47556c99c6938bf69947b4bd885131d",
+      "sha256": "d8da204ebb6bc2b19e1f55f555f330e2aadde310669b8a084639a4049b4aab55",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/provider/ephemerals.go",
-      "sha256": "bfdf182a741f8de5f3309ef62e4826676c177d4fc206afc1bb039709be9e68bf",
+      "sha256": "eb1112e61b92d970bd7532b40deff6f031ec264b9c1b9a034dd2c0367537b59a",
       "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/provider/interfaces.go",
+      "sha256": "9906c06762e9ab9f6769da3e326ac25045e79108ff29d0931fcfd3e84b1c2fc7",
+      "blueprint": "blueprints/thousandeyes/provider.blueprint.json",
+      "origin": "scaffold"
     },
     {
       "path": "internal/provider/list_resources.go",
-      "sha256": "8d09252908d9e1b2737a4479f61075f47518123719cb81cb37c2b1758c771121",
+      "sha256": "59c9597ffa5ac4f5a5cd72ca2e1bd99da2c3cddd8089c6ec60480a9cf53217ae",
       "blueprint": "blueprints/thousandeyes"
     },
     {
+      "path": "internal/provider/provider.go",
+      "sha256": "beefcf43f70e0704a2ef81adfea99ddac2c4529b410d5254e19ce6183d8dd993",
+      "blueprint": "blueprints/thousandeyes/provider.blueprint.json",
+      "origin": "scaffold"
+    },
+    {
       "path": "internal/provider/resources.go",
-      "sha256": "2ca9d52780151b7784b100cdb3e005f97af766e43e25ae974d5b45654e637468",
+      "sha256": "1a30c85201ea29eca9cad0db8821416369c5177ba81dbbb5b51d73c8c33b7849",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/actions/endpoint_agents/v7/disable_endpoint_agent/action.go",
-      "sha256": "15ad401d094a1a67737bc35002acdfbaee2a96e7e3cfe658d40c4f6acb5e0967",
+      "sha256": "ec61306148d00950e19a9f94c0a3115024bf4a61d1a62e60133249a659dcb653",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/actions/endpoint_agents/v7/disable_endpoint_agent/action_acceptance_test.go",
-      "sha256": "70eb150e5e6d5495f8b2b32ef7cec7bcaf7197e0dbf88018f01f2b08c5931596",
+      "sha256": "f83e03a7354462f2ef1d71f7dd689733c7e2754d619273b7d36309529f68c16c",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/actions/endpoint_agents/v7/disable_endpoint_agent/invoke.go",
-      "sha256": "8f430a617d9e2a54d6e44fcacb7c5c0e5fda98d394a83588eafd17104ff521a0",
+      "sha256": "79a3215fc593b3bda7a447a9813c43a278d1ce9dfea2b7f1aa9b1fee5c0b9c22",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/actions/endpoint_agents/v7/disable_endpoint_agent/model.go",
-      "sha256": "b6d444d344035369f7f770a1625f7a632d05b7d3994c346a9a7cfcf5cfe6bab0",
+      "sha256": "b4f22c1d01365fb5feef0df1c1fde1c479248ceaf0eea8b18e4b1c381dc3de4e",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/actions/endpoint_agents/v7/disable_endpoint_agent/testdata/action.tf",
-      "sha256": "d303435a34db4368a8c5c3988238c65c0d728a6575fb062e5e4f5fd88652443e",
+      "sha256": "f91e8e804c95ba073587400c4678ff94fea45bcc315d329f94871b694bc8baf7",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/datasources/tags/v7/tag/datasource.go",
-      "sha256": "591e5ef445c9d83fa86b4b044d4200ea8c1680bf87443da48efbe21986ac690c",
+      "path": "internal/services/common/convert/convert.go",
+      "sha256": "05c4b0f270a3be9be88ad0d1fc09e8f2aaa7d119317b2e940c0723ffbbf2984b",
+      "blueprint": "blueprints/thousandeyes/provider.blueprint.json",
+      "origin": "scaffold"
+    },
+    {
+      "path": "internal/services/common/convert/convert_test.go",
+      "sha256": "647664e2bdbb640f4abbaa6d16f922ed595e0c3d3cd90e9830c708c1adf13112",
+      "blueprint": "blueprints/thousandeyes/provider.blueprint.json",
+      "origin": "scaffold"
+    },
+    {
+      "path": "internal/services/common/crud/crud.go",
+      "sha256": "f0c501437787dda4d4d883774b1923119b19ac214ca83737b217446668b0c584",
+      "blueprint": "blueprints/thousandeyes/provider.blueprint.json",
+      "origin": "scaffold"
+    },
+    {
+      "path": "internal/services/common/crud/errors.go",
+      "sha256": "2bf2ecdc48c70805f69dec6f07f8cf7a191bef14e3e4582c34b899253cc9e83e",
+      "blueprint": "blueprints/thousandeyes/provider.blueprint.json",
+      "origin": "scaffold"
+    },
+    {
+      "path": "internal/services/common/errors/errors.go",
+      "sha256": "840511e31a5455f2bee6a7ca162c280a9e129430b5d927390160b49a33c91641",
+      "blueprint": "blueprints/thousandeyes/provider.blueprint.json",
+      "origin": "scaffold"
+    },
+    {
+      "path": "internal/services/common/schema/schema.go",
+      "sha256": "ac6453c6cc85eb4dccabb58f6b3bba80e0c5ccf8a604a49f64175f02e42705a2",
+      "blueprint": "blueprints/thousandeyes/provider.blueprint.json",
+      "origin": "scaffold"
+    },
+    {
+      "path": "internal/services/datasources/agent_proxies/v7/agents_proxy/datasource.go",
+      "sha256": "d15c3ca2d1422205fe4b7f09f0a77ab8332d63b98482d8d90081478355ef5f7c",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/datasources/tags/v7/tag/datasource_acceptance_test.go",
-      "sha256": "c4f194d7e9daebba9a64dd124c4c6c6ec7604cb355de6b86fc87091c344335fb",
+      "path": "internal/services/datasources/agent_proxies/v7/agents_proxy/model.go",
+      "sha256": "98058260cbf563bca377ee964e30720f8c0f8314da6a941e53195a708b1c543c",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/datasources/tags/v7/tag/model.go",
-      "sha256": "19b7bf9e661ddb4f8e9a6430f07da434595a1d410c9a2dc207cc73130c3cc8db",
+      "path": "internal/services/datasources/agent_proxies/v7/agents_proxy/read.go",
+      "sha256": "0bcec851faeb320af011c97ca540e6857364503daaa5068def02e30531c890f5",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/datasources/tags/v7/tag/read.go",
-      "sha256": "6479489beedf1d69925a262fce9ef2f597a67949dff0414b7ca3200aca5b757c",
+      "path": "internal/services/datasources/agent_proxies/v7/agents_proxy/state.go",
+      "sha256": "466989a93d30248a119482c8695b9271ff0e93535aaf48afef7c69880d57d90d",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/datasources/tags/v7/tag/seed_helper_test.go",
-      "sha256": "59d48a61db6dc43dc9834bb0763ef542eecb664b2cabf4561651b61c52182171",
+      "path": "internal/services/datasources/bgp_monitors/v7/monitor/datasource.go",
+      "sha256": "6ae11cdb3c21271e5d30e312bf88ae2ab4fc74b533a6d56b0e405d4017e4523f",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/datasources/tags/v7/tag/state.go",
-      "sha256": "5bd73fd6638f68d55af6ae334b85cdf331c58ec4a72a49bcfde19fbef1d3bcfa",
+      "path": "internal/services/datasources/bgp_monitors/v7/monitor/model.go",
+      "sha256": "36597961f35dbad3e695298f406a36893a8655c32b575c7243b1918438568a11",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/datasources/tags/v7/tag/testdata/datasource.tf",
-      "sha256": "4d1a6c10ebde61a211309cd3dad607eb6e09d875f57f179543b8073d6081766e",
+      "path": "internal/services/datasources/bgp_monitors/v7/monitor/read.go",
+      "sha256": "89183e1c52eea2ba1beb3168af1bba0eca0f17d38ac944757d0afefff2f9c965",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/datasources/tags/v7/tags/datasource.go",
-      "sha256": "4feccc453e9048888e67bf9b89a663b05c78340105f589508ed6658b6f844637",
+      "path": "internal/services/datasources/bgp_monitors/v7/monitor/state.go",
+      "sha256": "b67467be7e6ccec4e97bab44179eeb7f970c9bb8669316965d764b2916d97f54",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/datasources/tags/v7/tags/datasource_acceptance_test.go",
-      "sha256": "9b2ade2e8b8b8a67d4b3aa8adb2d6dda6ed0d5dd1a50654ed0e77d90e3211aba",
+      "path": "internal/services/datasources/emulation/v7/emulated_device/datasource.go",
+      "sha256": "d706aefc65c4e14301060e7f195461809881ff774b902724ae7a18cd71948262",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/datasources/tags/v7/tags/model.go",
-      "sha256": "6f7fc50dbfa498f9cca952185758f3fa246703acac30ef18710eb815c398ec0a",
+      "path": "internal/services/datasources/emulation/v7/emulated_device/model.go",
+      "sha256": "a40db40f8f8f1df796e03e5bf7b848ebb4dd0b849e9dfca9bde59d1b00a0e385",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/datasources/tags/v7/tags/read.go",
-      "sha256": "b231493175431764f1c8bab6b37bd1e3e2fa81dc02c5bd9163e0acb8d39509fe",
+      "path": "internal/services/datasources/emulation/v7/emulated_device/read.go",
+      "sha256": "85fa9fd693e45b55e56caa3464f02f7f53964f7571ee78cdd2bf2c125496b196",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/datasources/tags/v7/tags/seed_helper_test.go",
-      "sha256": "0b32129a60947b295d0bb03dc8a298df2770296ba5815b00dbee41f61fb1cdca",
+      "path": "internal/services/datasources/emulation/v7/emulated_device/state.go",
+      "sha256": "783447db344c114e36ad7a61600fa4f21a4b24f73ef9cdecc7eb907a2fb47791",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/datasources/tags/v7/tags/state.go",
-      "sha256": "401ed93d3017f42d5b06bbe486a34f09dccaa4d3df5b50b0b8b239ceea0ef0fb",
+      "path": "internal/services/datasources/endpoint_proxies/v7/endpoint_proxy/datasource.go",
+      "sha256": "8116e5f8c23aa71a7094c2fdafcece2e3f9ac44c04562a788ce3122cf60d5402",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/datasources/tags/v7/tags/testdata/datasource.tf",
-      "sha256": "52e51133656a1d81503c5322d56e07ddba93cce7ba34cc4899cf3b5525caa793",
+      "path": "internal/services/datasources/endpoint_proxies/v7/endpoint_proxy/model.go",
+      "sha256": "e1dec74991760b4d3d375da05e08111792911d722f7a9f136e3e0b789df60123",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/endpoint_proxies/v7/endpoint_proxy/read.go",
+      "sha256": "7d0effabf227fbfa6d358d5038d3fc3fc98127f2c1f1e7cc5da5239b6ec2bb29",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/endpoint_proxies/v7/endpoint_proxy/state.go",
+      "sha256": "be386c031e633482716d7b572167b82d444759d423042b3e560a59a06263e76b",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/endpoint_real_user_tests/v7/endpoint_tests_real_user_test/datasource.go",
+      "sha256": "1d023609ba0007634293cfd97bc95f1a7cdd952955f90a72eba0e4c80c13f034",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/endpoint_real_user_tests/v7/endpoint_tests_real_user_test/model.go",
+      "sha256": "d1e5f4878af8ea50fbaece6631d1f44bdd39949bd8796b119725b6d20ea5f2f2",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/endpoint_real_user_tests/v7/endpoint_tests_real_user_test/read.go",
+      "sha256": "e8ec343fb63b61308c8020bc54b65daba748ef41ae7210678f1b8e073f450a45",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/endpoint_real_user_tests/v7/endpoint_tests_real_user_test/state.go",
+      "sha256": "e13e82a6b9c0b06225aa9ca2674c7f2cf71c88dd708979dff06ab0044197dad0",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/endpoint_scheduled_tests/v7/endpoint_tests_scheduled_test/datasource.go",
+      "sha256": "c665f1e43efd3338a1b6090625dcc2653813e34283603406474127a1369e0ece",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/endpoint_scheduled_tests/v7/endpoint_tests_scheduled_test/model.go",
+      "sha256": "6a41c5dd53998a2afa763efb11c805ffaa3da4eff83f6fdef57c8b6f7fd706fd",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/endpoint_scheduled_tests/v7/endpoint_tests_scheduled_test/read.go",
+      "sha256": "7f15a4aabed534764dc240d7f08af0ee1cddedabab3ec0e05decd370452efff0",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/endpoint_scheduled_tests/v7/endpoint_tests_scheduled_test/state.go",
+      "sha256": "1e15820e0d137e05e0be2fa32f66084aaec2f6b0af70b0c0f955c3300f873edb",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/local_network_endpoint_test_results/v7/endpoint_test_results_local_network/datasource.go",
+      "sha256": "262d9ed04e5e6b79581dc4d7527dfc4ef3927508e0a39aa30a83c34b6741f8a5",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/local_network_endpoint_test_results/v7/endpoint_test_results_local_network/model.go",
+      "sha256": "a6cae9c1baf21eff33b0d0ca1226486c2772e8d105c3cab0104584c76a22cf2f",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/local_network_endpoint_test_results/v7/endpoint_test_results_local_network/read.go",
+      "sha256": "ade833e0127801aca0c54e76383c89e2a4c41bbcc502bab8e1b41d5a349cfdf6",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/local_network_endpoint_test_results/v7/endpoint_test_results_local_network/state.go",
+      "sha256": "4c771539eb82eb86c91c5155fe763527ccf19e946b7a45772e84f3a1ea1f685d",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/path_visualization_interface_groups/v7/network_path_vis_interface_group/datasource.go",
+      "sha256": "9ef3b331e63ee7301f9e785a83c7cdd7d1d1c508ce2e1bbe215ee82749e65ffe",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/path_visualization_interface_groups/v7/network_path_vis_interface_group/model.go",
+      "sha256": "032b87c774de7b30192d027e3229dd854a78e5c6e750d06ef2954d34006a2c1f",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/path_visualization_interface_groups/v7/network_path_vis_interface_group/read.go",
+      "sha256": "094593af4fa68498b779fa1b06ff26fbd0d53302da300f0eb03dae2e4cb8bbe9",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/path_visualization_interface_groups/v7/network_path_vis_interface_group/state.go",
+      "sha256": "12d8a6fa335ff41aebcfdfb0994114a2d913a7ed46fa65d4f00788f1c7fa91b6",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/tests/v7/test/datasource.go",
+      "sha256": "870a4fcc01ea1b0b309bbc9631236f8f764d82526f920f27a13ca001ecc92c32",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/tests/v7/test/model.go",
+      "sha256": "bc597f9cacc25e96c5e6050b93d7995119c2197f327a6adf1b86fdc23990cc9b",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/tests/v7/test/read.go",
+      "sha256": "2f0d3d50ec41dc4141cda92783ec2f4211ffad308d192d6d1823ccdc3bf8d217",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/tests/v7/test/state.go",
+      "sha256": "29cce098fa7c3919bf62b36e9d5496eeaef450da093a92a365845540356a5157",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/usage/v7/usage_units_enterprise_agent/datasource.go",
+      "sha256": "b42fd5efa00f293369eaf78b4bab125e7f6e5dc59bf46ad4d200def04266ac58",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/usage/v7/usage_units_enterprise_agent/model.go",
+      "sha256": "69d5ad28b5d02f04b9b78dcfc5d0c22c9f6e20e2523e02ef7544769b3061f8c4",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/usage/v7/usage_units_enterprise_agent/read.go",
+      "sha256": "81df8e378f1ef1f2fe13838be1e55e9beebde6b53c7f301a0e9315235ff44356",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/usage/v7/usage_units_enterprise_agent/state.go",
+      "sha256": "7e032141608572217ed57cf2b76be0fde6c61acc5c7d170bd3526c333773f986",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/usage/v7/usage_units_test/datasource.go",
+      "sha256": "6c21b4847a61a8d7a0b378519f9180feae2c31b1c12c3361111f42674d939283",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/usage/v7/usage_units_test/model.go",
+      "sha256": "10cfefc450d9e3d5af673fb249cdb9d606f044aa5cdfb786e3d6559899d18233",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/usage/v7/usage_units_test/read.go",
+      "sha256": "6d61643893ba8ad1d9fe7f8e020dec1f77595f85f0ae2fef5fafe8534eb6e4a2",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/usage/v7/usage_units_test/state.go",
+      "sha256": "88358ac30646fdba30fdd8d7be9ab3792befc415198516812f87ce71b2d183ca",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/user_events/v7/audit_user_event/datasource.go",
+      "sha256": "e5cd633a10c9a4974b74133210fa649974a06d866cfe884cd4c74cfe9a9a7e00",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/user_events/v7/audit_user_event/model.go",
+      "sha256": "4c8d41a64516393e0d9c76e01e5cc5a3d83dd6cd1946915464c3784b119aa038",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/user_events/v7/audit_user_event/read.go",
+      "sha256": "59d1f3c6f98c17f0c03aeded9c6820d9310ce0f9fcae5182328648de558aa470",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/datasources/user_events/v7/audit_user_event/state.go",
+      "sha256": "08ab69121fdfd5f581d0ddc4254f0000e50b9185c17cfa0a6ae855b382780c8f",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/ephemerals/credentials/v7/credential/ephemeral.go",
-      "sha256": "c6efa53853f18b0437384f3544b3cd136ef346c1bca6f538da6e5525881c428d",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/ephemerals/credentials/v7/credential/ephemeral_acceptance_test.go",
-      "sha256": "77db2c6aa43ae8698dfb88f9b83ae9a3e0f554b6d661e6f0dfbf9065a2cb4af7",
+      "sha256": "9b80d2d835c192db5b395b3e52a0716f715498f7f769307f24dcfa4714f981c4",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/ephemerals/credentials/v7/credential/model.go",
-      "sha256": "23b30ebe14df87f1dd68acf7513be183a1567cd5aba6726835050ccf75d977e0",
+      "sha256": "27ce78b6158826a616b18a4e4d1c79c2030bab293667b733a8edabb6b453b869",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/ephemerals/credentials/v7/credential/open.go",
-      "sha256": "d559f30d0fd68a7de5d447e4581cfd6b007494aadfb6c84d9f525b8557c82739",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/ephemerals/credentials/v7/credential/seed_helper_test.go",
-      "sha256": "312c3156582cee5f11f30b4c96ed4b45159ed88f6438e889d089e1c1eabee381",
+      "sha256": "b4d466dd2842d3e3e4eee7538add4188ea302e99fa0f9dfc9ca1c51ca8f7d2e3",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/ephemerals/credentials/v7/credential/state.go",
-      "sha256": "d0f22872a71a21d15bcd86f956d6af708111a1cd25b68b8031307a348496fb43",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/ephemerals/credentials/v7/credential/testdata/ephemeral.tf",
-      "sha256": "7e66dd95b635dcbb15b42a3316f22071d354e134a955a073ef14ea45089f016f",
+      "sha256": "096e11a0a89b455d0d9211cb11f02bf28f23f3cb755ffe418cb303658893af32",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/account_groups/v7/account_group/construct.go",
-      "sha256": "d56c8a0103a8b140ec831525745c0ff470253af8111231cd291606b48e480b39",
+      "sha256": "0103f8ece016c2ef613822f76a1cc8aa6ef4a0f4edb2c4f7b7a9508404f3a8f9",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/account_groups/v7/account_group/crud.go",
-      "sha256": "6b7778bcfc6f9d5f710d6f00d0f4d1df4dc537837b73f82197a1cdb4146bd197",
+      "sha256": "dc279496e013299476d9056077dd2ebd6c4d9af5c47436ab5e31737e1235a847",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/account_groups/v7/account_group/model.go",
-      "sha256": "71c0b7e8e752d0865e75171d001486b4014d93eea9229cd28649c1a187d9b5bd",
+      "sha256": "5f831fe9dd0383305115e01668c44b5cd4195f759f2469aec846513535ea1707",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/account_groups/v7/account_group/resource.go",
-      "sha256": "a6985c4b5919582d7845dc5f464d22d52f89aeb103f8a4b5778137fc6af2d5a5",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/account_groups/v7/account_group/resource_acceptance_test.go",
-      "sha256": "2f289c2ac7f5efb2fd2fff18624c8c3084a031d2ed4819b73b63595e1f6589b1",
+      "sha256": "2d55533f7279bc45847bdce14f701d9a466da656ec2f2872f5a4e9b32ff00a6e",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/account_groups/v7/account_group/state.go",
-      "sha256": "b86b7c7a7ab9ec7de407e7568107246a3c9e6d7d2114027ddfe747283eb3ead5",
+      "sha256": "c8b4ac32e713f26a053cfa1978aaec51890bd98a87b0f657fdb0401ca532816f",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/account_groups/v7/account_group/test_helper_test.go",
-      "sha256": "13491d1cafb87e3d10e9b3cdfcffb9ddf2aa4d85097afe202dbb6a32bffc143b",
+      "sha256": "a91860f341cb4d812a587cf5609fadf705fa50b3aab3f12a4ad5233f7985fe22",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/account_groups/v7/account_group/testdata/maximal.tf",
-      "sha256": "493b89421c11316ab6dfb95ac8364188716f51f979309c41939a8c56936029a0",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/account_groups/v7/account_group/testdata/minimal.tf",
-      "sha256": "31e6962aba45940984868b5ecf9468dd0a48613913ac9f5f409a107d83e6638e",
+      "sha256": "43d9c48bf32e156cd616556810bb833b96ed7fd9a4bb6acc759c215d0bb54c41",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/agent_to_agent_tests/v7/tests_agent_to_agent/construct.go",
-      "sha256": "f4da0aff84a936f0f811e05934dcd8172d270964fa7f0f81490d3576df3e3dd8",
+      "sha256": "255e696413591a2ff83de0edc3b777f33d48100aedaa2efd7ad56ec30ea43931",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/agent_to_agent_tests/v7/tests_agent_to_agent/crud.go",
-      "sha256": "f7a039ca3b72724a81af45ff7c7f13d7fb7482c93f58b0e2026a05f987a057c3",
+      "sha256": "3967d4cf149f9b904a10ac850e0e83704780dda7f2985ef619447874627f2c82",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/agent_to_agent_tests/v7/tests_agent_to_agent/model.go",
-      "sha256": "9ba658a59d3daf794985287042567c5853f3c731db460fdb56dce3205d18f8cd",
+      "sha256": "0431e2b2b9b2ffecc745553a3b216ec3b7ad8c5dea0718fd2e9b7eb071808c77",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/agent_to_agent_tests/v7/tests_agent_to_agent/resource.go",
-      "sha256": "dc73f4263df7c6dd2ce86def7f431acbf17dbe3b2e8045cbec60114894d52fb6",
+      "sha256": "5208f14b116dd7cdf28972ba263513b5a89571aa0e9a246128803d541213fbf5",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/agent_to_agent_tests/v7/tests_agent_to_agent/state.go",
-      "sha256": "40555f45b0cb86e23a8a43e62889d9c4de20af3f4cf83aa4cdb5cfa458fe9f58",
+      "sha256": "2e9418d4577e72cd0e90200d7a6b970014794db595b136126ed74fd923e71f96",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/agent_to_agent_tests/v7/tests_agent_to_agent/test_helper_test.go",
-      "sha256": "9937550d5693cbf8ce2f49439759bb19937ec9b2ca9859f860a90989f04988fe",
+      "sha256": "c9da826e91c7077e6c0e04b872b350698ee420d048996c347abe98e0813eb312",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/agent_to_server_endpoint_scheduled_tests/v7/endpoint_tests_scheduled_tests_agent_to_server/construct.go",
-      "sha256": "9d5adf6d0d087bae3fc27743e63bad46288168bdcc3be0564469f39c6a1c3fb9",
+      "sha256": "30414e14cc58feb83ee1ae3df146084d255b3709103a8e210131939e67b002fc",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/agent_to_server_endpoint_scheduled_tests/v7/endpoint_tests_scheduled_tests_agent_to_server/crud.go",
-      "sha256": "b754ab4c0052f172770216888daa00b14625591bef2a0f755739b1104beade59",
+      "sha256": "6a33430d9b0b2769b60cf14ce31b1860851bc096f11e4e59465d9a80889890e1",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/agent_to_server_endpoint_scheduled_tests/v7/endpoint_tests_scheduled_tests_agent_to_server/model.go",
-      "sha256": "0686b68f457b4eb9ec3fee0a09baeb8af16440c1d97495fdbd9e73e32e7e7929",
+      "sha256": "f91eb9bdc1ce35bfc3898ca4b73e8c2233b19fd7b2836602fcf3385e68c4d83c",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/agent_to_server_endpoint_scheduled_tests/v7/endpoint_tests_scheduled_tests_agent_to_server/resource.go",
-      "sha256": "9482c390411d18c365b01159e4d7b3e61143a7a86a4a4345f5f082f1b3721614",
+      "sha256": "3b5a019eb3cca42b20586e9d9b8173da53fd44dfdd1f12dc487028ba5b9b0697",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/agent_to_server_endpoint_scheduled_tests/v7/endpoint_tests_scheduled_tests_agent_to_server/state.go",
-      "sha256": "0f01b45aeb74112411618e0ef17c98ca5286718e52c0006e6676821b4b69641a",
+      "sha256": "3585c57df24bd6ff1e41561c750e38e852f8700e5027a6d5d6b9a06c55279839",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/agent_to_server_endpoint_scheduled_tests/v7/endpoint_tests_scheduled_tests_agent_to_server/test_helper_test.go",
-      "sha256": "ed6f57f7ac4ab9c4941c7964ef2df68e9cba48efa66aa667373e76cbbbd54a66",
+      "sha256": "32c044c866d46bf22e4289527e5bac85753155a2f482d27c522f64d894889bab",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/agent_to_server_endpoint_scheduled_tests/v7/endpoint_tests_scheduled_tests_agent_to_server/testdata/maximal.tf",
-      "sha256": "729fd0efa193f7e2a167aff9e8a5403a397f151c9e15e59333e90cf6b6a6d8ec",
+      "sha256": "f766c7c7312a9f921736c37b9d6de18251d0c5955e5ad8bc847a0820ae856146",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/agent_to_server_tests/v7/tests_agent_to_server/construct.go",
-      "sha256": "cdab155a8752f4cad2520fbcb11b8066c0207cd1d1f6a1698e8948fcc6e0dcf1",
+      "sha256": "7b8053d2cd4d20a11244c92ea6b1719364bc011f0dc09739636aa01dd8c49b13",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/agent_to_server_tests/v7/tests_agent_to_server/crud.go",
-      "sha256": "379784aca51da73459d85d2cb677fa66bf746bc4a9996cac3585fcc50f9aca11",
+      "sha256": "5085f020b7af8e5748421bee8ac2e0d33efe926e9c4d1c2b39818814fb69e65c",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/agent_to_server_tests/v7/tests_agent_to_server/model.go",
-      "sha256": "1b5fab5e48085572a912947876cfebb8441afa5cbb7c99ef13600d7e2587c5e6",
+      "sha256": "03ada3dbdc1058fc7e441b0c5b7821e97f2353868bcb183e357ad3d9f6689e05",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/agent_to_server_tests/v7/tests_agent_to_server/resource.go",
-      "sha256": "005f4c01d527189902cf6f1728dc7fcfb7b4264531b0903bb409ea876ce0e5aa",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/agent_to_server_tests/v7/tests_agent_to_server/resource_acceptance_test.go",
-      "sha256": "e034cb1439c48d6c1af2abdcf4084fba3d02e5923e6589a1ec130b8c3dbf7393",
+      "sha256": "229507e3528eb7171540ce1fb19b35a0903f0b59fc1a26f06a4f6b1a754a8326",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/agent_to_server_tests/v7/tests_agent_to_server/state.go",
-      "sha256": "b689c5847885b5fb95bbdaa67612618e337b2211543ad4fc2c22524a0656c36d",
+      "sha256": "7233481c3f61fdf775dc19fbfa76ce6f89498c5e5f9bf27c0ab8cc62c8a55408",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/agent_to_server_tests/v7/tests_agent_to_server/test_helper_test.go",
-      "sha256": "5cd8d6e12e048abcdabee420a9df08121c3399715423a4dd0d3463be0c5b5ba1",
+      "sha256": "8cafd432ebf6f2f38fcbfe7a2838f4149220ce74ae142db754d3c7b3ba767547",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/agent_to_server_tests/v7/tests_agent_to_server/testdata/maximal.tf",
-      "sha256": "4b88386d0e06b490f1a0dcf4ff51352ac8442984d24bdf8c1a6910ce9cdf606f",
+      "sha256": "7539d7b9d1836ff047884e25e01e84e5ab4b77d3df4e4035962545afdd62a39c",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/resources/agent_to_server_tests/v7/tests_agent_to_server/testdata/minimal.tf",
-      "sha256": "e3cd3f37d141e9b1badaddbca6a62eeca43b46affba3071fd97a9315bcc149cb",
+      "path": "internal/services/resources/alert_rules/v7/alerts_rule/construct.go",
+      "sha256": "5c50a74dc534524ce3cec02064bd39adf3db365815a9cfc70b75eb350fba023c",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/resources/alert_rules/v7/alert_rule/construct.go",
-      "sha256": "9b59a94e45b13cccd40f2b102b8ad8737bedddb8581d8e29ba83fa3ed1a8a380",
+      "path": "internal/services/resources/alert_rules/v7/alerts_rule/crud.go",
+      "sha256": "93c365603808a857eff7379d68e204cf31a11706887514e4ebea663c2dc83275",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/resources/alert_rules/v7/alert_rule/crud.go",
-      "sha256": "00e3cac082a679493fa9c46c256a365d7e02935472b3c886927a3fbd7b00433d",
+      "path": "internal/services/resources/alert_rules/v7/alerts_rule/model.go",
+      "sha256": "1b6bee727b90ffee5e64316f5dbf8abcdb44ab71702ef9e4334fc9a7feec7e62",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/resources/alert_rules/v7/alert_rule/model.go",
-      "sha256": "ab424e4c2f11038f0a2265658c9fba508252bc5033cf673ec1a14d6606d9eda3",
+      "path": "internal/services/resources/alert_rules/v7/alerts_rule/resource.go",
+      "sha256": "91f1f0dcd94ed6c3587843d975c0ea8ceb6839af1573ee255e6ec0b7790353c3",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/resources/alert_rules/v7/alert_rule/resource.go",
-      "sha256": "dfaf98c28dd5dc6fd500dce7998a8d184b653aa1ad322c6b47988f397e71ab52",
+      "path": "internal/services/resources/alert_rules/v7/alerts_rule/resource_acceptance_test.go",
+      "sha256": "ddf456735869a9d7c91a914f50609812a9b6d66b806de20eec45e6ee1f6aa95c",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/resources/alert_rules/v7/alert_rule/resource_acceptance_test.go",
-      "sha256": "1b1cdbb431a619391f737903c5267960c8030d86ef6a52ade02d120ddd72ca0c",
+      "path": "internal/services/resources/alert_rules/v7/alerts_rule/state.go",
+      "sha256": "4c641b3fa01251aeb05df62691dc0d72373884ab5b9a709a972a7f4f6eeaac75",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/resources/alert_rules/v7/alert_rule/state.go",
-      "sha256": "1b37dbe7fcf13556311d383e65649f281a1e36c5dcb9d7461cee45e27b69dedb",
+      "path": "internal/services/resources/alert_rules/v7/alerts_rule/test_helper_test.go",
+      "sha256": "2085caa452eb90056af3102f828142914ec66d296cce1df7ede8ff2cd77dc01e",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/resources/alert_rules/v7/alert_rule/test_helper_test.go",
-      "sha256": "808a9bf2ffefd93ff84669a589136741576007a41f018c938a05ef070aac6c68",
+      "path": "internal/services/resources/alert_rules/v7/alerts_rule/testdata/maximal.tf",
+      "sha256": "a477568e497804e29109905e8acbc8fd7f3990cb4bd7765dd304ca68602ea774",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/resources/alert_rules/v7/alert_rule/testdata/maximal.tf",
-      "sha256": "ce216e405d3ce081206dc2a458b1e57cca871429dbdcb4d45707213c4a5cc6ac",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/alert_rules/v7/alert_rule/testdata/minimal.tf",
-      "sha256": "67a9a0d33d8d1c2032292df232f3c88176a6d90480b0648f81d4aef0ef3e8c1f",
+      "path": "internal/services/resources/alert_rules/v7/alerts_rule/testdata/minimal.tf",
+      "sha256": "2bd5a8d05426b0957f1134943787e1c5d0818b3b9f9e2b4514fdca0dab2816e6",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/alert_suppression_windows/v7/alert_suppression_window/construct.go",
-      "sha256": "3a326bbd2470fd377c319317783821bd928e089e20c877b4a96102680d817625",
+      "sha256": "c257cfe08bb38a02da0aaee10152e4695addd53c23195142d687187bc260bdff",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/alert_suppression_windows/v7/alert_suppression_window/crud.go",
-      "sha256": "df23d437e525656aea34b44af2b89c7f68471a2ef0afcd8f597cff55dc80efac",
+      "sha256": "5eef4c3bdb6a8e1ab759067981e5841beedf1633b230a8c8d9d0f99826a768b0",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/alert_suppression_windows/v7/alert_suppression_window/model.go",
-      "sha256": "0a13db9dd385f56f8122ff1491d57149143bee537852abe71527dd477ff3bb21",
+      "sha256": "394fb5cc9211e8d2a0ff74bfca9d82908bc969a5e59586e6213e45ed15354204",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/alert_suppression_windows/v7/alert_suppression_window/resource.go",
-      "sha256": "4597f097918313127f46b7bcd05f844c189c1df004af0af3980f5a5e52092e43",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/alert_suppression_windows/v7/alert_suppression_window/resource_acceptance_test.go",
-      "sha256": "ba5eb0b498065ca537fbcd346e3759db6321bfab7f62c28734c888519cee7363",
+      "sha256": "a44e26fdfe8f10d3be4dcdeeb768e9db85ab323a723b4ac27a24930fc3bc0f15",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/alert_suppression_windows/v7/alert_suppression_window/state.go",
-      "sha256": "6ec0c7949e1b156b4b30a3c9af4c2b1d75daa1582123098b8ebebe43c960f59f",
+      "sha256": "2a0b42852ec01c717bb60b8083dc226817842fc16b5aa20bd92e31516ef40d02",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/alert_suppression_windows/v7/alert_suppression_window/test_helper_test.go",
-      "sha256": "76d9509df4ff473b1f3d781b6b58b0581dcb6bf56215b78b8240344297446c50",
+      "sha256": "a21559ba6c7c6741b84a312338cd20bcaf1f66473cbe49caa686bcd8b14a78cd",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/alert_suppression_windows/v7/alert_suppression_window/testdata/maximal.tf",
-      "sha256": "6384304b23f89a35989cc2b36d56e243e2ca519c49719204ab8333684247ce00",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/alert_suppression_windows/v7/alert_suppression_window/testdata/minimal.tf",
-      "sha256": "77a99ffd6446df9d521ed383b709325ceb19e844b718c5a12c61e0029e09846e",
+      "sha256": "9f5ad06b4934b0d6a47f6aa4dfbc5ddcbff2701e5639dcfd34270066392b33d9",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/api_tests/v7/tests_api/construct.go",
-      "sha256": "96ae9eb3cc750fea4f67118cefaba57681971424c31fe1de46bda2d122eda84c",
+      "sha256": "7c6f1c8ccda765c54089e35fe83dacd868934f79f7e280bd8863d5579acdf808",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/api_tests/v7/tests_api/crud.go",
-      "sha256": "9ba0b2bbbd07403e02f09f521c065ef40d235687622a6f00f23bb16b9768fef3",
+      "sha256": "01311f69c1c02763002557105526c813cc82391fcf35a8df26aaeebf0be9a28b",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/api_tests/v7/tests_api/model.go",
-      "sha256": "5459aef9966c3d08784c02b8b6fbd3999a0b5b68b0daf8f51eaae537aaa8d07e",
+      "sha256": "2862c9b7d58061650e2db88a7f9a7657545eb8c0c69d02a1a6d28448d37e8fb8",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/api_tests/v7/tests_api/resource.go",
-      "sha256": "aee116c08e7848a6ceed36b1e01cfe5071ec56ee3b50e977201e940e5d28b6ae",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/api_tests/v7/tests_api/resource_acceptance_test.go",
-      "sha256": "b79e92651efe12617a8dd4d38f2eaad7cbbe0c5d168e8db58174ac24d6ec0257",
+      "sha256": "e27eb0353595428247d032b0029a15c201055172ce766a3bfdd90877fb2d64c9",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/api_tests/v7/tests_api/state.go",
-      "sha256": "4e1c11d562c0289c9d9d7dd3175294d10079fb60f3a3ef2c9a7010c482b6b7ae",
+      "sha256": "5abaf822bc86ca2515fbe900d08c673b5828301a397bbf18c94bbdbcc53abca0",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/api_tests/v7/tests_api/test_helper_test.go",
-      "sha256": "777c56201996d54636c5d46f05e660c015e3b7ee5c3fd23f5e9bb40111826702",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/api_tests/v7/tests_api/testdata/maximal.tf",
-      "sha256": "89035d0e89b63812f6406483729979def56217b1e3d484ae82758b3caaf7833f",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/api_tests/v7/tests_api/testdata/minimal.tf",
-      "sha256": "5372d237a2de47424fed98b2e5949c72709c9ae7e2b506219792eb77e8844885",
+      "sha256": "03eb24f5445c3db51caf0024c3cbf8c48b577d478701dcc0894b4e001beefca9",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/bgp_tests/v7/tests_bgp/construct.go",
-      "sha256": "b41d2664c21898d18778694330e9e299d1d9ac3bdd895486ca2c33903ae40706",
+      "sha256": "4773d94159f40937c9a228e4d72f24a23cfc8532a556ea06d4c645387601c705",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/bgp_tests/v7/tests_bgp/crud.go",
-      "sha256": "33cc3646cddcd0c6ca6f07e65d66cdc6af105306b440891f2c4f1f4ac09f9a87",
+      "sha256": "cd922f3f2105472ce01545e4db869936b80fb64c48f241c8ab4a57fad8fd6369",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/bgp_tests/v7/tests_bgp/model.go",
-      "sha256": "881e096f31f4bdf27cb5817af10f151bb2d3a98dc0fc8dd3ad2caed46da307d9",
+      "sha256": "9b10012e3b1f256f773355cb124a86d29d241662f7523dfcac57e2ba6136a74c",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/bgp_tests/v7/tests_bgp/resource.go",
-      "sha256": "677f28dff11520f4188fac3b0de06330eae974cf342d1aff981631f703847ca4",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/bgp_tests/v7/tests_bgp/resource_acceptance_test.go",
-      "sha256": "7c418b13f9506189c835de2f5d25453a665c78476b07e91532bde5f7de2d7b58",
+      "sha256": "4db0a780c8fa50bd3301e2d0269f8b04eac9522a46f4a3eab8b447aa302bdaa0",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/bgp_tests/v7/tests_bgp/state.go",
-      "sha256": "e94edafdcfb8cf603512f3ced2b5bddf9ca2927b0f567a01d12de4ca52db4faf",
+      "sha256": "e4e324f7fdc71a8de1dcefe7c60c29bc7f8be04e6510d35d7f60861df3860c82",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/bgp_tests/v7/tests_bgp/test_helper_test.go",
-      "sha256": "1d5b923c5b9ea6936866dde6daa53311c2bf9acb3f1402d9596f3d910b4537a2",
+      "sha256": "ca56747264db2ddc1a4692b4f0071b5c4882087ae80697dc4a1917a6a9fe4a60",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/bgp_tests/v7/tests_bgp/testdata/maximal.tf",
-      "sha256": "0032f03feb4bb7aaffda4b921e77e8c5e52ac1235d170cd08835015a7eb169bd",
+      "sha256": "2801bcbcad8d7fea620f0e340575956c1409e6f17302212b5405b21e93d5bcc3",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/resources/bgp_tests/v7/tests_bgp/testdata/minimal.tf",
-      "sha256": "5d8401dade07b5aab88777649caeb46374cbf194d330c63bd18fefc6b29725ac",
+      "path": "internal/services/resources/credential_vault_operations/v7/operations_credential_vault/construct.go",
+      "sha256": "bf07dad02b7da392a61e8ea7bbbaaf96b218e423f242a37e34ea3115bb5044cd",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/credential_vault_operations/v7/operations_credential_vault/crud.go",
+      "sha256": "29c4ac84215bf5f5248acc169b206d178db8c9d99c422c0d2ee31c30eef5751d",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/credential_vault_operations/v7/operations_credential_vault/model.go",
+      "sha256": "a38cdb97fbe22701890685adbc6e412375f0b83ba8543a30ef84e76b40f13e5c",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/credential_vault_operations/v7/operations_credential_vault/resource.go",
+      "sha256": "062a9a5cfe2e0f167ec861403003fa66470ff125a41bc96509ec001862d1cd11",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/credential_vault_operations/v7/operations_credential_vault/state.go",
+      "sha256": "e1eb4c9809a2e56c6081350bb80469053ac7929fcfc733eea431dd74e6a47001",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/credential_vault_operations/v7/operations_credential_vault/test_helper_test.go",
+      "sha256": "91214c174e9e7f61f06313f17747d1f2701006c3b28beec61ebe9a82e7984256",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/credentials/v7/credential/construct.go",
-      "sha256": "cd6742053b9dd26a2534eaf280b3a15a75824a669220e4f6a287b74b1d5cee39",
+      "sha256": "100d9272ae68a80f4b84ca5ecec6e8a50f23ce0ce889ecf790d63dcc75567f46",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/credentials/v7/credential/crud.go",
-      "sha256": "a4fdda68c8de86dc9fb12a7b39ee8b34ae58e8033300b2a95ca0ccb3723b18e8",
+      "sha256": "280580be2ce09ef7c8304290329d81ea3e29b0830748feadfc10b2c5d3f63d0d",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/credentials/v7/credential/model.go",
-      "sha256": "aaacacc0a6b60719e58e026294d15f9d337248ce943c87cee93dbc70453c70a7",
+      "sha256": "8eef2b118d0e1ec3cc58d8268342e647a59d19793da75a9ead5b8405ce794112",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/credentials/v7/credential/resource.go",
-      "sha256": "c96cb939c2f364e65e87d4f5ff148e052673be7a8c80717bbcc2235111dd5fb7",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/credentials/v7/credential/resource_acceptance_test.go",
-      "sha256": "372f0d65727f0c7c29ad182bc78d2a368a6579ec9e3d3aac505b4f6d42ce1379",
+      "sha256": "450216dc2dcc6e86fa4b94ef155446db31ff9cfa73838c85bbeaf758f8113a72",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/credentials/v7/credential/state.go",
-      "sha256": "28f7c2203e4b8cc96609b189648009e12ad0ac22c5530d0160180d76fe0f8d85",
+      "sha256": "21aa5905610745d77a90b8c70d8df3fc512076f2422858777e4993191f83cda2",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/credentials/v7/credential/test_helper_test.go",
-      "sha256": "312c3156582cee5f11f30b4c96ed4b45159ed88f6438e889d089e1c1eabee381",
+      "sha256": "d9b78bde86fc19b5a8dbd61bbfc95a86fa977801fd9e4b8a9728455d598e360d",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/credentials/v7/credential/testdata/maximal.tf",
-      "sha256": "b97998c92c58fc9c7fbd02cad00a7f76f35914e82c914e2727598693f5adce6a",
+      "sha256": "68689ab54c9f5ab62e16719bbbe39bfa9594306c06739f95155e5873af86cd25",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/resources/credentials/v7/credential/testdata/minimal.tf",
-      "sha256": "abe41f4834844229bf83be5016993f1bf479cee18560fee50c14cba8e41e2f18",
+      "path": "internal/services/resources/cyber_ark_conjur_connectors/v7/connectors_conjur/construct.go",
+      "sha256": "e057822d0a1dc0b2cf393a32b650d8d899941431a227bc6041852364065a6446",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/cyber_ark_conjur_connectors/v7/connectors_conjur/crud.go",
+      "sha256": "c0bf3d94a8b9c9abcf0b17a533c552ac2ff2e61d22cda2b6d4d4a6cc4bab6fc5",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/cyber_ark_conjur_connectors/v7/connectors_conjur/model.go",
+      "sha256": "7a2254a53fd000fba03b0fb59531b790aac8be52871e5d2692d9c7ae094bbad7",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/cyber_ark_conjur_connectors/v7/connectors_conjur/resource.go",
+      "sha256": "d77728aac17ec2bb242e5a6fd2fa680d1fda273baea8cd0eecd410163b6368c0",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/cyber_ark_conjur_connectors/v7/connectors_conjur/state.go",
+      "sha256": "9d085f5828bf2f82ff30aa4c8a8d66465a8b07e156971bc07c4fd7416af0c630",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/cyber_ark_conjur_connectors/v7/connectors_conjur/test_helper_test.go",
+      "sha256": "d570fb0547fa8812e9ea9d0bff3b839cd79cf0632ff4cffcb5ecef00d4289880",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dashboards/v7/dashboard/construct.go",
-      "sha256": "5c04704d057a73bf500f41d6a3901ebcef5ad397e2928dc4f0fa30c013753198",
+      "sha256": "afa4e79c680077974875fd6ad896a5f1252d28ff683b2a131795239b984a3b11",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dashboards/v7/dashboard/crud.go",
-      "sha256": "cf8566c9586686ae108ed919a4d19d91a244b233b40287017c84d18ef9584d7a",
+      "sha256": "8e652240d788163840036ac4a0aaf093cc2a3cdb557d66084f6e552e07f6a4a2",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dashboards/v7/dashboard/model.go",
-      "sha256": "6f68b4a9591bf556574fadf0437e972746207677d73498a632315638d20f2fea",
+      "sha256": "6b2d628270381df79c2bba9cde3b0246a304d471485d6ecdff73a0ddfbf47382",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dashboards/v7/dashboard/resource.go",
-      "sha256": "5c924269ff429192aaad6e0b7e8b38026b0f7a0618ab7c6befb1e995a0521b12",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/dashboards/v7/dashboard/resource_acceptance_test.go",
-      "sha256": "50f4b7f81905cf083218680015ad27473dc2c780817d50aa3f973f092ea9c8be",
+      "sha256": "2ce3c4d8026e94959536cc06552af344bd648cf23d5654364842d9f22962b4ad",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dashboards/v7/dashboard/state.go",
-      "sha256": "141468a436811cd565029ab856cf52e9599f2a34cec3746608946592746bd2eb",
+      "sha256": "7893b02c31d017638841d86955df6e3d24aa4493c58409e7293cb9e242b6c6e8",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dashboards/v7/dashboard/test_helper_test.go",
-      "sha256": "3dd859061fec2eb6338f279e1faea4e2311aed2fc0fbf564459b636e3066f5f1",
+      "sha256": "dad0c55416a56af3f5992c70fd4fb639e5c0c26a999e00e340e3a72b3c225d8b",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dashboards/v7/dashboard/testdata/maximal.tf",
-      "sha256": "23c8b9582f0bc4725763745ddb77587169b9d609e55239b4ecc20d8034fb5067",
+      "sha256": "0fb7d4e6f7273f70f785b370086259604b0e380a00075c84b0e7c6fab9de49cd",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/resources/dashboards/v7/dashboard/testdata/minimal.tf",
-      "sha256": "3e40fbd130fab9a72a2279e677bac85c1e31326a414aefe736c8b830ca6df8aa",
+      "path": "internal/services/resources/dashboards_filters/v7/dashboards_filter/construct.go",
+      "sha256": "0a820cfe039de4cc01e9ebbf032be6c4854fbfff9074b7b22350a3b3968b5dfb",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/resources/dashboards_filters/v7/dashboard_filter/construct.go",
-      "sha256": "9d7335fbb7b67ab49e7d9ff0707a63aac54bc9991d2a7ccae1816ff494f65d6d",
+      "path": "internal/services/resources/dashboards_filters/v7/dashboards_filter/crud.go",
+      "sha256": "f98759178ae0cf364fc7fec016ca5bd0b36771c2c411bc31362391b765010b9d",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/resources/dashboards_filters/v7/dashboard_filter/crud.go",
-      "sha256": "082c576e273eb5d0629ae15a6cfa1fcfc9fd4999565a64c5584cc64fe2d0930b",
+      "path": "internal/services/resources/dashboards_filters/v7/dashboards_filter/model.go",
+      "sha256": "fd50fc229e89529666bfe8e5b4fe0426348469690bf9e9cf4b4b0201909b7dcc",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/resources/dashboards_filters/v7/dashboard_filter/model.go",
-      "sha256": "075e8b06083ed528b4a5a626f7eb38c0037e8882cb7cb49e53f1f1265cd05335",
+      "path": "internal/services/resources/dashboards_filters/v7/dashboards_filter/resource.go",
+      "sha256": "291160151ad13edf6b1cb15d35f0aa4ddb3df0f6e6d2b930cffdd8ded86fcc0f",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/resources/dashboards_filters/v7/dashboard_filter/resource.go",
-      "sha256": "ebbb1cad09242feaf2e8c00f6dd5796711d5d72177003ff99bc3b6d1116b66fa",
+      "path": "internal/services/resources/dashboards_filters/v7/dashboards_filter/state.go",
+      "sha256": "742e7504e5edd029832003ca4d9033af3c080d9a95c5592980010635edf94c57",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/resources/dashboards_filters/v7/dashboard_filter/resource_acceptance_test.go",
-      "sha256": "726f035ed35af6acc48b2ee2baa95b02ec2c79cefda7d2b36a2c0b4688ab3353",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/dashboards_filters/v7/dashboard_filter/state.go",
-      "sha256": "74bfb2d6e901e2f126d657b654afef98ccf8be49faf838509b9d324118fb62fd",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/dashboards_filters/v7/dashboard_filter/test_helper_test.go",
-      "sha256": "030d9fbd138be6d03314e97400f5192d6869a15331c32670c371e4f6bd6888d6",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/dashboards_filters/v7/dashboard_filter/testdata/maximal.tf",
-      "sha256": "927e3778e6a2a05cd8be03c12ebc5b3cc329c3119a254fb51766b851a791a46b",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/dashboards_filters/v7/dashboard_filter/testdata/minimal.tf",
-      "sha256": "f1c9c34963f33827e8e65564d2b354963896c8d1d353de83c0ff7ea98763919c",
+      "path": "internal/services/resources/dashboards_filters/v7/dashboards_filter/test_helper_test.go",
+      "sha256": "58e028ce028ea36415fe31c0a1de8b2450faf8665656df361717354d6b963aa3",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dns_server_tests/v7/tests_dns_server/construct.go",
-      "sha256": "d0c1930ddd36c7e375be3d42dd46e616baddce3783d56a565bc9fb82f74365ce",
+      "sha256": "57f4f2b678d944bac3c0d8c341e7aa37132847db9c3bec0e95efe8b4809d7f7b",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dns_server_tests/v7/tests_dns_server/crud.go",
-      "sha256": "7f51faed480ca5623e53b620f7f170ccd9a9bca395c06eb1ec2a7e2ba1177f70",
+      "sha256": "068d572db7b581d8c7b373aec0e8348782bdc684e801a9f33733cbdfcd7e94a5",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dns_server_tests/v7/tests_dns_server/model.go",
-      "sha256": "278bc94390b90c648c88a13b96d228c7c4296f5399e904b81164d0a6be3513c4",
+      "sha256": "728278866c2aae8ec49c9f65392434b642890dde1eb94a02700b0f1969062c5d",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dns_server_tests/v7/tests_dns_server/resource.go",
-      "sha256": "d789d5af988dcb1152f5909286a29905617fd79d6018c2a30c3ea028a0f8e1da",
+      "sha256": "7b575fe59bb287f825c0d6d0349fbfd0b4d0b1158705f81d1b63721e7b761387",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dns_server_tests/v7/tests_dns_server/resource_acceptance_test.go",
-      "sha256": "86f9f9dd48a033824863e50fea1b6e67f25b5c69f15ef7cdd62bb8dd1006ae3c",
+      "sha256": "ec039af0042665ef432146bc38dab6a9e586dffff382ea0351382421474f5d88",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dns_server_tests/v7/tests_dns_server/state.go",
-      "sha256": "2f58b9b3375de2d2abf9311fca41108ee206100ada235364ce2a3391f8f1726a",
+      "sha256": "dc66474ef385740a7dda9dd76930c29b1859bc157fc888b7a45cc9d2296be825",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dns_server_tests/v7/tests_dns_server/test_helper_test.go",
-      "sha256": "df4c317500c9de7c364b5cc2bdb4b43b2ca16d60c110aa854b5bd693c4553416",
+      "sha256": "8c8d29c31f002a39abe8131ac869bc98fa9a62c5566e4d90b831f0a23d4ab098",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dns_server_tests/v7/tests_dns_server/testdata/maximal.tf",
-      "sha256": "d1b6f876447f0c75e085dcc5144ea16533397794e45d56839dca4d94fc099c8b",
+      "sha256": "ada01f019017eb9cdfd559dd1fbb34fe975de0b8ae387e17239ddaf72df33d9c",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dns_server_tests/v7/tests_dns_server/testdata/minimal.tf",
-      "sha256": "4faddc0fd41428fdd735a2ebae8254db295ce657782534d95ce6e23540b34232",
+      "sha256": "22104677bc71934946268fa2411da333b38f7a04b2b43b643f34db77543611ed",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dns_trace_tests/v7/tests_dns_trace/construct.go",
-      "sha256": "715ec8383fe5c509bee1f76dac65e57f23ab82b26e8fb398eeaa91745e8b6269",
+      "sha256": "19f79ee1cfe70c844632200ab5103e198778cc077d902e25c8df367b4944cfbc",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dns_trace_tests/v7/tests_dns_trace/crud.go",
-      "sha256": "e49cfebb319e38fd87b58eb01b92fa2cd3877a81b2598c6389d3ddf89f495c29",
+      "sha256": "36acf4795f999f86db3c0d93ea20aa3458965e11b66d30dc00e526cdea028316",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dns_trace_tests/v7/tests_dns_trace/model.go",
-      "sha256": "493af48e6cf28fc8f08ac2c3d6c6c2165e15f940fcfa73ce018da8273921eb41",
+      "sha256": "481c77696ac74a380bbcd09876828d8e9b14cd9da832f636e34af6036721c9c0",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dns_trace_tests/v7/tests_dns_trace/resource.go",
-      "sha256": "f13056a8bfe219995242585898feadcd856a8e463eb8bd1f248e6675fe28fbc3",
+      "sha256": "7279584acb797f227316cc24a4451da67b9c3c6225ed14be28e39d4c106f7c07",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dns_trace_tests/v7/tests_dns_trace/resource_acceptance_test.go",
-      "sha256": "6a473f41961ac71f6041fe2fd0f8ed234dff6226fe318addeaf85c2133e47a7e",
+      "sha256": "59a06fdf6b14e500b4efd654c2f0f78221ff43fe9b0ef0798363ee1b4fc67b4f",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dns_trace_tests/v7/tests_dns_trace/state.go",
-      "sha256": "1ce56b042ae34724a490bb82870a8b76d4dfe85df33b46a740ed3d5ebe50ac7e",
+      "sha256": "9325244d5758ee0ef37bdb510614add65c3944858fd1017d56e0f857c3f4b8b3",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dns_trace_tests/v7/tests_dns_trace/test_helper_test.go",
-      "sha256": "11621884ec5a8d71d1d7b8c43626e169272e22672d87cb79828e6b2d191e1597",
+      "sha256": "0b1c5c85d1518a396071bc0c3fbeebb364022e1f2e85b21849c218a57f97692b",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dns_trace_tests/v7/tests_dns_trace/testdata/maximal.tf",
-      "sha256": "f98a660b8cede1f988ac5b4c3dbcf6025e2205569ba03f680d950a7c0742346e",
+      "sha256": "39a8c3b5b18c1e542ded7855587e864909b6b7b0e27deb3d22db933ce681a2ad",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dns_trace_tests/v7/tests_dns_trace/testdata/minimal.tf",
-      "sha256": "6fa86f93e35ff451a25616de892c420cce7bdc671be1ffb1e33a7095eadd7aa6",
+      "sha256": "7db27ae5f2407d0b84d357112c145f4703a320ad0fddaec5aa80829a4a74e319",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dnssec_tests/v7/tests_dnssec/construct.go",
-      "sha256": "f2d6aa1717aca78e003fad283f41427e3c8de6351d35aec1f9938b527c82b54e",
+      "sha256": "806bd126dd7fb202abbc2dbb0f15ddf15a4097a800f3e88ec922598e5e24f74c",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dnssec_tests/v7/tests_dnssec/crud.go",
-      "sha256": "b52dde52b5e37ed054ac0e54324e9f6b2417119a5c565d4882e84843d6bd9548",
+      "sha256": "577a73eda6c3c549d0f7ddd5d065d688fa3774f0ac11e3087b3d078a7d701d2d",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dnssec_tests/v7/tests_dnssec/model.go",
-      "sha256": "a8bf7f93e0461e930fb61691b287514b68d3fec2aff545e1c89cb21d110489b1",
+      "sha256": "811f9fef25e88770548d5b63d7f01602430562a95e93199921abd0259e153b32",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dnssec_tests/v7/tests_dnssec/resource.go",
-      "sha256": "3a3597128adefb81085eada746f86d8bdf3c8711533e1610c1947767931c2581",
+      "sha256": "e65172ea3d38c4b7ac41a88149fe099f9380878afa4483bcb536404df9468e85",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dnssec_tests/v7/tests_dnssec/resource_acceptance_test.go",
-      "sha256": "9a5588f47d9558c0bd9b7c8467137531a1fbdb5021706e4a3a31d1691b04377b",
+      "sha256": "4bdc3a2ce5020fd5abe76367dbf1c8146d57631709a626c6d37c3443d416a8d6",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dnssec_tests/v7/tests_dnssec/state.go",
-      "sha256": "4f2c4f3fccee47074672c96a3bd6bd7d04242722ae850343a844fd6988c40804",
+      "sha256": "10f01c417ca3ea8f3d24e28b12da9847e2f6ee23fa517c91e7ed4d66a9a0774c",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dnssec_tests/v7/tests_dnssec/test_helper_test.go",
-      "sha256": "411d7185d5b3620cade7d17dbd4fbd79ba87345f7ff14a076451277ed2f89980",
+      "sha256": "4a784e6af77315cf36c8a9b30950f304ca6296fc3777bb8f814adadc286c98d4",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dnssec_tests/v7/tests_dnssec/testdata/maximal.tf",
-      "sha256": "0e429a3b97d7acad72a52e833ff37fc36c6164cfe5c9b795640cc5b3512a8f6b",
+      "sha256": "540d43f8d90c65c998005c0f245693ce0fc8090ff8c24ab6042f38e7afe16f26",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/dnssec_tests/v7/tests_dnssec/testdata/minimal.tf",
-      "sha256": "ae0ee48ba56ad5f932a757b40a1b93307d9b7564293b4029ff7e600bd38ffc28",
+      "sha256": "14939d232176a30f5ad046ceff68700147b4938038d43b08259169af687c1e7a",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/endpoint_agent_labels/v7/endpoint_label/construct.go",
-      "sha256": "434112bc27968ffcd110f1f7e39fef65ee847d5b455c055db89f15e36813d9cb",
+      "sha256": "c8e6ed0d9a702b35f0de27965bd1fb9c0b4622735534e2b7c8269296e4c8be09",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/endpoint_agent_labels/v7/endpoint_label/crud.go",
-      "sha256": "e0c79be791ba9873acd6fa16ece4f3d57e1b66773cb4a34b1b978bcb55594e8e",
+      "sha256": "32aa6cc5cdc7380e4f337ca9b4bb3d28cac94adc01b51b5926ac89b118a513e2",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/endpoint_agent_labels/v7/endpoint_label/model.go",
-      "sha256": "1c567c71fdaecdfa4a92580b24aa0e708885e7e258773caf376ed0c6d602dd78",
+      "sha256": "e177b50db48035109c3d99200f6e07dedc883cd8a869693b700819b92b27b1ba",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/endpoint_agent_labels/v7/endpoint_label/resource.go",
-      "sha256": "77d5b39e025136de616870f2f433bf879401447d68cff0336ebdd9a0a4e1c005",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/endpoint_agent_labels/v7/endpoint_label/resource_acceptance_test.go",
-      "sha256": "af3a89767575d38bb212911bd40a639127623da66a12bd5eb66a50201885f4b0",
+      "sha256": "948a931590560835879f29d5c3cce6d301f662034eb8c81b08b57e3af6130e7f",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/endpoint_agent_labels/v7/endpoint_label/state.go",
-      "sha256": "b37596212eaf77d4b80edbea6f8f8e918294c4f8a3b0d57dd56ad5c7dabe23b3",
+      "sha256": "7a1c9cda53b62ee85cf8087a53df06d0fd9fa637e4d4691cf8522eb66d9b4b9b",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/endpoint_agent_labels/v7/endpoint_label/test_helper_test.go",
-      "sha256": "86de0c940770f4a622566ae1cbae77886fc1c32511ff5875d78d8390a4da5c53",
+      "sha256": "17d07ddc274ffe56f7a2b53bfe1cd715485c2fefea275cc353aaf13ecb9bc799",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/endpoint_agent_labels/v7/endpoint_label/testdata/maximal.tf",
-      "sha256": "7b9cbe4dfad7a0346f794fadc0e77d600280e38ffca2dc1f0b1950fc20672df5",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/endpoint_agent_labels/v7/endpoint_label/testdata/minimal.tf",
-      "sha256": "773ef7ff818b32a8ad60dc20226f0fbe286727727a445c6af8c4fa4908ec90a1",
+      "sha256": "71ed104aef0769192629c68670de59d3289a313685dd16a2f4afb4ba41926aa7",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/ftp_server_tests/v7/tests_ftp_server/construct.go",
-      "sha256": "8dbf2a0b4242078ce282924a07d1b99d4b781954f286561db12f83d10bb9e972",
+      "sha256": "510ebd4a8d43f90d0ba437854bec2fe9d071730bf3b9b2a6e03ef923f40356c8",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/ftp_server_tests/v7/tests_ftp_server/crud.go",
-      "sha256": "6203576b54e372ec2af2a82fa0c099c4893abfca669134cbb19ac79bf642d5ff",
+      "sha256": "a12984251fa4e8fa0f12d056e4010698f067218ab3709db29156949a03bb0ada",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/ftp_server_tests/v7/tests_ftp_server/model.go",
-      "sha256": "8abaee1f8fbf1c88f678e8c674d107198c9ca6d617e8b82370a28e97b1cf74d7",
+      "sha256": "1143b3c4223ed049013c0cc848ccd025ad0a61fc16a605be2eb5f17b424af881",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/ftp_server_tests/v7/tests_ftp_server/resource.go",
-      "sha256": "cfe52258f5ea3256ad18b4a077827ab4751cd7a674f1f689538e138ccb86413f",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/ftp_server_tests/v7/tests_ftp_server/resource_acceptance_test.go",
-      "sha256": "81a9e621ab5ef0d96b7990807c2f934827699e79091b53b8f90f6a638b776ad8",
+      "sha256": "f05a7e02c7cfac050639574e8649a3a2f63f4c73ef5b665efea678ff59828fa3",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/ftp_server_tests/v7/tests_ftp_server/state.go",
-      "sha256": "99bc14fe2e02e1e71b13cb253d4c1e0b3ef9c598140516e7a7340c2ed3e1c82a",
+      "sha256": "76598cac8aafedba49bb34dd5684dc464e42d8ce0890d6432d8d2dffb52e1834",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/ftp_server_tests/v7/tests_ftp_server/test_helper_test.go",
-      "sha256": "2f131b2bf15f75d6fb1e98fd35284c0ab39008910d4d18f14a190e6aefb4402c",
+      "sha256": "cc5ede3d8045d261d47a426560bebf305d11d70cb7d7230456feecccf560af23",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/resources/ftp_server_tests/v7/tests_ftp_server/testdata/maximal.tf",
-      "sha256": "9c78b669459877fe3f6ce9bf131d79000ad8d304aede04ef0b5dcdc4a896e92b",
+      "path": "internal/services/resources/generic_connectors/v7/connectors_generic/construct.go",
+      "sha256": "4612fdb7adf90d4457041162276927b2075f655ccd1d1ced0730dc75ae15a37c",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/resources/ftp_server_tests/v7/tests_ftp_server/testdata/minimal.tf",
-      "sha256": "0deb2d02d08115be6943ade7a9d38b28df90051393b58a942e756d70b125986d",
+      "path": "internal/services/resources/generic_connectors/v7/connectors_generic/crud.go",
+      "sha256": "cc2cc62f7204d6581b99a0f22ed33997b82154216b9ff7b91a2348055d197e9b",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/generic_connectors/v7/connectors_generic/model.go",
+      "sha256": "ead15158cee69947e48cf2cfae42fe5fce979399a60bd4bb7734b490521d862f",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/generic_connectors/v7/connectors_generic/resource.go",
+      "sha256": "a65117ae403029cce54e5861ed64d7533582e820983b28d32c0aff0be78b6f87",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/generic_connectors/v7/connectors_generic/resource_acceptance_test.go",
+      "sha256": "43f188c1dd50ca46bfd27e3eb5ec6bbbad6c16965dff244ddf34481a98724bad",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/generic_connectors/v7/connectors_generic/state.go",
+      "sha256": "adda7a8da4fdccc5be1e99c1eceb5c67f65733fe2ceba94ae0e64b4298bd16a3",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/generic_connectors/v7/connectors_generic/test_helper_test.go",
+      "sha256": "e3398815815285edfb17e346721adaae7ed5ea533c919c37bf5061c70653d904",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/generic_connectors/v7/connectors_generic/testdata/maximal.tf",
+      "sha256": "27ed8794a809388e6d6a29ff7f48d7260ba0cdea99b6d0e83cc14de8f3551ba6",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/generic_connectors/v7/connectors_generic/testdata/minimal.tf",
+      "sha256": "b4ffdb3759de2ab5779ebc7816f7fd2555c5683a10f5e952deb2b1f3aa9fc772",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/http_server_endpoint_scheduled_tests/v7/endpoint_tests_scheduled_tests_http_server/construct.go",
-      "sha256": "2ad4e77b5294a9bdb25a41adb39a8b6fd4597259ada3bcddb189ce97a7d7e1f2",
+      "sha256": "86c2f508c9ff0a57fb79351c5b399c21a170243fd3e9af9467ef62acb25956e8",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/http_server_endpoint_scheduled_tests/v7/endpoint_tests_scheduled_tests_http_server/crud.go",
-      "sha256": "ec09261a2baf29bf37c07ad1810c92472e120611379f89ffb9d17397b808a7ba",
+      "sha256": "5139d6e8570771c0d743526b9705e2bfc42a291746de1d44e18fdf653a5ffa6e",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/http_server_endpoint_scheduled_tests/v7/endpoint_tests_scheduled_tests_http_server/model.go",
-      "sha256": "a2b5ff74c9b5c9b1abe5b3007d77f41f49ca4d4bf878cda86a888d19d1e09755",
+      "sha256": "4dec57c9a00bbec57b6cd3b5e78edf3f8d3470b4f4079d618cf5a7b0e9aae3d8",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/http_server_endpoint_scheduled_tests/v7/endpoint_tests_scheduled_tests_http_server/resource.go",
-      "sha256": "06b83a1860d71093904776c587c04e6c3d397fd2d4cc72caf36b1bf053913f1a",
+      "sha256": "1d8153555f0b55baaac6d3b7adb9656797194378354c6fa33497c66291814ad7",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/http_server_endpoint_scheduled_tests/v7/endpoint_tests_scheduled_tests_http_server/state.go",
-      "sha256": "fafedd0a2eb69c7ed83c5c81bd6bb9577e274e7b6fd9a427f7382184c9a4e45a",
+      "sha256": "5895b37fbe51d07f21daff04d58b91c0c7c228d2498c68def2ffb36bce6ef8ee",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/http_server_endpoint_scheduled_tests/v7/endpoint_tests_scheduled_tests_http_server/test_helper_test.go",
-      "sha256": "ee1d9cff1dfd72e7bacd5ce3be385b50a303c1a659ee3b342b44eb8d49125dd2",
+      "sha256": "2c0035910e4fc757c7f1c84540d4eb05248f70177225991e3ef4387559e31cbf",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/http_server_endpoint_scheduled_tests/v7/endpoint_tests_scheduled_tests_http_server/testdata/maximal.tf",
-      "sha256": "cc70c2d181675a3cdb8b2490f136e12719452a465ee37843e41917a156329106",
+      "sha256": "1dcd66e61e538b6cb1d3e63efc6684523ec0a70837641065310abd86dc59483e",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/http_server_tests/v7/tests_http_server/construct.go",
-      "sha256": "c22dba33354713ca9fcd90f30010eb221062eba9ee8edc140ce21c0ff9edd931",
+      "sha256": "52584e2c348c576aa7430a884c70079ee91e87b3969fea56627a6a3bb091624b",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/http_server_tests/v7/tests_http_server/crud.go",
-      "sha256": "3bf533e119e4e385f1571ca33212a0b2b1f1392d53a92ee57df62bb909bf0542",
+      "sha256": "c2d2f9b2efc69b177b03f8fb07ee40a419fc2d949b90ca7cfbabc2035a4f1755",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/http_server_tests/v7/tests_http_server/model.go",
-      "sha256": "c5ff6ea3c662eb768e41664ea198eb086c21b41a49490689be78a3dd95cf096a",
+      "sha256": "cae7bb0dbde12e1d839d77d947ceda8ab81530d2ad8a5fd6fb7c4a80b74bd383",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/http_server_tests/v7/tests_http_server/resource.go",
-      "sha256": "fbb098290507b534911b36ca010abae66d65c2659ff3d3b0e7d38459a1690201",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/http_server_tests/v7/tests_http_server/resource_acceptance_test.go",
-      "sha256": "9d63d899abc6447ddb160ab2265a809b82547de062605accac03696db61ef2fa",
+      "sha256": "12543791122bdee421337b96d9b34ed8fa24ee5fdeebfa6cffe19abc5eafe9f9",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/http_server_tests/v7/tests_http_server/state.go",
-      "sha256": "bf4570f5a682d80dfbddc00937057526b4550adbfeada93ff4feaa712f5ef0fe",
+      "sha256": "b34c1c9293b7a3324ac9b0f82f7f0718193c3ce8f82e8a9192be0d02946635d8",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/http_server_tests/v7/tests_http_server/test_helper_test.go",
-      "sha256": "21bcec2087c9edcdd5ef167fecd8d1007fbf9005996f2987e1c647240b5d7602",
+      "sha256": "fba89bb0eccc3b90126fb3a6512582d4fa9924d34f61cd9b3b650007ccc6222c",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/http_server_tests/v7/tests_http_server/testdata/maximal.tf",
-      "sha256": "48825c95420f5089d2f264a3c6c9b996fd6fdf215cfa310ace30ae06afed129d",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/http_server_tests/v7/tests_http_server/testdata/minimal.tf",
-      "sha256": "d1dbfd21048abd081b2cc5fcf556e4629ca9da13d33009723d6a13b8fdfa3c09",
+      "sha256": "3a10cc5bdb71fa9750fd77b067a0e65afb5cdd66ca27c019c9e9abaed2c8ebd8",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/page_load_tests/v7/tests_page_load/construct.go",
-      "sha256": "5d3e81d8842c76410510c4b5be640b57bfa7a73fff09ed601f5e77190eed0a2b",
+      "sha256": "9421d3ed98ea365ece7c64c5ca92149c9009a4b0d2d92ae8c4d114f7f7fc916a",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/page_load_tests/v7/tests_page_load/crud.go",
-      "sha256": "ef3805565749c52c2e9b1693155a0b42256ea0cdd713f87b20eee30180519270",
+      "sha256": "3864df4faabb72ac305acef7fe208ef7ec9fd850adbf025cda50cb30e7c93f3a",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/page_load_tests/v7/tests_page_load/model.go",
-      "sha256": "aefd7e8d0c37105a72f842254937a560683d9bfbdc0ec2ed3f77dec6cf618a41",
+      "sha256": "3418f0d964f61be9422a022ce5cf5e53420942dd2f2161daf497f98150088fdf",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/page_load_tests/v7/tests_page_load/resource.go",
-      "sha256": "691df4e2614326e23bbe8c693f94f091c79e6ab8451362bb9756fe29af8a0d7b",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/page_load_tests/v7/tests_page_load/resource_acceptance_test.go",
-      "sha256": "dabe4a32d4e8a2f6ffe96ad11f191951d74da81130f9256db26b78b2376b7a74",
+      "sha256": "9674536d185601aeca4e4424f0d53332e91f9a34529de7a18cab75972385350a",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/page_load_tests/v7/tests_page_load/state.go",
-      "sha256": "63f58e3f6cb03be624fffeb84616dba38cc91641df3336905aeda74e2c709764",
+      "sha256": "d8556a2800ba66465e9e508bc53f55345fca3fe11bb32aa5d48db36dca9a8459",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/page_load_tests/v7/tests_page_load/test_helper_test.go",
-      "sha256": "b5bc0b8d95772296bad6f47d68b840a7fdfdf60e100b01677a1898c12f2e8933",
+      "sha256": "0e602839dfb1f89452922e7390a2096ee920eea358e8c56e41974d5ae4783470",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/page_load_tests/v7/tests_page_load/testdata/maximal.tf",
-      "sha256": "cfa244b761bfbe7f467c5eaf9e081e565faf73e71a9c96925862c1e872214a0f",
+      "sha256": "90e486dc44cad7c5d8f9c45504c57f349940a02317b76faed7142823ba13d0e3",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/resources/page_load_tests/v7/tests_page_load/testdata/minimal.tf",
-      "sha256": "7b4fd8a909cb121a97c220ef832f16bcd64a4f4705dbf01090a0cbef2bfe154c",
+      "path": "internal/services/resources/panorama_connectors/v7/connectors_panorama/construct.go",
+      "sha256": "72890e698120ea7fdbeb3418f7e0502ed32e77f8c74541e43c90f40c5cb47103",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/panorama_connectors/v7/connectors_panorama/crud.go",
+      "sha256": "9d7c29a8cd19d86750e6feebc62c04ebef4983832c3a73ca8f43f875da92aa2a",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/panorama_connectors/v7/connectors_panorama/model.go",
+      "sha256": "6d414f24844895a243989aae348f1679cc203f0d393e777f702b80dbe7e1a7b1",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/panorama_connectors/v7/connectors_panorama/resource.go",
+      "sha256": "7524b67ddc60419edc3a543aa39a85275562d655b5c64c9b5e35b8cfb95847db",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/panorama_connectors/v7/connectors_panorama/resource_acceptance_test.go",
+      "sha256": "c329a28a57cf9b859795e53c8479dc93b4bb511269a38924a52a2d72ebac1a71",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/panorama_connectors/v7/connectors_panorama/state.go",
+      "sha256": "764efe621ec7c6d29f74a26192a06bbf2d6efe8b282a08f9de7405329a37fd3a",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/panorama_connectors/v7/connectors_panorama/test_helper_test.go",
+      "sha256": "0d5b60fc4eb081ed6b098cdf3118cb6ca6ef98523f66ebb0fda9acb5b268a900",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/panorama_connectors/v7/connectors_panorama/testdata/maximal.tf",
+      "sha256": "d9e85d3c95a1a3aabe7c343a5e259119e753782e225c0561867e6a0265be21d5",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/panorama_connectors/v7/connectors_panorama/testdata/minimal.tf",
+      "sha256": "9eacc03b3af1929b762d5e6becbaa3ec2e6ee607141cb286868476e6c007167d",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/roles/v7/role/construct.go",
-      "sha256": "290f12db4a794b214c71ff9054bba51e2edc4f126692428a2da583e1a194c53d",
+      "sha256": "5378abb757d547271f229fc7fdbfd471320bc6e92add2e2c44474afbec34ec1e",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/roles/v7/role/crud.go",
-      "sha256": "0187b338c52bc75b86060644d7d6418f26ed786f86454cb9fc4440698029dc66",
+      "sha256": "ec365e29b81da0b31f9f15148e9796469f3d59cc3e5ca13feb54a7371a363c1d",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/roles/v7/role/model.go",
-      "sha256": "956c2de635698b1265cf013db8ff4e9b57c1003f5d2e4a2b82b87b1dd3b2484e",
+      "sha256": "fb25a512957eedfa8984f7de993884d51231567540308b4c36dbce3a2c017d78",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/roles/v7/role/resource.go",
-      "sha256": "9899cff06c6b514498dc2e4ce5752bfed99d87558884de393d2bbb434b6d1708",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/roles/v7/role/resource_acceptance_test.go",
-      "sha256": "3cc45bb4d0ee026c99610c08fbad5acac8b0d99d26a2bb58e7c0cc82c34545c4",
+      "sha256": "018f88b31c98c91f2df06eb9aa90aa8c99ec99002a6937e343561cf816690e23",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/roles/v7/role/state.go",
-      "sha256": "1655fab00b8ce9339baa33afbe0aa659dda4a0b71c03eecbbb09a71beb952d5c",
+      "sha256": "957818d44aaaf8a88d599cab50b4f993602b70a55023e22e77f8bcece4bc5186",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/roles/v7/role/test_helper_test.go",
-      "sha256": "6c93a8321f457b2b5718276ae207321c37705d37d6718cb6b58d4e3869c7984d",
+      "sha256": "1c2c3e4794edb111bc793045f9f6c2cab97463854d86780d691ace6a42b9b545",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/roles/v7/role/testdata/maximal.tf",
-      "sha256": "4a2a6304752999f3912ad25ce2618a3f7c0488dcb3d6df2e130e6df2ab8bf8d1",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/roles/v7/role/testdata/minimal.tf",
-      "sha256": "f5070e15fb587200fcca50965992f068a8bbcda9f1efdbcb95f3b65535c7221d",
+      "sha256": "b583545e9ef4f1aebae3d6f0375d7b6d59f76c76d2fb8f836698ccea6d36423f",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/sip_server_tests/v7/tests_sip_server/construct.go",
-      "sha256": "bd48631a7d07492b603d1a719ac346ad5c9b6c6612824f11a219168f1183f1f0",
+      "sha256": "335126301c5384a47f63624c25d2233d75f1f3c037ee9b72a97022ef93fac015",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/sip_server_tests/v7/tests_sip_server/crud.go",
-      "sha256": "36dac278278c199585b69cc2f4bb82a39ab7b63fc89681493376fba21b51e7b9",
+      "sha256": "59626366073663140a2be99c36a3ab052fd6dbdbb029e149c3e667ee7190e591",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/sip_server_tests/v7/tests_sip_server/model.go",
-      "sha256": "c555301021badadae6a9e2593a900b52a4cf112c7daed5cafff85200678015b9",
+      "sha256": "b69516564cedaa689be5108b0859b64a88ce7a8e62b5e4aa271470cfafd9328e",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/sip_server_tests/v7/tests_sip_server/resource.go",
-      "sha256": "b8965584a290498f54b64be58294c970f05dbdfa559068f70a4676cabf655ea5",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/sip_server_tests/v7/tests_sip_server/resource_acceptance_test.go",
-      "sha256": "d557557890ca3cedd23b6a415131cdfcd8ef1160565d8d67646321024827f630",
+      "sha256": "4f287e2aa623b7fa1be4affea3fe6016523a9266876759edc9cb02999e1a0745",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/sip_server_tests/v7/tests_sip_server/state.go",
-      "sha256": "4f02440b72f0f7ebae65f521f41e1f41151f28cf935eec50d444b2726850e491",
+      "sha256": "b74aa44c04f003024fa4badc32aa82e31516f43685680b577595bd986e494ce0",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/sip_server_tests/v7/tests_sip_server/test_helper_test.go",
-      "sha256": "6a08f1cae259096483b591ad7ed2f8ca961f7fa7c914e9fbdfc14c5522c27d3b",
+      "sha256": "5dc0ca0a5945b1e1f2b8ac6e1dbd0b38100d39f626945e141d9a3d5e6ead848c",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/sip_server_tests/v7/tests_sip_server/testdata/maximal.tf",
-      "sha256": "e7762a38d847c82b221125e4b330c0d62ee0357c840e58e09b56a86cfe0180a1",
+      "sha256": "f361cab14c5133ac98e9301b91220204ba3ae6317f70e309056df81320b1ef8f",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/resources/sip_server_tests/v7/tests_sip_server/testdata/minimal.tf",
-      "sha256": "1fc5058502e220f9742dc42b561a791bed9d859a4b94f5e31b8e126ea0984195",
+      "path": "internal/services/resources/streaming/v7/stream/construct.go",
+      "sha256": "928a10fc9dcd2b9cb641fc11d74ea697db31f72546eaa9f2a8cb2057bdcb8c52",
       "blueprint": "blueprints/thousandeyes"
     },
     {
-      "path": "internal/services/resources/tags/v7/tag/conditional_validators.go",
-      "sha256": "487903ff63f4227a741b02406291e2ebafe55a78701d6ece5e7dda39e92b7fc0",
+      "path": "internal/services/resources/streaming/v7/stream/crud.go",
+      "sha256": "8fadbf319972da6204589a4bdeef4594b488287160f8ed917dde105592410aa8",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/streaming/v7/stream/model.go",
+      "sha256": "bc5cbe2589e0ce698f73a0830f5e32fc375ffa7a6917f2644d79f54deba2ed71",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/streaming/v7/stream/resource.go",
+      "sha256": "0b8fc0a3b89a0913d0ee82c4632eab5c3edccb41303fbf60f5859f7665262489",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/streaming/v7/stream/state.go",
+      "sha256": "2ab0e2dcbc8854c38cc98af48d7a106087c7fafa1f7b31d4347a5e02d30c87f4",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/streaming/v7/stream/test_helper_test.go",
+      "sha256": "be610a622889f1a4fa3d1515ffe6d24de336b8ccafffa4ce27de9437e48e84d4",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/streaming/v7/stream/testdata/maximal.tf",
+      "sha256": "1bcdf389d0b33d1296b4df710f5f816f9198d0377b81bdb27d4ef4f26b3cf3e2",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/tags/v7/tag/construct.go",
-      "sha256": "aa0a84a2bb27e79a4be3cedf588eae2c83ab11d37bfca95371d009fb2d545bac",
+      "sha256": "7729c277e8f88615133a626d77e8d40268c44b6e2330e200c043ef879c4bd36a",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/tags/v7/tag/crud.go",
-      "sha256": "a40f92282a62c256c2382e3440d133e73a36fad251b02c1f5e25798e9a9d8575",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/tags/v7/tag/list_acceptance_test.go",
-      "sha256": "323bc66e63b6ae805eb4050f542fa77e042857b06d3f42cf61bebaed9bb28c5e",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/tags/v7/tag/list_resource.go",
-      "sha256": "070b3bdf50f1f91e7c11dae92e29196c105f0fb30d91636585ea8ea2db52701d",
+      "sha256": "52fab96d27047f1f102bb43824f3c0a315a7b3c67bd1017e19db493dec71a8d9",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/tags/v7/tag/model.go",
-      "sha256": "3072b956709561ecda7c29f71d9ece0b01c59bb96d98452df028adb56e782deb",
+      "sha256": "02d74c7bc4473484703b734d3a8f9fb0f92515875eed29adaee1fe570d8a30b7",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/tags/v7/tag/resource.go",
-      "sha256": "460d9c178476c3b1e02425d14ac12f15e57228a239f1412e4e5066a387f11cf7",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/tags/v7/tag/resource_acceptance_test.go",
-      "sha256": "39db996c3f0fa6b7835d502f7a42cc7de8dec357a4c71b755ac2b0b0fff0bd23",
+      "sha256": "d4bbcedf71ba085b9a8c4472546fae21a3dbdb8deaf4afc5c0a7acf92944bc4a",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/tags/v7/tag/state.go",
-      "sha256": "7f4981065c68d75369de9918ebf15c56f33022317d3d24dcec31efeb99871ea9",
+      "sha256": "61650f9fd10371631274c06f76f486c11c14df471401b49bfc5733117cba76fa",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/tags/v7/tag/test_helper_test.go",
-      "sha256": "59d48a61db6dc43dc9834bb0763ef542eecb664b2cabf4561651b61c52182171",
+      "sha256": "aeedfab70de392583c36c0ab1e3013361d5819eaed77813e668dd303cf8fd123",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/tags/v7/tag/testdata/maximal.tf",
-      "sha256": "e0426b0b03b294a1a4c7efb20521cd508958fc451e79c2036acd4fc41df9fefa",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/tags/v7/tag/testdata/minimal.tf",
-      "sha256": "9f877e2269864bfb9181eeb6f6f2f1cc4d87e2d17caf6c8b40b57f51ca01dc6e",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/tags/v7/tag/testdata/query.tf",
-      "sha256": "4041ff425ed6f42e12edf635217c7427ea2cc73976f87f6c0fe732981cced0f2",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/tags/v7/tag/testdata/replace.tf",
-      "sha256": "91fff13f5b383c3c6cf19a2443ea4756ba677818bb9cd44d2925b08f3b415177",
+      "sha256": "d4f6fcaa47c5e0c854c99ae301a5c554c6c4a6461ee1410b40a5e2c8549da1f5",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/users/v7/user/construct.go",
-      "sha256": "dd52b1eec04397f37d206fb9468f67014bcc5447dbb321d246316f0f711dd5b1",
+      "sha256": "c866580cb9699c9358063485958ab111395b7624b9e4150c1b0e055b4e50c5a0",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/users/v7/user/crud.go",
-      "sha256": "9340538177ab04e1712ed15141b3a8faf0cc495ad072302ed0fd83df7e5a23c2",
+      "sha256": "88be0110586a348d7ccaf863af3bed7efcc65bbc24f5d37d53b71cfa968dd3a4",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/users/v7/user/model.go",
-      "sha256": "2aa5097836920a7e7bec62cd670eaacd1c2462fe490679eb57b382bfce0c9939",
+      "sha256": "1bd99f4bbeb16114e2ccc8c48e5a0d1013a9326100dc8e37339b25975e4b46ba",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/users/v7/user/resource.go",
-      "sha256": "32738f48dc068de27ccce7b2b5ebda28302e593fd6c55305690404c58daf573c",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/users/v7/user/resource_acceptance_test.go",
-      "sha256": "506de523e9234c5e917f219b0f2fda22d36a73051b8b9139d22d2b730ac16aba",
+      "sha256": "f3f73edbb0070ef80c054ed3336d0615d1648b4d1d50b23c59cd2dc39546dbe1",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/users/v7/user/state.go",
-      "sha256": "61dc530273fb2a68e81fa4a6dd4c3d0a0325be59bda3204968ddf24780d9e05d",
+      "sha256": "d7607bfbbabc420a40f37460beab695559a31f956873988e24487388afb4b280",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/users/v7/user/test_helper_test.go",
-      "sha256": "f9c212a94adbd6e06b1054ba4ac48e83817a486e58f28ff912a474adab27dcac",
+      "sha256": "244c55b0b45eaa2363bbe474561336d53c80a14dfdabd4fbec5c4b845fbf99a4",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/users/v7/user/testdata/maximal.tf",
-      "sha256": "aa4ccc4153a11865d152ba0adb6ff9683b680db3f5687c11f9faf5cd95425649",
-      "blueprint": "blueprints/thousandeyes"
-    },
-    {
-      "path": "internal/services/resources/users/v7/user/testdata/minimal.tf",
-      "sha256": "4216bb2f7804f8bf2044ab3dd5503c3c0fa5b09919ba267274dbf5564a03bb02",
+      "sha256": "952fe42e49bc7848f0588b5349899c44f97b9deac20e9aee8cb112ad9be63de8",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/voice_tests/v7/tests_voice/construct.go",
-      "sha256": "8511aa045623b9cdaa2806c1cc0605e3ba1b414e45e0b25e6136a338afe00512",
+      "sha256": "420fac2f377d6ab612939b99a6babb20ddbe60991b8d5d67b8c13efbd1ca7ee6",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/voice_tests/v7/tests_voice/crud.go",
-      "sha256": "6f6c83ed093c9f02cb549dd29190be22eb2b186af78e4f675503f362ea47cdbc",
+      "sha256": "144d81c869fc25b526bc4ebd0520bb947d8f9d4a857461fabf8f9be0f69b3e89",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/voice_tests/v7/tests_voice/model.go",
-      "sha256": "c3aa8c2609ffe019708c2aef9318010cb2ae420e7ed4b894bf7ba109dfbbf4f7",
+      "sha256": "0e902d372e91276442f955167e132ee56da6db0b054878d21bae41401119bc73",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/voice_tests/v7/tests_voice/resource.go",
-      "sha256": "90662ed830cdf11f863729b6331f340a2762ad781e5bf44777cf9114a385912d",
+      "sha256": "b7eaa7cbaf5c40faf7c20d365f48f79940afd141eca1354efc48de952d94e80d",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/voice_tests/v7/tests_voice/state.go",
-      "sha256": "b0f69e09319902c1fa7e01422c4a9483e580fccedbf4a060026ed2571111b798",
+      "sha256": "5e1805994134bf3d3b5fdc44138330a9d50c6d5650167891e929fc7ee0d3f71e",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/voice_tests/v7/tests_voice/test_helper_test.go",
-      "sha256": "2f4c57d8db52f7ad5826a4d3cef6d6658a64a8ba26b855fbe1c560cf34d536c4",
+      "sha256": "b710239621c79f79bb086fc51c5960508b1319a157432b7f8bd1a309d2e81ce9",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/web_transaction_tests/v7/tests_web_transaction/construct.go",
-      "sha256": "b5936ccbde809e9e4a35d612f6af5aafee0c7943f9349a4f64ed7aa371173be6",
+      "sha256": "aa56dcd177a7cc8f44a8e33c68574f4f12fdd2ce5717b876db1569c99b73a0bf",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/web_transaction_tests/v7/tests_web_transaction/crud.go",
-      "sha256": "2f19a66e75656103e6ee41024090d2466a609937644285e78517863cacb13ab0",
+      "sha256": "4fc99d989a0c01ad87217846da823494f8ebc84e3e811a9889c16a90eb8ac1e3",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/web_transaction_tests/v7/tests_web_transaction/model.go",
-      "sha256": "8e690df0f1a284db3ff63ad7c0a4d48c292752573d23c747738633dab3b7ef07",
+      "sha256": "d607608afdb9bb4237566d7b8cbeb67b361b98a10801e32315a30e83ef310539",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/web_transaction_tests/v7/tests_web_transaction/resource.go",
-      "sha256": "5faf411241b0c1f4043fd72ecdc40f5251ff063f97d7d9c10b8913f3be539298",
+      "sha256": "aa0d306bca4b9bfa6e702c3b4e168903988310b80233f4dfb0ff52b76101216d",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/web_transaction_tests/v7/tests_web_transaction/resource_acceptance_test.go",
-      "sha256": "f61b63b44db102b089f698029d537531303abfc224caf35071a4f130ebb7b1cd",
+      "sha256": "34f7a807042e1cde4d527a9a253dcc6fe452539a6c3980a0b006b9c0dceb2966",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/web_transaction_tests/v7/tests_web_transaction/state.go",
-      "sha256": "3b6ecfdcae5678ceb3f37937de5bb38b7f03ecc214d5420b2b148b4c18ae26af",
+      "sha256": "78902a9b9295b79b0f3e21cd009c914048947d996826dfcca4cfd88ee6cb6669",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/web_transaction_tests/v7/tests_web_transaction/test_helper_test.go",
-      "sha256": "cb5f54dc3e334ddce51a42a3ad07b7873b7d863f476a1249b100fb8c99de6f76",
+      "sha256": "847191ffda153d51043fc4b9a1277d8d98f9a0e8da8d70b2344a7cd6b59b6780",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/web_transaction_tests/v7/tests_web_transaction/testdata/maximal.tf",
-      "sha256": "5f5549e20d23522ccdf1987fb02216a1127e3d47d5de8e238a1c305e9a0d9005",
+      "sha256": "7952a0c88fc214aab57ea8db4473767f1a027455b5a1776fdfbf10acaadb6d76",
       "blueprint": "blueprints/thousandeyes"
     },
     {
       "path": "internal/services/resources/web_transaction_tests/v7/tests_web_transaction/testdata/minimal.tf",
-      "sha256": "4092350e1556e6b52f963d31b40f3918820a939048ff6c82a0419182ad5beeed",
+      "sha256": "d13be41bd22e353051d39d3341a9ac96f3443a2920bc35fc48169b5db9b5457a",
       "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/webhook_operations/v7/operations_webhook/construct.go",
+      "sha256": "0f219e38691ffc025249a8143d96347972c9f8163929a83f59d0ea64f9b031f2",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/webhook_operations/v7/operations_webhook/crud.go",
+      "sha256": "a89861063726eac4cb95a5a078c66980fb87424ecf5a2e922a603805c62495a4",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/webhook_operations/v7/operations_webhook/model.go",
+      "sha256": "2872e0bc6806debf76f23a1ab5fbb728fc309586006975dacf1540dc033ad0c5",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/webhook_operations/v7/operations_webhook/resource.go",
+      "sha256": "cc2e45affeb31eb89a7cd2bf6e2305ffc1da795f34ee5f3af9c51e8886656d32",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/webhook_operations/v7/operations_webhook/resource_acceptance_test.go",
+      "sha256": "5695568feb64e3d13f2d67dcf9e21a490c04b2adb2205ef8e8a78445f691286c",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/webhook_operations/v7/operations_webhook/state.go",
+      "sha256": "90a90763ba2d04f4221f705ee8ed13fe98bb0bad3cf71a7519ce81bcf19bb396",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/webhook_operations/v7/operations_webhook/test_helper_test.go",
+      "sha256": "239cd28a7a640fe58883aa13dedfdfe51854a6edb87998d3a88a2269019e6a6d",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/webhook_operations/v7/operations_webhook/testdata/maximal.tf",
+      "sha256": "34a9efc63134bf0fb0ba6d4f893878a316649f1475177b0b03cf98fc1d8a0c69",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "internal/services/resources/webhook_operations/v7/operations_webhook/testdata/minimal.tf",
+      "sha256": "62732654097341eb2cfa5e7f01d97e61d24d40310e2568058dab833f0ec1d62c",
+      "blueprint": "blueprints/thousandeyes"
+    },
+    {
+      "path": "main.go",
+      "sha256": "62293a1e7b17638a3117d7bc747462ec7e1468649545ecf27abbff68d70fa061",
+      "blueprint": "blueprints/thousandeyes/provider.blueprint.json",
+      "origin": "scaffold"
     }
   ]
 }

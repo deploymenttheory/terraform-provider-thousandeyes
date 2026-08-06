@@ -1,5 +1,0 @@
-resource "thousandeyes_tests_agent_to_server" "example" {
-  interval = 3600
-  server   = "www.example.com"
-  agents   = [{ agent_id = "3" }]
-}

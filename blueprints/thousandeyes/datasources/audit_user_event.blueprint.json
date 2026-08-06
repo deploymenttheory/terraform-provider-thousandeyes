@@ -1,0 +1,260 @@
+{
+  "formatVersion": "4",
+  "dataSources": [
+    {
+      "key": "audit_user_event",
+      "name": "audit_user_event",
+      "goPackage": "audit_user_event",
+      "goPackageAlias": "v7AuditUserEventDs",
+      "goTypeName": "AuditUserEventDataSource",
+      "modelTypeName": "AuditUserEventDataSourceModel",
+      "serviceGroup": "user_events",
+      "apiVersionDir": "v7",
+      "schema": {
+        "attributes": [
+          {
+            "name": "account_group_name",
+            "goField": "AccountGroupName",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Account group name",
+            "wire": {
+              "jsonPath": "accountGroupName",
+              "sdkField": "AccountGroupName",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "aid",
+            "goField": "AID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "A unique identifier associated with your account group. You can retrieve your `AccountGroupId` from the `/account-groups` endpoint.",
+            "wire": {
+              "jsonPath": "aid",
+              "sdkField": "Aid",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "date",
+            "goField": "Date",
+            "type": {
+              "kind": "string",
+              "constraints": {
+                "format": "date-time"
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "UTC event date (ISO date-time format).",
+            "wire": {
+              "jsonPath": "date",
+              "sdkField": "Date",
+              "sdkGoType": "*time.Time",
+              "flatten": {
+                "func": "convert.PtrTimeToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "event",
+            "goField": "Event",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Event type.",
+            "wire": {
+              "jsonPath": "event",
+              "sdkField": "Event",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "ip_address",
+            "goField": "IPAddress",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Source IP address of the user.",
+            "wire": {
+              "jsonPath": "ipAddress",
+              "sdkField": "IpAddress",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "resources",
+            "goField": "Resources",
+            "type": {
+              "kind": "set_nested",
+              "nestedObject": {
+                "goTypeName": "AuditUserEventResourceModel",
+                "sdkType": "models.Administrative_API_Resourceable",
+                "constructorExpr": "models.NewAdministrative_API_Resource()",
+                "attrTypesVar": "auditUserEventResourceAttrTypes",
+                "objectTypeVar": "auditUserEventResourceObjectType",
+                "expandFunc": "expandAuditUserEventResources",
+                "flattenFunc": "flattenAuditUserEventResources",
+                "attributes": [
+                  {
+                    "name": "name",
+                    "goField": "Name",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "Name of the affected resource.",
+                    "wire": {
+                      "jsonPath": "name",
+                      "sdkField": "Name",
+                      "sdkGoType": "*string",
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "type",
+                    "goField": "Type",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "Type of resource affected. Can be “testName”, “reportTitle”, “userDisplayName”, “alertRuleName”, etc.",
+                    "wire": {
+                      "jsonPath": "type",
+                      "sdkField": "TypeEscaped",
+                      "sdkGoType": "*string",
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  }
+                ]
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "wire": {
+              "jsonPath": "resources",
+              "sdkField": "Resources",
+              "sdkGoType": "[]models.Administrative_API_Resourceable",
+              "flatten": {
+                "func": "flattenAuditUserEventResources",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "uid",
+            "goField": "Uid",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Unique id representing the user.",
+            "wire": {
+              "jsonPath": "uid",
+              "sdkField": "Uid",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "user",
+            "goField": "User",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "The name and email address of the user.",
+            "wire": {
+              "jsonPath": "user",
+              "sdkField": "User",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          }
+        ]
+      },
+      "binding": {
+        "service": {
+          "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
+          "alias": "models",
+          "typeName": "",
+          "accessor": "d.client"
+        },
+        "list": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "AuditUserEvents"
+            },
+            {
+              "method": "Get",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.Administrative_API_AuditUserEventsable",
+          "httpMethod": "GET",
+          "pathTemplate": "/audit-user-events"
+        },
+        "collectionField": "GetAuditEvents()",
+        "elementType": "models.Administrative_API_UserEventable",
+        "selectors": [
+          {
+            "attribute": "account_group_name",
+            "goField": "AccountGroupName",
+            "sdkField": "AccountGroupName"
+          }
+        ],
+        "response": {
+          "type": "models.Administrative_API_UserEventable",
+          "accessStyle": "method"
+        }
+      }
+    }
+  ]
+}

@@ -13,355 +13,13 @@
       "schema": {
         "attributes": [
           {
-            "name": "alert_rules",
-            "goField": "AlertRules",
-            "type": {
-              "kind": "set_nested",
-              "nestedObject": {
-                "goTypeName": "TestsDNSSECAlertRuleModel",
-                "sdkType": "dnssec_tests.AlertRule",
-                "attrTypesVar": "testsDnssecAlertRuleAttrTypes",
-                "objectTypeVar": "testsDnssecAlertRuleObjectType",
-                "expandFunc": "expandTestsDNSSECAlertRules",
-                "flattenFunc": "flattenTestsDNSSECAlertRules",
-                "attributes": [
-                  {
-                    "name": "alert_type",
-                    "goField": "AlertType",
-                    "type": {
-                      "kind": "string",
-                      "allowedValues": [
-                        "page-load",
-                        "http-server",
-                        "end-to-end-server",
-                        "end-to-end-agent",
-                        "voice",
-                        "dns-server",
-                        "dns-trace",
-                        "dnssec",
-                        "bgp",
-                        "path-trace",
-                        "ftp",
-                        "sip-server",
-                        "transactions",
-                        "web-transactions",
-                        "agent",
-                        "network-outage",
-                        "application-outage",
-                        "device-device",
-                        "device-interface",
-                        "endpoint-network-server",
-                        "endpoint-http-server",
-                        "endpoint-path-trace",
-                        "endpoint-browser-sessions-agent",
-                        "endpoint-browser-sessions-application",
-                        "api",
-                        "web-transaction",
-                        "unknown"
-                      ]
-                    },
-                    "computedOptionalRequired": "optional",
-                    "markdownDescription": "Type of alert being triggered. In multi-layered tests, this value represents the layer the alert relates to. See [Alert Details](https://developer.cisco.com/docs/thousandeyes/retrieve-alert-details/) documentation for a list of possible values",
-                    "wire": {
-                      "jsonPath": "alertType",
-                      "sdkField": "AlertType",
-                      "sdkGoType": "dnssec_tests.AlertType",
-                      "expand": {
-                        "func": "convert.FrameworkToEnum",
-                        "typeArgs": [
-                          "dnssec_tests.AlertType"
-                        ]
-                      },
-                      "flatten": {
-                        "func": "convert.EnumToFramework"
-                      }
-                    }
-                  },
-                  {
-                    "name": "direction",
-                    "goField": "Direction",
-                    "type": {
-                      "kind": "string",
-                      "allowedValues": [
-                        "to-target",
-                        "from-target",
-                        "bidirectional"
-                      ]
-                    },
-                    "computedOptionalRequired": "optional",
-                    "markdownDescription": "Direction for applicable alert types (eg. path trace, End-to-End (Agent) etc.)",
-                    "wire": {
-                      "jsonPath": "direction",
-                      "sdkField": "Direction",
-                      "sdkGoType": "dnssec_tests.AlertDirection",
-                      "expand": {
-                        "func": "convert.FrameworkToEnum",
-                        "typeArgs": [
-                          "dnssec_tests.AlertDirection"
-                        ]
-                      },
-                      "flatten": {
-                        "func": "convert.EnumToFramework"
-                      }
-                    }
-                  },
-                  {
-                    "name": "expression",
-                    "goField": "Expression",
-                    "type": {
-                      "kind": "string"
-                    },
-                    "computedOptionalRequired": "computed",
-                    "markdownDescription": "String expression of alert rule",
-                    "wire": {
-                      "jsonPath": "expression",
-                      "sdkField": "Expression",
-                      "sdkGoType": "*string",
-                      "flatten": {
-                        "func": "convert.PtrStringToFramework"
-                      },
-                      "skipExpand": true
-                    }
-                  },
-                  {
-                    "name": "is_default",
-                    "goField": "IsDefault",
-                    "type": {
-                      "kind": "bool"
-                    },
-                    "computedOptionalRequired": "computed",
-                    "markdownDescription": "Alert rules allow up to 1 alert rule to be selected as a default for each type. By checking the default option, this alert rule will be automatically included on subsequently created tests that test a metric used in alerting here",
-                    "wire": {
-                      "jsonPath": "isDefault",
-                      "sdkField": "IsDefault",
-                      "sdkGoType": "*bool",
-                      "flatten": {
-                        "func": "convert.PtrBoolToFramework"
-                      },
-                      "skipExpand": true
-                    }
-                  },
-                  {
-                    "name": "minimum_sources",
-                    "goField": "MinimumSources",
-                    "type": {
-                      "kind": "int64"
-                    },
-                    "computedOptionalRequired": "computed",
-                    "markdownDescription": "The minimum number of agents or monitors that must meet the specified criteria in order to trigger the alert",
-                    "wire": {
-                      "jsonPath": "minimumSources",
-                      "sdkField": "MinimumSources",
-                      "sdkGoType": "*int64",
-                      "flatten": {
-                        "func": "convert.PtrInt64ToFramework"
-                      },
-                      "skipExpand": true
-                    }
-                  },
-                  {
-                    "name": "minimum_sources_pct",
-                    "goField": "MinimumSourcesPct",
-                    "type": {
-                      "kind": "int64"
-                    },
-                    "computedOptionalRequired": "computed",
-                    "markdownDescription": "the minimum percentage of all assigned agents or monitors that must meet the specified criteria in order to trigger the alert",
-                    "wire": {
-                      "jsonPath": "minimumSourcesPct",
-                      "sdkField": "MinimumSourcesPct",
-                      "sdkGoType": "*int64",
-                      "flatten": {
-                        "func": "convert.PtrInt64ToFramework"
-                      },
-                      "skipExpand": true
-                    }
-                  },
-                  {
-                    "name": "rounds_violating_mode",
-                    "goField": "RoundsViolatingMode",
-                    "type": {
-                      "kind": "string",
-                      "allowedValues": [
-                        "exact",
-                        "any",
-                        "auto"
-                      ]
-                    },
-                    "computedOptionalRequired": "computed",
-                    "markdownDescription": "`exact` requires the same agents to meet the threshold in consecutive rounds. `auto` is only enabled for CEA and Endpoint Scheduled test rules. The default is `any`.",
-                    "wire": {
-                      "jsonPath": "roundsViolatingMode",
-                      "sdkField": "RoundsViolatingMode",
-                      "sdkGoType": "dnssec_tests.AlertRoundsViolationMode",
-                      "flatten": {
-                        "func": "convert.EnumToFramework"
-                      },
-                      "skipExpand": true
-                    }
-                  },
-                  {
-                    "name": "rounds_violating_out_of",
-                    "goField": "RoundsViolatingOutOf",
-                    "type": {
-                      "kind": "int64"
-                    },
-                    "computedOptionalRequired": "computed",
-                    "markdownDescription": "Specifies the divisor (y value) for the \u201cX of Y times\u201d condition.",
-                    "wire": {
-                      "jsonPath": "roundsViolatingOutOf",
-                      "sdkField": "RoundsViolatingOutOf",
-                      "sdkGoType": "*int64",
-                      "flatten": {
-                        "func": "convert.PtrInt64ToFramework"
-                      },
-                      "skipExpand": true
-                    }
-                  },
-                  {
-                    "name": "rounds_violating_required",
-                    "goField": "RoundsViolatingRequired",
-                    "type": {
-                      "kind": "int64"
-                    },
-                    "computedOptionalRequired": "computed",
-                    "markdownDescription": "Specifies the numerator (x value) for the \u201cX of Y times\u201d condition",
-                    "wire": {
-                      "jsonPath": "roundsViolatingRequired",
-                      "sdkField": "RoundsViolatingRequired",
-                      "sdkGoType": "*int64",
-                      "flatten": {
-                        "func": "convert.PtrInt64ToFramework"
-                      },
-                      "skipExpand": true
-                    }
-                  },
-                  {
-                    "name": "rule_id",
-                    "goField": "RuleID",
-                    "type": {
-                      "kind": "string"
-                    },
-                    "computedOptionalRequired": "computed",
-                    "markdownDescription": "Unique ID of the rule.",
-                    "wire": {
-                      "jsonPath": "ruleId",
-                      "sdkField": "RuleID",
-                      "sdkGoType": "*string",
-                      "flatten": {
-                        "func": "convert.PtrStringToFramework"
-                      },
-                      "skipExpand": true
-                    }
-                  },
-                  {
-                    "name": "rule_name",
-                    "goField": "RuleName",
-                    "type": {
-                      "kind": "string"
-                    },
-                    "computedOptionalRequired": "computed",
-                    "markdownDescription": "Name of the alert rule",
-                    "wire": {
-                      "jsonPath": "ruleName",
-                      "sdkField": "RuleName",
-                      "sdkGoType": "*string",
-                      "flatten": {
-                        "func": "convert.PtrStringToFramework"
-                      },
-                      "skipExpand": true
-                    }
-                  },
-                  {
-                    "name": "sensitivity_level",
-                    "goField": "SensitivityLevel",
-                    "type": {
-                      "kind": "string",
-                      "allowedValues": [
-                        "high",
-                        "medium",
-                        "low"
-                      ]
-                    },
-                    "computedOptionalRequired": "computed",
-                    "markdownDescription": "Used when `roundsViolatingMode` is set to `auto`. The default is `medium`. Higher sensitivity increases the likelihood of triggering alerts.",
-                    "wire": {
-                      "jsonPath": "sensitivityLevel",
-                      "sdkField": "SensitivityLevel",
-                      "sdkGoType": "dnssec_tests.SensitivityLevel",
-                      "flatten": {
-                        "func": "convert.EnumToFramework"
-                      },
-                      "skipExpand": true
-                    }
-                  },
-                  {
-                    "name": "severity",
-                    "goField": "Severity",
-                    "type": {
-                      "kind": "string",
-                      "allowedValues": [
-                        "info",
-                        "major",
-                        "minor",
-                        "critical",
-                        "unknown"
-                      ]
-                    },
-                    "computedOptionalRequired": "optional",
-                    "markdownDescription": "The severity of the alert.",
-                    "wire": {
-                      "jsonPath": "severity",
-                      "sdkField": "Severity",
-                      "sdkGoType": "dnssec_tests.Severity",
-                      "expand": {
-                        "func": "convert.FrameworkToEnum",
-                        "typeArgs": [
-                          "dnssec_tests.Severity"
-                        ]
-                      },
-                      "flatten": {
-                        "func": "convert.EnumToFramework"
-                      }
-                    }
-                  }
-                ]
-              }
-            },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "Contains list of enabled alert rule objects.",
-            "wire": {
-              "jsonPath": "alertRules",
-              "sdkField": "AlertRules",
-              "sdkGoType": "[]dnssec_tests.AlertRule",
-              "expand": {
-                "func": "expandTestsDNSSECAlertRules",
-                "needsCtx": true,
-                "returnsError": true
-              },
-              "flatten": {
-                "func": "flattenTestsDNSSECAlertRules",
-                "needsCtx": true,
-                "returnsError": true
-              }
-            },
-            "drop": true
-          },
-          {
             "name": "alerts_enabled",
             "goField": "AlertsEnabled",
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "Indicates if alerts are enabled.\n\n<!-- probed:7.0.98-t1785745046061 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->",
-            "behaviour": {
-              "serverDefault": {
-                "kind": "",
-                "raw": "true"
-              },
-              "returnedOnRead": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Indicates if alerts are enabled.",
             "wire": {
               "jsonPath": "alertsEnabled",
               "sdkField": "AlertsEnabled",
@@ -387,7 +45,7 @@
               "sdkField": "CreatedBy",
               "sdkGoType": "*string",
               "flatten": {
-                "func": "convert.PtrEnumToFramework"
+                "func": "convert.PtrStringToFramework"
               },
               "skipExpand": true
             }
@@ -421,9 +79,6 @@
             },
             "computedOptionalRequired": "optional",
             "markdownDescription": "A description of the test.",
-            "behaviour": {
-              "returnedOnRead": true
-            },
             "wire": {
               "jsonPath": "description",
               "sdkField": "Description",
@@ -446,11 +101,8 @@
                 "ch"
               ]
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "Domain class used by this test. 'in' stands for Internet, while 'ch' stands for Chaos.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Domain class used by this test. 'in' stands for Internet, while 'ch' stands for Chaos.",
             "wire": {
               "jsonPath": "dnsQueryClass",
               "sdkField": "DnsQueryClass",
@@ -460,10 +112,10 @@
                 "typeArgs": [
                   "models.Tests_API_DnsQueryClass"
                 ],
+                "returnsError": true,
                 "extraArgs": [
                   "models.ParseTests_API_DnsQueryClass"
-                ],
-                "returnsError": true
+                ]
               },
               "flatten": {
                 "func": "convert.PtrStringerToFramework"
@@ -477,12 +129,7 @@
               "kind": "string"
             },
             "computedOptionalRequired": "required",
-            "markdownDescription": "The target record for the test, with the record type suffixed. If no record type is specified, the test defaults to an ANY record.\n\nThe test's target: the API refuses a create without it, whatever the specification marks.\n\n<!-- probed:7.0.98-t1785745046061 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->\n\nThe API normalises this value (appends the record type, cloudflare.com becomes \"cloudflare.com ANY\"; the 2026-08-03 acceptance run (#13)); state carries the configured form.",
-            "behaviour": {
-              "requiredByApi": true,
-              "returnedOnRead": true,
-              "normalises": "appends the record type, cloudflare.com becomes \"cloudflare.com ANY\""
-            },
+            "markdownDescription": "The target record for the test, with the record type suffixed. If no record type is specified, the test defaults to an ANY record.",
             "wire": {
               "jsonPath": "domain",
               "sdkField": "Domain",
@@ -490,7 +137,9 @@
               "expand": {
                 "func": "convert.FrameworkToPtrString"
               },
-              "skipFlatten": true
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              }
             }
           },
           {
@@ -499,16 +148,8 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "Test is enabled.\n\n<!-- probed:7.0.98-t1785745046061 -->\nObserved: the API assigns true when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "serverDefault": {
-                "kind": "",
-                "raw": "true"
-              },
-              "returnedOnRead": true,
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Test is enabled.",
             "wire": {
               "jsonPath": "enabled",
               "sdkField": "Enabled",
@@ -519,6 +160,24 @@
               "flatten": {
                 "func": "convert.PtrBoolToFramework"
               }
+            }
+          },
+          {
+            "name": "id",
+            "goField": "ID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Each test is assigned an unique ID; this is used to access test information and results from other endpoints. Named `id` per the import convention; the wire field stays testId.",
+            "wire": {
+              "jsonPath": "testId",
+              "sdkField": "TestId",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
             }
           },
           {
@@ -537,10 +196,7 @@
               ]
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Interval between test runs in seconds.\n\nDocumented intervals, in seconds: `60`, `120`, `300`, `600`, `900`, `1800`, `3600`.\n\nThe request carries this field unconditionally, so omitting it sends zero, which the API refuses (the 2026-08-03 scheduled acceptance run).\n\n<!-- probed:7.0.98-t1785745046061 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
-            "behaviour": {
-              "requiredByApi": true
-            },
+            "markdownDescription": "Interval between test runs in seconds.",
             "wire": {
               "jsonPath": "interval",
               "sdkField": "Interval",
@@ -560,9 +216,10 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsDNSSECTestLabelsModel",
-                "sdkType": "dnssec_tests.TestLabels",
-                "attrTypesVar": "testsDnssecTestLabelsAttrTypes",
-                "objectTypeVar": "testsDnssecTestLabelsObjectType",
+                "sdkType": "models.Tests_API_TestLabelable",
+                "constructorExpr": "models.NewTests_API_TestLabel()",
+                "attrTypesVar": "testsDNSSECTestLabelsAttrTypes",
+                "objectTypeVar": "testsDNSSECTestLabelsObjectType",
                 "expandFunc": "expandTestsDNSSECTestLabelses",
                 "flattenFunc": "flattenTestsDNSSECTestLabelses",
                 "attributes": [
@@ -594,7 +251,7 @@
                     "markdownDescription": "Label ID.",
                     "wire": {
                       "jsonPath": "labelId",
-                      "sdkField": "LabelID",
+                      "sdkField": "LabelId",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -628,15 +285,14 @@
             "wire": {
               "jsonPath": "labels",
               "sdkField": "Labels",
-              "sdkGoType": "[]dnssec_tests.TestLabels",
+              "sdkGoType": "[]models.Tests_API_TestLabelable",
               "flatten": {
                 "func": "flattenTestsDNSSECTestLabelses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            },
-            "drop": true
+            }
           },
           {
             "name": "live_share",
@@ -701,16 +357,8 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "Indicates whether agents should randomize the start time in each test round.\n\n<!-- probed:7.0.98-t1785745046061 -->\nObserved: the API assigns false when this is omitted.\n<!-- /probed -->\n\n<!-- probed:static -->\nThe SDK's encoding drops this type's zero value (omitempty), so configuring false, 0 or \"\" silently becomes an omission.\n<!-- /probed -->",
-            "behaviour": {
-              "serverDefault": {
-                "kind": "",
-                "raw": "false"
-              },
-              "returnedOnRead": true,
-              "zeroValueUnsendable": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "Indicates whether agents should randomize the start time in each test round.",
             "wire": {
               "jsonPath": "randomizedStartTime",
               "sdkField": "RandomizedStartTime",
@@ -748,9 +396,10 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsDNSSECTestSharedAccountsModel",
-                "sdkType": "dnssec_tests.TestSharedAccounts",
-                "attrTypesVar": "testsDnssecTestSharedAccountsAttrTypes",
-                "objectTypeVar": "testsDnssecTestSharedAccountsObjectType",
+                "sdkType": "models.Tests_API_SharedWithAccountable",
+                "constructorExpr": "models.NewTests_API_SharedWithAccount()",
+                "attrTypesVar": "testsDNSSECTestSharedAccountsAttrTypes",
+                "objectTypeVar": "testsDNSSECTestSharedAccountsObjectType",
                 "expandFunc": "expandTestsDNSSECTestSharedAccountses",
                 "flattenFunc": "flattenTestsDNSSECTestSharedAccountses",
                 "attributes": [
@@ -764,7 +413,7 @@
                     "markdownDescription": "Account group ID.",
                     "wire": {
                       "jsonPath": "aid",
-                      "sdkField": "AID",
+                      "sdkField": "Aid",
                       "sdkGoType": "*string",
                       "flatten": {
                         "func": "convert.PtrStringToFramework"
@@ -798,15 +447,14 @@
             "wire": {
               "jsonPath": "sharedWithAccounts",
               "sdkField": "SharedWithAccounts",
-              "sdkGoType": "[]dnssec_tests.TestSharedAccounts",
+              "sdkGoType": "[]models.Tests_API_SharedWithAccountable",
               "flatten": {
                 "func": "flattenTestsDNSSECTestSharedAccountses",
                 "needsCtx": true,
                 "returnsError": true
               },
               "skipExpand": true
-            },
-            "drop": true
+            }
           },
           {
             "name": "tags",
@@ -815,9 +463,10 @@
               "kind": "set_nested",
               "nestedObject": {
                 "goTypeName": "TestsDNSSECTestTagsModel",
-                "sdkType": "dnssec_tests.TestTags",
-                "attrTypesVar": "testsDnssecTestTagsAttrTypes",
-                "objectTypeVar": "testsDnssecTestTagsObjectType",
+                "sdkType": "models.Tests_API_TestTagable",
+                "constructorExpr": "models.NewTests_API_TestTag()",
+                "attrTypesVar": "testsDNSSECTestTagsAttrTypes",
+                "objectTypeVar": "testsDNSSECTestTagsObjectType",
                 "expandFunc": "expandTestsDNSSECTestTagses",
                 "flattenFunc": "flattenTestsDNSSECTestTagses",
                 "attributes": [
@@ -825,16 +474,19 @@
                     "name": "id",
                     "goField": "ID",
                     "type": {
-                      "kind": "string"
+                      "kind": "string",
+                      "constraints": {
+                        "format": "uuid"
+                      }
                     },
                     "computedOptionalRequired": "computed",
                     "markdownDescription": "Unique tag ID.",
                     "wire": {
                       "jsonPath": "id",
-                      "sdkField": "ID",
-                      "sdkGoType": "*string",
+                      "sdkField": "Id",
+                      "sdkGoType": "*uuid.UUID",
                       "flatten": {
-                        "func": "convert.PtrStringToFramework"
+                        "func": "convert.PtrStringerToFramework"
                       },
                       "skipExpand": true
                     }
@@ -883,30 +535,11 @@
             "wire": {
               "jsonPath": "tags",
               "sdkField": "Tags",
-              "sdkGoType": "[]dnssec_tests.TestTags",
+              "sdkGoType": "[]models.Tests_API_TestTagable",
               "flatten": {
                 "func": "flattenTestsDNSSECTestTagses",
                 "needsCtx": true,
                 "returnsError": true
-              },
-              "skipExpand": true
-            },
-            "drop": true
-          },
-          {
-            "name": "id",
-            "goField": "ID",
-            "type": {
-              "kind": "string"
-            },
-            "computedOptionalRequired": "computed",
-            "markdownDescription": "Each test is assigned an unique ID; this is used to access test information and results from other endpoints.",
-            "wire": {
-              "jsonPath": "testId",
-              "sdkField": "TestId",
-              "sdkGoType": "*string",
-              "flatten": {
-                "func": "convert.PtrStringToFramework"
               },
               "skipExpand": true
             }
@@ -917,11 +550,8 @@
             "type": {
               "kind": "string"
             },
-            "computedOptionalRequired": "computed_optional",
-            "markdownDescription": "The name of the test. Test name must be unique.\n\nComputed as well as optional: the 2026-08-03 dispatched acceptance run (#12) observed the API applying its own value when this is omitted.",
-            "behaviour": {
-              "returnedOnRead": true
-            },
+            "computedOptionalRequired": "optional",
+            "markdownDescription": "The name of the test. Test name must be unique.",
             "wire": {
               "jsonPath": "testName",
               "sdkField": "TestName",
@@ -950,62 +580,6 @@
               },
               "skipExpand": true
             }
-          },
-          {
-            "name": "agents",
-            "goField": "Agents",
-            "type": {
-              "kind": "set_nested",
-              "nestedObject": {
-                "goTypeName": "DnssecAgentModel",
-                "sdkType": "models.Tests_API_TestAgentRequestable",
-                "attrTypesVar": "dnssecAgentAttrTypes",
-                "objectTypeVar": "dnssecAgentObjectType",
-                "expandFunc": "expandDnssecAgents",
-                "flattenFunc": "",
-                "attributes": [
-                  {
-                    "name": "agent_id",
-                    "goField": "AgentID",
-                    "type": {
-                      "kind": "string"
-                    },
-                    "computedOptionalRequired": "required",
-                    "markdownDescription": "The agent to run the test from. Get identifiers from `/agents`; cloud agent identifiers are stable public values.",
-                    "behaviour": {
-                      "returnedOnRead": false
-                    },
-                    "wire": {
-                      "jsonPath": "agentId",
-                      "sdkField": "AgentId",
-                      "sdkGoType": "*string",
-                      "expand": {
-                        "func": "convert.FrameworkToPtrString"
-                      },
-                      "skipFlatten": true
-                    }
-                  }
-                ],
-                "constructorExpr": "models.NewTests_API_TestAgentRequest()"
-              }
-            },
-            "computedOptionalRequired": "required",
-            "markdownDescription": "The agents the test runs from. Sent on create and update; the read reports assignment through its own fields, so this does not round-trip into state.\n\n<!-- probed:7.0.98-t1785745046061 -->\nThe API enforces this field's presence, which the specification does not declare.\n<!-- /probed -->",
-            "behaviour": {
-              "requiredByApi": true,
-              "returnedOnRead": false
-            },
-            "wire": {
-              "jsonPath": "agents",
-              "sdkField": "Agents",
-              "sdkGoType": "[]models.Tests_API_TestAgentRequestable",
-              "expand": {
-                "func": "expandDnssecAgents",
-                "needsCtx": true,
-                "returnsError": true
-              },
-              "skipFlatten": true
-            }
           }
         ],
         "markdownDescription": "Get DNSSEC test."
@@ -1014,10 +588,12 @@
         "service": {
           "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
           "alias": "models",
+          "typeName": "",
           "accessor": "r.client"
         },
         "create": {
           "style": "fluent",
+          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -1048,6 +624,7 @@
         },
         "read": {
           "style": "fluent",
+          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -1084,6 +661,7 @@
         },
         "update": {
           "style": "fluent",
+          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -1123,6 +701,7 @@
         },
         "delete": {
           "style": "fluent",
+          "method": "",
           "chain": [
             {
               "method": "Tests"
@@ -1178,25 +757,6 @@
       "import": {
         "style": "passthroughId",
         "attribute": "id"
-      },
-      "sweep": {
-        "nameField": "testName"
-      },
-      "accFixture": {
-        "values": [
-          {
-            "attr": "agents",
-            "hcl": "[{ agent_id = \"3\" }]"
-          },
-          {
-            "attr": "domain",
-            "hcl": "\"cloudflare.com\""
-          },
-          {
-            "attr": "interval",
-            "hcl": "3600"
-          }
-        ]
       }
     }
   ]

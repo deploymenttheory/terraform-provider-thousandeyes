@@ -1,0 +1,143 @@
+{
+  "formatVersion": "4",
+  "dataSources": [
+    {
+      "key": "endpoint_test_results_local_network",
+      "name": "endpoint_test_results_local_network",
+      "goPackage": "endpoint_test_results_local_network",
+      "goPackageAlias": "v7EndpointTestResultsLocalNetworkDs",
+      "goTypeName": "EndpointTestResultsLocalNetworkDataSource",
+      "modelTypeName": "EndpointTestResultsLocalNetworkDataSourceModel",
+      "serviceGroup": "local_network_endpoint_test_results",
+      "apiVersionDir": "v7",
+      "schema": {
+        "attributes": [
+          {
+            "name": "local_prefix",
+            "goField": "LocalPrefix",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Network local private address.",
+            "wire": {
+              "jsonPath": "localPrefix",
+              "sdkField": "LocalPrefix",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "network_id",
+            "goField": "NetworkID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "The network ID. Each network occurrence has a unique ID.",
+            "wire": {
+              "jsonPath": "networkId",
+              "sdkField": "NetworkId",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "network_name",
+            "goField": "NetworkName",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "The network name.",
+            "wire": {
+              "jsonPath": "networkName",
+              "sdkField": "NetworkName",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "public_ip_range",
+            "goField": "PublicIPRange",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Network public IP range.",
+            "wire": {
+              "jsonPath": "publicIpRange",
+              "sdkField": "PublicIpRange",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          }
+        ]
+      },
+      "binding": {
+        "service": {
+          "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
+          "alias": "models",
+          "typeName": "",
+          "accessor": "d.client"
+        },
+        "list": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Endpoint"
+            },
+            {
+              "method": "TestResults"
+            },
+            {
+              "method": "LocalNetworks"
+            },
+            {
+              "method": "Get",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.Endpoint_Test_Results_API_LocalNetworkResultsable",
+          "httpMethod": "GET",
+          "pathTemplate": "/endpoint/test-results/local-networks"
+        },
+        "collectionField": "GetLocalNetworks()",
+        "elementType": "models.Endpoint_Test_Results_API_LocalNetworkResultable",
+        "selectors": [
+          {
+            "attribute": "network_name",
+            "goField": "NetworkName",
+            "sdkField": "NetworkName"
+          }
+        ],
+        "response": {
+          "type": "models.Endpoint_Test_Results_API_LocalNetworkResultable",
+          "accessStyle": "method"
+        }
+      }
+    }
+  ]
+}
