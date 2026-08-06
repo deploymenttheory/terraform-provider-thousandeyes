@@ -199,6 +199,15 @@
           "type": "models.Integrations_API_PanoramaConnectorable",
           "accessStyle": "method"
         }
+      },
+      "accTest": {
+        "seedResourceKey": "connectors_panorama",
+        "args": [
+          {
+            "attr": "id",
+            "fromSeedAttr": "id"
+          }
+        ]
       }
     }
   ]

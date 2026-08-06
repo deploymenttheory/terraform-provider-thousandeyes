@@ -1327,6 +1327,15 @@
           "type": "models.Tests_API_VoiceTestResponseable",
           "accessStyle": "method"
         }
+      },
+      "accTest": {
+        "seedResourceKey": "tests_voice",
+        "args": [
+          {
+            "attr": "id",
+            "fromSeedAttr": "id"
+          }
+        ]
       }
     }
   ]

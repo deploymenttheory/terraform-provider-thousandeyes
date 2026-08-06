@@ -2149,6 +2149,15 @@
           "type": "models.Tests_API_HttpServerTestResponseable",
           "accessStyle": "method"
         }
+      },
+      "accTest": {
+        "seedResourceKey": "tests_http_server",
+        "args": [
+          {
+            "attr": "id",
+            "fromSeedAttr": "id"
+          }
+        ]
       }
     }
   ]

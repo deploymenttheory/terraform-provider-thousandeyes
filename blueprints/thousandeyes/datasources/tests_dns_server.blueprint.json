@@ -1461,6 +1461,15 @@
           "type": "models.Tests_API_DnsServerTestResponseable",
           "accessStyle": "method"
         }
+      },
+      "accTest": {
+        "seedResourceKey": "tests_dns_server",
+        "args": [
+          {
+            "attr": "id",
+            "fromSeedAttr": "id"
+          }
+        ]
       }
     }
   ]

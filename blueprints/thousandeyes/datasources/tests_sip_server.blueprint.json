@@ -1471,6 +1471,15 @@
           "type": "models.Tests_API_SipServerTestResponseable",
           "accessStyle": "method"
         }
+      },
+      "accTest": {
+        "seedResourceKey": "tests_sip_server",
+        "args": [
+          {
+            "attr": "id",
+            "fromSeedAttr": "id"
+          }
+        ]
       }
     }
   ]

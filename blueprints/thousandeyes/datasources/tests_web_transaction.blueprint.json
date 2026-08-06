@@ -2400,6 +2400,15 @@
           "type": "models.Tests_API_WebTransactionTestResponseable",
           "accessStyle": "method"
         }
+      },
+      "accTest": {
+        "seedResourceKey": "tests_web_transaction",
+        "args": [
+          {
+            "attr": "id",
+            "fromSeedAttr": "id"
+          }
+        ]
       }
     }
   ]

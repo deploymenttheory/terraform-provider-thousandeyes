@@ -259,6 +259,15 @@
           "type": "models.Administrative_API_RoleDetailable",
           "accessStyle": "method"
         }
+      },
+      "accTest": {
+        "seedResourceKey": "role",
+        "args": [
+          {
+            "attr": "id",
+            "fromSeedAttr": "id"
+          }
+        ]
       }
     }
   ]

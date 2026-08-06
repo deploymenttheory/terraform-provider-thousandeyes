@@ -583,6 +583,15 @@
           "type": "models.Tags_API_Tagable",
           "accessStyle": "method"
         }
+      },
+      "accTest": {
+        "seedResourceKey": "tag",
+        "args": [
+          {
+            "attr": "id",
+            "fromSeedAttr": "id"
+          }
+        ]
       }
     }
   ]
