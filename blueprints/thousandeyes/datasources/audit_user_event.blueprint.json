@@ -88,6 +88,24 @@
             }
           },
           {
+            "name": "id",
+            "goField": "ID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Unique id representing the user. Named `id` per the import convention; the wire field stays uid.",
+            "wire": {
+              "jsonPath": "uid",
+              "sdkField": "Uid",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
             "name": "ip_address",
             "goField": "IPAddress",
             "type": {
@@ -167,24 +185,6 @@
                 "func": "flattenAuditUserEventResources",
                 "needsCtx": true,
                 "returnsError": true
-              },
-              "skipExpand": true
-            }
-          },
-          {
-            "name": "uid",
-            "goField": "Uid",
-            "type": {
-              "kind": "string"
-            },
-            "computedOptionalRequired": "computed",
-            "markdownDescription": "Unique id representing the user.",
-            "wire": {
-              "jsonPath": "uid",
-              "sdkField": "Uid",
-              "sdkGoType": "*string",
-              "flatten": {
-                "func": "convert.PtrStringToFramework"
               },
               "skipExpand": true
             }

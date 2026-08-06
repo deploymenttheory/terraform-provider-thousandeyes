@@ -38,7 +38,7 @@ Get BGP test.
 - `saved_event` (Boolean) Indicates if the test is a saved event. **Note**: **Saved Events** are now called **Private Snapshots** in the user interface. This change does not affect API.
 - `shared_with_accounts` (Attributes Set) Contains list of account group IDs. Test is shared with the listed account groups (get `aid` from `/account-groups` endpoint) (see [below for nested schema](#nestedatt--shared_with_accounts))
 - `tags` (Attributes Set) Tags assigned to the test. Returned only when `expand=tag` is specified. This field is not returned for Instant Tests. For more information, see `/tags`. (see [below for nested schema](#nestedatt--tags))
-- `type` (String)
+- `type` (String) This is a read only value, as test type is implicit in the test creation url.
 
 <a id="nestedblock--timeouts"></a>
 ### Nested Schema for `timeouts`

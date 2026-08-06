@@ -31,6 +31,24 @@
             }
           },
           {
+            "name": "id",
+            "goField": "ID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "BGP monitor ID Named `id` per the import convention; the wire field stays monitorId.",
+            "wire": {
+              "jsonPath": "monitorId",
+              "sdkField": "MonitorId",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
             "name": "ip_address",
             "goField": "IPAddress",
             "type": {
@@ -41,24 +59,6 @@
             "wire": {
               "jsonPath": "ipAddress",
               "sdkField": "IpAddress",
-              "sdkGoType": "*string",
-              "flatten": {
-                "func": "convert.PtrStringToFramework"
-              },
-              "skipExpand": true
-            }
-          },
-          {
-            "name": "monitor_id",
-            "goField": "MonitorID",
-            "type": {
-              "kind": "string"
-            },
-            "computedOptionalRequired": "computed",
-            "markdownDescription": "BGP monitor ID",
-            "wire": {
-              "jsonPath": "monitorId",
-              "sdkField": "MonitorId",
               "sdkGoType": "*string",
               "flatten": {
                 "func": "convert.PtrStringToFramework"

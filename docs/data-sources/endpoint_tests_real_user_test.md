@@ -29,8 +29,8 @@ data "thousandeyes_endpoint_tests_real_user_test" "example" {
 
 ### Read-Only
 
-- `aid` (String) A unique identifier associated with your account group. You can retrieve your `AccountGroupId` from the `/account-groups` endpoint.
 - `excluded_domains` (Set of String) Domains excluded from real user monitoring.
+- `id` (String) A unique identifier associated with your account group. You can retrieve your `AccountGroupId` from the `/account-groups` endpoint. Named `id` per the import convention; the wire field stays aid.
 - `included_domains` (Set of String) Domains included in real user monitoring.
 - `monitoring_settings` (Attributes) (see [below for nested schema](#nestedatt--monitoring_settings))
 - `profile_id` (String) Unique ID of the monitoring profile.

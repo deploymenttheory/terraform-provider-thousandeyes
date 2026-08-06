@@ -402,6 +402,10 @@
             "goField": "Type",
             "type": {
               "kind": "string",
+              "allowedValues": [
+                "agent-to-server",
+                "http-server"
+              ],
               "constraints": {
                 "pattern": "^agent-to-server$"
               }

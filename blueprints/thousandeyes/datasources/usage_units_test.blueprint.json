@@ -31,24 +31,6 @@
             }
           },
           {
-            "name": "aid",
-            "goField": "AID",
-            "type": {
-              "kind": "string"
-            },
-            "computedOptionalRequired": "computed",
-            "markdownDescription": "Unique ID of the account group owning the test that is generating units",
-            "wire": {
-              "jsonPath": "aid",
-              "sdkField": "Aid",
-              "sdkGoType": "*string",
-              "flatten": {
-                "func": "convert.PtrStringToFramework"
-              },
-              "skipExpand": true
-            }
-          },
-          {
             "name": "cloud_units_projected",
             "goField": "CloudUnitsProjected",
             "type": {
@@ -116,6 +98,24 @@
               "sdkGoType": "*int32",
               "flatten": {
                 "func": "convert.PtrInt32ToFrameworkInt64"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "id",
+            "goField": "ID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Unique ID of the account group owning the test that is generating units Named `id` per the import convention; the wire field stays aid.",
+            "wire": {
+              "jsonPath": "aid",
+              "sdkField": "Aid",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
               },
               "skipExpand": true
             }

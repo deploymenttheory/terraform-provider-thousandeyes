@@ -13,24 +13,6 @@
       "schema": {
         "attributes": [
           {
-            "name": "aid",
-            "goField": "AID",
-            "type": {
-              "kind": "string"
-            },
-            "computedOptionalRequired": "computed",
-            "markdownDescription": "A unique identifier associated with your account group. You can retrieve your `AccountGroupId` from the `/account-groups` endpoint.",
-            "wire": {
-              "jsonPath": "aid",
-              "sdkField": "Aid",
-              "sdkGoType": "*string",
-              "flatten": {
-                "func": "convert.PtrStringToFramework"
-              },
-              "skipExpand": true
-            }
-          },
-          {
             "name": "created_date",
             "goField": "CreatedDate",
             "type": {
@@ -65,6 +47,24 @@
               "sdkGoType": "*bool",
               "flatten": {
                 "func": "convert.PtrBoolToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "id",
+            "goField": "ID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "A unique identifier associated with your account group. You can retrieve your `AccountGroupId` from the `/account-groups` endpoint. Named `id` per the import convention; the wire field stays aid.",
+            "wire": {
+              "jsonPath": "aid",
+              "sdkField": "Aid",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
               },
               "skipExpand": true
             }

@@ -13,24 +13,6 @@
       "schema": {
         "attributes": [
           {
-            "name": "aid",
-            "goField": "AID",
-            "type": {
-              "kind": "string"
-            },
-            "computedOptionalRequired": "computed",
-            "markdownDescription": "Account id that this proxy configuration belongs to",
-            "wire": {
-              "jsonPath": "aid",
-              "sdkField": "Aid",
-              "sdkGoType": "*string",
-              "flatten": {
-                "func": "convert.PtrStringToFramework"
-              },
-              "skipExpand": true
-            }
-          },
-          {
             "name": "auth_type",
             "goField": "AuthType",
             "type": {
@@ -73,6 +55,24 @@
                 "func": "convert.StringSliceToFrameworkSet",
                 "needsCtx": true,
                 "returnsError": true
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "id",
+            "goField": "ID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Account id that this proxy configuration belongs to Named `id` per the import convention; the wire field stays aid.",
+            "wire": {
+              "jsonPath": "aid",
+              "sdkField": "Aid",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
               },
               "skipExpand": true
             }

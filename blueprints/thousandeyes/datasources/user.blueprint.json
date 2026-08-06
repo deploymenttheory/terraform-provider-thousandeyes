@@ -1,0 +1,574 @@
+{
+  "formatVersion": "4",
+  "dataSources": [
+    {
+      "key": "user",
+      "name": "user",
+      "goPackage": "user",
+      "goPackageAlias": "v7UserDs",
+      "goTypeName": "UserDataSource",
+      "modelTypeName": "UserDataSourceModel",
+      "serviceGroup": "users",
+      "apiVersionDir": "v7",
+      "schema": {
+        "attributes": [
+          {
+            "name": "account_group_roles",
+            "goField": "AccountGroupRoles",
+            "type": {
+              "kind": "set_nested",
+              "nestedObject": {
+                "goTypeName": "UserAccountGroupRoleModel",
+                "sdkType": "models.Administrative_API_AccountGroupRoleable",
+                "constructorExpr": "models.NewAdministrative_API_AccountGroupRole()",
+                "attrTypesVar": "userAccountGroupRoleAttrTypes",
+                "objectTypeVar": "userAccountGroupRoleObjectType",
+                "expandFunc": "expandUserAccountGroupRoles",
+                "flattenFunc": "flattenUserAccountGroupRoles",
+                "attributes": [
+                  {
+                    "name": "account_group",
+                    "goField": "AccountGroup",
+                    "type": {
+                      "kind": "single_nested",
+                      "nestedObject": {
+                        "goTypeName": "UserAccountGroupModel",
+                        "sdkType": "models.Administrative_API_AccountGroupable",
+                        "constructorExpr": "models.NewAdministrative_API_AccountGroup()",
+                        "attrTypesVar": "userAccountGroupAttrTypes",
+                        "objectTypeVar": "userAccountGroupObjectType",
+                        "expandFunc": "expandUserAccountGroup",
+                        "flattenFunc": "flattenUserAccountGroup",
+                        "attributes": [
+                          {
+                            "name": "account_group_name",
+                            "goField": "AccountGroupName",
+                            "type": {
+                              "kind": "string"
+                            },
+                            "computedOptionalRequired": "computed",
+                            "markdownDescription": "Account group name",
+                            "wire": {
+                              "jsonPath": "accountGroupName",
+                              "sdkField": "AccountGroupName",
+                              "sdkGoType": "*string",
+                              "flatten": {
+                                "func": "convert.PtrStringToFramework"
+                              },
+                              "skipExpand": true
+                            }
+                          },
+                          {
+                            "name": "aid",
+                            "goField": "AID",
+                            "type": {
+                              "kind": "string"
+                            },
+                            "computedOptionalRequired": "computed",
+                            "markdownDescription": "A unique identifier associated with your account group. You can retrieve your `AccountGroupId` from the `/account-groups` endpoint.",
+                            "wire": {
+                              "jsonPath": "aid",
+                              "sdkField": "Aid",
+                              "sdkGoType": "*string",
+                              "flatten": {
+                                "func": "convert.PtrStringToFramework"
+                              },
+                              "skipExpand": true
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "computedOptionalRequired": "computed",
+                    "wire": {
+                      "jsonPath": "accountGroup",
+                      "sdkField": "AccountGroup",
+                      "sdkGoType": "models.Administrative_API_AccountGroupable",
+                      "flatten": {
+                        "func": "flattenUserAccountGroup",
+                        "needsCtx": true,
+                        "returnsError": true
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "roles",
+                    "goField": "Roles",
+                    "type": {
+                      "kind": "set_nested",
+                      "nestedObject": {
+                        "goTypeName": "UserRoleModel",
+                        "sdkType": "models.Administrative_API_Roleable",
+                        "constructorExpr": "models.NewAdministrative_API_Role()",
+                        "attrTypesVar": "userRoleAttrTypes",
+                        "objectTypeVar": "userRoleObjectType",
+                        "expandFunc": "expandUserRoles",
+                        "flattenFunc": "flattenUserRoles",
+                        "attributes": [
+                          {
+                            "name": "has_management_permissions",
+                            "goField": "HasManagementPermissions",
+                            "type": {
+                              "kind": "bool"
+                            },
+                            "computedOptionalRequired": "computed",
+                            "markdownDescription": "Flag indicating whether the user has management permissions.",
+                            "wire": {
+                              "jsonPath": "hasManagementPermissions",
+                              "sdkField": "HasManagementPermissions",
+                              "sdkGoType": "*bool",
+                              "flatten": {
+                                "func": "convert.PtrBoolToFramework"
+                              },
+                              "skipExpand": true
+                            }
+                          },
+                          {
+                            "name": "is_builtin",
+                            "goField": "IsBuiltin",
+                            "type": {
+                              "kind": "bool"
+                            },
+                            "computedOptionalRequired": "computed",
+                            "markdownDescription": "Flag indicating if the role is built-in (Account Admin, Organization Admin, Regular User).",
+                            "wire": {
+                              "jsonPath": "isBuiltin",
+                              "sdkField": "IsBuiltin",
+                              "sdkGoType": "*bool",
+                              "flatten": {
+                                "func": "convert.PtrBoolToFramework"
+                              },
+                              "skipExpand": true
+                            }
+                          },
+                          {
+                            "name": "name",
+                            "goField": "Name",
+                            "type": {
+                              "kind": "string"
+                            },
+                            "computedOptionalRequired": "computed",
+                            "markdownDescription": "Name of the role.",
+                            "wire": {
+                              "jsonPath": "name",
+                              "sdkField": "Name",
+                              "sdkGoType": "*string",
+                              "flatten": {
+                                "func": "convert.PtrStringToFramework"
+                              },
+                              "skipExpand": true
+                            }
+                          },
+                          {
+                            "name": "role_id",
+                            "goField": "RoleID",
+                            "type": {
+                              "kind": "string"
+                            },
+                            "computedOptionalRequired": "computed",
+                            "markdownDescription": "Unique ID representing the role.",
+                            "wire": {
+                              "jsonPath": "roleId",
+                              "sdkField": "RoleId",
+                              "sdkGoType": "*string",
+                              "flatten": {
+                                "func": "convert.PtrStringToFramework"
+                              },
+                              "skipExpand": true
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "computedOptionalRequired": "computed",
+                    "wire": {
+                      "jsonPath": "roles",
+                      "sdkField": "Roles",
+                      "sdkGoType": "[]models.Administrative_API_Roleable",
+                      "flatten": {
+                        "func": "flattenUserRoles",
+                        "needsCtx": true,
+                        "returnsError": true
+                      },
+                      "skipExpand": true
+                    }
+                  }
+                ]
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "wire": {
+              "jsonPath": "accountGroupRoles",
+              "sdkField": "AccountGroupRoles",
+              "sdkGoType": "[]models.Administrative_API_AccountGroupRoleable",
+              "flatten": {
+                "func": "flattenUserAccountGroupRoles",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "all_account_group_roles",
+            "goField": "AllAccountGroupRoles",
+            "type": {
+              "kind": "set_nested",
+              "nestedObject": {
+                "goTypeName": "UserRoleModel2",
+                "sdkType": "models.Administrative_API_Roleable",
+                "constructorExpr": "models.NewAdministrative_API_Role()",
+                "attrTypesVar": "userRoleAttrTypes2",
+                "objectTypeVar": "userRoleObjectType2",
+                "expandFunc": "expandUserRoles2",
+                "flattenFunc": "flattenUserRoles2",
+                "attributes": [
+                  {
+                    "name": "has_management_permissions",
+                    "goField": "HasManagementPermissions",
+                    "type": {
+                      "kind": "bool"
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "Flag indicating whether the user has management permissions.",
+                    "wire": {
+                      "jsonPath": "hasManagementPermissions",
+                      "sdkField": "HasManagementPermissions",
+                      "sdkGoType": "*bool",
+                      "flatten": {
+                        "func": "convert.PtrBoolToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "is_builtin",
+                    "goField": "IsBuiltin",
+                    "type": {
+                      "kind": "bool"
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "Flag indicating if the role is built-in (Account Admin, Organization Admin, Regular User).",
+                    "wire": {
+                      "jsonPath": "isBuiltin",
+                      "sdkField": "IsBuiltin",
+                      "sdkGoType": "*bool",
+                      "flatten": {
+                        "func": "convert.PtrBoolToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "name",
+                    "goField": "Name",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "Name of the role.",
+                    "wire": {
+                      "jsonPath": "name",
+                      "sdkField": "Name",
+                      "sdkGoType": "*string",
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "role_id",
+                    "goField": "RoleID",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "Unique ID representing the role.",
+                    "wire": {
+                      "jsonPath": "roleId",
+                      "sdkField": "RoleId",
+                      "sdkGoType": "*string",
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  }
+                ]
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "wire": {
+              "jsonPath": "allAccountGroupRoles",
+              "sdkField": "AllAccountGroupRoles",
+              "sdkGoType": "[]models.Administrative_API_Roleable",
+              "flatten": {
+                "func": "flattenUserRoles2",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "date_registered",
+            "goField": "DateRegistered",
+            "type": {
+              "kind": "string",
+              "constraints": {
+                "format": "date-time"
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "UTC date the user registered their account (ISO date-time format).",
+            "wire": {
+              "jsonPath": "dateRegistered",
+              "sdkField": "DateRegistered",
+              "sdkGoType": "*time.Time",
+              "flatten": {
+                "func": "convert.PtrTimeToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "email",
+            "goField": "Email",
+            "type": {
+              "kind": "string",
+              "constraints": {
+                "format": "email"
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "User's email address.",
+            "wire": {
+              "jsonPath": "email",
+              "sdkField": "Email",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "id",
+            "goField": "ID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Unique ID of the user. Named `id` per the import convention; the wire field stays uid.",
+            "wire": {
+              "jsonPath": "uid",
+              "sdkField": "Uid",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "last_login",
+            "goField": "LastLogin",
+            "type": {
+              "kind": "string",
+              "constraints": {
+                "format": "date-time"
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "UTC last login of the user (ISO date-time format).",
+            "wire": {
+              "jsonPath": "lastLogin",
+              "sdkField": "LastLogin",
+              "sdkGoType": "*time.Time",
+              "flatten": {
+                "func": "convert.PtrTimeToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "login_account_group",
+            "goField": "LoginAccountGroup",
+            "type": {
+              "kind": "single_nested",
+              "nestedObject": {
+                "goTypeName": "UserAccountGroupModel2",
+                "sdkType": "models.Administrative_API_AccountGroupable",
+                "constructorExpr": "models.NewAdministrative_API_AccountGroup()",
+                "attrTypesVar": "userAccountGroupAttrTypes2",
+                "objectTypeVar": "userAccountGroupObjectType2",
+                "expandFunc": "expandUserAccountGroup2",
+                "flattenFunc": "flattenUserAccountGroup2",
+                "attributes": [
+                  {
+                    "name": "account_group_name",
+                    "goField": "AccountGroupName",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "Account group name",
+                    "wire": {
+                      "jsonPath": "accountGroupName",
+                      "sdkField": "AccountGroupName",
+                      "sdkGoType": "*string",
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "aid",
+                    "goField": "AID",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "A unique identifier associated with your account group. You can retrieve your `AccountGroupId` from the `/account-groups` endpoint.",
+                    "wire": {
+                      "jsonPath": "aid",
+                      "sdkField": "Aid",
+                      "sdkGoType": "*string",
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  }
+                ]
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "wire": {
+              "jsonPath": "loginAccountGroup",
+              "sdkField": "LoginAccountGroup",
+              "sdkGoType": "models.Administrative_API_AccountGroupable",
+              "flatten": {
+                "func": "flattenUserAccountGroup2",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "name",
+            "goField": "Name",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "User's display name.",
+            "wire": {
+              "jsonPath": "name",
+              "sdkField": "Name",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          }
+        ],
+        "markdownDescription": "Retrieve user."
+      },
+      "binding": {
+        "service": {
+          "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
+          "alias": "models",
+          "typeName": "",
+          "accessor": "d.client"
+        },
+        "read": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Users"
+            },
+            {
+              "method": "ById",
+              "args": [
+                {
+                  "kind": "configField",
+                  "field": "ID"
+                }
+              ]
+            },
+            {
+              "method": "Get",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.Administrative_API_UserDetailable",
+          "httpMethod": "GET",
+          "pathTemplate": "/users/{id}"
+        },
+        "list": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Users"
+            },
+            {
+              "method": "Get",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.Administrative_API_Usersable",
+          "httpMethod": "GET",
+          "pathTemplate": "/users"
+        },
+        "collectionField": "GetUsers()",
+        "elementType": "models.Administrative_API_ExtendedUserable",
+        "selectors": [
+          {
+            "attribute": "id",
+            "goField": "ID",
+            "viaRead": true
+          },
+          {
+            "attribute": "name",
+            "goField": "Name",
+            "sdkField": "Name"
+          }
+        ],
+        "elementIdField": "Uid",
+        "elementIdFlatten": {
+          "func": "convert.PtrStringToFramework"
+        },
+        "response": {
+          "type": "models.Administrative_API_UserDetailable",
+          "accessStyle": "method"
+        }
+      }
+    }
+  ]
+}

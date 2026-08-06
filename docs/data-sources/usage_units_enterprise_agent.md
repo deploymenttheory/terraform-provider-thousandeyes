@@ -31,9 +31,9 @@ data "thousandeyes_usage_units_enterprise_agent" "example" {
 ### Read-Only
 
 - `agent_id` (String) Unique identifier of the enterprise agent generating usage. This field may be omitted when not available.
-- `aid` (String) Unique identifier of the account group where some tests are incurring the enterprise agent units.
 - `enterprise_units_projected` (Number) Number of enterprise units projected in the current usage period, based on units consumed to date and configuration of enabled tests. This value is updated hourly. Returns non-zero value only for organizations with metered billing.
 - `enterprise_units_used` (Number) Number of enterprise agent units owned by the specific account group in the usage period.
+- `id` (String) Unique identifier of the account group where some tests are incurring the enterprise agent units. Named `id` per the import convention; the wire field stays aid.
 
 <a id="nestedblock--timeouts"></a>
 ### Nested Schema for `timeouts`
