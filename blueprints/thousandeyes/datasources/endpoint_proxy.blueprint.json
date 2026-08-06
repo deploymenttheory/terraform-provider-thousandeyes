@@ -1,0 +1,296 @@
+{
+  "formatVersion": "4",
+  "dataSources": [
+    {
+      "key": "endpoint_proxy",
+      "name": "endpoint_proxy",
+      "goPackage": "endpoint_proxy",
+      "goPackageAlias": "v7EndpointProxyDs",
+      "goTypeName": "EndpointProxyDataSource",
+      "modelTypeName": "EndpointProxyDataSourceModel",
+      "serviceGroup": "endpoint_proxies",
+      "apiVersionDir": "v7",
+      "schema": {
+        "attributes": [
+          {
+            "name": "agent_ids",
+            "goField": "AgentIDs",
+            "type": {
+              "kind": "set",
+              "elementType": {
+                "kind": "string",
+                "constraints": {
+                  "format": "uuid"
+                }
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Endpoint Agent IDs assigned to the proxy setting.",
+            "wire": {
+              "jsonPath": "agentIds",
+              "sdkField": "AgentIds",
+              "sdkGoType": "[]uuid.UUID",
+              "flatten": {
+                "func": "convert.KiotaEnumSliceToFrameworkSet",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "auth_type",
+            "goField": "AuthType",
+            "type": {
+              "kind": "string",
+              "allowedValues": [
+                "none",
+                "basic",
+                "ntlm"
+              ]
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Proxy authentication type.",
+            "wire": {
+              "jsonPath": "authType",
+              "sdkField": "AuthType",
+              "sdkGoType": "*models.Endpoint_Agents_API_EndpointProxyAuthType",
+              "flatten": {
+                "func": "convert.PtrStringerToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "bypass_list",
+            "goField": "BypassList",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Comma-separated proxy bypass list.",
+            "wire": {
+              "jsonPath": "bypassList",
+              "sdkField": "BypassList",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "host",
+            "goField": "Host",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Static proxy host name or IP address.",
+            "wire": {
+              "jsonPath": "host",
+              "sdkField": "Host",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "name",
+            "goField": "Name",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Proxy setting name.",
+            "wire": {
+              "jsonPath": "name",
+              "sdkField": "Name",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "pac",
+            "goField": "Pac",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "PAC URL or PAC script location.",
+            "wire": {
+              "jsonPath": "pac",
+              "sdkField": "Pac",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "port",
+            "goField": "Port",
+            "type": {
+              "kind": "int64"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Static proxy port.",
+            "wire": {
+              "jsonPath": "port",
+              "sdkField": "Port",
+              "sdkGoType": "*int32",
+              "flatten": {
+                "func": "convert.PtrInt32ToFrameworkInt64"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "proxy_id",
+            "goField": "ProxyID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Unique ID of the proxy setting.",
+            "wire": {
+              "jsonPath": "proxyId",
+              "sdkField": "ProxyId",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "test_ids",
+            "goField": "TestIDs",
+            "type": {
+              "kind": "set",
+              "elementType": {
+                "kind": "string"
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Endpoint scheduled test IDs assigned to the proxy setting.",
+            "wire": {
+              "jsonPath": "testIds",
+              "sdkField": "TestIds",
+              "sdkGoType": "[]string",
+              "flatten": {
+                "func": "convert.StringSliceToFrameworkSet",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "type",
+            "goField": "Type",
+            "type": {
+              "kind": "string",
+              "allowedValues": [
+                "static",
+                "pac",
+                "direct",
+                "system",
+                "interactive-user-proxy"
+              ]
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Proxy setting type.",
+            "wire": {
+              "jsonPath": "type",
+              "sdkField": "TypeEscaped",
+              "sdkGoType": "*models.Endpoint_Agents_API_EndpointProxyType",
+              "flatten": {
+                "func": "convert.PtrStringerToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "user_name",
+            "goField": "UserName",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Proxy authentication user name.",
+            "wire": {
+              "jsonPath": "userName",
+              "sdkField": "UserName",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          }
+        ]
+      },
+      "binding": {
+        "service": {
+          "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
+          "alias": "models",
+          "typeName": "",
+          "accessor": "d.client"
+        },
+        "list": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Endpoint"
+            },
+            {
+              "method": "Proxies"
+            },
+            {
+              "method": "Get",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.Endpoint_Agents_API_EndpointProxiesResponseable",
+          "httpMethod": "GET",
+          "pathTemplate": "/endpoint/proxies"
+        },
+        "collectionField": "GetProxies()",
+        "elementType": "models.Endpoint_Agents_API_EndpointProxyable",
+        "selectors": [
+          {
+            "attribute": "name",
+            "goField": "Name",
+            "sdkField": "Name"
+          },
+          {
+            "attribute": "user_name",
+            "goField": "UserName",
+            "sdkField": "UserName"
+          }
+        ],
+        "response": {
+          "type": "models.Endpoint_Agents_API_EndpointProxyable",
+          "accessStyle": "method"
+        }
+      }
+    }
+  ]
+}

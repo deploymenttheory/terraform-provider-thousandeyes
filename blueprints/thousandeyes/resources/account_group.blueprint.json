@@ -19,12 +19,7 @@
               "kind": "string"
             },
             "computedOptionalRequired": "optional",
-            "markdownDescription": "Account group name\n\nRequired-by-API by curation: the sweeper's field, unprobeable by omission.",
-            "behaviour": {
-              "requiredByApi": true,
-              "returnedOnRead": true,
-              "returnedOnCreate": true
-            },
+            "markdownDescription": "Account group name",
             "wire": {
               "jsonPath": "accountGroupName",
               "sdkField": "AccountGroupName",
@@ -44,13 +39,13 @@
               "kind": "string"
             },
             "computedOptionalRequired": "computed",
-            "markdownDescription": "A unique identifier associated with your account group. You can retrieve your `AccountGroupId` from the `/account-groups` endpoint.\n\nNamed `id` per the import convention; the wire field stays aid.",
+            "markdownDescription": "A unique identifier associated with your account group. You can retrieve your `AccountGroupId` from the `/account-groups` endpoint. Named `id` per the import convention; the wire field stays aid.",
             "wire": {
               "jsonPath": "aid",
               "sdkField": "Aid",
               "sdkGoType": "*string",
               "flatten": {
-                "func": "convert.PtrEnumToFramework"
+                "func": "convert.PtrStringToFramework"
               },
               "skipExpand": true
             }
@@ -135,6 +130,7 @@
               "nestedObject": {
                 "goTypeName": "AccountGroupUserAccountGroupModel",
                 "sdkType": "models.Administrative_API_UserAccountGroupable",
+                "constructorExpr": "models.NewAdministrative_API_UserAccountGroup()",
                 "attrTypesVar": "accountGroupUserAccountGroupAttrTypes",
                 "objectTypeVar": "accountGroupUserAccountGroupObjectType",
                 "expandFunc": "expandAccountGroupUserAccountGroups",
@@ -229,6 +225,7 @@
                       "nestedObject": {
                         "goTypeName": "AccountGroupRoleModel",
                         "sdkType": "models.Administrative_API_Roleable",
+                        "constructorExpr": "models.NewAdministrative_API_Role()",
                         "attrTypesVar": "accountGroupRoleAttrTypes",
                         "objectTypeVar": "accountGroupRoleObjectType",
                         "expandFunc": "expandAccountGroupRoles",
@@ -306,8 +303,7 @@
                               "skipExpand": true
                             }
                           }
-                        ],
-                        "constructorExpr": "models.NewAdministrative_API_Role()"
+                        ]
                       }
                     },
                     "computedOptionalRequired": "computed",
@@ -341,8 +337,7 @@
                       "skipExpand": true
                     }
                   }
-                ],
-                "constructorExpr": "models.NewAdministrative_API_UserAccountGroup()"
+                ]
               }
             },
             "computedOptionalRequired": "computed",
@@ -365,10 +360,12 @@
         "service": {
           "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
           "alias": "models",
+          "typeName": "",
           "accessor": "r.client"
         },
         "create": {
           "style": "fluent",
+          "method": "",
           "chain": [
             {
               "method": "AccountGroups"
@@ -396,6 +393,7 @@
         },
         "read": {
           "style": "fluent",
+          "method": "",
           "chain": [
             {
               "method": "AccountGroups"
@@ -429,6 +427,7 @@
         },
         "update": {
           "style": "fluent",
+          "method": "",
           "chain": [
             {
               "method": "AccountGroups"
@@ -465,6 +464,7 @@
         },
         "delete": {
           "style": "fluent",
+          "method": "",
           "chain": [
             {
               "method": "AccountGroups"
@@ -517,12 +517,6 @@
       "import": {
         "style": "passthroughId",
         "attribute": "id"
-      },
-      "sweep": {
-        "nameField": "accountGroupName"
-      },
-      "accTest": {
-        "skipUnlessEnv": "TFPFGEN_ACC_ADMIN"
       }
     }
   ]

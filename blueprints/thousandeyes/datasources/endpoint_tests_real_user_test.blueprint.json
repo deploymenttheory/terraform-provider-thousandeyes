@@ -1,0 +1,318 @@
+{
+  "formatVersion": "4",
+  "dataSources": [
+    {
+      "key": "endpoint_tests_real_user_test",
+      "name": "endpoint_tests_real_user_test",
+      "goPackage": "endpoint_tests_real_user_test",
+      "goPackageAlias": "v7EndpointTestsRealUserTestDs",
+      "goTypeName": "EndpointTestsRealUserTestDataSource",
+      "modelTypeName": "EndpointTestsRealUserTestDataSourceModel",
+      "serviceGroup": "endpoint_real_user_tests",
+      "apiVersionDir": "v7",
+      "schema": {
+        "attributes": [
+          {
+            "name": "aid",
+            "goField": "AID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "A unique identifier associated with your account group. You can retrieve your `AccountGroupId` from the `/account-groups` endpoint.",
+            "wire": {
+              "jsonPath": "aid",
+              "sdkField": "Aid",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "excluded_domains",
+            "goField": "ExcludedDomains",
+            "type": {
+              "kind": "set",
+              "elementType": {
+                "kind": "string"
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Domains excluded from real user monitoring.",
+            "wire": {
+              "jsonPath": "excludedDomains",
+              "sdkField": "ExcludedDomains",
+              "sdkGoType": "[]string",
+              "flatten": {
+                "func": "convert.StringSliceToFrameworkSet",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "included_domains",
+            "goField": "IncludedDomains",
+            "type": {
+              "kind": "set",
+              "elementType": {
+                "kind": "string"
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Domains included in real user monitoring.",
+            "wire": {
+              "jsonPath": "includedDomains",
+              "sdkField": "IncludedDomains",
+              "sdkGoType": "[]string",
+              "flatten": {
+                "func": "convert.StringSliceToFrameworkSet",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "monitoring_settings",
+            "goField": "MonitoringSettings",
+            "type": {
+              "kind": "single_nested",
+              "nestedObject": {
+                "goTypeName": "EndpointTestsRealUserTestEndpointMonitoringSettingsModel",
+                "sdkType": "models.Endpoint_Tests_API_EndpointMonitoringSettingsable",
+                "constructorExpr": "models.NewEndpoint_Tests_API_EndpointMonitoringSettings()",
+                "attrTypesVar": "endpointTestsRealUserTestEndpointMonitoringSettingsAttrTypes",
+                "objectTypeVar": "endpointTestsRealUserTestEndpointMonitoringSettingsObjectType",
+                "expandFunc": "expandEndpointTestsRealUserTestEndpointMonitoringSettings",
+                "flattenFunc": "flattenEndpointTestsRealUserTestEndpointMonitoringSettings",
+                "attributes": [
+                  {
+                    "name": "agent_ids",
+                    "goField": "AgentIDs",
+                    "type": {
+                      "kind": "set",
+                      "elementType": {
+                        "kind": "string",
+                        "constraints": {
+                          "format": "uuid"
+                        }
+                      }
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "Endpoint Agent IDs selected by the monitoring settings.",
+                    "wire": {
+                      "jsonPath": "agentIds",
+                      "sdkField": "AgentIds",
+                      "sdkGoType": "[]uuid.UUID",
+                      "flatten": {
+                        "func": "convert.KiotaEnumSliceToFrameworkSet",
+                        "needsCtx": true,
+                        "returnsError": true
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "label_ids",
+                    "goField": "LabelIDs",
+                    "type": {
+                      "kind": "set",
+                      "elementType": {
+                        "kind": "string"
+                      }
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "Legacy Endpoint Agent label IDs selected by the monitoring settings.",
+                    "wire": {
+                      "jsonPath": "labelIds",
+                      "sdkField": "LabelIds",
+                      "sdkGoType": "[]string",
+                      "flatten": {
+                        "func": "convert.StringSliceToFrameworkSet",
+                        "needsCtx": true,
+                        "returnsError": true
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "monitoring_settings_id",
+                    "goField": "MonitoringSettingsID",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "Unique ID of the monitoring settings.",
+                    "wire": {
+                      "jsonPath": "monitoringSettingsId",
+                      "sdkField": "MonitoringSettingsId",
+                      "sdkGoType": "*string",
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "monitoring_settings_type",
+                    "goField": "MonitoringSettingsType",
+                    "type": {
+                      "kind": "string",
+                      "allowedValues": [
+                        "all-agents",
+                        "specific-agents",
+                        "agent-labels",
+                        "agent-tags"
+                      ]
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "Endpoint Agent selector type used by the monitoring settings.",
+                    "wire": {
+                      "jsonPath": "monitoringSettingsType",
+                      "sdkField": "MonitoringSettingsType",
+                      "sdkGoType": "*models.Endpoint_Tests_API_EndpointMonitoringSettingsType",
+                      "flatten": {
+                        "func": "convert.PtrStringerToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "tag_ids",
+                    "goField": "TagIDs",
+                    "type": {
+                      "kind": "set",
+                      "elementType": {
+                        "kind": "string",
+                        "constraints": {
+                          "format": "uuid"
+                        }
+                      }
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "Endpoint Agent tag IDs selected by the monitoring settings.",
+                    "wire": {
+                      "jsonPath": "tagIds",
+                      "sdkField": "TagIds",
+                      "sdkGoType": "[]uuid.UUID",
+                      "flatten": {
+                        "func": "convert.KiotaEnumSliceToFrameworkSet",
+                        "needsCtx": true,
+                        "returnsError": true
+                      },
+                      "skipExpand": true
+                    }
+                  }
+                ]
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "wire": {
+              "jsonPath": "monitoringSettings",
+              "sdkField": "MonitoringSettings",
+              "sdkGoType": "models.Endpoint_Tests_API_EndpointMonitoringSettingsable",
+              "flatten": {
+                "func": "flattenEndpointTestsRealUserTestEndpointMonitoringSettings",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "name",
+            "goField": "Name",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Monitoring profile name.",
+            "wire": {
+              "jsonPath": "name",
+              "sdkField": "Name",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "profile_id",
+            "goField": "ProfileID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Unique ID of the monitoring profile.",
+            "wire": {
+              "jsonPath": "profileId",
+              "sdkField": "ProfileId",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          }
+        ]
+      },
+      "binding": {
+        "service": {
+          "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
+          "alias": "models",
+          "typeName": "",
+          "accessor": "d.client"
+        },
+        "list": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Endpoint"
+            },
+            {
+              "method": "Tests"
+            },
+            {
+              "method": "RealUserTests"
+            },
+            {
+              "method": "Get",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.Endpoint_Tests_API_EndpointRealUserTestsResponseable",
+          "httpMethod": "GET",
+          "pathTemplate": "/endpoint/tests/real-user-tests"
+        },
+        "collectionField": "GetRealUserTests()",
+        "elementType": "models.Endpoint_Tests_API_EndpointRealUserTestable",
+        "selectors": [
+          {
+            "attribute": "name",
+            "goField": "Name",
+            "sdkField": "Name"
+          }
+        ],
+        "response": {
+          "type": "models.Endpoint_Tests_API_EndpointRealUserTestable",
+          "accessStyle": "method"
+        }
+      }
+    }
+  ]
+}

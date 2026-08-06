@@ -1,0 +1,177 @@
+{
+  "formatVersion": "4",
+  "dataSources": [
+    {
+      "key": "monitor",
+      "name": "monitor",
+      "goPackage": "monitor",
+      "goPackageAlias": "v7MonitorDs",
+      "goTypeName": "MonitorDataSource",
+      "modelTypeName": "MonitorDataSourceModel",
+      "serviceGroup": "bgp_monitors",
+      "apiVersionDir": "v7",
+      "schema": {
+        "attributes": [
+          {
+            "name": "country_id",
+            "goField": "CountryID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Country ID",
+            "wire": {
+              "jsonPath": "countryId",
+              "sdkField": "CountryId",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "ip_address",
+            "goField": "IPAddress",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "IP address of the BGP monitor",
+            "wire": {
+              "jsonPath": "ipAddress",
+              "sdkField": "IpAddress",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "monitor_id",
+            "goField": "MonitorID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "BGP monitor ID",
+            "wire": {
+              "jsonPath": "monitorId",
+              "sdkField": "MonitorId",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "monitor_name",
+            "goField": "MonitorName",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Display name of the BGP monitor",
+            "wire": {
+              "jsonPath": "monitorName",
+              "sdkField": "MonitorName",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "monitor_type",
+            "goField": "MonitorType",
+            "type": {
+              "kind": "string",
+              "allowedValues": [
+                "public",
+                "private"
+              ]
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Type of monitor",
+            "wire": {
+              "jsonPath": "monitorType",
+              "sdkField": "MonitorType",
+              "sdkGoType": "*models.BGP_Monitors_API_MonitorType",
+              "flatten": {
+                "func": "convert.PtrStringerToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "network",
+            "goField": "Network",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Name of the autonomous system in which the monitor is found",
+            "wire": {
+              "jsonPath": "network",
+              "sdkField": "Network",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          }
+        ]
+      },
+      "binding": {
+        "service": {
+          "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
+          "alias": "models",
+          "typeName": "",
+          "accessor": "d.client"
+        },
+        "list": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Monitors"
+            },
+            {
+              "method": "Get",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.BGP_Monitors_API_Monitorsable",
+          "httpMethod": "GET",
+          "pathTemplate": "/monitors"
+        },
+        "collectionField": "GetMonitors()",
+        "elementType": "models.BGP_Monitors_API_Monitorable",
+        "selectors": [
+          {
+            "attribute": "monitor_name",
+            "goField": "MonitorName",
+            "sdkField": "MonitorName"
+          }
+        ],
+        "response": {
+          "type": "models.BGP_Monitors_API_Monitorable",
+          "accessStyle": "method"
+        }
+      }
+    }
+  ]
+}
