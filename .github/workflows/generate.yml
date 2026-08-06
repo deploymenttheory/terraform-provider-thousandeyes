@@ -128,6 +128,12 @@ jobs:
       - name: Install tfpfgen
         env:
           REF: ${{ inputs.tfpfgen_ref }}
+          # Straight from the repository, not through the module proxy: the
+          # proxy caches a branch's resolution for up to half an hour, and a
+          # pipeline that installs its own generator must track the ref's tip,
+          # not whatever the cache last saw. GOPRIVATE also skips the checksum
+          # database, which lags fresh commits the same way.
+          GOPRIVATE: github.com/deploymenttheory/terraform-plugin-framework-codegen
         run: |
           go install "github.com/deploymenttheory/terraform-plugin-framework-codegen/cmd/tfpfgen@${REF}"
           tfpfgen version
