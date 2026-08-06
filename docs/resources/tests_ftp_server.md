@@ -17,36 +17,36 @@ Get FTP Server test.
 
 ### Required
 
-- `request_type` (String) Set the type of activity for the test.
-- `url` (String) Target for the test.
-- `username` (String) Username for Basic/NTLM authentication.
+- `request_type` (String) Set the type of activity for the test. <!-- probed:7.0.98-t1785745105202 --> Values accepted here: `download`, `list`. The API enforces this field's presence, which the specification does not declare. <!-- /probed -->
+- `url` (String) Target for the test. <!-- probed:7.0.98-t1785745105202 --> The API enforces this field's presence, which the specification does not declare. <!-- /probed -->
+- `username` (String) Username for Basic/NTLM authentication. <!-- probed:7.0.98-t1785745105202 --> The API enforces this field's presence, which the specification does not declare. <!-- /probed -->
 
 ### Optional
 
-- `alerts_enabled` (Boolean) Indicates if alerts are enabled.
-- `bandwidth_measurements` (Boolean) Set to `true` to enable bandwidth measurements, only applies to Enterprise agents assigned to the test.
-- `bgp_measurements` (Boolean) Set to `true` to enable bgp measurements.
-- `description` (String) A description of the test.
-- `download_limit` (Number) Specify maximum number of bytes to download from the target object.
-- `enabled` (Boolean) Test is enabled.
-- `fixed_packet_rate` (Number) Sets packets rate sent to measure the network in packets per second.
-- `ftp_target_time` (Number) Target time for operation completion; specified in milliseconds.
-- `ftp_time_limit` (Number) Set the time limit for the test in seconds.
-- `interval` (Number) Interval between test runs in seconds.
+- `alerts_enabled` (Boolean) Indicates if alerts are enabled. <!-- probed:7.0.98-t1785745105202 --> Observed: the API assigns true when this is omitted. <!-- /probed -->
+- `bandwidth_measurements` (Boolean) Set to `true` to enable bandwidth measurements, only applies to Enterprise agents assigned to the test. <!-- probed:7.0.98-t1785745105202 --> Observed: the API assigns false when this is omitted. <!-- /probed -->
+- `bgp_measurements` (Boolean) Set to `true` to enable bgp measurements. <!-- probed:7.0.98-t1785745105202 --> Observed: the API assigns true when this is omitted. <!-- /probed -->
+- `description` (String) A description of the test. <!-- probed:7.0.98-t1785758238083 --> Neither the update response nor a read returns this field: it is write-only in practice, and state carries the configured value. <!-- /probed -->
+- `download_limit` (Number) Specify maximum number of bytes to download from the target object. <!-- probed:7.0.98-t1785758238083 --> Neither the update response nor a read returns this field: it is write-only in practice, and state carries the configured value. <!-- /probed -->
+- `enabled` (Boolean) Test is enabled. <!-- probed:7.0.98-t1785745105202 --> Observed: the API assigns true when this is omitted. <!-- /probed -->
+- `fixed_packet_rate` (Number) Sets packets rate sent to measure the network in packets per second. <!-- probed:7.0.98-t1785758238083 --> Neither the update response nor a read returns this field: it is write-only in practice, and state carries the configured value. <!-- /probed -->
+- `ftp_target_time` (Number) Target time for operation completion; specified in milliseconds. <!-- probed:7.0.98-t1785745105202 --> Observed: the API assigns 1000 when this is omitted. <!-- /probed -->
+- `ftp_time_limit` (Number) Set the time limit for the test in seconds. <!-- probed:7.0.98-t1785745105202 --> Observed: the API assigns 5 when this is omitted. <!-- /probed -->
+- `interval` (Number) Interval between test runs in seconds. <!-- probed:7.0.98-t1785745105202 --> The API enforces this field's presence, which the specification does not declare. <!-- /probed -->
 - `ipv6_policy` (String) IP version policy. Overrides the IPv6 policy configured at the agent level.
-- `mtu_measurements` (Boolean) Set `true` to measure MTU sizes on network from agents to the target.
-- `network_measurements` (Boolean) Enable or disable network measurements. Set to true to enable or false to disable network measurements.
-- `num_path_traces` (Number) Number of path traces executed by the agent.
-- `password` (String) Password for Basic/NTLM authentication.
+- `mtu_measurements` (Boolean) Set `true` to measure MTU sizes on network from agents to the target. <!-- probed:7.0.98-t1785745105202 --> Observed: the API assigns true when this is omitted. <!-- /probed -->
+- `network_measurements` (Boolean) Enable or disable network measurements. Set to true to enable or false to disable network measurements. <!-- probed:7.0.98-t1785745105202 --> Observed: the API assigns true when this is omitted. <!-- /probed -->
+- `num_path_traces` (Number) Number of path traces executed by the agent. <!-- probed:7.0.98-t1785745105202 --> Observed: the API assigns 3 when this is omitted. <!-- /probed -->
+- `password` (String) Password for Basic/NTLM authentication. <!-- probed:7.0.98-t1785758238083 --> Neither the update response nor a read returns this field: it is write-only in practice, and state carries the configured value. <!-- /probed -->
 - `path_trace_mode` (String) Select `inSession` to perform the path trace within a TCP session.
 - `probe_mode` (String) Probe mode used by network test, only valid when the protocol is set to TCP.
-- `protocol` (String) Protocol used by dependent network tests (end-to-end, path trace, PMTUD).
-- `randomized_start_time` (Boolean) Indicates whether agents should randomize the start time in each test round.
+- `protocol` (String) Protocol used by dependent network tests (end-to-end, path trace, PMTUD). <!-- probed:7.0.98-t1785745105202 --> Values accepted here: `tcp`, `icmp`. The specification documents `udp`, which the API rejected. Observed: the API assigns "tcp" when this is omitted. <!-- /probed -->
+- `randomized_start_time` (Boolean) Indicates whether agents should randomize the start time in each test round. <!-- probed:7.0.98-t1785745105202 --> Observed: the API assigns false when this is omitted. <!-- /probed -->
 - `test_name` (String) The name of the test. Test name must be unique.
 - `timeouts` (Block, Optional) (see [below for nested schema](#nestedblock--timeouts))
-- `use_active_ftp` (Boolean) Explicitly set the flag to use active FTP.
-- `use_explicit_ftps` (Boolean) Use explicit FTPS (ftp over SSL). By default, tests will autodetect when it is appropriate to use FTPS.
-- `use_public_bgp` (Boolean) Indicate if all available public BGP monitors should be used, when ommited defaults to `bgpMeasurements` value.
+- `use_active_ftp` (Boolean) Explicitly set the flag to use active FTP. <!-- probed:7.0.98-t1785745105202 --> Observed: the API assigns false when this is omitted. <!-- /probed -->
+- `use_explicit_ftps` (Boolean) Use explicit FTPS (ftp over SSL). By default, tests will autodetect when it is appropriate to use FTPS. <!-- probed:7.0.98-t1785745105202 --> Observed: the API assigns false when this is omitted. <!-- /probed -->
+- `use_public_bgp` (Boolean) Indicate if all available public BGP monitors should be used, when ommited defaults to `bgpMeasurements` value. <!-- probed:7.0.98-t1785745105202 --> Observed: the API assigns true when this is omitted. <!-- /probed -->
 
 ### Read-Only
 

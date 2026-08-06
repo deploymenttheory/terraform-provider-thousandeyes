@@ -133,6 +133,9 @@
             },
             "computedOptionalRequired": "optional",
             "markdownDescription": "A text description of the dashboard's purpose and functionality. This information assists users in understanding the dashboard but isn't displayed when viewing a dashboard.",
+            "behaviour": {
+              "returnedOnUpdate": true
+            },
             "wire": {
               "jsonPath": "description",
               "sdkField": "Description",
@@ -262,8 +265,19 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "When set to `true`, the defaultTimespan is used and overrides the widget's timespan. If set to `false`, the the widget's timespan is used.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "When set to `true`, the defaultTimespan is used and overrides the widget's timespan. If set to `false`, the the widget's timespan is used.\n\n<!-- probed:7.0.98-t1785769218413 -->\nObserved: the API assigns false when this is omitted.\nObserved: the API assigns false when this is omitted from an update.\nOmitting this field from an update resets it rather than preserving the stored value.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "false"
+              },
+              "returnedOnUpdate": true,
+              "updateDefault": {
+                "kind": "bool",
+                "raw": "false"
+              }
+            },
             "wire": {
               "jsonPath": "isGlobalOverride",
               "sdkField": "IsGlobalOverride",
@@ -300,8 +314,19 @@
             "type": {
               "kind": "bool"
             },
-            "computedOptionalRequired": "optional",
-            "markdownDescription": "A dashboard can be viewed by other users in the account. If true, only the creator of the dashboard may view it. If false, all users in the same account may view it.",
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "A dashboard can be viewed by other users in the account. If true, only the creator of the dashboard may view it. If false, all users in the same account may view it.\n\n<!-- probed:7.0.98-t1785769218413 -->\nObserved: the API assigns false when this is omitted.\nObserved: the API assigns false when this is omitted from an update.\nOmitting this field from an update resets it rather than preserving the stored value.\n<!-- /probed -->",
+            "behaviour": {
+              "serverDefault": {
+                "kind": "",
+                "raw": "false"
+              },
+              "returnedOnUpdate": true,
+              "updateDefault": {
+                "kind": "bool",
+                "raw": "false"
+              }
+            },
             "wire": {
               "jsonPath": "isPrivate",
               "sdkField": "IsPrivate",
@@ -529,7 +554,18 @@
                       ]
                     },
                     "computedOptionalRequired": "required",
-                    "markdownDescription": "Type of the layout.",
+                    "markdownDescription": "Type of the layout.\n\n<!-- probed:7.0.98-t1785769218413 -->\nValues accepted here: `grid`, `vertical`.\nObserved: the API assigns \"vertical\" when this is omitted.\nThe API accepted a value from outside the documented set, so no OneOf validator is generated for this attribute.\n<!-- /probed -->",
+                    "behaviour": {
+                      "serverDefault": {
+                        "kind": "",
+                        "raw": "\"vertical\""
+                      },
+                      "acceptedValues": [
+                        "grid",
+                        "vertical"
+                      ],
+                      "valuesClosed": false
+                    },
                     "wire": {
                       "jsonPath": "type",
                       "sdkField": "TypeEscaped",

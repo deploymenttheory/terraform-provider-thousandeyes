@@ -56,6 +56,10 @@
             },
             "computedOptionalRequired": "optional",
             "markdownDescription": "Name of the role.",
+            "behaviour": {
+              "returnedOnRead": true,
+              "returnedOnCreate": true
+            },
             "wire": {
               "jsonPath": "name",
               "sdkField": "Name",

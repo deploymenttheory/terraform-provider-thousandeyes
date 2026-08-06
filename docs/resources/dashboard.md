@@ -19,8 +19,8 @@ Retrieve dashboard.
 
 - `description` (String) A text description of the dashboard's purpose and functionality. This information assists users in understanding the dashboard but isn't displayed when viewing a dashboard.
 - `global_filter_id` (String) Default global dashboard filter ID (obtained from `/dashboards/filters` endpoint).
-- `is_global_override` (Boolean) When set to `true`, the defaultTimespan is used and overrides the widget's timespan. If set to `false`, the the widget's timespan is used.
-- `is_private` (Boolean) A dashboard can be viewed by other users in the account. If true, only the creator of the dashboard may view it. If false, all users in the same account may view it.
+- `is_global_override` (Boolean) When set to `true`, the defaultTimespan is used and overrides the widget's timespan. If set to `false`, the the widget's timespan is used. <!-- probed:7.0.98-t1785769218413 --> Observed: the API assigns false when this is omitted. Observed: the API assigns false when this is omitted from an update. Omitting this field from an update resets it rather than preserving the stored value. <!-- /probed -->
+- `is_private` (Boolean) A dashboard can be viewed by other users in the account. If true, only the creator of the dashboard may view it. If false, all users in the same account may view it. <!-- probed:7.0.98-t1785769218413 --> Observed: the API assigns false when this is omitted. Observed: the API assigns false when this is omitted from an update. Omitting this field from an update resets it rather than preserving the stored value. <!-- /probed -->
 - `layout` (Attributes) Dashboard layout configuration for arranging widgets. (see [below for nested schema](#nestedatt--layout))
 - `refresh_rate` (String) Auto-refresh interval for a dashboard. Use `off` to disable auto-refresh.
 - `timeouts` (Block, Optional) (see [below for nested schema](#nestedblock--timeouts))
@@ -49,7 +49,7 @@ Retrieve dashboard.
 
 Required:
 
-- `type` (String) Type of the layout.
+- `type` (String) Type of the layout. <!-- probed:7.0.98-t1785769218413 --> Values accepted here: `grid`, `vertical`. Observed: the API assigns "vertical" when this is omitted. The API accepted a value from outside the documented set, so no OneOf validator is generated for this attribute. <!-- /probed -->
 
 Optional:
 

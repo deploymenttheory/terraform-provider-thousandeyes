@@ -20,6 +20,10 @@
             },
             "computedOptionalRequired": "optional",
             "markdownDescription": "Account group name",
+            "behaviour": {
+              "returnedOnRead": true,
+              "returnedOnCreate": true
+            },
             "wire": {
               "jsonPath": "accountGroupName",
               "sdkField": "AccountGroupName",
