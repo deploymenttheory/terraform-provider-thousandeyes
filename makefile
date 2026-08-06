@@ -110,6 +110,10 @@ scaffold:
 	tfpfgen provider scaffold -blueprint "$(BLUEPRINT_DIR)" -out .
 
 provider-generate:
+	@if [ -d examples ]; then \
+		grep -rL "Code generated" examples --include='*.tf' --include='*.sh' 2>/dev/null \
+			| xargs rm -- 2>/dev/null || true; \
+	fi
 	tfpfgen provider generate -blueprint "$(BLUEPRINT_DIR)" -out . -clean || \
 		(go mod tidy && tfpfgen provider generate -blueprint "$(BLUEPRINT_DIR)" -out . -clean)
 	go mod tidy

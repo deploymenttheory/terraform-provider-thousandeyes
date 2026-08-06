@@ -273,6 +273,14 @@ jobs:
 
       - name: Generate the provider
         run: |
+          # examples/ is generated output; a file there without the marker is a
+          # leftover from the scaffold-once era, and the overwrite refusal --
+          # correctly -- will not touch it. Clearing unmarked files is the
+          # adoption: the run regenerates every one of them, marked.
+          if [ -d examples ]; then
+            grep -rL "Code generated" examples --include='*.tf' --include='*.sh' 2>/dev/null \
+              | xargs -r rm --
+          fi
           # The postcheck builds the tree, regenerates the registry docs and
           # runs terraform fmt; generation can introduce imports go.mod does not
           # yet require, so tidy against the written files and regenerate -- the
