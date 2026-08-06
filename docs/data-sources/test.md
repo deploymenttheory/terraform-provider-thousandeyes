@@ -34,12 +34,12 @@ data "thousandeyes_test" "example" {
 - `created_date` (String) UTC created date (ISO date-time format).
 - `description` (String) A description of the test.
 - `enabled` (Boolean) Test is enabled.
+- `id` (String) Each test is assigned an unique ID; this is used to access test information and results from other endpoints. Named `id` per the import convention; the wire field stays testId.
 - `interval` (Number) Interval between test runs in seconds.
 - `live_share` (Boolean) Indicates if the test is shared with the account group.
 - `modified_by` (String) User that modified the test.
 - `modified_date` (String) UTC last modification date (ISO date-time format).
 - `saved_event` (Boolean) Indicates if the test is a saved event. **Note**: **Saved Events** are now called **Private Snapshots** in the user interface. This change does not affect API.
-- `test_id` (String) Each test is assigned an unique ID; this is used to access test information and results from other endpoints.
 - `type` (String) This is a read only value, as test type is implicit in the test creation url.
 
 <a id="nestedblock--timeouts"></a>

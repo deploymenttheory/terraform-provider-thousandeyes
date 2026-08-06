@@ -30,8 +30,8 @@ data "thousandeyes_monitor" "example" {
 ### Read-Only
 
 - `country_id` (String) Country ID
+- `id` (String) BGP monitor ID Named `id` per the import convention; the wire field stays monitorId.
 - `ip_address` (String) IP address of the BGP monitor
-- `monitor_id` (String) BGP monitor ID
 - `monitor_type` (String) Type of monitor
 - `network` (String) Name of the autonomous system in which the monitor is found
 

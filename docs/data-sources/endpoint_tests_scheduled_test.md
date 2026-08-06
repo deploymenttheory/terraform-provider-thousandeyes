@@ -29,9 +29,9 @@ data "thousandeyes_endpoint_tests_scheduled_test" "example" {
 
 ### Read-Only
 
-- `aid` (String) A unique identifier associated with your account group. You can retrieve your `AccountGroupId` from the `/account-groups` endpoint.
 - `created_date` (String) UTC created date (ISO date-time format).
 - `has_path_trace_in_session` (Boolean) Enables "in session" path trace. When enabled, this option initiates a TCP session with the target server and sends path trace packets within the established TCP session.
+- `id` (String) A unique identifier associated with your account group. You can retrieve your `AccountGroupId` from the `/account-groups` endpoint. Named `id` per the import convention; the wire field stays aid.
 - `interval` (Number) Interval between test runs in seconds.
 - `ip_version` (String) For reading current network test configurations, the IP version of the test. Values include V4_ONLY, V6_ONLY, V6_PREFER, and OS_DEFAULT.
 - `is_enabled` (Boolean) Indicates if test is enabled.

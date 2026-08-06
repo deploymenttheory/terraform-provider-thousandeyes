@@ -29,9 +29,9 @@ data "thousandeyes_agents_proxy" "example" {
 
 ### Read-Only
 
-- `aid` (String) Account id that this proxy configuration belongs to
 - `auth_type` (String) The type of authentication the proxy requires
 - `bypass_list` (Set of String) A list of hostnames, network prefixes, or wildcards used to determine which test targets should not be proxied. If all tests should be proxied, leave empty.
+- `id` (String) Account id that this proxy configuration belongs to Named `id` per the import convention; the wire field stays aid.
 - `is_local_configured` (Boolean) Set to `true` if this proxy configuration comes from the agent’s config file. Specify `false` if the proxy configuration was created in the ThousandEyes application.
 - `last_modified` (String) Last modification timestamp of the proxy. Expressed in UTC (ISO date-time format).
 - `location` (String) The location of the proxy. If proxyType is `static` use the format `hostname:port`. If location is `pac`, then specify the URL where the PAC file can be obtained.

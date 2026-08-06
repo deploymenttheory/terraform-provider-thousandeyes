@@ -32,9 +32,9 @@ data "thousandeyes_audit_user_event" "example" {
 - `aid` (String) A unique identifier associated with your account group. You can retrieve your `AccountGroupId` from the `/account-groups` endpoint.
 - `date` (String) UTC event date (ISO date-time format).
 - `event` (String) Event type.
+- `id` (String) Unique id representing the user. Named `id` per the import convention; the wire field stays uid.
 - `ip_address` (String) Source IP address of the user.
 - `resources` (Attributes Set) (see [below for nested schema](#nestedatt--resources))
-- `uid` (String) Unique id representing the user.
 - `user` (String) The name and email address of the user.
 
 <a id="nestedblock--timeouts"></a>

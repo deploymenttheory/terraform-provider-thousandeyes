@@ -29,8 +29,8 @@ data "thousandeyes_network_path_vis_interface_group" "example" {
 
 ### Read-Only
 
-- `aid` (String) Account Group Id
 - `group_id` (String) Group ID
+- `id` (String) Account Group Id Named `id` per the import convention; the wire field stays aid.
 - `ip_addresses` (Set of String) Array of IP addresses associated with the interface group
 - `rdns_regexes` (Set of String) Array of RDNS Regexes associated with the interface group
 

@@ -1,0 +1,310 @@
+{
+  "formatVersion": "4",
+  "dataSources": [
+    {
+      "key": "connectors_conjur",
+      "name": "connectors_conjur",
+      "goPackage": "connectors_conjur",
+      "goPackageAlias": "v7ConnectorsConjurDs",
+      "goTypeName": "ConnectorsConjurDataSource",
+      "modelTypeName": "ConnectorsConjurDataSourceModel",
+      "serviceGroup": "cyber_ark_conjur_connectors",
+      "apiVersionDir": "v7",
+      "schema": {
+        "attributes": [
+          {
+            "name": "account",
+            "goField": "Account",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "wire": {
+              "jsonPath": "account",
+              "sdkField": "Account",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "authentication",
+            "goField": "Authentication",
+            "type": {
+              "kind": "single_nested",
+              "nestedObject": {
+                "goTypeName": "ConnectorsConjurConjurHostAuthenticationModel",
+                "sdkType": "models.Integrations_API_ConjurHostAuthenticationable",
+                "constructorExpr": "models.NewIntegrations_API_ConjurHostAuthentication()",
+                "attrTypesVar": "connectorsConjurConjurHostAuthenticationAttrTypes",
+                "objectTypeVar": "connectorsConjurConjurHostAuthenticationObjectType",
+                "expandFunc": "expandConnectorsConjurConjurHostAuthentication",
+                "flattenFunc": "flattenConnectorsConjurConjurHostAuthentication",
+                "attributes": [
+                  {
+                    "name": "api_key",
+                    "goField": "APIKey",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "computed",
+                    "wire": {
+                      "jsonPath": "apiKey",
+                      "sdkField": "ApiKey",
+                      "sdkGoType": "*string",
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "host_id",
+                    "goField": "HostID",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "computed",
+                    "wire": {
+                      "jsonPath": "hostId",
+                      "sdkField": "HostId",
+                      "sdkGoType": "*string",
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "type",
+                    "goField": "Type",
+                    "type": {
+                      "kind": "string",
+                      "allowedValues": [
+                        "basic",
+                        "bearer-token",
+                        "oauth-auth-code",
+                        "oauth-client-credentials",
+                        "other-token",
+                        "conjur-host"
+                      ]
+                    },
+                    "computedOptionalRequired": "computed",
+                    "wire": {
+                      "jsonPath": "type",
+                      "sdkField": "TypeEscaped",
+                      "sdkGoType": "*models.Integrations_API_AuthenticationType",
+                      "flatten": {
+                        "func": "convert.PtrStringerToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  }
+                ]
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "wire": {
+              "jsonPath": "authentication",
+              "sdkField": "Authentication",
+              "sdkGoType": "models.Integrations_API_ConjurHostAuthenticationable",
+              "flatten": {
+                "func": "flattenConnectorsConjurConjurHostAuthentication",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "id",
+            "goField": "ID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed_optional",
+            "wire": {
+              "jsonPath": "id",
+              "sdkField": "Id",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "last_modified_date",
+            "goField": "LastModifiedDate",
+            "type": {
+              "kind": "int64"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "The date when the connector was last modified (Unix timestamp in milliseconds).",
+            "wire": {
+              "jsonPath": "lastModifiedDate",
+              "sdkField": "LastModifiedDate",
+              "sdkGoType": "*int64",
+              "flatten": {
+                "func": "convert.PtrInt64ToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "name",
+            "goField": "Name",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed_optional",
+            "wire": {
+              "jsonPath": "name",
+              "sdkField": "Name",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "target",
+            "goField": "Target",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "wire": {
+              "jsonPath": "target",
+              "sdkField": "Target",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "type",
+            "goField": "Type",
+            "type": {
+              "kind": "string",
+              "allowedValues": [
+                "generic"
+              ]
+            },
+            "computedOptionalRequired": "computed",
+            "wire": {
+              "jsonPath": "type",
+              "sdkField": "TypeEscaped",
+              "sdkGoType": "*models.Integrations_API_ConnectorType",
+              "flatten": {
+                "func": "convert.PtrStringerToFramework"
+              },
+              "skipExpand": true
+            }
+          }
+        ],
+        "markdownDescription": "Retrieve a Conjur connector."
+      },
+      "binding": {
+        "service": {
+          "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
+          "alias": "models",
+          "typeName": "",
+          "accessor": "d.client"
+        },
+        "read": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Connectors"
+            },
+            {
+              "method": "Conjur"
+            },
+            {
+              "method": "ById",
+              "args": [
+                {
+                  "kind": "configField",
+                  "field": "ID"
+                }
+              ]
+            },
+            {
+              "method": "Get",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.Integrations_API_ConjurConnectorable",
+          "httpMethod": "GET",
+          "pathTemplate": "/connectors/conjur/{id}"
+        },
+        "list": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Connectors"
+            },
+            {
+              "method": "Conjur"
+            },
+            {
+              "method": "Get",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.Integrations_API_ConjurConnectorsable",
+          "httpMethod": "GET",
+          "pathTemplate": "/connectors/conjur"
+        },
+        "collectionField": "GetItems()",
+        "elementType": "models.Integrations_API_ConjurConnectorable",
+        "selectors": [
+          {
+            "attribute": "id",
+            "goField": "ID",
+            "viaRead": true
+          },
+          {
+            "attribute": "name",
+            "goField": "Name",
+            "sdkField": "Name"
+          }
+        ],
+        "elementIdField": "Id",
+        "elementIdFlatten": {
+          "func": "convert.PtrStringToFramework"
+        },
+        "response": {
+          "type": "models.Integrations_API_ConjurConnectorable",
+          "accessStyle": "method"
+        }
+      }
+    }
+  ]
+}

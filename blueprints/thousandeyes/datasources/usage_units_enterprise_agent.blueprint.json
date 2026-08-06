@@ -67,24 +67,6 @@
             }
           },
           {
-            "name": "aid",
-            "goField": "AID",
-            "type": {
-              "kind": "string"
-            },
-            "computedOptionalRequired": "computed",
-            "markdownDescription": "Unique identifier of the account group where some tests are incurring the enterprise agent units.",
-            "wire": {
-              "jsonPath": "aid",
-              "sdkField": "Aid",
-              "sdkGoType": "*string",
-              "flatten": {
-                "func": "convert.PtrStringToFramework"
-              },
-              "skipExpand": true
-            }
-          },
-          {
             "name": "enterprise_units_projected",
             "goField": "EnterpriseUnitsProjected",
             "type": {
@@ -116,6 +98,24 @@
               "sdkGoType": "*int64",
               "flatten": {
                 "func": "convert.PtrInt64ToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "id",
+            "goField": "ID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Unique identifier of the account group where some tests are incurring the enterprise agent units. Named `id` per the import convention; the wire field stays aid.",
+            "wire": {
+              "jsonPath": "aid",
+              "sdkField": "Aid",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
               },
               "skipExpand": true
             }

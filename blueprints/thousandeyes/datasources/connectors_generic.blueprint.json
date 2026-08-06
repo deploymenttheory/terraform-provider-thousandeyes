@@ -1,0 +1,268 @@
+{
+  "formatVersion": "4",
+  "dataSources": [
+    {
+      "key": "connectors_generic",
+      "name": "connectors_generic",
+      "goPackage": "connectors_generic",
+      "goPackageAlias": "v7ConnectorsGenericDs",
+      "goTypeName": "ConnectorsGenericDataSource",
+      "modelTypeName": "ConnectorsGenericDataSourceModel",
+      "serviceGroup": "generic_connectors",
+      "apiVersionDir": "v7",
+      "schema": {
+        "attributes": [
+          {
+            "name": "headers",
+            "goField": "Headers",
+            "type": {
+              "kind": "set_nested",
+              "nestedObject": {
+                "goTypeName": "ConnectorsGenericHeaderModel",
+                "sdkType": "models.Integrations_API_Headerable",
+                "constructorExpr": "models.NewIntegrations_API_Header()",
+                "attrTypesVar": "connectorsGenericHeaderAttrTypes",
+                "objectTypeVar": "connectorsGenericHeaderObjectType",
+                "expandFunc": "expandConnectorsGenericHeaders",
+                "flattenFunc": "flattenConnectorsGenericHeaders",
+                "attributes": [
+                  {
+                    "name": "name",
+                    "goField": "Name",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "computed",
+                    "wire": {
+                      "jsonPath": "name",
+                      "sdkField": "Name",
+                      "sdkGoType": "*string",
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "value",
+                    "goField": "Value",
+                    "type": {
+                      "kind": "string"
+                    },
+                    "computedOptionalRequired": "computed",
+                    "wire": {
+                      "jsonPath": "value",
+                      "sdkField": "Value",
+                      "sdkGoType": "*string",
+                      "flatten": {
+                        "func": "convert.PtrStringToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  }
+                ]
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "wire": {
+              "jsonPath": "headers",
+              "sdkField": "Headers",
+              "sdkGoType": "[]models.Integrations_API_Headerable",
+              "flatten": {
+                "func": "flattenConnectorsGenericHeaders",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "id",
+            "goField": "ID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed_optional",
+            "wire": {
+              "jsonPath": "id",
+              "sdkField": "Id",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "last_modified_date",
+            "goField": "LastModifiedDate",
+            "type": {
+              "kind": "int64"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "The date when the connector was last modified (Unix timestamp in milliseconds).",
+            "wire": {
+              "jsonPath": "lastModifiedDate",
+              "sdkField": "LastModifiedDate",
+              "sdkGoType": "*int64",
+              "flatten": {
+                "func": "convert.PtrInt64ToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "name",
+            "goField": "Name",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed_optional",
+            "wire": {
+              "jsonPath": "name",
+              "sdkField": "Name",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "target",
+            "goField": "Target",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "wire": {
+              "jsonPath": "target",
+              "sdkField": "Target",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "type",
+            "goField": "Type",
+            "type": {
+              "kind": "string",
+              "allowedValues": [
+                "generic"
+              ]
+            },
+            "computedOptionalRequired": "computed",
+            "wire": {
+              "jsonPath": "type",
+              "sdkField": "TypeEscaped",
+              "sdkGoType": "*models.Integrations_API_ConnectorType",
+              "flatten": {
+                "func": "convert.PtrStringerToFramework"
+              },
+              "skipExpand": true
+            }
+          }
+        ],
+        "markdownDescription": "Retrieve connector."
+      },
+      "binding": {
+        "service": {
+          "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
+          "alias": "models",
+          "typeName": "",
+          "accessor": "d.client"
+        },
+        "read": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Connectors"
+            },
+            {
+              "method": "Generic"
+            },
+            {
+              "method": "ById",
+              "args": [
+                {
+                  "kind": "configField",
+                  "field": "ID"
+                }
+              ]
+            },
+            {
+              "method": "Get",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.Integrations_API_GenericConnectorable",
+          "httpMethod": "GET",
+          "pathTemplate": "/connectors/generic/{id}"
+        },
+        "list": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Connectors"
+            },
+            {
+              "method": "Generic"
+            },
+            {
+              "method": "Get",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.Integrations_API_GenericConnectorsable",
+          "httpMethod": "GET",
+          "pathTemplate": "/connectors/generic"
+        },
+        "collectionField": "GetItems()",
+        "elementType": "models.Integrations_API_GenericConnectorable",
+        "selectors": [
+          {
+            "attribute": "id",
+            "goField": "ID",
+            "viaRead": true
+          },
+          {
+            "attribute": "name",
+            "goField": "Name",
+            "sdkField": "Name"
+          }
+        ],
+        "elementIdField": "Id",
+        "elementIdFlatten": {
+          "func": "convert.PtrStringToFramework"
+        },
+        "response": {
+          "type": "models.Integrations_API_GenericConnectorable",
+          "accessStyle": "method"
+        }
+      }
+    }
+  ]
+}

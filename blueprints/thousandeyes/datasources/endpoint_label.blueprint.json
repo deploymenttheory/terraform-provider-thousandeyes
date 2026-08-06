@@ -1,0 +1,303 @@
+{
+  "formatVersion": "4",
+  "dataSources": [
+    {
+      "key": "endpoint_label",
+      "name": "endpoint_label",
+      "goPackage": "endpoint_label",
+      "goPackageAlias": "v7EndpointLabelDs",
+      "goTypeName": "EndpointLabelDataSource",
+      "modelTypeName": "EndpointLabelDataSourceModel",
+      "serviceGroup": "endpoint_agent_labels",
+      "apiVersionDir": "v7",
+      "schema": {
+        "attributes": [
+          {
+            "name": "color",
+            "goField": "Color",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "UI color",
+            "wire": {
+              "jsonPath": "color",
+              "sdkField": "Color",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "filters",
+            "goField": "Filters",
+            "type": {
+              "kind": "set_nested",
+              "nestedObject": {
+                "goTypeName": "EndpointLabelFilterModel",
+                "sdkType": "models.Endpoint_Agent_Labels_API_Filterable",
+                "constructorExpr": "models.NewEndpoint_Agent_Labels_API_Filter()",
+                "attrTypesVar": "endpointLabelFilterAttrTypes",
+                "objectTypeVar": "endpointLabelFilterObjectType",
+                "expandFunc": "expandEndpointLabelFilters",
+                "flattenFunc": "flattenEndpointLabelFilters",
+                "attributes": [
+                  {
+                    "name": "key",
+                    "goField": "Key",
+                    "type": {
+                      "kind": "string",
+                      "allowedValues": [
+                        "agent-id",
+                        "public-network",
+                        "local-network",
+                        "connection",
+                        "gateway",
+                        "platform",
+                        "agent-type",
+                        "vpn-vendor",
+                        "vpn-gateway-address",
+                        "vpn-client-network",
+                        "vpn-client-address",
+                        "ip-address-family",
+                        "ssid",
+                        "bssid",
+                        "hostname",
+                        "username",
+                        "asn"
+                      ]
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "Type of filter - the data that will be used to filter.",
+                    "wire": {
+                      "jsonPath": "key",
+                      "sdkField": "Key",
+                      "sdkGoType": "*models.Endpoint_Agent_Labels_API_FilterType",
+                      "flatten": {
+                        "func": "convert.PtrStringerToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "mode",
+                    "goField": "Mode",
+                    "type": {
+                      "kind": "string",
+                      "allowedValues": [
+                        "in",
+                        "not-in"
+                      ]
+                    },
+                    "computedOptionalRequired": "computed",
+                    "markdownDescription": "Type of matching to be applied for the values:\n\n* `in`: The value on the agent must match one of the list of values provided.\n* `not-in`: The value on the agent must not match any of the list of values provided.",
+                    "wire": {
+                      "jsonPath": "mode",
+                      "sdkField": "Mode",
+                      "sdkGoType": "*models.Endpoint_Agent_Labels_API_LabelFilterMode",
+                      "flatten": {
+                        "func": "convert.PtrStringerToFramework"
+                      },
+                      "skipExpand": true
+                    }
+                  },
+                  {
+                    "name": "values",
+                    "goField": "Values",
+                    "type": {
+                      "kind": "set",
+                      "elementType": {
+                        "kind": "string"
+                      }
+                    },
+                    "computedOptionalRequired": "computed",
+                    "wire": {
+                      "jsonPath": "values",
+                      "sdkField": "Values",
+                      "sdkGoType": "[]string",
+                      "flatten": {
+                        "func": "convert.StringSliceToFrameworkSet",
+                        "needsCtx": true,
+                        "returnsError": true
+                      },
+                      "skipExpand": true
+                    }
+                  }
+                ]
+              }
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "The filters combined using the matchType to determine the label's match.",
+            "wire": {
+              "jsonPath": "filters",
+              "sdkField": "Filters",
+              "sdkGoType": "[]models.Endpoint_Agent_Labels_API_Filterable",
+              "flatten": {
+                "func": "flattenEndpointLabelFilters",
+                "needsCtx": true,
+                "returnsError": true
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "id",
+            "goField": "ID",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "Label identifier.",
+            "wire": {
+              "jsonPath": "id",
+              "sdkField": "Id",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "match_type",
+            "goField": "MatchType",
+            "type": {
+              "kind": "string",
+              "allowedValues": [
+                "and",
+                "or"
+              ]
+            },
+            "computedOptionalRequired": "computed",
+            "markdownDescription": "Specifies how the filters are combined for matching this label.\n\n* `and`: All filters must be matched.\n* `or`: Any of the filters should match.",
+            "wire": {
+              "jsonPath": "matchType",
+              "sdkField": "MatchType",
+              "sdkGoType": "*models.Endpoint_Agent_Labels_API_MatchType",
+              "flatten": {
+                "func": "convert.PtrStringerToFramework"
+              },
+              "skipExpand": true
+            }
+          },
+          {
+            "name": "name",
+            "goField": "Name",
+            "type": {
+              "kind": "string"
+            },
+            "computedOptionalRequired": "computed_optional",
+            "markdownDescription": "The label name.",
+            "wire": {
+              "jsonPath": "name",
+              "sdkField": "Name",
+              "sdkGoType": "*string",
+              "flatten": {
+                "func": "convert.PtrStringToFramework"
+              },
+              "skipExpand": true
+            }
+          }
+        ],
+        "markdownDescription": "Retrieve label."
+      },
+      "binding": {
+        "service": {
+          "importPath": "github.com/deploymenttheory/terraform-provider-thousandeyes/internal/sdk/models",
+          "alias": "models",
+          "typeName": "",
+          "accessor": "d.client"
+        },
+        "read": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Endpoint"
+            },
+            {
+              "method": "Labels"
+            },
+            {
+              "method": "ById",
+              "args": [
+                {
+                  "kind": "configField",
+                  "field": "ID"
+                }
+              ]
+            },
+            {
+              "method": "Get",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.Endpoint_Agent_Labels_API_LabelResponseable",
+          "httpMethod": "GET",
+          "pathTemplate": "/endpoint/labels/{id}"
+        },
+        "list": {
+          "style": "fluent",
+          "method": "",
+          "chain": [
+            {
+              "method": "Endpoint"
+            },
+            {
+              "method": "Labels"
+            },
+            {
+              "method": "Get",
+              "args": [
+                {
+                  "kind": "ctx"
+                },
+                {
+                  "kind": "literal",
+                  "expr": "nil"
+                }
+              ]
+            }
+          ],
+          "return": "resultError",
+          "resultType": "models.Endpoint_Agent_Labels_API_Labelsable",
+          "httpMethod": "GET",
+          "pathTemplate": "/endpoint/labels"
+        },
+        "collectionField": "GetLabels()",
+        "elementType": "models.Endpoint_Agent_Labels_API_LabelResponseable",
+        "selectors": [
+          {
+            "attribute": "id",
+            "goField": "ID",
+            "viaRead": true
+          },
+          {
+            "attribute": "name",
+            "goField": "Name",
+            "sdkField": "Name"
+          }
+        ],
+        "elementIdField": "Id",
+        "elementIdFlatten": {
+          "func": "convert.PtrStringToFramework"
+        },
+        "response": {
+          "type": "models.Endpoint_Agent_Labels_API_LabelResponseable",
+          "accessStyle": "method"
+        }
+      }
+    }
+  ]
+}
