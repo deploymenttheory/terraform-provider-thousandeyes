@@ -725,6 +725,15 @@
           "type": "models.Alerts_API_AlertSuppressionWindowDetailable",
           "accessStyle": "method"
         }
+      },
+      "accTest": {
+        "seedResourceKey": "alert_suppression_window",
+        "args": [
+          {
+            "attr": "id",
+            "fromSeedAttr": "id"
+          }
+        ]
       }
     }
   ]

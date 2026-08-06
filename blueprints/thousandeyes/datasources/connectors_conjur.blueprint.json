@@ -304,6 +304,15 @@
           "type": "models.Integrations_API_ConjurConnectorable",
           "accessStyle": "method"
         }
+      },
+      "accTest": {
+        "seedResourceKey": "connectors_conjur",
+        "args": [
+          {
+            "attr": "id",
+            "fromSeedAttr": "id"
+          }
+        ]
       }
     }
   ]

@@ -1252,6 +1252,15 @@
           "type": "models.Alerts_API_RuleDetailable",
           "accessStyle": "method"
         }
+      },
+      "accTest": {
+        "seedResourceKey": "alerts_rule",
+        "args": [
+          {
+            "attr": "id",
+            "fromSeedAttr": "id"
+          }
+        ]
       }
     }
   ]

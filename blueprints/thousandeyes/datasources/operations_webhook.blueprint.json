@@ -343,6 +343,15 @@
           "type": "models.Integrations_API_WebhookOperationable",
           "accessStyle": "method"
         }
+      },
+      "accTest": {
+        "seedResourceKey": "operations_webhook",
+        "args": [
+          {
+            "attr": "id",
+            "fromSeedAttr": "id"
+          }
+        ]
       }
     }
   ]

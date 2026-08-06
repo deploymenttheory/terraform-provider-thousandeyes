@@ -774,6 +774,15 @@
           "type": "models.Endpoint_Tests_API_EndpointHttpServerTestable",
           "accessStyle": "method"
         }
+      },
+      "accTest": {
+        "seedResourceKey": "endpoint_tests_scheduled_tests_http_server",
+        "args": [
+          {
+            "attr": "id",
+            "fromSeedAttr": "id"
+          }
+        ]
       }
     }
   ]

@@ -550,6 +550,15 @@
           "type": "models.Endpoint_Tests_API_EndpointAgentToServerTestable",
           "accessStyle": "method"
         }
+      },
+      "accTest": {
+        "seedResourceKey": "endpoint_tests_scheduled_tests_agent_to_server",
+        "args": [
+          {
+            "attr": "id",
+            "fromSeedAttr": "id"
+          }
+        ]
       }
     }
   ]

@@ -501,6 +501,15 @@
           "type": "models.Dashboards_API_ApiContextFilterResponseable",
           "accessStyle": "method"
         }
+      },
+      "accTest": {
+        "seedResourceKey": "dashboards_filter",
+        "args": [
+          {
+            "attr": "id",
+            "fromSeedAttr": "id"
+          }
+        ]
       }
     }
   ]

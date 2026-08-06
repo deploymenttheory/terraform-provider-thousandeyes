@@ -447,6 +447,15 @@
           "type": "models.Administrative_API_AccountGroupDetailable",
           "accessStyle": "method"
         }
+      },
+      "accTest": {
+        "seedResourceKey": "account_group",
+        "args": [
+          {
+            "attr": "id",
+            "fromSeedAttr": "id"
+          }
+        ]
       }
     }
   ]

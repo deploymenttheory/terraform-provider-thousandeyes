@@ -568,6 +568,15 @@
           "type": "models.Administrative_API_UserDetailable",
           "accessStyle": "method"
         }
+      },
+      "accTest": {
+        "seedResourceKey": "user",
+        "args": [
+          {
+            "attr": "id",
+            "fromSeedAttr": "id"
+          }
+        ]
       }
     }
   ]

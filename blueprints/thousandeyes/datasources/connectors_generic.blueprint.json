@@ -262,6 +262,15 @@
           "type": "models.Integrations_API_GenericConnectorable",
           "accessStyle": "method"
         }
+      },
+      "accTest": {
+        "seedResourceKey": "connectors_generic",
+        "args": [
+          {
+            "attr": "id",
+            "fromSeedAttr": "id"
+          }
+        ]
       }
     }
   ]
