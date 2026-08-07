@@ -6,6 +6,16 @@ point it at any OpenAPI document and the pipeline pins a snapshot, generates a
 Go SDK with Microsoft Kiota, drafts blueprints, and — once the blueprints are
 curated — regenerates the provider in place.
 
+## Configuring
+
+Generation is configured by one committed file, [`config.json`](config.json)
+at the repository root -- the API document to generate from, which paths become
+SDK code, which generator versions to pin. [CONFIGURING.md](CONFIGURING.md)
+explains every setting.
+
+Change it through a pull request, then run **tfpfgen | Pipeline**; the form
+asks only about the run itself.
+
 ## Getting started
 
 1. **Create a repository from this template.** Name it
