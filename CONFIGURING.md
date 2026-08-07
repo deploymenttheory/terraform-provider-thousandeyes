@@ -113,9 +113,43 @@ stop moving underneath you.
 
 ### `probe` (only used when you run the probe)
 
-The probe creates and deletes real objects in a sandbox tenant to learn how
-the API actually behaves. These settings bound what it may do; the credentials
-themselves are repository secrets, never config.
+The probe creates and deletes real objects in a sandbox tenant to learn how the
+API actually behaves. These settings say how to reach it and bound what it may
+do; the credentials themselves are repository secrets, never config.
+
+```json
+"probe": {
+  "authMethod": "bearerToken",
+  "secrets": { "token": "TFPFGEN_PROBE_TOKEN" },
+  "namePrefix": "tfpfgen-probe",
+  "maxExistingObjects": 25,
+  "accountScopeParam": "aid",
+  "accountScopeJsonPath": "aid"
+}
+```
+
+**`authMethod`** is how the probe proves who it is, and it takes the same three
+values the generated provider supports:
+
+| Method | Secrets it reads | Notes |
+|---|---|---|
+| `bearerToken` | `token` | The default. A static token. |
+| `clientCredentials` | `clientId`, `clientSecret` | The probe exchanges them for a token before it starts. Add `"tokenUrl"` here if the exchange happens somewhere other than the `auth.tokenUrl` above; a path is resolved against the endpoint. |
+| `usernamePassword` | `username`, `password` | Sent as HTTP Basic. |
+
+**`secrets`** maps each credential the method needs onto the **name of a
+repository secret** — never the value. The defaults are
+`TFPFGEN_PROBE_TOKEN`, `TFPFGEN_PROBE_CLIENT_ID`,
+`TFPFGEN_PROBE_CLIENT_SECRET`, `TFPFGEN_PROBE_USERNAME` and
+`TFPFGEN_PROBE_PASSWORD`, so most repositories can leave this out entirely and
+just create the secrets. Name them here when your organisation's secrets are
+called something else.
+
+The pipeline checks only the secrets the chosen method actually needs, so an
+API that issues no tokens is not refused for lacking one, and it reports every
+missing secret at once rather than one per run.
+
+The rest bound what the probe may do:
 
 | Setting | Meaning |
 |---|---|
@@ -139,10 +173,13 @@ committing it. Everything declarative is in the file.
 
 ## What is not configured here
 
-- **Credentials.** Repository secrets: `TFPFGEN_PROBE_TOKEN`,
-  `TFPFGEN_PROBE_ENDPOINT`, `TFPFGEN_SANDBOX_EVIDENCE`,
-  `TFPFGEN_ACCOUNT_GROUP_ID` for the probe; `GPG_PRIVATE_KEY` and
-  `GPG_PRIVATE_KEY_PASSPHRASE` for releases.
+- **Credentials.** Repository secrets. The probe always needs
+  `TFPFGEN_PROBE_ENDPOINT`, `TFPFGEN_SANDBOX_EVIDENCE` and
+  `TFPFGEN_ACCOUNT_GROUP_ID`, plus whichever credential secrets its
+  `authMethod` names above. Releases need `GPG_PRIVATE_KEY` and
+  `GPG_PRIVATE_KEY_PASSPHRASE`.
+
+  `config.json` names secrets; it never holds them.
 - **What the provider looks like.** Which resources exist, what their
   attributes are called, how they are validated: all derived from the API
   document and from recorded evidence, not chosen here.
