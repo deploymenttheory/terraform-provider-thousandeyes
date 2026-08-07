@@ -173,13 +173,23 @@ committing it. Everything declarative is in the file.
 
 ## What is not configured here
 
-- **Credentials.** Repository secrets. The probe always needs
-  `TFPFGEN_PROBE_ENDPOINT`, `TFPFGEN_SANDBOX_EVIDENCE` and
-  `TFPFGEN_ACCOUNT_GROUP_ID`, plus whichever credential secrets its
-  `authMethod` names above. Releases need `GPG_PRIVATE_KEY` and
-  `GPG_PRIVATE_KEY_PASSPHRASE`.
+- **Credentials and where to point the probe.** Repository secrets, every one
+  of them prefixed `TFPFGEN_PROBE_` so the set is visible at a glance:
 
-  `config.json` names secrets; it never holds them.
+  | Secret | Needed when | What to put in it |
+  |---|---|---|
+  | `TFPFGEN_PROBE_API_URL` | always | the sandbox tenant's API base URL, e.g. `https://api.thousandeyes.com/v7` |
+  | `TFPFGEN_PROBE_SANDBOX_REASON` | always | a sentence, in your own words, saying why this tenant is disposable. At least four words — writing it is the point |
+  | `TFPFGEN_PROBE_ACCOUNT_SCOPE_ID` | only when `probe.accountScopeParam` is set | the account the probe must stay inside |
+  | `TFPFGEN_PROBE_BEARER_TOKEN` | `authMethod: bearerToken` | the API token |
+  | `TFPFGEN_PROBE_CLIENT_ID` and `TFPFGEN_PROBE_CLIENT_SECRET` | `authMethod: clientCredentials` | the credentials to exchange for a token |
+  | `TFPFGEN_PROBE_USERNAME` and `TFPFGEN_PROBE_PASSWORD` | `authMethod: usernamePassword` | the Basic credentials |
+
+  Releases separately need `GPG_PRIVATE_KEY` and `GPG_PRIVATE_KEY_PASSPHRASE`.
+
+  `config.json` names secrets; it never holds them. Rename any of the above in
+  `probe.secrets` if your organisation's secrets are called something else.
+
 - **What the provider looks like.** Which resources exist, what their
   attributes are called, how they are validated: all derived from the API
   document and from recorded evidence, not chosen here.
