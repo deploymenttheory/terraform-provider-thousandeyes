@@ -36,51 +36,51 @@ name: tfpfgen | Pipeline
 on:
   workflow_dispatch:
     inputs:
-      openapi_url:
-        description: 'FIRST RUN ONLY: link to the API''s OpenAPI document. Leave empty afterwards -- later runs re-fetch from wherever the first one got it.'
+      openapi_document_url:
+        description: 'Paste this on the FIRST run only -- the link to the API''s OpenAPI/Swagger document. Leave empty afterwards: later runs re-fetch from wherever the first one got it.'
         required: false
         type: string
-      record_evidence:
-        description: 'Probe the live API first, and fold what it observes into this run. Off by default: it creates and deletes real objects in the sandbox tenant.'
+      probe_the_live_api_first:
+        description: 'Creates and deletes real objects in the sandbox tenant to learn how the API actually behaves, then folds what it saw into this run. Off by default.'
         required: false
         default: false
         type: boolean
-      probe_resource:
-        description: 'With the probe on: leave empty to probe everything ready to be probed, or name one resource to do just that one -- its blueprint file name without the extension, e.g. tag.'
+      probe_only_this_resource:
+        description: 'Only used when probing. Leave empty to probe everything that is ready; or name one resource -- its blueprint file name without the extension, e.g. tag.'
         required: false
         type: string
-      probe_force:
-        description: 'With the probe on: re-record resources that already have recordings. Off by default, so a normal run only fills gaps and leaves existing evidence alone.'
+      probe_re_record_existing:
+        description: 'Only used when probing. Off by default, so a run fills gaps and leaves evidence it already has alone. Turn on to record everything again.'
         required: false
         default: false
         type: boolean
-      tfpfgen_ref:
-        description: 'Which version of the generator to use. Leave as "main" unless you are testing an unreleased change to it.'
+      tfpfgen_version:
+        description: 'Which release of the code generator to use. Leave as "main" unless you are testing an unreleased change to it.'
         required: false
         default: main
         type: string
-      provider_name:
-        description: 'Leave empty. Only set this if the provider should be called something other than this repository''s name without the "terraform-provider-" prefix.'
+      provider_name_override:
+        description: 'Leave empty. The provider is named after this repository, minus the "terraform-provider-" prefix; set this only to call it something else.'
         required: false
         type: string
-      sdk_client_name:
-        description: 'Leave empty. First run only: the name to give the generated Go client type, if you want something other than "ApiClient".'
+      sdk_client_type_name:
+        description: 'Leave empty. First run only: what to call the generated Go client type, if not "ApiClient".'
         required: false
         type: string
-      sdk_include:
+      sdk_include_only_these_paths:
         description: 'Leave empty. First run only: generate code for ONLY these API paths, comma-separated -- e.g. /tags,/tags/**'
         required: false
         type: string
-      sdk_exclude:
-        description: 'Leave empty. First run only: skip these API paths, comma-separated. Use for endpoints that break generation or that the provider will never manage.'
+      sdk_skip_these_paths:
+        description: 'Leave empty. First run only: API paths to skip, comma-separated. Use for endpoints that break generation or that this provider will never manage.'
         required: false
         type: string
       kiota_version:
-        description: 'Leave empty. First run only: which release of the kiota SDK generator to use. Later runs reuse whichever version built the committed SDK.'
+        description: 'Leave empty. First run only: which release of Microsoft Kiota builds the SDK. Later runs reuse whichever version built the committed one.'
         required: false
         type: string
-      kiota_sha256:
-        description: 'Leave empty. Optional: the expected checksum of the kiota download, to fail the run if it ever changes. Every run prints the actual value in its log.'
+      kiota_download_checksum:
+        description: 'Leave empty. Optional: the expected checksum of the Kiota download, to fail the run if it ever changes. Every run prints the actual value in its log.'
         required: false
         type: string
 
@@ -100,7 +100,7 @@ jobs:
   # ---------------------------------------------------------------------------
   probe:
     name: '🔬 Record live-API evidence'
-    if: ${{ inputs.record_evidence }}
+    if: ${{ inputs.probe_the_live_api_first }}
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
@@ -114,7 +114,7 @@ jobs:
 
       - name: Resolve the provider name
         env:
-          INPUT_NAME: ${{ inputs.provider_name }}
+          INPUT_NAME: ${{ inputs.provider_name_override }}
           REPO_NAME: ${{ github.event.repository.name }}
         run: |
           NAME="${INPUT_NAME:-${REPO_NAME#terraform-provider-}}"
@@ -132,7 +132,7 @@ jobs:
 
       - name: Install tfpfgen
         env:
-          REF: ${{ inputs.tfpfgen_ref }}
+          REF: ${{ inputs.tfpfgen_version }}
           GOPRIVATE: github.com/deploymenttheory/terraform-plugin-framework-codegen
         run: |
           go install "github.com/deploymenttheory/terraform-plugin-framework-codegen/cmd/tfpfgen@${REF}"
@@ -209,8 +209,8 @@ jobs:
         env:
           TFPFGEN_PROBE_TOKEN: ${{ secrets.TFPFGEN_PROBE_TOKEN }}
           TFPFGEN_PROBE_ENDPOINT: ${{ secrets.TFPFGEN_PROBE_ENDPOINT }}
-          ONLY: ${{ inputs.probe_resource }}
-          FORCE: ${{ inputs.probe_force }}
+          ONLY: ${{ inputs.probe_only_this_resource }}
+          FORCE: ${{ inputs.probe_re_record_existing }}
         run: |
           ARGS=(-blueprint "${BLUEPRINT_DIR}" -allow-mutations \
                 -profile ".tfpfgen/sandbox/${PROVIDER_NAME}.json" \
@@ -279,7 +279,7 @@ jobs:
 
       - name: Resolve the provider name
         env:
-          INPUT_NAME: ${{ inputs.provider_name }}
+          INPUT_NAME: ${{ inputs.provider_name_override }}
           REPO_NAME: ${{ github.event.repository.name }}
         run: |
           NAME="${INPUT_NAME:-${REPO_NAME#terraform-provider-}}"
@@ -308,9 +308,9 @@ jobs:
       # main instead of depending on what somebody remembered to type.
       - name: Resolve the SDK settings from the committed lock
         env:
-          IN_CLIENT: ${{ inputs.sdk_client_name }}
-          IN_INCLUDE: ${{ inputs.sdk_include }}
-          IN_EXCLUDE: ${{ inputs.sdk_exclude }}
+          IN_CLIENT: ${{ inputs.sdk_client_type_name }}
+          IN_INCLUDE: ${{ inputs.sdk_include_only_these_paths }}
+          IN_EXCLUDE: ${{ inputs.sdk_skip_these_paths }}
           IN_KIOTA: ${{ inputs.kiota_version }}
         run: |
           LOCK=internal/sdk/kiota-lock.json
@@ -345,7 +345,7 @@ jobs:
 
       - name: Install tfpfgen
         env:
-          REF: ${{ inputs.tfpfgen_ref }}
+          REF: ${{ inputs.tfpfgen_version }}
           # Straight from the repository, not through the module proxy: the
           # proxy caches a branch's resolution for up to half an hour, and a
           # pipeline that installs its own generator must track the ref's tip,
@@ -358,7 +358,7 @@ jobs:
 
       - name: Install kiota
         env:
-          KIOTA_SHA256: ${{ inputs.kiota_sha256 }}
+          KIOTA_SHA256: ${{ inputs.kiota_download_checksum }}
         run: |
           curl -sL -o /tmp/kiota.zip \
             "https://github.com/microsoft/kiota/releases/download/v${KIOTA_VERSION}/linux-x64.zip"
@@ -389,7 +389,7 @@ jobs:
 
       - name: Pin the OpenAPI document
         env:
-          OPENAPI_URL: ${{ inputs.openapi_url }}
+          OPENAPI_URL: ${{ inputs.openapi_document_url }}
         run: |
           if [ -n "${OPENAPI_URL}" ]; then
             tfpfgen openapi fetch -url "${OPENAPI_URL}" -out "${OPENAPI_DIR}"
