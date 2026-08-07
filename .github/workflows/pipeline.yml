@@ -20,7 +20,13 @@
 #   Probe (only when you ask for it) exercises each resource against a sandbox
 #   tenant and records what the API actually did. This is the only part that
 #   touches a live system, which is why it is off by default and why the
-#   credentials are declared on that job alone.
+#   credentials are declared on that job alone. It needs four repository
+#   secrets, and refuses to start without them:
+#
+#     TFPFGEN_PROBE_TOKEN       credential for the sandbox tenant
+#     TFPFGEN_PROBE_ENDPOINT    the API's base URL
+#     TFPFGEN_SANDBOX_EVIDENCE  a sentence saying why this tenant is disposable
+#     TFPFGEN_ACCOUNT_GROUP_ID  the tenant scope it must stay inside
 #
 #   Generate pins the API document, generates a Go SDK from it, works out the
 #   provider's shape, writes the provider's code, then compiles and unit-tests
@@ -154,13 +160,20 @@ jobs:
           ENDPOINT: ${{ secrets.TFPFGEN_PROBE_ENDPOINT }}
           EVIDENCE: ${{ secrets.TFPFGEN_SANDBOX_EVIDENCE }}
           AID: ${{ secrets.TFPFGEN_ACCOUNT_GROUP_ID }}
+          TOKEN: ${{ secrets.TFPFGEN_PROBE_TOKEN }}
         run: |
-          for missing in ENDPOINT EVIDENCE AID; do
-            if [ -z "${!missing}" ]; then
-              echo "::error::secret behind ${missing} is not configured -- see the header of this workflow"
-              exit 1
-            fi
-          done
+          # Named by the secret a person would go and create, not by the
+          # variable it lands in, and all of them at once -- being told about
+          # one missing secret per run is four runs to learn the same thing.
+          missing=()
+          [ -z "${TOKEN}" ]    && missing+=("TFPFGEN_PROBE_TOKEN")
+          [ -z "${ENDPOINT}" ] && missing+=("TFPFGEN_PROBE_ENDPOINT")
+          [ -z "${EVIDENCE}" ] && missing+=("TFPFGEN_SANDBOX_EVIDENCE")
+          [ -z "${AID}" ]      && missing+=("TFPFGEN_ACCOUNT_GROUP_ID")
+          if [ ${#missing[@]} -gt 0 ]; then
+            echo "::error::the probe needs repository secrets that are not set: ${missing[*]}. Add them under Settings -> Secrets and variables -> Actions, or leave 'probe the live api first' unticked to skip this job. CONFIGURING.md explains what each one is."
+            exit 1
+          fi
           HOST=$(printf '%s' "$ENDPOINT" | sed -E 's|^https?://([^/]+).*|\1|')
           mkdir -p .tfpfgen/sandbox
           jq -n --arg endpoint "$ENDPOINT" --arg evidence "$EVIDENCE" \
