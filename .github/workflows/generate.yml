@@ -1,5 +1,4 @@
-# Regenerates this provider from the API's OpenAPI document, optionally
-# recording fresh evidence from the live API first.
+# Regenerates this provider from the API's OpenAPI document.
 #
 # WHAT TO FILL IN
 #
@@ -7,31 +6,24 @@
 #   Every run after:     nothing. Press the button.
 #
 #   The other inputs are all optional overrides, and the form says so on each
-#   one. Leaving them empty is the normal answer, because everything they would
-#   set is already recorded in the repository -- the SDK's own lock file
-#   remembers how it was built, and the pinned document remembers where it came
-#   from. A setting a person retypes every run is a setting that will one day be
-#   typed wrong.
+#   one. They exist for the first run and for unusual cases; leaving them empty
+#   is the normal answer, because everything they would set is already recorded
+#   in the repository -- the SDK's own lock file remembers how it was built,
+#   and the pinned document remembers where it came from. A setting a person
+#   retypes every run is a setting that will one day be typed wrong.
 #
 # WHAT IT DOES
 #
-#   Two jobs, in order.
+#   Pins the API document, generates a Go SDK from it, works out the provider's
+#   shape, writes the provider's code, then compiles and unit-tests the result.
+#   Where probe recordings have been committed, what they observed about the
+#   live API is folded in on the way past.
 #
-#   Probe (only when you ask for it) exercises each resource against a sandbox
-#   tenant and records what the API actually did. This is the only part that
-#   touches a live system, which is why it is off by default and why the
-#   credentials are declared on that job alone.
-#
-#   Generate pins the API document, generates a Go SDK from it, works out the
-#   provider's shape, writes the provider's code, then compiles and unit-tests
-#   the result. Whatever the probe just recorded -- and whatever was recorded on
-#   earlier runs -- is folded in on the way past.
-#
-#   They are one workflow because they are one story: evidence and the provider
-#   it changes arrive in the same pull request, rather than in two that somebody
-#   has to merge in the right order. Nothing is committed to the default branch
-#   directly, and a run that finds nothing changed says so and proposes nothing.
-name: tfpfgen | Pipeline
+#   Nothing in the tree is written by hand, so the run rebuilds all of it every
+#   time and proposes whatever changed as a pull request. Nothing is committed
+#   to the default branch directly. A run that finds nothing changed says so
+#   and proposes nothing.
+name: tfpfgen | Generate
 
 on:
   workflow_dispatch:
@@ -40,20 +32,6 @@ on:
         description: 'FIRST RUN ONLY: link to the API''s OpenAPI document. Leave empty afterwards -- later runs re-fetch from wherever the first one got it.'
         required: false
         type: string
-      record_evidence:
-        description: 'Probe the live API first, and fold what it observes into this run. Off by default: it creates and deletes real objects in the sandbox tenant.'
-        required: false
-        default: false
-        type: boolean
-      probe_resource:
-        description: 'With the probe on: leave empty to probe everything ready to be probed, or name one resource to do just that one -- its blueprint file name without the extension, e.g. tag.'
-        required: false
-        type: string
-      probe_force:
-        description: 'With the probe on: re-record resources that already have recordings. Off by default, so a normal run only fills gaps and leaves existing evidence alone.'
-        required: false
-        default: false
-        type: boolean
       tfpfgen_ref:
         description: 'Which version of the generator to use. Leave as "main" unless you are testing an unreleased change to it.'
         required: false
@@ -84,190 +62,19 @@ on:
         required: false
         type: string
 
-# Read-only by default; the job that opens the pull request asks for more.
 permissions:
-  contents: read
+  contents: write
+  pull-requests: write
 
 concurrency:
-  group: tfpfgen-pipeline-${{ github.repository }}
+  group: tfpfgen-generate-${{ github.repository }}
   cancel-in-progress: false
 
 jobs:
-  # ---------------------------------------------------------------------------
-  # Record what the live API actually does. Opt-in, and the only job that holds
-  # the tenant's credentials -- a job that does not declare a secret cannot leak
-  # one, so generation runs without them even on a run that probes.
-  # ---------------------------------------------------------------------------
-  probe:
-    name: '🔬 Record live-API evidence'
-    if: ${{ inputs.record_evidence }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 120
-    steps:
-      - name: Harden Runner
-        uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
-        with:
-          egress-policy: audit
-
-      - name: Check Out
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-
-      - name: Resolve the provider name
-        env:
-          INPUT_NAME: ${{ inputs.provider_name }}
-          REPO_NAME: ${{ github.event.repository.name }}
-        run: |
-          NAME="${INPUT_NAME:-${REPO_NAME#terraform-provider-}}"
-          {
-            echo "PROVIDER_NAME=${NAME}"
-            echo "OPENAPI_DIR=openapi/${NAME}"
-            echo "BLUEPRINT_DIR=blueprints/${NAME}"
-          } >> "$GITHUB_ENV"
-
-      - name: Set up Go
-        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6.5.0
-        with:
-          go-version-file: 'go.mod'
-          cache: true
-
-      - name: Install tfpfgen
-        env:
-          REF: ${{ inputs.tfpfgen_ref }}
-          GOPRIVATE: github.com/deploymenttheory/terraform-plugin-framework-codegen
-        run: |
-          go install "github.com/deploymenttheory/terraform-plugin-framework-codegen/cmd/tfpfgen@${REF}"
-          tfpfgen version
-
-      - name: Materialise the sandbox profile
-        # Written fresh from secrets, never committed, deleted before the
-        # artifact is packed. The token itself stays in the environment -- the
-        # guard scans the profile and refuses one that embeds a credential.
-        env:
-          ENDPOINT: ${{ secrets.TFPFGEN_PROBE_ENDPOINT }}
-          EVIDENCE: ${{ secrets.TFPFGEN_SANDBOX_EVIDENCE }}
-          AID: ${{ secrets.TFPFGEN_ACCOUNT_GROUP_ID }}
-        run: |
-          for missing in ENDPOINT EVIDENCE AID; do
-            if [ -z "${!missing}" ]; then
-              echo "::error::secret behind ${missing} is not configured -- see the header of this workflow"
-              exit 1
-            fi
-          done
-          HOST=$(printf '%s' "$ENDPOINT" | sed -E 's|^https?://([^/]+).*|\1|')
-          mkdir -p .tfpfgen/sandbox
-          jq -n --arg endpoint "$ENDPOINT" --arg evidence "$EVIDENCE" \
-                --arg host "$HOST" --arg aid "$AID" '{
-            endpoint: $endpoint,
-            tokenEnv: "TFPFGEN_PROBE_TOKEN",
-            sandbox: true,
-            sandboxEvidence: $evidence,
-            namePrefix: "tfpfgen-probe",
-            assertions: {
-              endpointHostSuffix: $host,
-              maxExistingObjects: 25,
-              accountGroupParam: "aid",
-              accountGroupJsonPath: "aid",
-              accountGroupId: $aid
-            }
-          }' > ".tfpfgen/sandbox/${PROVIDER_NAME}.json"
-          echo "profile written for ${HOST}"
-
-      - name: Draft scenarios for resources that lack one
-        # The scenario names the fixtures and candidates a probe cannot
-        # discover. Drafting fills what the blueprint derives and marks the
-        # rest CURATE_ME; only a draft with nothing left to curate is promoted,
-        # and every one still carrying a marker is skipped by name. That is the
-        # stated fidelity limit of an unattended probe: influencer-gated
-        # conditional behaviour stays undiscovered until the drafter learns to
-        # derive it.
-        run: |
-          SCRATCH=$(mktemp -d)
-          tfpfgen blueprint draft -openapi-dir "${OPENAPI_DIR}" \
-            -sdk-dialect kiotaFluent \
-            -sdk-models-package "$(go list -m)/internal/sdk/models" \
-            -out "$(mktemp -d)" \
-            -scenario-drafts "$SCRATCH" || true
-          promoted=0
-          for draft in "$SCRATCH"/*.scenario.draft.json; do
-            [ -e "$draft" ] || continue
-            key=$(basename "$draft" .scenario.draft.json)
-            target="${BLUEPRINT_DIR}/${key}.scenario.json"
-            if [ -e "$target" ]; then
-              continue
-            fi
-            if grep -q "CURATE_ME" "$draft"; then
-              echo "skipped   ${key}: the drafted scenario still carries CURATE_ME markers"
-              continue
-            fi
-            cp "$draft" "$target"
-            echo "promoted  ${target}"
-            promoted=$((promoted + 1))
-          done
-          echo "${promoted} scenario(s) promoted"
-
-      - name: Record
-        env:
-          TFPFGEN_PROBE_TOKEN: ${{ secrets.TFPFGEN_PROBE_TOKEN }}
-          TFPFGEN_PROBE_ENDPOINT: ${{ secrets.TFPFGEN_PROBE_ENDPOINT }}
-          ONLY: ${{ inputs.probe_resource }}
-          FORCE: ${{ inputs.probe_force }}
-        run: |
-          ARGS=(-blueprint "${BLUEPRINT_DIR}" -allow-mutations \
-                -profile ".tfpfgen/sandbox/${PROVIDER_NAME}.json" \
-                -provider "${PROVIDER_NAME}")
-          [ "${FORCE}" = "true" ] && ARGS+=(-force)
-          failures=0
-          if [ -n "${ONLY}" ]; then
-            keys="${ONLY}"
-          else
-            keys=$(ls "${BLUEPRINT_DIR}"/*.scenario.json 2>/dev/null \
-              | xargs -n1 basename 2>/dev/null | sed 's/\.scenario\.json$//')
-            if [ -z "$keys" ]; then
-              echo "no scenarios exist; nothing can be recorded"
-              exit 0
-            fi
-          fi
-          for key in $keys; do
-            echo "::group::🔬 probe record ${key}"
-            if ! tfpfgen probe record "${ARGS[@]}" -resource "$key"; then
-              echo "::warning::${key}: recording failed; see the group above"
-              failures=$((failures + 1))
-            fi
-            echo "::endgroup::"
-          done
-          echo "${failures} resource(s) failed to record"
-
-      - name: Remove the sandbox profile
-        if: always()
-        run: rm -rf .tfpfgen/sandbox
-
-      - name: Hand the evidence to the generate job
-        # Jobs do not share a filesystem, so what the probe recorded travels as
-        # an artifact rather than as a commit. The generate job unpacks it over
-        # its own checkout and folds it in, which is what puts the evidence and
-        # the provider it changes in one pull request.
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
-        with:
-          name: probe-evidence
-          path: |
-            recordings/
-            blueprints/*/*.scenario.json
-          if-no-files-found: ignore
-          retention-days: 7
-
-  # ---------------------------------------------------------------------------
-  # Derive the whole provider from committed state, plus whatever the probe just
-  # recorded. Runs whether or not the probe ran: skipped is not failed.
-  # ---------------------------------------------------------------------------
   generate:
-    name: '⚙️ Generate the provider'
-    needs: probe
-    if: ${{ !cancelled() && (needs.probe.result == 'success' || needs.probe.result == 'skipped') }}
+    name: '⚙️ Generate from the OpenAPI document'
     runs-on: ubuntu-latest
     timeout-minutes: 60
-    permissions:
-      contents: write
-      pull-requests: write
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
@@ -288,19 +95,6 @@ jobs:
             echo "OPENAPI_DIR=openapi/${NAME}"
             echo "BLUEPRINT_DIR=blueprints/${NAME}"
           } >> "$GITHUB_ENV"
-
-      - name: Take in the probe's evidence
-        if: ${{ needs.probe.result == 'success' }}
-        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
-        with:
-          name: probe-evidence
-          path: .
-
-      - name: Report what the probe contributed
-        if: ${{ needs.probe.result == 'success' }}
-        run: |
-          echo "recordings now present: $(find "recordings/${PROVIDER_NAME}" -name facts.json 2>/dev/null | wc -l)"
-          git status --porcelain "recordings" "${BLUEPRINT_DIR}" | sed 's/^/  /' || true
 
       # The committed lock is the source of truth for how the SDK was generated;
       # the dispatch inputs override it, and a first run with no lock falls back
@@ -458,12 +252,12 @@ jobs:
 
       - name: Fold recorded probe facts in
         # Recordings are the committed, replayable evidence of what the live API
-        # actually does -- whatever this run's probe job just added, plus
-        # everything earlier runs recorded. Absent recordings simply mean
-        # spec-derived defaults.
+        # actually does; merge folds their facts into the drafted blueprints.
+        # Absent recordings simply mean spec-derived defaults -- the probe
+        # workflow supplies the evidence on its own cadence.
         run: |
           if [ ! -d "recordings/${PROVIDER_NAME}" ]; then
-            echo "no recordings committed; blueprints stay spec-derived until the probe records some"
+            echo "no recordings committed; blueprints stay spec-derived until the probe workflow lands some"
             exit 0
           fi
           for facts in "recordings/${PROVIDER_NAME}"/*/*/facts.json; do
@@ -522,7 +316,6 @@ jobs:
       - name: Open a pull request with the results
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PROBED: ${{ needs.probe.result }}
         run: |
           if [[ -z $(git status --porcelain) ]]; then
             echo "✅ everything already matches the pinned inputs; nothing to propose"
@@ -535,15 +328,11 @@ jobs:
           BRANCH="tfpfgen/generate-${PROVIDER_NAME}"
           git checkout -B "$BRANCH"
           git add -A
-          EVIDENCE="Blueprints carry the facts from the recordings already committed."
-          if [ "${PROBED}" = "success" ]; then
-            EVIDENCE="This run probed the live API first; the recordings it made are in this branch, and their facts are folded into the blueprints."
-          fi
           git commit -m "Generate ${PROVIDER_NAME} from OpenAPI ${OPENAPI_VERSION}" \
-            -m "tfpfgen pipeline run ${GITHUB_RUN_ID} against snapshot ${SNAPSHOT_NAME}. Everything follows from the pinned snapshot, the SDK's lock and the committed recordings; nothing is hand-written. ${EVIDENCE}"
+            -m "tfpfgen pipeline run ${GITHUB_RUN_ID} against snapshot ${SNAPSHOT_NAME}. Everything follows from the pinned snapshot, the SDK's lock and the committed recordings; nothing is hand-written."
           git push --force origin "HEAD:$BRANCH"
-          BODY=$(printf 'Automated run of the tfpfgen pipeline (run %s).\n\n- OpenAPI document: version `%s`, snapshot `%s`\n- SDK: kiota, client `%s`, settings from the committed lock\n- Blueprints: `%s`, drafted and pruned against the SDK\n- Evidence: %s\n- Shell and provider tree: generated, drift-policed\n\nOne run, one pull request: document, SDK, provider block, blueprints, shell and provider, built and unit-tested on the runner. This branch is generator-owned and force-pushed on rerun.' \
-            "${GITHUB_RUN_ID}" "${OPENAPI_VERSION}" "${SNAPSHOT_NAME}" "${SDK_CLIENT_NAME}" "${BLUEPRINT_DIR}" "${EVIDENCE}")
+          BODY=$(printf 'Automated run of the tfpfgen pipeline (run %s).\n\n- OpenAPI document: version `%s`, snapshot `%s`\n- SDK: kiota, client `%s`, settings from the committed lock\n- Blueprints: `%s`, drafted and pruned against the SDK, probe facts folded from `recordings/`\n- Shell and provider tree: generated, drift-policed\n\nOne run, one pull request: document, SDK, provider block, blueprints, shell and provider, built and unit-tested on the runner. This branch is generator-owned and force-pushed on rerun.' \
+            "${GITHUB_RUN_ID}" "${OPENAPI_VERSION}" "${SNAPSHOT_NAME}" "${SDK_CLIENT_NAME}" "${BLUEPRINT_DIR}")
           gh pr create --base "${GITHUB_REF_NAME}" --head "$BRANCH" \
             --title "tfpfgen: generate ${PROVIDER_NAME} from OpenAPI ${OPENAPI_VERSION}" \
             --body "$BODY" \
