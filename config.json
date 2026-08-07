@@ -1,0 +1,29 @@
+{
+  "$comment": "How this provider is generated. See CONFIGURING.md. Edited by hand, read by the pipeline; everything else in the repository is derived from it and the API's own document.",
+  "provider": {
+    "name": "thousandeyes"
+  },
+  "openapi": {
+    "documentUrl": "https://pubhub.devnetcloud.com/media/000-v7-apis/docs/reference/unified-oas/api.yaml"
+  },
+  "sdk": {
+    "clientTypeName": "ThousandEyesClient",
+    "includeOnlyPaths": [],
+    "skipPaths": [
+      "/endpoint/tests/dynamic-tests/**",
+      "/endpoint/agents/transfer",
+      "/endpoint/agents/transfer/**"
+    ],
+    "kiotaVersion": "1.34.1",
+    "kiotaDownloadChecksum": ""
+  },
+  "generator": {
+    "version": "main"
+  },
+  "probe": {
+    "namePrefix": "tfpfgen-probe",
+    "maxExistingObjects": 25,
+    "accountScopeParam": "aid",
+    "accountScopeJsonPath": "aid"
+  }
+}
